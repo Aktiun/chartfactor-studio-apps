@@ -1,0 +1,1584 @@
+{
+    "dashboardId": "731ef44d-14e1-40d0-9307-10864e925a25",
+    "name": "London Fire Brigade Calls",
+    "visualizationDef": [
+        {
+            "widgetId": "vis9474ce9b-061d-410c-96b9-a5c76dc98580",
+            "type": "visualization",
+            "providerData": {
+                "title": "Calls by Incident Group and Type",
+                "provider": {
+                    "provider": "elasticsearch"
+                }
+            },
+            "isFC": false,
+            "visualization": "Heat Map",
+            "layout": {
+                "w": 3,
+                "h": 8,
+                "x": 6,
+                "y": 3,
+                "i": "vis9474ce9b-061d-410c-96b9-a5c76dc985801",
+                "moved": false
+            },
+            "code": [
+                "/* Configuration code for this widget */",
+                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let source = provider.source('london_fire_brigade');",
+                "//Configuration for grid",
+                "let grid = cf.Grid().left(10).right(15).bottom(10).top(10);",
+                "// Define metrics",
+                "let metric0 = cf.Metric(\"count\");",
+                "// Define attributes to group by",
+                "let group1 = cf.Attribute(\"incident_group\")",
+                "\t\t\t.limit(100)",
+                "\t\t\t.sort(\"desc\", cf.Metric());",
+                "let group2 = cf.Attribute(\"stop_code_description\")",
+                "\t\t\t.limit(100)",
+                "\t\t\t.sort(\"desc\", cf.Metric());",
+                "",
+                "// Add metrics and groups to data source",
+                "let myData = source.groupby(group1,group2)",
+                "\t\t\t.metrics(metric0);",
+                "// Color",
+                "var color = cf.Color()",
+                "var palette = ['#ccebc5','#a8ddb5','#7bccc4','#4eb3d3','#2b8cbe','#08589e'].reverse();",
+                "color.palette(palette);",
+                "color.metric(metric0);",
+                "// Define chart options",
+                "let myChart = myData.graph(\"Heat Map\")",
+                "\t\t\t.set(\"grid\", grid)",
+                "\t\t\t.set('color', color)",
+                "\t\t\t.execute();",
+                ""
+            ],
+            "source": {
+                "id": {
+                    "sourceId": "london_fire_brigade",
+                    "providerId": "fbfd5716-cba4-490a-9a7b-a3a5d9156f5d"
+                },
+                "name": {
+                    "sourceName": "london_fire_brigade",
+                    "providerName": "Aktiun Elastic"
+                },
+                "type": "DATASET"
+            }
+        },
+        {
+            "widgetId": "visb1b8baf1-bc9c-4b9f-b9bb-c5ace2c922e5",
+            "type": "visualization",
+            "providerData": {
+                "title": "Calls by Incident Group / Type",
+                "provider": {
+                    "provider": "elasticsearch"
+                }
+            },
+            "isFC": false,
+            "visualization": "Bars",
+            "layout": {
+                "w": 3,
+                "h": 8,
+                "x": 9,
+                "y": 3,
+                "i": "visb1b8baf1-bc9c-4b9f-b9bb-c5ace2c922e51",
+                "moved": false
+            },
+            "code": [
+                "/* Configuration code for this widget */",
+                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let source = provider.source('london_fire_brigade');",
+                "// Define metrics",
+                "let metric0 = cf.Metric(\"count\");",
+                "let metricColor = cf.Metric(\"count\");",
+                "// Define attributes to group by",
+                "let group1 = cf.Attribute(\"incident_group\")",
+                "\t\t\t.limit(100)",
+                "\t\t\t.sort(\"desc\", cf.Metric());",
+                "",
+                "// Add metrics and groups to data source",
+                "let myData = source.groupby(group1)",
+                "\t.metrics(metric0);",
+                "// Define chart options",
+                "// Define Grid",
+                "let grid = cf.Grid()",
+                "\t.top(-20)",
+                "\t.right(15)",
+                "\t.bottom(5)",
+                "\t.left(10);",
+                "// Define Color Palette",
+                "let color = cf.Color()",
+                "\t.palette([\"#0868ac\", \"#43a2ca\", \"#7bccc4\",",
+                "\t\t\"#bae4bc\", \"#f0f9e8\"])",
+                "\t.metric(metricColor);",
+                "let myChart = myData.graph(\"Bars\")",
+                "\t.set(\"grid\", grid)",
+                "\t.set(\"color\", color)",
+                "\t.set(\"orientation\", \"horizontal\")",
+                "\t.set(\"axisLabels\", true)",
+                "\t.set(\"yAxis\", {\"text\":\"out\",\"min\":0})",
+                "\t.set(\"dataZoom\", false)",
+                "\t.execute();",
+                ""
+            ],
+            "source": {
+                "id": {
+                    "sourceId": "london_fire_brigade",
+                    "providerId": "fbfd5716-cba4-490a-9a7b-a3a5d9156f5d"
+                },
+                "name": {
+                    "sourceName": "london_fire_brigade",
+                    "providerName": "Aktiun Elastic"
+                },
+                "type": "DATASET"
+            }
+        },
+        {
+            "widgetId": "vis60c6edf7-8afe-4f10-a93b-8a8c6317a792",
+            "type": "visualization",
+            "providerData": {
+                "title": "Call Trend by Hour of the Day",
+                "provider": {
+                    "provider": "elasticsearch"
+                }
+            },
+            "isFC": false,
+            "visualization": "Bars",
+            "layout": {
+                "w": 9,
+                "h": 5,
+                "x": 0,
+                "y": 11,
+                "i": "vis60c6edf7-8afe-4f10-a93b-8a8c6317a7921",
+                "moved": false
+            },
+            "code": [
+                "/* Configuration code for this widget */",
+                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let source = provider.source('london_fire_brigade');",
+                "// Define metrics",
+                "let metric0 = cf.Metric(\"count\");",
+                "let metricColor = cf.Metric(\"count\");",
+                "// Define attributes to group by",
+                "let group1 = cf.Attribute(\"hour_of_call\")",
+                "\t\t\t.limit(24)",
+                "\t\t\t.sort(\"asc\",\"hour_of_call\");",
+                "",
+                "// Add metrics and groups to data source",
+                "let myData = source.groupby(group1)",
+                "\t.metrics(metric0);",
+                "// Define chart options",
+                "// Define Grid",
+                "let grid = cf.Grid()",
+                "\t.top(10)",
+                "\t.right(15)",
+                "\t.bottom(35)",
+                "\t.left(65);",
+                "// Define Color Palette",
+                "let color = cf.Color()",
+                "\t.palette([\"#08589e\", \"#2b8cbe\", \"#4eb3d3\",",
+                "\t\t\"#7bccc4\", \"#a8ddb5\", \"#ccebc5\",",
+                "\t\t\"#f0f9e8\"])",
+                "\t.metric(metricColor);",
+                "let myChart = myData.graph(\"Bars\")",
+                "\t.set(\"grid\", grid)",
+                "\t.set(\"color\", color)",
+                "\t.set(\"dataZoom\", false)",
+                "\t.execute();",
+                ""
+            ],
+            "source": {
+                "id": {
+                    "sourceId": "london_fire_brigade",
+                    "providerId": "fbfd5716-cba4-490a-9a7b-a3a5d9156f5d"
+                },
+                "name": {
+                    "sourceName": "london_fire_brigade",
+                    "providerName": "Aktiun Elastic"
+                },
+                "type": "DATASET"
+            }
+        },
+        {
+            "widgetId": "vis01e57239-b314-408f-bf02-2108dd33532c",
+            "type": "visualization",
+            "providerData": {
+                "title": "Number of Calls by Borough and Ward",
+                "provider": {
+                    "provider": "elasticsearch"
+                }
+            },
+            "isFC": false,
+            "visualization": "Bars",
+            "layout": {
+                "w": 3,
+                "h": 11,
+                "x": 0,
+                "y": 24,
+                "i": "vis01e57239-b314-408f-bf02-2108dd33532c1",
+                "moved": false
+            },
+            "code": [
+                "/* Configuration code for this widget */",
+                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let source = provider.source('london_fire_brigade');",
+                "// Define metrics",
+                "let metric0 = cf.Metric(\"count\");",
+                "let metricColor = cf.Metric(\"count\");",
+                "// Define attributes to group by",
+                "let group1 = cf.Attribute(\"proper_case\")",
+                "\t\t\t.limit(50)",
+                "\t\t\t.sort(\"desc\", cf.Metric());",
+                "",
+                "// Add metrics and groups to data source",
+                "let myData = source.groupby(group1)",
+                "\t.metrics(metric0);",
+                "// Define chart options",
+                "// Define Grid",
+                "let grid = cf.Grid()",
+                "\t.top(5)",
+                "\t.right(15)",
+                "\t.bottom(35)",
+                "\t.left(65);",
+                "// Define Color Palette",
+                "let color = cf.Color()",
+                "\t.palette([\"#0868ac\", \"#43a2ca\", \"#7bccc4\",",
+                "\t\t\"#bae4bc\", \"#f0f9e8\"])",
+                "\t.metric(metricColor);",
+                "let myChart = myData.graph(\"Bars\")",
+                "\t.set(\"grid\", grid)",
+                "\t.set(\"color\", color)",
+                "\t.set(\"orientation\", \"horizontal\")",
+                "\t.set(\"dataZoom\", false)",
+                "\t.execute();",
+                ""
+            ],
+            "source": {
+                "id": {
+                    "sourceId": "london_fire_brigade",
+                    "providerId": "fbfd5716-cba4-490a-9a7b-a3a5d9156f5d"
+                },
+                "name": {
+                    "sourceName": "london_fire_brigade",
+                    "providerName": "Aktiun Elastic"
+                },
+                "type": "DATASET"
+            }
+        },
+        {
+            "widgetId": "vis52c9c3c2-60bd-4c62-84c8-628f4e4239bc",
+            "type": "visualization",
+            "providerData": {
+                "title": "Trend of Calls between January and April 2017",
+                "provider": {
+                    "provider": "elasticsearch"
+                }
+            },
+            "isFC": false,
+            "visualization": "Multimetric Trend",
+            "layout": {
+                "w": 6,
+                "h": 9,
+                "x": 0,
+                "y": 2,
+                "i": "vis52c9c3c2-60bd-4c62-84c8-628f4e4239bc1",
+                "moved": false
+            },
+            "code": [
+                "/* Configuration code for this widget */",
+                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let source = provider.source('london_fire_brigade');",
+                "//Configuration for grid",
+                "let grid = cf.Grid().left(65).right(20).bottom(65).top(10);",
+                "let xAxis = {labelGap: 25};",
+                "// Define metrics",
+                "let metrics0 = cf.Metric(\"count\");",
+                "// Define attributes to group by",
+                "let group1 = cf.Attribute(\"date_of_call\")",
+                "\t\t\t.limit(1000)",
+                "\t\t\t.func(\"DAY\")",
+                "\t\t\t.sort(\"asc\",\"date_of_call\");",
+                "",
+                "// Add metrics and groups to data source",
+                "let myData = source.groupby(group1)",
+                "\t\t\t.metrics(metrics0);",
+                "// Color",
+                "var color = cf.Color()",
+                "var palette = ['#2b8cbe'];",
+                "color.palette(palette);",
+                "let myChart = myData.graph(\"Multimetric Trend\")",
+                "\t\t\t.set(\"grid\", grid)",
+                "\t\t\t.set(\"xAxis\", xAxis)",
+                "\t\t\t.set('color', color)",
+                "\t\t\t.execute();",
+                ""
+            ],
+            "source": {
+                "id": {
+                    "sourceId": "london_fire_brigade",
+                    "providerId": "fbfd5716-cba4-490a-9a7b-a3a5d9156f5d"
+                },
+                "name": {
+                    "sourceName": "london_fire_brigade",
+                    "providerName": "Aktiun Elastic"
+                },
+                "type": "DATASET"
+            }
+        },
+        {
+            "widgetId": "vis4194457b-50d1-47ea-a832-5064a41be5be",
+            "type": "visualization",
+            "providerData": {
+                "title": "Filters"
+            },
+            "isFC": true,
+            "visualization": "Interaction Manager",
+            "layout": {
+                "w": 6,
+                "h": 2,
+                "x": 0,
+                "y": 0,
+                "i": "vis4194457b-50d1-47ea-a832-5064a41be5be1",
+                "moved": false
+            },
+            "code": [
+                "/* Configuration code for the Interaction Manager*/",
+                "// Drill hierarchy settings can be done like this:",
+                "var vizId = getId(\"Calls by Incident Group / Type\")",
+                "var vizId2 = getId(\"Average First Response Time by Borough and Ward\");",
+                "var vizId3 = getId(\"Number of Calls by Borough and Ward\");",
+                "var vizId4 = getId(\"Distribution of First Response Time by Borough and Ward\");",
+                "",
+                "var drill = { ",
+                "  [vizId]: { ",
+                "    group1: ['incident_group', 'stop_code_description', 'special_service_type']",
+                "  },",
+                "  [vizId2]: {",
+                "    group1: ['proper_case', 'ward_name_new']",
+                "  },",
+                "  [vizId3]: {",
+                "    group1: ['proper_case', 'ward_name_new']    ",
+                "  },",
+                "  [vizId4]: {",
+                "    group1: ['proper_case', 'ward_name_new']      ",
+                "  }",
+                "}",
+                "",
+                "// Define options",
+                "let aktive = cf.create();",
+                "let myChart = aktive.graph(\"Interaction Manager\")",
+                "\t\t.set(\"drill\", drill)",
+                "\t\t.execute();",
+                ""
+            ],
+            "source": {}
+        },
+        {
+            "widgetId": "visc1b80ca7-5f80-4f9d-8948-a5de1afdfac1",
+            "type": "visualization",
+            "providerData": {
+                "title": "Disk showing Calls by Hour of the Day",
+                "provider": {
+                    "provider": "elasticsearch"
+                }
+            },
+            "isFC": false,
+            "visualization": "Disk",
+            "layout": {
+                "w": 3,
+                "h": 5,
+                "x": 9,
+                "y": 11,
+                "i": "visc1b80ca7-5f80-4f9d-8948-a5de1afdfac11",
+                "moved": false
+            },
+            "code": [
+                "/* Configuration code for this widget */",
+                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let source = provider.source('london_fire_brigade');",
+                "// Define metrics",
+                "let metric0 = cf.Metric(\"count\");",
+                "// Define attributes to group by",
+                "let group1 = cf.Attribute(\"hour_of_call\")",
+                "\t\t\t.limit(24)",
+                "\t\t\t.sort(\"asc\",\"hour_of_call\");",
+                "",
+                "// Add metrics and groups to data source",
+                "let myData = source.groupby(group1)",
+                "\t\t\t.metrics(metric0);",
+                "// Color",
+                "var color = cf.Color()",
+                "var palette = ['#f46d43','#fdae61','#fee08b','#d9ef8b','#a6d96a','#66bd63','#1a9850'].reverse();",
+                "color.palette(palette);",
+                "color.metric(metric0);",
+                "// Define chart options",
+                "let myChart = myData.graph(\"Disk\")",
+                "      .set(\"color\", color)",
+                "\t\t\t.execute();",
+                ""
+            ],
+            "source": {
+                "id": {
+                    "sourceId": "london_fire_brigade",
+                    "providerId": "fbfd5716-cba4-490a-9a7b-a3a5d9156f5d"
+                },
+                "name": {
+                    "sourceName": "london_fire_brigade",
+                    "providerName": "Aktiun Elastic"
+                },
+                "type": "DATASET"
+            }
+        },
+        {
+            "widgetId": "vis123f9e5c-eccd-499a-a717-671de3d1df4d",
+            "type": "visualization",
+            "providerData": {
+                "title": "Distribution of First Response by Hour of Call",
+                "provider": {
+                    "provider": "elasticsearch"
+                }
+            },
+            "isFC": false,
+            "visualization": "Box Plot",
+            "layout": {
+                "w": 3,
+                "h": 7,
+                "x": 0,
+                "y": 17,
+                "i": "vis123f9e5c-eccd-499a-a717-671de3d1df4d1",
+                "moved": false
+            },
+            "code": [
+                "/* Configuration code for this widget */",
+                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let source = provider.source('london_fire_brigade');",
+                "//Configuration for grid",
+                "let grid = cf.Grid().left(70).right(15).bottom(50).top(50);",
+                "let yAxis = {labelGap: 40};",
+                "let xAxis = {labelGap: 30};",
+                "var lines = cf.MarkLine().data([",
+                "    {name:'Target', yAxis:6}",
+                "])",
+                "// Define metrics",
+                "let metric0 = cf.Metric(\"first_response_mins_perc\");",
+                "let metric1 = cf.Metric();",
+                "// Define attributes to group by",
+                "let group1 = cf.Attribute(\"hour_of_call\")",
+                "\t\t\t.limit(24)",
+                "\t\t\t.sort(\"asc\",\"hour_of_call\");",
+                "",
+                "// Add metrics and groups to data source",
+                "let myData = source.groupby(group1)",
+                "\t\t\t.metrics(metric0, metric1);",
+                "// Define chart options",
+                "let myChart = myData.graph(\"Box Plot\")",
+                "\t\t\t.set(\"grid\", grid)",
+                "\t\t\t.set(\"xAxis\", xAxis)",
+                "\t\t\t.set(\"yAxis\", yAxis)",
+                "\t\t\t.set('markline', lines)",
+                "\t\t\t.execute();",
+                ""
+            ],
+            "source": {
+                "id": {
+                    "sourceId": "london_fire_brigade",
+                    "providerId": "fbfd5716-cba4-490a-9a7b-a3a5d9156f5d"
+                },
+                "name": {
+                    "sourceName": "london_fire_brigade",
+                    "providerName": "Aktiun Elastic"
+                },
+                "type": "DATASET"
+            }
+        },
+        {
+            "widgetId": "vis16c6abb3-2555-49ea-8bcc-c653ba766b0b",
+            "type": "visualization",
+            "providerData": {
+                "title": "Total Calls",
+                "provider": {
+                    "provider": "elasticsearch"
+                }
+            },
+            "isFC": false,
+            "isMarkup": false,
+            "visualization": "KPI",
+            "layout": {
+                "w": 2,
+                "h": 2,
+                "x": 10,
+                "y": 0,
+                "i": "vis16c6abb3-2555-49ea-8bcc-c653ba766b0b1",
+                "moved": false
+            },
+            "code": [
+                "/* Configuration code for this widget */",
+                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let source = provider.source('london_fire_brigade');",
+                "// Define metrics",
+                "let metric0 = cf.Metric();",
+                "// Add metrics and groups to data source",
+                "let myData = source",
+                "\t\t\t.metrics(metric0);",
+                "// Define chart options",
+                "let myChart = myData.graph(\"KPI\")",
+                "      .set(\"showLabels\", false)",
+                "\t\t\t.set(\"mainTextSize\", 40)",
+                "\t\t\t.execute();",
+                ""
+            ],
+            "source": {
+                "id": {
+                    "sourceId": "london_fire_brigade",
+                    "providerId": "44c5a651-5c1d-4438-b631-7ec4ed30a5da"
+                },
+                "name": {
+                    "sourceName": "london_fire_brigade",
+                    "providerName": "Aktiun Elastic"
+                },
+                "type": "DATASET"
+            }
+        },
+        {
+            "widgetId": "vis1ed186e9-6d7d-4054-9f8d-dbc608cdeeed",
+            "type": "visualization",
+            "providerData": {
+                "title": "Distribution of Second Response by Hour of Call",
+                "provider": {
+                    "provider": "elasticsearch"
+                }
+            },
+            "isFC": false,
+            "isMarkup": false,
+            "visualization": "Box Plot",
+            "layout": {
+                "w": 3,
+                "h": 7,
+                "x": 6,
+                "y": 17,
+                "i": "vis1ed186e9-6d7d-4054-9f8d-dbc608cdeeed1",
+                "moved": false
+            },
+            "code": [
+                "/* Configuration code for this widget */",
+                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let source = provider.source('london_fire_brigade');",
+                "//Configuration for grid",
+                "let grid = cf.Grid().left(70).right(15).bottom(50).top(50);",
+                "let yAxis = {labelGap: 40};",
+                "let xAxis = {labelGap: 30};",
+                "var lines = cf.MarkLine().data([",
+                "    {name:'Target', yAxis:8}",
+                "])",
+                "// Define metrics",
+                "let metric0 = cf.Metric(\"second_response_mins_perc\");",
+                "let metric1 = cf.Metric();",
+                "// Define attributes to group by",
+                "let group1 = cf.Attribute(\"hour_of_call\")",
+                "\t\t\t.limit(24)",
+                "\t\t\t.sort(\"asc\",\"hour_of_call\");",
+                "",
+                "// Add metrics and groups to data source",
+                "let myData = source.groupby(group1)",
+                "\t\t\t.metrics(metric0, metric1);",
+                "// Define chart options",
+                "let myChart = myData.graph(\"Box Plot\")",
+                "\t\t\t.set(\"grid\", grid)",
+                "\t\t\t.set(\"xAxis\", xAxis)",
+                "\t\t\t.set(\"yAxis\", yAxis)",
+                "\t\t\t.set('markline', lines)",
+                "\t\t\t.execute();",
+                ""
+            ],
+            "source": {
+                "id": {
+                    "sourceId": "london_fire_brigade",
+                    "providerId": "44c5a651-5c1d-4438-b631-7ec4ed30a5da"
+                },
+                "name": {
+                    "sourceName": "london_fire_brigade",
+                    "providerName": "Aktiun Elastic"
+                },
+                "type": "DATASET"
+            },
+            "codeMode": false
+        },
+        {
+            "widgetId": "vis94f658d5-2208-46cc-861c-9a21122a4d84",
+            "type": "visualization",
+            "providerData": {
+                "title": ""
+            },
+            "isFC": false,
+            "isMarkup": true,
+            "visualization": "Bars",
+            "layout": {
+                "w": 6,
+                "h": 1,
+                "x": 0,
+                "y": 16,
+                "i": "vis94f658d5-2208-46cc-861c-9a21122a4d841",
+                "moved": false
+            },
+            "code": [
+                "/* Configuration code for the Markup Widget*/",
+                "",
+                "// Define options",
+                "let aktive = cf.create();",
+                "let myChart = aktive.graph(\"Markup\")",
+                "\t\t.set(\"content\", {\"ops\":[{\"attributes\":{\"color\":\"#ffffff\"},\"insert\":\"Regardless of the hour of call, the average first response time is around 5 mins for all hours of the day. This is within the department's target of 6 mins.\"},{\"insert\":\"\\n\"}]})",
+                "\t\t.set(\"enable\", false)",
+                "\t\t.set(\"background\", \"#2b8cbe\")",
+                "\t\t.execute();",
+                ""
+            ],
+            "source": {}
+        },
+        {
+            "widgetId": "vis09c6c285-cca6-49a0-aa9c-bb1016e68ced",
+            "type": "visualization",
+            "providerData": {
+                "title": ""
+            },
+            "isFC": false,
+            "isMarkup": true,
+            "visualization": "Bars",
+            "layout": {
+                "w": 6,
+                "h": 1,
+                "x": 6,
+                "y": 16,
+                "i": "vis09c6c285-cca6-49a0-aa9c-bb1016e68ced1",
+                "moved": false
+            },
+            "code": [
+                "/* Configuration code for the Markup Widget*/",
+                "",
+                "// Define options",
+                "let aktive = cf.create();",
+                "let myChart = aktive.graph(\"Markup\")",
+                "\t\t.set(\"content\", {\"ops\":[{\"attributes\":{\"color\":\"#ffffff\"},\"insert\":\"The Second Response average is also well within the target of 8 mins set by the Fire Department.\"},{\"insert\":\"\\n\"}]})",
+                "\t\t.set(\"enable\", false)",
+                "\t\t.set(\"background\", \"#2b8cbe\")",
+                "\t\t.execute();",
+                ""
+            ],
+            "source": {}
+        },
+        {
+            "widgetId": "vis6fd2b98d-a318-4a99-80da-123ba9ed1519",
+            "type": "visualization",
+            "providerData": {
+                "title": ""
+            },
+            "isFC": false,
+            "isMarkup": true,
+            "visualization": "Bars",
+            "layout": {
+                "w": 6,
+                "h": 1,
+                "x": 6,
+                "y": 2,
+                "i": "vis6fd2b98d-a318-4a99-80da-123ba9ed15191",
+                "moved": false
+            },
+            "code": [
+                "/* Configuration code for the Markup Widget*/",
+                "",
+                "// Define options",
+                "let aktive = cf.create();",
+                "let myChart = aktive.graph(\"Markup\")",
+                "\t\t.set(\"content\", {\"ops\":[{\"attributes\":{\"color\":\"#ffffff\"},\"insert\":\"- The most number of calls are from AFA or Automatic Fire Alarm\"},{\"insert\":\"\\n\"},{\"attributes\":{\"color\":\"#ffffff\"},\"insert\":\"- Special Services are non-emergency situations.  Select it to drill-in into Special Service Types.\"},{\"insert\":\"\\n\"}]})",
+                "\t\t.set(\"enable\", false)",
+                "\t\t.set(\"background\", \"#2b8cbe\")",
+                "\t\t.execute();",
+                ""
+            ],
+            "source": {}
+        },
+        {
+            "widgetId": "vis1c8512dc-10e3-4450-836d-c4314581dfcd",
+            "type": "visualization",
+            "providerData": {
+                "title": "Distribution of First Response Time by Borough and Ward",
+                "provider": {
+                    "provider": "elasticsearch"
+                }
+            },
+            "isFC": false,
+            "isMarkup": false,
+            "visualization": "Box Plot",
+            "layout": {
+                "w": 3,
+                "h": 11,
+                "x": 9,
+                "y": 24,
+                "i": "vis1c8512dc-10e3-4450-836d-c4314581dfcd1",
+                "moved": false
+            },
+            "code": [
+                "/* Configuration code for this widget */",
+                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let source = provider.source('london_fire_brigade');",
+                "//Configuration for grid",
+                "let grid = cf.Grid().left(80).right(35).bottom(50).top(35);",
+                "let yAxis = {labelGap: 180};",
+                "let xAxis = {labelGap: 20};",
+                "var lines = cf.MarkLine().data([",
+                "    {name:'Target', xAxis:6}",
+                "])",
+                "// Define metrics",
+                "let metric0 = cf.Metric(\"first_response_mins_perc\");",
+                "let metric1 = cf.Metric();",
+                "// Define attributes to group by",
+                "let group1 = cf.Attribute(\"proper_case\")",
+                "\t\t\t.limit(100)",
+                "\t\t\t.sort(\"desc\", cf.Metric(\"first_response_mins_perc\", \"derived\"));",
+                "",
+                "// Add metrics and groups to data source",
+                "let myData = source.groupby(group1)",
+                "\t\t\t.metrics(metric0, metric1);",
+                "// Define chart options",
+                "let myChart = myData.graph(\"Box Plot\")",
+                "\t\t\t.set(\"grid\", grid)",
+                "\t\t\t.set(\"xAxis\", xAxis)",
+                "\t\t\t.set(\"yAxis\", yAxis)",
+                "\t\t// \t.set('markline', lines)",
+                "\t\t\t.set(\"orientation\", \"horizontal\")",
+                "\t\t\t.execute();",
+                ""
+            ],
+            "source": {
+                "id": {
+                    "sourceId": "london_fire_brigade",
+                    "providerId": "44c5a651-5c1d-4438-b631-7ec4ed30a5da"
+                },
+                "name": {
+                    "sourceName": "london_fire_brigade",
+                    "providerName": "Aktiun Elastic"
+                },
+                "type": "DATASET"
+            }
+        },
+        {
+            "widgetId": "vis16871325-1233-4d19-9131-04417825c9bb",
+            "type": "visualization",
+            "providerData": {
+                "title": "Average First Response Time by Borough and Ward",
+                "provider": {
+                    "provider": "elasticsearch"
+                }
+            },
+            "isFC": false,
+            "isMarkup": false,
+            "visualization": "Bars",
+            "layout": {
+                "w": 3,
+                "h": 11,
+                "x": 6,
+                "y": 24,
+                "i": "vis16871325-1233-4d19-9131-04417825c9bb1",
+                "moved": false
+            },
+            "code": [
+                "/* Configuration code for this widget */",
+                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let source = provider.source('london_fire_brigade');",
+                "// Define metrics",
+                "let metric0 = cf.Metric(\"first_response_mins_avg\");",
+                "let metricColor = cf.Metric(\"first_response_mins_avg\", \"sum\");",
+                "// Define attributes to group by",
+                "let group1 = cf.Attribute(\"proper_case\")",
+                "\t\t\t.limit(100)",
+                "\t\t\t.sort(\"desc\", cf.Metric(\"first_response_mins_avg\", \"derived\"));",
+                "",
+                "// Add metrics and groups to data source",
+                "let myData = source.groupby(group1)",
+                "\t.metrics(metric0);",
+                "// Define chart options",
+                "// Define Grid",
+                "let grid = cf.Grid()",
+                "\t.top(5)",
+                "\t.right(15)",
+                "\t.bottom(35)",
+                "\t.left(65);",
+                "// Define MarkLine",
+                "let lines = cf.MarkLine()",
+                "\t.data([",
+                "\t\t{\"name\":\"Target\",\"xAxis\":6},",
+                "\t\t{\"name\":\"Average\",\"type\":\"average\"}",
+                "\t]);",
+                "// Define Color Palette",
+                "let color = cf.Color()",
+                "\t.palette([\"#0868ac\", \"#43a2ca\", \"#7bccc4\",",
+                "\t\t\"#bae4bc\", \"#f0f9e8\"])",
+                "\t.metric(metricColor);",
+                "let myChart = myData.graph(\"Bars\")",
+                "\t.set(\"grid\", grid)",
+                "\t.set(\"markline\", lines)",
+                "\t.set(\"color\", color)",
+                "\t.set(\"orientation\", \"horizontal\")",
+                "\t.set(\"dataZoom\", false)",
+                "\t.execute();",
+                ""
+            ],
+            "source": {
+                "id": {
+                    "sourceId": "london_fire_brigade",
+                    "providerId": "44c5a651-5c1d-4438-b631-7ec4ed30a5da"
+                },
+                "name": {
+                    "sourceName": "london_fire_brigade",
+                    "providerName": "Aktiun Elastic"
+                },
+                "type": "DATASET"
+            }
+        },
+        {
+            "widgetId": "vis4f109de4-d882-43a6-b31d-fabb64faaf8b",
+            "type": "visualization",
+            "providerData": {
+                "title": "Average First Response Time by Hour of Call",
+                "provider": {
+                    "provider": "elasticsearch"
+                }
+            },
+            "isFC": false,
+            "isMarkup": false,
+            "visualization": "Bars",
+            "layout": {
+                "w": 3,
+                "h": 7,
+                "x": 3,
+                "y": 17,
+                "i": "vis4f109de4-d882-43a6-b31d-fabb64faaf8b1",
+                "moved": false
+            },
+            "code": [
+                "/* Configuration code for this widget */",
+                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let source = provider.source('london_fire_brigade');",
+                "// Define metrics",
+                "let metric0 = cf.Metric(\"first_response_mins_avg\");",
+                "let metricColor = cf.Metric(\"first_response_mins_avg\");",
+                "// Define attributes to group by",
+                "let group1 = cf.Attribute(\"hour_of_call\")",
+                "\t\t\t.limit(24)",
+                "\t\t\t.sort(\"asc\",\"hour_of_call\");",
+                "",
+                "// Add metrics and groups to data source",
+                "let myData = source.groupby(group1)",
+                "\t.metrics(metric0);",
+                "// Define chart options",
+                "// Define Grid",
+                "let grid = cf.Grid()",
+                "\t.top(10)",
+                "\t.right(15)",
+                "\t.bottom(35)",
+                "\t.left(65);",
+                "// Define MarkLine",
+                "let lines = cf.MarkLine()",
+                "\t.data([",
+                "\t\t{\"name\":\"Average\",\"type\":\"average\"},",
+                "\t\t{\"name\":\"Target\",\"yAxis\":6}",
+                "\t]);",
+                "// Define Color Palette",
+                "let color = cf.Color()",
+                "\t.palette([\"#2b8cbe\", \"#7bccc4\", \"#bae4bc\",",
+                "\t\t\"#f0f9e8\"])",
+                "\t.metric(metricColor);",
+                "let myChart = myData.graph(\"Bars\")",
+                "\t.set(\"grid\", grid)",
+                "\t.set(\"markline\", lines)",
+                "\t.set(\"color\", color)",
+                "\t.set(\"yAxis\", {\"min\":0,\"max\":8})",
+                "\t.set(\"dataZoom\", false)",
+                "\t.execute();",
+                ""
+            ],
+            "source": {
+                "id": {
+                    "sourceId": "london_fire_brigade",
+                    "providerId": "44c5a651-5c1d-4438-b631-7ec4ed30a5da"
+                },
+                "name": {
+                    "sourceName": "london_fire_brigade",
+                    "providerName": "Aktiun Elastic"
+                },
+                "type": "DATASET"
+            }
+        },
+        {
+            "widgetId": "vis0c2b240d-283a-4790-82e5-d61145545593",
+            "type": "visualization",
+            "providerData": {
+                "title": "Average Second Response Time by Hour of Call",
+                "provider": {
+                    "provider": "elasticsearch"
+                }
+            },
+            "isFC": false,
+            "isMarkup": false,
+            "visualization": "Bars",
+            "layout": {
+                "w": 3,
+                "h": 7,
+                "x": 9,
+                "y": 17,
+                "i": "vis0c2b240d-283a-4790-82e5-d611455455931",
+                "moved": false
+            },
+            "code": [
+                "/* Configuration code for this widget */",
+                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let source = provider.source('london_fire_brigade');",
+                "// Define metrics",
+                "let metric0 = cf.Metric(\"second_response_min_avg\");",
+                "let metricColor = cf.Metric(\"second_response_min_avg\");",
+                "// Define attributes to group by",
+                "let group1 = cf.Attribute(\"hour_of_call\")",
+                "\t\t\t.limit(24)",
+                "\t\t\t.sort(\"asc\",\"hour_of_call\");",
+                "",
+                "// Add metrics and groups to data source",
+                "let myData = source.groupby(group1)",
+                "\t.metrics(metric0);",
+                "// Define chart options",
+                "// Define Grid",
+                "let grid = cf.Grid()",
+                "\t.top(10)",
+                "\t.right(15)",
+                "\t.bottom(35)",
+                "\t.left(65);",
+                "// Define MarkLine",
+                "let lines = cf.MarkLine()",
+                "\t.data([",
+                "\t\t{\"name\":\"Average\",\"type\":\"average\"},",
+                "\t\t{\"name\":\"Target\",\"yAxis\":8}",
+                "\t]);",
+                "// Define Color Palette",
+                "let color = cf.Color()",
+                "\t.palette([\"#2b8cbe\", \"#7bccc4\", \"#bae4bc\",",
+                "\t\t\"#f0f9e8\"])",
+                "\t.metric(metricColor);",
+                "let myChart = myData.graph(\"Bars\")",
+                "\t.set(\"grid\", grid)",
+                "\t.set(\"markline\", lines)",
+                "\t.set(\"color\", color)",
+                "\t.set(\"yAxis\", {\"min\":0,\"max\":10})",
+                "\t.set(\"dataZoom\", false)",
+                "\t.execute();",
+                ""
+            ],
+            "source": {
+                "id": {
+                    "sourceId": "london_fire_brigade",
+                    "providerId": "44c5a651-5c1d-4438-b631-7ec4ed30a5da"
+                },
+                "name": {
+                    "sourceName": "london_fire_brigade",
+                    "providerName": "Aktiun Elastic"
+                },
+                "type": "DATASET"
+            }
+        },
+        {
+            "widgetId": "vis59e921bf-08db-45d1-b1d1-7e4edc6712fc",
+            "type": "visualization",
+            "providerData": {
+                "title": "Calls by Property Category and Property Type",
+                "provider": {
+                    "provider": "elasticsearch"
+                }
+            },
+            "isFC": false,
+            "isMarkup": false,
+            "visualization": "Tree Map 2D",
+            "layout": {
+                "w": 12,
+                "h": 6,
+                "x": 0,
+                "y": 35,
+                "i": "vis59e921bf-08db-45d1-b1d1-7e4edc6712fc1",
+                "moved": false
+            },
+            "code": [
+                "/* Configuration code for this widget */",
+                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let source = provider.source('london_fire_brigade');",
+                "// Define metrics",
+                "let metric0 = cf.Metric(\"count\");",
+                "// Define attributes to group by",
+                "let group1 = cf.Attribute(\"property_category\")",
+                "\t\t\t.limit(100)",
+                "\t\t\t.sort(\"desc\", cf.Metric());",
+                "let group2 = cf.Attribute(\"property_type\")",
+                "\t\t\t.limit(10)",
+                "\t\t\t.sort(\"desc\", cf.Metric());",
+                "",
+                "// Add metrics and groups to data source",
+                "let myData = source.groupby(group1,group2)",
+                "\t\t\t.metrics(metric0);",
+                "// Color",
+                "var color = cf.Color()",
+                "var palette = ['#f0f9e8','#ccebc5','#a8ddb5','#7bccc4','#4eb3d3','#2b8cbe','#08589e'].reverse();",
+                "color.palette(palette);",
+                "// Define chart options",
+                "let myChart = myData.graph(\"Tree Map 2D\")",
+                "      .set('color', color)",
+                "\t\t\t.execute();",
+                ""
+            ],
+            "source": {
+                "id": {
+                    "sourceId": "london_fire_brigade",
+                    "providerId": "44c5a651-5c1d-4438-b631-7ec4ed30a5da"
+                },
+                "name": {
+                    "sourceName": "london_fire_brigade",
+                    "providerName": "Aktiun Elastic"
+                },
+                "type": "DATASET"
+            }
+        },
+        {
+            "widgetId": "vis574abc1f-38de-44a1-bb10-0602e382ce3b",
+            "type": "visualization",
+            "providerData": {
+                "title": "Call Events",
+                "provider": {
+                    "provider": "elasticsearch"
+                }
+            },
+            "isFC": false,
+            "isMarkup": false,
+            "visualization": "Raw Data Table",
+            "layout": {
+                "w": 12,
+                "h": 7,
+                "x": 0,
+                "y": 41,
+                "i": "vis574abc1f-38de-44a1-bb10-0602e382ce3b1",
+                "moved": false
+            },
+            "code": [
+                "/* Configuration code for this widget */",
+                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let source = provider.source('london_fire_brigade');",
+                "let myData = source.fields();",
+                "// Define chart options",
+                "let theme = {",
+                "    \"headerStyle\": 'background: #737373; color: #e5f5e0;',",
+                "    \"bodyStyle\": 'background: #ffffff; color: #3e4953;',",
+                "    \"rowOddStyle\":\"background: #ffffff\",",
+                "    \"rowEvenStyle\":\"background: #f0f0f0\"",
+                "};",
+                "let color = cf.Color().theme(theme);",
+                "// Define chart options",
+                "let myChart = myData.graph(\"Raw Data Table\")",
+                "\t\t\t.set(\"showRowNumber\", true)",
+                "\t\t\t.set(\"autoSizeColumns\", true)",
+                "\t\t\t.set('color', color)",
+                "\t\t\t.execute();",
+                ""
+            ],
+            "source": {
+                "id": {
+                    "sourceId": "london_fire_brigade",
+                    "providerId": "44c5a651-5c1d-4438-b631-7ec4ed30a5da"
+                },
+                "name": {
+                    "sourceName": "london_fire_brigade",
+                    "providerName": "Aktiun Elastic"
+                },
+                "type": "DATASET"
+            }
+        },
+        {
+            "widgetId": "vis01440f40-b9dc-4521-91e3-473fa42d2eba",
+            "type": "visualization",
+            "providerData": {
+                "title": "Time Range Filter",
+                "provider": {
+                    "provider": "elasticsearch"
+                }
+            },
+            "isFC": false,
+            "isMarkup": false,
+            "visualization": "Time Range Filter",
+            "layout": {
+                "w": 4,
+                "h": 2,
+                "x": 6,
+                "y": 0,
+                "i": "vis01440f40-b9dc-4521-91e3-473fa42d2eba1",
+                "moved": false
+            },
+            "code": [
+                "/* Configuration code for this widget */",
+                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let source = provider.source('london_fire_brigade');",
+                "//Configuration for grid",
+                "let grid = cf.Grid().left(80).right(80).bottom(65).top(0);",
+                "// Define metrics",
+                "let metric = cf.Metric();",
+                "// Define attributes to group by",
+                "let group1 = cf.Attribute(\"date_of_call\")",
+                "\t\t\t.limit(1000)",
+                "\t\t\t.func(\"DAY\")",
+                "\t\t\t.sort(\"asc\",\"date_of_call\");",
+                "// Add metrics and groups to data source",
+                "let myData = source.groupby(group1)",
+                "\t\t\t.metrics(metric);",
+                "// Define chart options",
+                "let myChart = myData.graph(\"Time Range Filter\")",
+                "\t\t\t.set(\"grid\", grid)",
+                "\t\t\t.set('sliderData',true)",
+                "\t\t\t.execute();",
+                ""
+            ],
+            "source": {
+                "id": {
+                    "sourceId": "london_fire_brigade",
+                    "providerId": "44c5a651-5c1d-4438-b631-7ec4ed30a5da"
+                },
+                "name": {
+                    "sourceName": "london_fire_brigade",
+                    "providerName": "Aktiun Elastic"
+                },
+                "type": "DATASET"
+            }
+        },
+        {
+            "widgetId": "viscf0f2e5b-b9ac-42e9-837c-4c08f6113555",
+            "type": "visualization",
+            "providerData": {
+                "title": "Number of Calls by Borough",
+                "provider": {
+                    "provider": "elasticsearch"
+                }
+            },
+            "isFC": false,
+            "isMarkup": false,
+            "visualization": "Vector Map",
+            "layout": {
+                "w": 3,
+                "h": 7,
+                "x": 3,
+                "y": 24,
+                "i": "viscf0f2e5b-b9ac-42e9-837c-4c08f61135551",
+                "moved": false
+            },
+            "code": [
+                "/* Configuration code for this widget */",
+                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let source = provider.source('london_fire_brigade');",
+                "// Define metrics",
+                "let metric0 = cf.Metric();",
+                "// Define attributes to group by",
+                "let group1 = cf.Attribute(\"proper_case\")",
+                "\t\t\t.limit(100)",
+                "\t\t\t.sort(\"desc\", cf.Metric());",
+                "",
+                "// Add metrics and groups to data source",
+                "let myData = source.groupby(group1)",
+                "\t\t\t.metrics(metric0);",
+                "// Color",
+                "var color = cf.Color()",
+                "var palette = ['#ccebc5','#a8ddb5','#7bccc4','#4eb3d3','#2b8cbe'].reverse();",
+                "color.palette(palette);",
+                "color.metric(metric0);",
+                "// Define chart options",
+                "let myChart = myData.graph(\"Vector Map\")",
+                "\t\t\t.set(\"shape\", \"https://chartfactor.com/resources/london.json\")",
+                "\t\t\t.set('color', color)",
+                "\t\t\t.set('enableZoom', false)",
+                "\t\t\t.set(\"zoom\", 1.0000000000000195)",
+                "\t\t\t.set(\"legend\", \"bottom-right\")",
+                "\t\t\t.execute();",
+                ""
+            ],
+            "source": {
+                "id": {
+                    "sourceId": "london_fire_brigade",
+                    "providerId": "44c5a651-5c1d-4438-b631-7ec4ed30a5da"
+                },
+                "name": {
+                    "sourceName": "london_fire_brigade",
+                    "providerName": "Aktiun Elastic"
+                },
+                "type": "DATASET"
+            }
+        },
+        {
+            "widgetId": "visf6306f3c-1d74-4d84-89a9-cd20113734c3",
+            "type": "visualization",
+            "providerData": {
+                "title": "Slicer",
+                "provider": {
+                    "provider": "elasticsearch"
+                }
+            },
+            "isFC": false,
+            "isMarkup": false,
+            "visualization": "Slicer",
+            "layout": {
+                "w": 3,
+                "h": 4,
+                "x": 3,
+                "y": 31,
+                "i": "visf6306f3c-1d74-4d84-89a9-cd20113734c31",
+                "moved": false
+            },
+            "code": [
+                "/* Configuration code for this widget */",
+                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let source = provider.source('london_fire_brigade');",
+                "// Define metrics",
+                "let metric0 = cf.Metric();",
+                "// Define attributes to group by",
+                "let group1 = cf.Attribute(\"property_category\")",
+                "\t\t\t.limit(10)",
+                "\t\t\t.sort(\"desc\", cf.Metric());",
+                "",
+                "// Add metrics and groups to data source",
+                "let myData = source.groupby(group1)",
+                "\t\t\t.metrics(metric0);",
+                "// Define chart options",
+                "let myChart = myData.graph(\"Slicer\")",
+                "\t\t\t.execute();",
+                ""
+            ],
+            "source": {
+                "id": {
+                    "sourceId": "london_fire_brigade",
+                    "providerId": "44c5a651-5c1d-4438-b631-7ec4ed30a5da"
+                },
+                "name": {
+                    "sourceName": "london_fire_brigade",
+                    "providerName": "Aktiun Elastic"
+                },
+                "type": "DATASET"
+            }
+        }
+    ],
+    "filters": [],
+    "theme": {
+        "name": "light",
+        "font": "black",
+        "palette": "intense",
+        "background": "white",
+        "fullBackground": "#ececec",
+        "headerFont": "white"
+    },
+    "creationDate": 1559504013570,
+    "lastModDate": 1559504013570,
+    "metadata": {
+        "Aktiun Elastic": [
+            "let lfb_DateOfWeek = {",
+            "    'name': 'day_of_week',",
+            "    'label': 'Day Of Week',",
+            "    'type': 'INTEGER',",
+            "    'function': 'extract',",
+            "    'dependencies': ['date_of_call'],",
+            "    'params': ['DAYOFWEEK']",
+            "};",
+            "",
+            "let lfb_firstResponseMinsAvg = {",
+            "    'name': 'first_response_mins_avg',",
+            "    'label': 'First Response Mins',",
+            "    'type': 'NUMBER',",
+            "    'dependencies': [cf.Metric('first_pump_arriving_attendance_time', 'avg')],",
+            "    'function':  (responseTimeSecs) =>   responseTimeSecs / 60",
+            "};",
+            "",
+            "let lfb_firstResponseMinsPerc = {",
+            "    'name': 'first_response_mins_perc',",
+            "    'label': 'First Response Mins Percentile',",
+            "    'type': 'NUMBER',",
+            "    'dependencies': [cf.Metric('first_pump_arriving_attendance_time', 'percentiles')],",
+            "    'function':  (responseTimeSecs) =>   responseTimeSecs / 60",
+            "};",
+            "",
+            "let lfb_secondResponseMinsAvg = {",
+            "    'name': 'second_response_min_avg',",
+            "    'label': 'Second Response Mins',",
+            "    'type': 'NUMBER',",
+            "    'dependencies': [cf.Metric('second_pump_arriving_attendance_time', 'avg')],",
+            "    'function':  (responseTimeSecs) =>   responseTimeSecs / 60",
+            "};",
+            "",
+            "let lfb_secondResponseMinsPerc = {",
+            "    'name': 'second_response_mins_perc',",
+            "    'label': 'Second Response Mins Percentile',",
+            "    'type': 'NUMBER',",
+            "    'dependencies': [cf.Metric('second_pump_arriving_attendance_time', 'percentiles')],",
+            "    'function':  (responseTimeSecs) =>   responseTimeSecs / 60",
+            "};",
+            "",
+            "let _META_ = {",
+            "    'london_fire_brigade': {",
+            "        'count': {",
+            "          'label': 'Calls'",
+            "        },        ",
+            "        'fields': {",
+            "            'day_of_week': lfb_DateOfWeek,",
+            "            'date_of_call': {",
+            "                'label': \"Date of Call\"",
+            "            },",
+            "            'hour_of_call': {",
+            "                'label': \"Hour\"",
+            "            }, ",
+            "            'address_qualifier': {",
+            "                'label': \"Address Qualifier\"",
+            "            },",
+            "            'proper_case': {",
+            "                'label': \"Borough\"",
+            "            },",
+            "            'ward_name_new': {",
+            "                'label': \"Ward\"",
+            "            },",
+            "            'num_pumps_attending': {",
+            "                'label': \"Num Pumps Attending\"",
+            "            },",
+            "            'stop_code_description': {",
+            "                'label': \"Incident Type\"",
+            "            },",
+            "            'first_pump_arriving_attendance_time': {",
+            "                'label': \"First Response Time Secs\"",
+            "            },",
+            "            'second_pump_arriving_attendance_time': {",
+            "                'label': \"Second Response Time Secs\"",
+            "            },",
+            "            'incident_group': {",
+            "                'label': \"Incident Group\"",
+            "            },",
+            "            'property_type': {",
+            "                'label': \"Property Type\"",
+            "            },",
+            "            'property_category': {",
+            "                'label': \"Property Category\"",
+            "            },",
+            "            'special_service_type': {",
+            "                'label': \"Special Service Type\"",
+            "            },",
+            "            'first_response_mins_avg': lfb_firstResponseMinsAvg,",
+            "            'second_response_mins_avg': lfb_secondResponseMinsAvg,",
+            "            'first_response_mins_perc': lfb_firstResponseMinsPerc,",
+            "            'second_response_min_perc': lfb_secondResponseMinsPerc",
+            "        }",
+            "    }",
+            "};"
+        ]
+    },
+    "resources": {
+        "London Shapes": "https://chartfactor.com/wp-content/lib/london.js"
+    },
+    "layout": [
+        {
+            "w": 3,
+            "h": 8,
+            "x": 6,
+            "y": 3,
+            "i": "vis9474ce9b-061d-410c-96b9-a5c76dc985801",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 3,
+            "h": 8,
+            "x": 9,
+            "y": 3,
+            "i": "visb1b8baf1-bc9c-4b9f-b9bb-c5ace2c922e51",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 9,
+            "h": 5,
+            "x": 0,
+            "y": 11,
+            "i": "vis60c6edf7-8afe-4f10-a93b-8a8c6317a7921",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 3,
+            "h": 11,
+            "x": 0,
+            "y": 24,
+            "i": "vis01e57239-b314-408f-bf02-2108dd33532c1",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 6,
+            "h": 9,
+            "x": 0,
+            "y": 2,
+            "i": "vis52c9c3c2-60bd-4c62-84c8-628f4e4239bc1",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 6,
+            "h": 2,
+            "x": 0,
+            "y": 0,
+            "i": "vis4194457b-50d1-47ea-a832-5064a41be5be1",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 3,
+            "h": 5,
+            "x": 9,
+            "y": 11,
+            "i": "visc1b80ca7-5f80-4f9d-8948-a5de1afdfac11",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 3,
+            "h": 7,
+            "x": 0,
+            "y": 17,
+            "i": "vis123f9e5c-eccd-499a-a717-671de3d1df4d1",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 2,
+            "h": 2,
+            "x": 10,
+            "y": 0,
+            "i": "vis16c6abb3-2555-49ea-8bcc-c653ba766b0b1",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 3,
+            "h": 7,
+            "x": 6,
+            "y": 17,
+            "i": "vis1ed186e9-6d7d-4054-9f8d-dbc608cdeeed1",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 6,
+            "h": 1,
+            "x": 0,
+            "y": 16,
+            "i": "vis94f658d5-2208-46cc-861c-9a21122a4d841",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 6,
+            "h": 1,
+            "x": 6,
+            "y": 16,
+            "i": "vis09c6c285-cca6-49a0-aa9c-bb1016e68ced1",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 6,
+            "h": 1,
+            "x": 6,
+            "y": 2,
+            "i": "vis6fd2b98d-a318-4a99-80da-123ba9ed15191",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 3,
+            "h": 11,
+            "x": 9,
+            "y": 24,
+            "i": "vis1c8512dc-10e3-4450-836d-c4314581dfcd1",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 3,
+            "h": 11,
+            "x": 6,
+            "y": 24,
+            "i": "vis16871325-1233-4d19-9131-04417825c9bb1",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 3,
+            "h": 7,
+            "x": 3,
+            "y": 17,
+            "i": "vis4f109de4-d882-43a6-b31d-fabb64faaf8b1",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 3,
+            "h": 7,
+            "x": 9,
+            "y": 17,
+            "i": "vis0c2b240d-283a-4790-82e5-d611455455931",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 12,
+            "h": 6,
+            "x": 0,
+            "y": 35,
+            "i": "vis59e921bf-08db-45d1-b1d1-7e4edc6712fc1",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 12,
+            "h": 7,
+            "x": 0,
+            "y": 41,
+            "i": "vis574abc1f-38de-44a1-bb10-0602e382ce3b1",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 4,
+            "h": 2,
+            "x": 6,
+            "y": 0,
+            "i": "vis01440f40-b9dc-4521-91e3-473fa42d2eba1",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 3,
+            "h": 7,
+            "x": 3,
+            "y": 24,
+            "i": "viscf0f2e5b-b9ac-42e9-837c-4c08f61135551",
+            "moved": false,
+            "static": false
+        },
+        {
+            "w": 3,
+            "h": 4,
+            "x": 3,
+            "y": 31,
+            "i": "visf6306f3c-1d74-4d84-89a9-cd20113734c31",
+            "moved": false,
+            "static": false
+        }
+    ]
+}||||[
+    {
+        "name": "Aktiun Elastic",
+        "url": "https://chartfactor.com/elastic/",
+        "active": true,
+        "provider": "elasticsearch",
+        "id": "f22bfbbe-5eb4-4003-8242-a75674b7874b"
+    }
+]
