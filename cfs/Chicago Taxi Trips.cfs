@@ -1,33 +1,36 @@
 {
-    "dashboardId": "bc75b331-dda3-464b-a82b-abfef3fc9b3c",
+    "id": "628895fb-3969-4b7f-9725-c29c3f98b0b8",
     "name": "Chicago Taxi Trips",
-    "visualizationDef": [
+    "description": "Application developed using CF Studio",
+    "state": "home",
+    "readOnly": false,
+    "widgetList": [
         {
-            "widgetId": "visaa6110ed-9a9a-4aeb-b23b-7b09c8af858e",
-            "type": "visualization",
-            "providerData": {
-                "title": "Rides by Pickup Districts & Communities",
-                "provider": {
-                    "provider": "elasticsearch"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Bars",
+            "id": "visaa6110ed-9a9a-4aeb-b23b-7b09c8af858e",
             "layout": {
                 "w": 3,
                 "h": 9,
                 "x": 0,
                 "y": 2,
                 "i": "visaa6110ed-9a9a-4aeb-b23b-7b09c8af858e1",
-                "moved": false
+                "moved": false,
+                "static": false
+            },
+            "title": "Rides by Pickup Districts & Communities",
+            "visualization": "Bars",
+            "source": {
+                "name": "chicago_taxi_trips",
+                "provider": {
+                    "name": "Elastic Demo",
+                    "type": "elasticsearch"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
                 "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source('chicago_taxi_trips');",
                 "//Configuration for grid",
-                "let grid = cf.Grid().left(65).right(15).bottom(35).top(10);",
+                "let grid = cf.Grid().left(25).right(25).bottom(15).top(20);",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
                 "// Define attributes to group by",
@@ -44,43 +47,30 @@
                 "color.palette(palette);",
                 "// Define chart options",
                 "let myChart = myData.graph(\"Bars\")",
-                "\t\t// \t.set(\"grid\", grid)",
+                "\t\t\t.set(\"grid\", grid)",
                 "      .set('orientation', 'horizontal')",
                 "      .set('yAxis', { 'text': 'out'} )",
                 "      .set('color', color)",
-                "      // .set('legend', 'right')",
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "chicago_taxi_trips",
-                    "providerId": "d1a2be3a-bfb6-4fd0-b3e0-39dc828f7c54"
-                },
-                "name": {
-                    "sourceName": "chicago_taxi_trips",
-                    "providerName": "Elastic Demo"
-                },
-                "type": "DATASET"
-            }
+            "codeMode": true
         },
         {
-            "widgetId": "vis07d3bfc7-6328-4383-adaf-4d66567709ec",
-            "type": "visualization",
-            "providerData": {
-                "title": "Filters"
-            },
-            "isFC": true,
-            "isMarkup": false,
-            "visualization": "Interaction Manager",
+            "id": "vis07d3bfc7-6328-4383-adaf-4d66567709ec",
+            "isIManager": true,
             "layout": {
                 "w": 6,
                 "h": 2,
                 "x": 0,
                 "y": 0,
                 "i": "vis07d3bfc7-6328-4383-adaf-4d66567709ec1",
-                "moved": false
+                "moved": false,
+                "static": false
             },
+            "title": "Filters",
+            "visualization": "Interaction Manager",
+            "source": {},
             "code": [
                 "/* Configuration code for the Filter Control*/",
                 "",
@@ -118,27 +108,27 @@
                 "",
                 ""
             ],
-            "source": {}
+            "codeMode": false
         },
         {
-            "widgetId": "visb2c47bce-f025-4779-be0f-e6b4e0648216",
-            "type": "visualization",
-            "providerData": {
-                "title": "Time Range Filter",
-                "provider": {
-                    "provider": "elasticsearch"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Time Range Filter",
+            "id": "visb2c47bce-f025-4779-be0f-e6b4e0648216",
             "layout": {
                 "w": 6,
                 "h": 2,
                 "x": 6,
                 "y": 0,
                 "i": "visb2c47bce-f025-4779-be0f-e6b4e06482161",
-                "moved": false
+                "moved": false,
+                "static": false
+            },
+            "title": "Time Range Filter",
+            "visualization": "Time Range Filter",
+            "source": {
+                "name": "chicago_taxi_trips",
+                "provider": {
+                    "name": "Elastic Demo",
+                    "type": "elasticsearch"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -168,37 +158,27 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "chicago_taxi_trips",
-                    "providerId": "d1a2be3a-bfb6-4fd0-b3e0-39dc828f7c54"
-                },
-                "name": {
-                    "sourceName": "chicago_taxi_trips",
-                    "providerName": "Elastic Demo"
-                },
-                "type": "DATASET"
-            }
+            "codeMode": false
         },
         {
-            "widgetId": "visa55780cf-3a67-480e-b9b6-f7022463a1f2",
-            "type": "visualization",
-            "providerData": {
-                "title": "Rides by District and Community",
-                "provider": {
-                    "provider": "elasticsearch"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Pivot Table",
+            "id": "visa55780cf-3a67-480e-b9b6-f7022463a1f2",
             "layout": {
                 "w": 5,
                 "h": 7,
                 "x": 3,
                 "y": 2,
                 "i": "visa55780cf-3a67-480e-b9b6-f7022463a1f21",
-                "moved": false
+                "moved": false,
+                "static": false
+            },
+            "title": "Rides by District and Community",
+            "visualization": "Pivot Table",
+            "source": {
+                "name": "chicago_taxi_trips",
+                "provider": {
+                    "name": "Elastic Demo",
+                    "type": "elasticsearch"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -237,37 +217,27 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "chicago_taxi_trips",
-                    "providerId": "d1a2be3a-bfb6-4fd0-b3e0-39dc828f7c54"
-                },
-                "name": {
-                    "sourceName": "chicago_taxi_trips",
-                    "providerName": "Elastic Demo"
-                },
-                "type": "DATASET"
-            }
+            "codeMode": false
         },
         {
-            "widgetId": "visea2e0692-e514-4e02-8b40-2137616309fe",
-            "type": "visualization",
-            "providerData": {
-                "title": "Total Charges by Pickup Community",
-                "provider": {
-                    "provider": "elasticsearch"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Multimetric Bars",
+            "id": "visea2e0692-e514-4e02-8b40-2137616309fe",
             "layout": {
                 "w": 4,
                 "h": 7,
                 "x": 8,
                 "y": 2,
                 "i": "visea2e0692-e514-4e02-8b40-2137616309fe1",
-                "moved": false
+                "moved": false,
+                "static": false
+            },
+            "title": "Total Charges by Pickup Community",
+            "visualization": "Multimetric Bars",
+            "source": {
+                "name": "chicago_taxi_trips",
+                "provider": {
+                    "name": "Elastic Demo",
+                    "type": "elasticsearch"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -310,37 +280,27 @@
                 "\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "chicago_taxi_trips",
-                    "providerId": "d1a2be3a-bfb6-4fd0-b3e0-39dc828f7c54"
-                },
-                "name": {
-                    "sourceName": "chicago_taxi_trips",
-                    "providerName": "Elastic Demo"
-                },
-                "type": "DATASET"
-            }
+            "codeMode": true
         },
         {
-            "widgetId": "vis1f4bb8ae-a594-4203-8a55-09b917f3e057",
-            "type": "visualization",
-            "providerData": {
-                "title": "Avg. Fare",
-                "provider": {
-                    "provider": "elasticsearch"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "KPI",
+            "id": "vis1f4bb8ae-a594-4203-8a55-09b917f3e057",
             "layout": {
                 "w": 1,
                 "h": 2,
                 "x": 0,
                 "y": 11,
                 "i": "vis1f4bb8ae-a594-4203-8a55-09b917f3e0571",
-                "moved": false
+                "moved": false,
+                "static": false
+            },
+            "title": "Avg. Fare",
+            "visualization": "KPI",
+            "source": {
+                "name": "chicago_taxi_trips",
+                "provider": {
+                    "name": "Elastic Demo",
+                    "type": "elasticsearch"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -360,37 +320,27 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "chicago_taxi_trips",
-                    "providerId": "d1a2be3a-bfb6-4fd0-b3e0-39dc828f7c54"
-                },
-                "name": {
-                    "sourceName": "chicago_taxi_trips",
-                    "providerName": "Elastic Demo"
-                },
-                "type": "DATASET"
-            }
+            "codeMode": false
         },
         {
-            "widgetId": "visc877bb16-1362-404a-82b3-a2f8ab0dabe9",
-            "type": "visualization",
-            "providerData": {
-                "title": "Max Fare",
-                "provider": {
-                    "provider": "elasticsearch"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "KPI",
+            "id": "visc877bb16-1362-404a-82b3-a2f8ab0dabe9",
             "layout": {
                 "w": 1,
                 "h": 2,
                 "x": 1,
                 "y": 11,
                 "i": "visc877bb16-1362-404a-82b3-a2f8ab0dabe91",
-                "moved": false
+                "moved": false,
+                "static": false
+            },
+            "title": "Max Fare",
+            "visualization": "KPI",
+            "source": {
+                "name": "chicago_taxi_trips",
+                "provider": {
+                    "name": "Elastic Demo",
+                    "type": "elasticsearch"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -410,37 +360,27 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "chicago_taxi_trips",
-                    "providerId": "d1a2be3a-bfb6-4fd0-b3e0-39dc828f7c54"
-                },
-                "name": {
-                    "sourceName": "chicago_taxi_trips",
-                    "providerName": "Elastic Demo"
-                },
-                "type": "DATASET"
-            }
+            "codeMode": false
         },
         {
-            "widgetId": "vis057be44c-cb89-4a1c-934a-161663410b03",
-            "type": "visualization",
-            "providerData": {
-                "title": "Min Fare",
-                "provider": {
-                    "provider": "elasticsearch"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "KPI",
+            "id": "vis057be44c-cb89-4a1c-934a-161663410b03",
             "layout": {
                 "w": 1,
                 "h": 2,
                 "x": 2,
                 "y": 11,
                 "i": "vis057be44c-cb89-4a1c-934a-161663410b031",
-                "moved": false
+                "moved": false,
+                "static": false
+            },
+            "title": "Min Fare",
+            "visualization": "KPI",
+            "source": {
+                "name": "chicago_taxi_trips",
+                "provider": {
+                    "name": "Elastic Demo",
+                    "type": "elasticsearch"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -466,37 +406,27 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "chicago_taxi_trips",
-                    "providerId": "d1a2be3a-bfb6-4fd0-b3e0-39dc828f7c54"
-                },
-                "name": {
-                    "sourceName": "chicago_taxi_trips",
-                    "providerName": "Elastic Demo"
-                },
-                "type": "DATASET"
-            }
+            "codeMode": false
         },
         {
-            "widgetId": "viscdb0da72-4d30-4d40-8ee6-a35815988666",
-            "type": "visualization",
-            "providerData": {
-                "title": "Taxi Rides",
-                "provider": {
-                    "provider": "elasticsearch"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "KPI",
+            "id": "viscdb0da72-4d30-4d40-8ee6-a35815988666",
             "layout": {
                 "w": 1,
                 "h": 2,
                 "x": 0,
                 "y": 13,
                 "i": "viscdb0da72-4d30-4d40-8ee6-a358159886661",
-                "moved": false
+                "moved": false,
+                "static": false
+            },
+            "title": "Taxi Rides",
+            "visualization": "KPI",
+            "source": {
+                "name": "chicago_taxi_trips",
+                "provider": {
+                    "name": "Elastic Demo",
+                    "type": "elasticsearch"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -516,37 +446,27 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "chicago_taxi_trips",
-                    "providerId": "d1a2be3a-bfb6-4fd0-b3e0-39dc828f7c54"
-                },
-                "name": {
-                    "sourceName": "chicago_taxi_trips",
-                    "providerName": "Elastic Demo"
-                },
-                "type": "DATASET"
-            }
+            "codeMode": false
         },
         {
-            "widgetId": "vis139d66b6-e4f8-4ea7-baa7-fc0c2e2fdb5f",
-            "type": "visualization",
-            "providerData": {
-                "title": "Avg. Tip",
-                "provider": {
-                    "provider": "elasticsearch"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "KPI",
+            "id": "vis139d66b6-e4f8-4ea7-baa7-fc0c2e2fdb5f",
             "layout": {
                 "w": 1,
                 "h": 2,
                 "x": 1,
                 "y": 13,
                 "i": "vis139d66b6-e4f8-4ea7-baa7-fc0c2e2fdb5f1",
-                "moved": false
+                "moved": false,
+                "static": false
+            },
+            "title": "Avg. Tip",
+            "visualization": "KPI",
+            "source": {
+                "name": "chicago_taxi_trips",
+                "provider": {
+                    "name": "Elastic Demo",
+                    "type": "elasticsearch"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -566,37 +486,27 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "chicago_taxi_trips",
-                    "providerId": "d1a2be3a-bfb6-4fd0-b3e0-39dc828f7c54"
-                },
-                "name": {
-                    "sourceName": "chicago_taxi_trips",
-                    "providerName": "Elastic Demo"
-                },
-                "type": "DATASET"
-            }
+            "codeMode": false
         },
         {
-            "widgetId": "vis13483a1e-b675-4608-af02-b5922951e03e",
-            "type": "visualization",
-            "providerData": {
-                "title": "Avg. Minutes",
-                "provider": {
-                    "provider": "elasticsearch"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "KPI",
+            "id": "vis13483a1e-b675-4608-af02-b5922951e03e",
             "layout": {
                 "w": 1,
                 "h": 2,
                 "x": 2,
                 "y": 13,
                 "i": "vis13483a1e-b675-4608-af02-b5922951e03e1",
-                "moved": false
+                "moved": false,
+                "static": false
+            },
+            "title": "Avg. Minutes",
+            "visualization": "KPI",
+            "source": {
+                "name": "chicago_taxi_trips",
+                "provider": {
+                    "name": "Elastic Demo",
+                    "type": "elasticsearch"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -616,37 +526,27 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "chicago_taxi_trips",
-                    "providerId": "d1a2be3a-bfb6-4fd0-b3e0-39dc828f7c54"
-                },
-                "name": {
-                    "sourceName": "chicago_taxi_trips",
-                    "providerName": "Elastic Demo"
-                },
-                "type": "DATASET"
-            }
+            "codeMode": false
         },
         {
-            "widgetId": "visc19981c7-1336-43c5-b8c6-7ca18cce024c",
-            "type": "visualization",
-            "providerData": {
-                "title": "Average Trip Miles",
-                "provider": {
-                    "provider": "elasticsearch"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Gauge",
+            "id": "visc19981c7-1336-43c5-b8c6-7ca18cce024c",
             "layout": {
                 "w": 3,
                 "h": 8,
                 "x": 3,
                 "y": 9,
                 "i": "visc19981c7-1336-43c5-b8c6-7ca18cce024c1",
-                "moved": false
+                "moved": false,
+                "static": false
+            },
+            "title": "Average Trip Miles",
+            "visualization": "Gauge",
+            "source": {
+                "name": "chicago_taxi_trips",
+                "provider": {
+                    "name": "Elastic Demo",
+                    "type": "elasticsearch"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -668,37 +568,27 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "chicago_taxi_trips",
-                    "providerId": "d1a2be3a-bfb6-4fd0-b3e0-39dc828f7c54"
-                },
-                "name": {
-                    "sourceName": "chicago_taxi_trips",
-                    "providerName": "Elastic Demo"
-                },
-                "type": "DATASET"
-            }
+            "codeMode": true
         },
         {
-            "widgetId": "vis795d4668-d2cb-42ca-a502-9380caf967a6",
-            "type": "visualization",
-            "providerData": {
-                "title": "Filter Rides by Their Length in Minutes",
-                "provider": {
-                    "provider": "elasticsearch"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Range Filter",
+            "id": "vis795d4668-d2cb-42ca-a502-9380caf967a6",
             "layout": {
                 "w": 3,
                 "h": 2,
                 "x": 0,
                 "y": 15,
                 "i": "vis795d4668-d2cb-42ca-a502-9380caf967a61",
-                "moved": false
+                "moved": false,
+                "static": false
+            },
+            "title": "Filter Rides by Their Length in Minutes",
+            "visualization": "Range Filter",
+            "source": {
+                "name": "chicago_taxi_trips",
+                "provider": {
+                    "name": "Elastic Demo",
+                    "type": "elasticsearch"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -706,7 +596,7 @@
                 "let source = provider.source('chicago_taxi_trips');",
                 "// Define metrics",
                 "let metrics = [",
-                "\tcf.Metric(\"trip_minutes\"),",
+                "\tcf.Metric(\"trip_minutes\", \"sum\"),",
                 "];",
                 "// Add metrics and groups to data source",
                 "let myData = source.metrics(...metrics)",
@@ -715,37 +605,27 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "chicago_taxi_trips",
-                    "providerId": "d1a2be3a-bfb6-4fd0-b3e0-39dc828f7c54"
-                },
-                "name": {
-                    "sourceName": "chicago_taxi_trips",
-                    "providerName": "Elastic Demo"
-                },
-                "type": "DATASET"
-            }
+            "codeMode": false
         },
         {
-            "widgetId": "vis585dcb1f-b667-4929-b798-f6c1dabecd8b",
-            "type": "visualization",
-            "providerData": {
-                "title": "Trip Timestamp and Taxi Cab Company Heat Map",
-                "provider": {
-                    "provider": "elasticsearch"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Heat Map",
+            "id": "vis585dcb1f-b667-4929-b798-f6c1dabecd8b",
             "layout": {
                 "w": 6,
                 "h": 8,
                 "x": 6,
                 "y": 9,
                 "i": "vis585dcb1f-b667-4929-b798-f6c1dabecd8b1",
-                "moved": false
+                "moved": false,
+                "static": false
+            },
+            "title": "Trip Timestamp and Taxi Cab Company Heat Map",
+            "visualization": "Heat Map",
+            "source": {
+                "name": "chicago_taxi_trips",
+                "provider": {
+                    "name": "Elastic Demo",
+                    "type": "elasticsearch"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -780,37 +660,27 @@
                 "      \t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "chicago_taxi_trips",
-                    "providerId": "d1a2be3a-bfb6-4fd0-b3e0-39dc828f7c54"
-                },
-                "name": {
-                    "sourceName": "chicago_taxi_trips",
-                    "providerName": "Elastic Demo"
-                },
-                "type": "DATASET"
-            }
+            "codeMode": false
         },
         {
-            "widgetId": "viscee229bb-c6c4-428c-b9b6-d1baab8d0e02",
-            "type": "visualization",
-            "providerData": {
-                "title": "Pickup Community Areas and Taxi Cab Companies",
-                "provider": {
-                    "provider": "elasticsearch"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Heat Map",
+            "id": "viscee229bb-c6c4-428c-b9b6-d1baab8d0e02",
             "layout": {
                 "w": 6,
                 "h": 9,
                 "x": 0,
                 "y": 17,
                 "i": "viscee229bb-c6c4-428c-b9b6-d1baab8d0e021",
-                "moved": false
+                "moved": false,
+                "static": false
+            },
+            "title": "Pickup Community Areas and Taxi Cab Companies",
+            "visualization": "Heat Map",
+            "source": {
+                "name": "chicago_taxi_trips",
+                "provider": {
+                    "name": "Elastic Demo",
+                    "type": "elasticsearch"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -843,37 +713,27 @@
                 "      \t\t\t.set(\"showValues\", true)",
                 "      \t\t\t.execute();"
             ],
-            "source": {
-                "id": {
-                    "sourceId": "chicago_taxi_trips",
-                    "providerId": "d1a2be3a-bfb6-4fd0-b3e0-39dc828f7c54"
-                },
-                "name": {
-                    "sourceName": "chicago_taxi_trips",
-                    "providerName": "Elastic Demo"
-                },
-                "type": "DATASET"
-            }
+            "codeMode": false
         },
         {
-            "widgetId": "vis3ad08ee8-cd85-48e7-9fa6-8d00a8e717f4",
-            "type": "visualization",
-            "providerData": {
-                "title": "Charges by Pickup Community Area",
-                "provider": {
-                    "provider": "elasticsearch"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Radar",
+            "id": "vis3ad08ee8-cd85-48e7-9fa6-8d00a8e717f4",
             "layout": {
                 "w": 3,
                 "h": 8,
                 "x": 6,
                 "y": 17,
                 "i": "vis3ad08ee8-cd85-48e7-9fa6-8d00a8e717f41",
-                "moved": false
+                "moved": false,
+                "static": false
+            },
+            "title": "Charges by Pickup Community Area",
+            "visualization": "Radar",
+            "source": {
+                "name": "chicago_taxi_trips",
+                "provider": {
+                    "name": "Elastic Demo",
+                    "type": "elasticsearch"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -901,37 +761,27 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "chicago_taxi_trips",
-                    "providerId": "d1a2be3a-bfb6-4fd0-b3e0-39dc828f7c54"
-                },
-                "name": {
-                    "sourceName": "chicago_taxi_trips",
-                    "providerName": "Elastic Demo"
-                },
-                "type": "DATASET"
-            }
+            "codeMode": false
         },
         {
-            "widgetId": "visf0892ae6-8f8f-4772-a903-fd511309ef2e",
-            "type": "visualization",
-            "providerData": {
-                "title": "Fare by Hour of the Day",
-                "provider": {
-                    "provider": "elasticsearch"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Disk",
+            "id": "visf0892ae6-8f8f-4772-a903-fd511309ef2e",
             "layout": {
                 "w": 3,
                 "h": 8,
                 "x": 9,
                 "y": 17,
                 "i": "visf0892ae6-8f8f-4772-a903-fd511309ef2e1",
-                "moved": false
+                "moved": false,
+                "static": false
+            },
+            "title": "Fare by Hour of the Day",
+            "visualization": "Disk",
+            "source": {
+                "name": "chicago_taxi_trips",
+                "provider": {
+                    "name": "Elastic Demo",
+                    "type": "elasticsearch"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -957,37 +807,27 @@
                 "\t\t\t      .execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "chicago_taxi_trips",
-                    "providerId": "d1a2be3a-bfb6-4fd0-b3e0-39dc828f7c54"
-                },
-                "name": {
-                    "sourceName": "chicago_taxi_trips",
-                    "providerName": "Elastic Demo"
-                },
-                "type": "DATASET"
-            }
+            "codeMode": true
         },
         {
-            "widgetId": "vis384c15b1-a9fb-4e7f-9211-548c92d940f9",
-            "type": "visualization",
-            "providerData": {
-                "title": "Fare, Tips, Extras, and Tolls Trend",
-                "provider": {
-                    "provider": "elasticsearch"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Multimetric Trend",
+            "id": "vis384c15b1-a9fb-4e7f-9211-548c92d940f9",
             "layout": {
                 "w": 3,
                 "h": 7,
                 "x": 0,
                 "y": 26,
                 "i": "vis384c15b1-a9fb-4e7f-9211-548c92d940f91",
-                "moved": false
+                "moved": false,
+                "static": false
+            },
+            "title": "Fare, Tips, Extras, and Tolls Trend",
+            "visualization": "Multimetric Trend",
+            "source": {
+                "name": "chicago_taxi_trips",
+                "provider": {
+                    "name": "Elastic Demo",
+                    "type": "elasticsearch"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -1032,37 +872,27 @@
                 "\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "chicago_taxi_trips",
-                    "providerId": "d1a2be3a-bfb6-4fd0-b3e0-39dc828f7c54"
-                },
-                "name": {
-                    "sourceName": "chicago_taxi_trips",
-                    "providerName": "Elastic Demo"
-                },
-                "type": "DATASET"
-            }
+            "codeMode": true
         },
         {
-            "widgetId": "vis6ddce408-23be-40c3-90d7-bcbd6eb354ca",
-            "type": "visualization",
-            "providerData": {
-                "title": "Rides and Fare Trend",
-                "provider": {
-                    "provider": "elasticsearch"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Bars and Line",
+            "id": "vis6ddce408-23be-40c3-90d7-bcbd6eb354ca",
             "layout": {
                 "w": 3,
                 "h": 7,
                 "x": 3,
                 "y": 26,
                 "i": "vis6ddce408-23be-40c3-90d7-bcbd6eb354ca1",
-                "moved": false
+                "moved": false,
+                "static": false
+            },
+            "title": "Rides and Fare Trend",
+            "visualization": "Bars and Line",
+            "source": {
+                "name": "chicago_taxi_trips",
+                "provider": {
+                    "name": "Elastic Demo",
+                    "type": "elasticsearch"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -1097,37 +927,27 @@
                 "\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "chicago_taxi_trips",
-                    "providerId": "d1a2be3a-bfb6-4fd0-b3e0-39dc828f7c54"
-                },
-                "name": {
-                    "sourceName": "chicago_taxi_trips",
-                    "providerName": "Elastic Demo"
-                },
-                "type": "DATASET"
-            }
+            "codeMode": true
         },
         {
-            "widgetId": "vis04e800cc-905d-41f0-b975-3d4f68a1f634",
-            "type": "visualization",
-            "providerData": {
-                "title": "Amounts by Day of Week",
-                "provider": {
-                    "provider": "elasticsearch"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Multimetric Area Line",
+            "id": "vis04e800cc-905d-41f0-b975-3d4f68a1f634",
             "layout": {
                 "w": 3,
                 "h": 8,
                 "x": 6,
                 "y": 25,
                 "i": "vis04e800cc-905d-41f0-b975-3d4f68a1f6341",
-                "moved": false
+                "moved": false,
+                "static": false
+            },
+            "title": "Amounts by Day of Week",
+            "visualization": "Multimetric Area Line",
+            "source": {
+                "name": "chicago_taxi_trips",
+                "provider": {
+                    "name": "Elastic Demo",
+                    "type": "elasticsearch"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -1156,7 +976,7 @@
                 "// Define Grid",
                 "let grid = cf.Grid()",
                 "\t.top(18)",
-                "\t.right(15)",
+                "\t.right(25)",
                 "\t.bottom(35)",
                 "\t.left(40);",
                 "// Define Color Palette",
@@ -1171,37 +991,27 @@
                 "\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "chicago_taxi_trips",
-                    "providerId": "d1a2be3a-bfb6-4fd0-b3e0-39dc828f7c54"
-                },
-                "name": {
-                    "sourceName": "chicago_taxi_trips",
-                    "providerName": "Elastic Demo"
-                },
-                "type": "DATASET"
-            }
+            "codeMode": true
         },
         {
-            "widgetId": "vis6fa64965-e6ff-45c7-846d-73aadf5f29bc",
-            "type": "visualization",
-            "providerData": {
-                "title": "Aggregate Fare by Drop-off Community Area",
-                "provider": {
-                    "provider": "elasticsearch"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Vector Map",
+            "id": "vis6fa64965-e6ff-45c7-846d-73aadf5f29bc",
             "layout": {
                 "w": 3,
                 "h": 11,
                 "x": 9,
                 "y": 25,
                 "i": "vis6fa64965-e6ff-45c7-846d-73aadf5f29bc1",
-                "moved": false
+                "moved": false,
+                "static": false
+            },
+            "title": "Aggregate Fare by Drop-off Community Area",
+            "visualization": "Vector Map",
+            "source": {
+                "name": "chicago_taxi_trips",
+                "provider": {
+                    "name": "Elastic Demo",
+                    "type": "elasticsearch"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -1222,6 +1032,7 @@
                 "var palette = ['#fee090','#fdae61','#f46d43','#d73027','#a50026'].reverse();",
                 "color.palette(palette);",
                 "color.metric(metric0);",
+                "color.autoRange();",
                 "let myChart = myData.graph(\"Vector Map\")",
                 "\t\t\t.set(\"shape\", \"https://chartfactor.com/resources/chicago.json\")",
                 "\t\t\t.set(\"zoom\", 1)",
@@ -1232,37 +1043,27 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "chicago_taxi_trips",
-                    "providerId": "d1a2be3a-bfb6-4fd0-b3e0-39dc828f7c54"
-                },
-                "name": {
-                    "sourceName": "chicago_taxi_trips",
-                    "providerName": "Elastic Demo"
-                },
-                "type": "DATASET"
-            }
+            "codeMode": false
         },
         {
-            "widgetId": "vis07f4059f-1186-4fe6-8c07-62967036b827",
-            "type": "visualization",
-            "providerData": {
-                "title": "Taxi Trip Records",
-                "provider": {
-                    "provider": "elasticsearch"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Raw Data Table",
+            "id": "vis07f4059f-1186-4fe6-8c07-62967036b827",
             "layout": {
                 "w": 5,
                 "h": 9,
                 "x": 0,
                 "y": 33,
                 "i": "vis07f4059f-1186-4fe6-8c07-62967036b8271",
-                "moved": false
+                "moved": false,
+                "static": false
+            },
+            "title": "Taxi Trip Records",
+            "visualization": "Raw Data Table",
+            "source": {
+                "name": "chicago_taxi_trips",
+                "provider": {
+                    "name": "Elastic Demo",
+                    "type": "elasticsearch"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -1311,37 +1112,27 @@
                 "\t\t\t.set(\"color\", color)",
                 "\t\t\t.execute();"
             ],
-            "source": {
-                "id": {
-                    "sourceId": "chicago_taxi_trips",
-                    "providerId": "d1a2be3a-bfb6-4fd0-b3e0-39dc828f7c54"
-                },
-                "name": {
-                    "sourceName": "chicago_taxi_trips",
-                    "providerName": "Elastic Demo"
-                },
-                "type": "DATASET"
-            }
+            "codeMode": false
         },
         {
-            "widgetId": "visf70ee515-7bf3-4f91-8d64-4f412f1a6534",
-            "type": "visualization",
-            "providerData": {
-                "title": "Drop-off Communities with Highest Average Tip",
-                "provider": {
-                    "provider": "elasticsearch"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Word Cloud",
+            "id": "visf70ee515-7bf3-4f91-8d64-4f412f1a6534",
             "layout": {
                 "w": 4,
                 "h": 9,
                 "x": 5,
                 "y": 33,
                 "i": "visf70ee515-7bf3-4f91-8d64-4f412f1a65341",
-                "moved": false
+                "moved": false,
+                "static": false
+            },
+            "title": "Drop-off Communities with Highest Average Tip",
+            "visualization": "Word Cloud",
+            "source": {
+                "name": "chicago_taxi_trips",
+                "provider": {
+                    "name": "Elastic Demo",
+                    "type": "elasticsearch"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -1363,37 +1154,27 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "chicago_taxi_trips",
-                    "providerId": "d1a2be3a-bfb6-4fd0-b3e0-39dc828f7c54"
-                },
-                "name": {
-                    "sourceName": "chicago_taxi_trips",
-                    "providerName": "Elastic Demo"
-                },
-                "type": "DATASET"
-            }
+            "codeMode": true
         },
         {
-            "widgetId": "vis7ee165e2-62d7-49b5-b036-7b4be45c5dce",
-            "type": "visualization",
-            "providerData": {
-                "title": "Best Pick-up Communities by Tip Average",
-                "provider": {
-                    "provider": "elasticsearch"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Packed Bubbles",
+            "id": "vis7ee165e2-62d7-49b5-b036-7b4be45c5dce",
             "layout": {
                 "w": 3,
                 "h": 6,
                 "x": 9,
                 "y": 36,
                 "i": "vis7ee165e2-62d7-49b5-b036-7b4be45c5dce1",
-                "moved": false
+                "moved": false,
+                "static": false
+            },
+            "title": "Best Pick-up Communities by Tip Average",
+            "visualization": "Packed Bubbles",
+            "source": {
+                "name": "chicago_taxi_trips",
+                "provider": {
+                    "name": "Elastic Demo",
+                    "type": "elasticsearch"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -1414,36 +1195,27 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "chicago_taxi_trips",
-                    "providerId": "d1a2be3a-bfb6-4fd0-b3e0-39dc828f7c54"
-                },
-                "name": {
-                    "sourceName": "chicago_taxi_trips",
-                    "providerName": "Elastic Demo"
-                },
-                "type": "DATASET"
-            }
+            "codeMode": true
         },
         {
-            "widgetId": "vis488940cd-77a3-4ea5-a887-6017ec5e3ecc",
-            "type": "visualization",
-            "providerData": {
-                "title": "Map Markers",
-                "provider": {
-                    "provider": "elasticsearch"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
+            "id": "vis488940cd-77a3-4ea5-a887-6017ec5e3ecc",
             "layout": {
                 "w": 12,
                 "h": 11,
                 "x": 0,
                 "y": 42,
                 "i": "vis488940cd-77a3-4ea5-a887-6017ec5e3ecc1",
-                "moved": false
+                "moved": false,
+                "static": false
+            },
+            "title": "Map Markers",
+            "visualization": "Geo Map",
+            "source": {
+                "name": "chicago_taxi_trips",
+                "provider": {
+                    "name": "Elastic Demo",
+                    "type": "elasticsearch"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -1459,263 +1231,16 @@
                 "\t\t// \t.metrics(metricCount, metricFare);",
                 "// Define chart options",
                 "let myChart = myData.graph(\"Geo Map\")",
-                "\t\t\t.set(\"center\", [41.90994248011172,-87.78488159179689])",
-                "\t\t\t.set(\"zoom\", 11)",
+                "\t\t\t.set(\"center\", [41.42186071301468,-87.35583543777466])",
+                "\t\t\t.set(\"zoom\", 8)",
                 "      .limit(10000)",
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "chicago_taxi_trips",
-                    "providerId": "d1a2be3a-bfb6-4fd0-b3e0-39dc828f7c54"
-                },
-                "name": {
-                    "sourceName": "chicago_taxi_trips",
-                    "providerName": "Elastic Demo"
-                },
-                "type": "DATASET"
-            }
+            "codeMode": false
         }
     ],
     "filters": [],
-    "theme": {
-        "name": "light",
-        "font": "black",
-        "palette": "intense",
-        "background": "white",
-        "fullBackground": "#ececec",
-        "headerFont": "white"
-    },
-    "creationDate": 1549323598632,
-    "lastModDate": 1549323598632,
-    "layout": [
-        {
-            "w": 3,
-            "h": 9,
-            "x": 0,
-            "y": 2,
-            "i": "visaa6110ed-9a9a-4aeb-b23b-7b09c8af858e1",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 6,
-            "h": 2,
-            "x": 0,
-            "y": 0,
-            "i": "vis07d3bfc7-6328-4383-adaf-4d66567709ec1",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 6,
-            "h": 2,
-            "x": 6,
-            "y": 0,
-            "i": "visb2c47bce-f025-4779-be0f-e6b4e06482161",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 5,
-            "h": 7,
-            "x": 3,
-            "y": 2,
-            "i": "visa55780cf-3a67-480e-b9b6-f7022463a1f21",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 4,
-            "h": 7,
-            "x": 8,
-            "y": 2,
-            "i": "visea2e0692-e514-4e02-8b40-2137616309fe1",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 1,
-            "h": 2,
-            "x": 0,
-            "y": 11,
-            "i": "vis1f4bb8ae-a594-4203-8a55-09b917f3e0571",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 1,
-            "h": 2,
-            "x": 1,
-            "y": 11,
-            "i": "visc877bb16-1362-404a-82b3-a2f8ab0dabe91",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 1,
-            "h": 2,
-            "x": 2,
-            "y": 11,
-            "i": "vis057be44c-cb89-4a1c-934a-161663410b031",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 1,
-            "h": 2,
-            "x": 0,
-            "y": 13,
-            "i": "viscdb0da72-4d30-4d40-8ee6-a358159886661",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 1,
-            "h": 2,
-            "x": 1,
-            "y": 13,
-            "i": "vis139d66b6-e4f8-4ea7-baa7-fc0c2e2fdb5f1",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 1,
-            "h": 2,
-            "x": 2,
-            "y": 13,
-            "i": "vis13483a1e-b675-4608-af02-b5922951e03e1",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 3,
-            "h": 8,
-            "x": 3,
-            "y": 9,
-            "i": "visc19981c7-1336-43c5-b8c6-7ca18cce024c1",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 3,
-            "h": 2,
-            "x": 0,
-            "y": 15,
-            "i": "vis795d4668-d2cb-42ca-a502-9380caf967a61",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 6,
-            "h": 8,
-            "x": 6,
-            "y": 9,
-            "i": "vis585dcb1f-b667-4929-b798-f6c1dabecd8b1",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 6,
-            "h": 9,
-            "x": 0,
-            "y": 17,
-            "i": "viscee229bb-c6c4-428c-b9b6-d1baab8d0e021",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 3,
-            "h": 8,
-            "x": 6,
-            "y": 17,
-            "i": "vis3ad08ee8-cd85-48e7-9fa6-8d00a8e717f41",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 3,
-            "h": 8,
-            "x": 9,
-            "y": 17,
-            "i": "visf0892ae6-8f8f-4772-a903-fd511309ef2e1",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 3,
-            "h": 7,
-            "x": 0,
-            "y": 26,
-            "i": "vis384c15b1-a9fb-4e7f-9211-548c92d940f91",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 3,
-            "h": 7,
-            "x": 3,
-            "y": 26,
-            "i": "vis6ddce408-23be-40c3-90d7-bcbd6eb354ca1",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 3,
-            "h": 8,
-            "x": 6,
-            "y": 25,
-            "i": "vis04e800cc-905d-41f0-b975-3d4f68a1f6341",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 3,
-            "h": 11,
-            "x": 9,
-            "y": 25,
-            "i": "vis6fa64965-e6ff-45c7-846d-73aadf5f29bc1",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 5,
-            "h": 9,
-            "x": 0,
-            "y": 33,
-            "i": "vis07f4059f-1186-4fe6-8c07-62967036b8271",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 4,
-            "h": 9,
-            "x": 5,
-            "y": 33,
-            "i": "visf70ee515-7bf3-4f91-8d64-4f412f1a65341",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 3,
-            "h": 6,
-            "x": 9,
-            "y": 36,
-            "i": "vis7ee165e2-62d7-49b5-b036-7b4be45c5dce1",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 12,
-            "h": 11,
-            "x": 0,
-            "y": 42,
-            "i": "vis488940cd-77a3-4ea5-a887-6017ec5e3ecc1",
-            "moved": false,
-            "static": false
-        }
-    ],
     "metadata": {
         "Elastic Demo": [
             "let tripMinutes = {",
@@ -1824,9 +1349,6 @@
             "  }",
             "}"
         ]
-    },
-    "resources": {
-        "Chicago shapes": "https://chartfactor.com/wp-content/lib/chicago.js"
     }
 }||||[
     {
@@ -1834,6 +1356,6 @@
         "url": "https://chartfactor.com/elastic",
         "active": true,
         "provider": "elasticsearch",
-        "id": "d1a2be3a-bfb6-4fd0-b3e0-39dc828f7c54"
+        "id": "e60e93c1-8ed0-415b-9d00-d012c5734e44"
     }
 ]
