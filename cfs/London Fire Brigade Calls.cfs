@@ -1,5 +1,5 @@
 {
-    "id": "f2c8ebb3-2023-4fe6-87aa-17b15c667b36",
+    "id": "bdc3b7eb-5e2c-4f0a-91ab-4738674a8283",
     "name": "London Fire Brigade Calls",
     "description": "Application developed using CF Studio",
     "state": "home",
@@ -35,10 +35,10 @@
                 "// Define attributes to group by",
                 "let group1 = cf.Attribute(\"incident_group\")",
                 "\t\t\t.limit(100)",
-                "\t\t\t.sort(\"desc\", cf.Metric());",
+                "\t\t\t.sort(\"desc\", metric0);",
                 "let group2 = cf.Attribute(\"stop_code_description\")",
                 "\t\t\t.limit(100)",
-                "\t\t\t.sort(\"desc\", cf.Metric());",
+                "\t\t\t.sort(\"desc\", metric0);",
                 "",
                 "// Add metrics and groups to data source",
                 "let myData = source.groupby(group1,group2)",
@@ -54,7 +54,8 @@
                 "\t\t\t.set('color', color)",
                 "\t\t\t.execute();",
                 ""
-            ]
+            ],
+            "showUI": true
         },
         {
             "id": "visb1b8baf1-bc9c-4b9f-b9bb-c5ace2c922e5",
@@ -85,7 +86,7 @@
                 "// Define attributes to group by",
                 "let group1 = cf.Attribute(\"incident_group\")",
                 "\t\t\t.limit(100)",
-                "\t\t\t.sort(\"desc\", cf.Metric());",
+                "\t\t\t.sort(\"desc\", metricColor);",
                 "",
                 "// Add metrics and groups to data source",
                 "let myData = source.groupby(group1)",
@@ -111,7 +112,8 @@
                 "\t.set(\"dataZoom\", false)",
                 "\t.execute();",
                 ""
-            ]
+            ],
+            "showUI": true
         },
         {
             "id": "vis60c6edf7-8afe-4f10-a93b-8a8c6317a792",
@@ -166,7 +168,8 @@
                 "\t.set(\"dataZoom\", false)",
                 "\t.execute();",
                 ""
-            ]
+            ],
+            "showUI": true
         },
         {
             "id": "vis01e57239-b314-408f-bf02-2108dd33532c",
@@ -197,7 +200,7 @@
                 "// Define attributes to group by",
                 "let group1 = cf.Attribute(\"proper_case\")",
                 "\t\t\t.limit(50)",
-                "\t\t\t.sort(\"desc\", cf.Metric());",
+                "\t\t\t.sort(\"desc\", metricColor);",
                 "",
                 "// Add metrics and groups to data source",
                 "let myData = source.groupby(group1)",
@@ -221,7 +224,8 @@
                 "\t.set(\"dataZoom\", false)",
                 "\t.execute();",
                 ""
-            ]
+            ],
+            "showUI": true
         },
         {
             "id": "vis52c9c3c2-60bd-4c62-84c8-628f4e4239bc",
@@ -270,7 +274,8 @@
                 "\t\t\t.set('color', color)",
                 "\t\t\t.execute();",
                 ""
-            ]
+            ],
+            "showUI": true
         },
         {
             "id": "vis4194457b-50d1-47ea-a832-5064a41be5be",
@@ -289,12 +294,15 @@
             "code": [
                 "/* Configuration code for the Interaction Manager*/",
                 "// Drill hierarchy settings can be done like this:",
-                "var vizId = getId(\"Calls by Incident Group / Type\")",
-                "var vizId2 = getId(\"Average First Response Time by Borough and Ward\");",
-                "var vizId3 = getId(\"Number of Calls by Borough and Ward\");",
-                "var vizId4 = getId(\"Distribution of First Response Time by Borough and Ward\");",
+                "let vizId = getId(\"Calls by Incident Group / Type\")",
+                "let vizId2 = getId(\"Average First Response Time by Borough and Ward\");",
+                "let vizId3 = getId(\"Number of Calls by Borough and Ward\");",
+                "let vizId4 = getId(\"Distribution of First Response Time by Borough and Ward\");",
+                "let vizId5 = getId(\"Call Trend by Hour of the Day\")",
+                "let vizId6 = getId(\"Average First Response Time by Hour of Call\")",
+                "let vizId7 = getId(\"Average Second Response Time by Hour of Call\")",
                 "",
-                "var drill = { ",
+                "let drill = { ",
                 "  [vizId]: { ",
                 "    group1: ['incident_group', 'stop_code_description', 'special_service_type']",
                 "  },",
@@ -309,13 +317,27 @@
                 "  }",
                 "}",
                 "",
+                "let rules = {",
+                "  [vizId5]: {",
+                "    clientFilters: true",
+                "  },",
+                "  [vizId6]: {",
+                "    clientFilters: true   ",
+                "  },",
+                "  [vizId7]: {",
+                "    clientFilters: true   ",
+                "  }",
+                "}",
+                "",
                 "// Define options",
                 "let aktive = cf.create();",
                 "let myChart = aktive.graph(\"Interaction Manager\")",
                 "\t\t.set(\"drill\", drill)",
+                "\t\t.set(\"rules\", rules)",
                 "\t\t.execute();",
                 ""
-            ]
+            ],
+            "showUI": true
         },
         {
             "id": "visc1b80ca7-5f80-4f9d-8948-a5de1afdfac1",
@@ -360,7 +382,8 @@
                 "      .set(\"color\", color)",
                 "\t\t\t.execute();",
                 ""
-            ]
+            ],
+            "showUI": true
         },
         {
             "id": "vis123f9e5c-eccd-499a-a717-671de3d1df4d",
@@ -411,7 +434,8 @@
                 "\t\t\t.set('markline', lines)",
                 "\t\t\t.execute();",
                 ""
-            ]
+            ],
+            "showUI": true
         },
         {
             "id": "vis16c6abb3-2555-49ea-8bcc-c653ba766b0b",
@@ -447,7 +471,8 @@
                 "\t\t\t.set(\"mainTextSize\", 40)",
                 "\t\t\t.execute();",
                 ""
-            ]
+            ],
+            "showUI": true
         },
         {
             "id": "vis1ed186e9-6d7d-4054-9f8d-dbc608cdeeed",
@@ -499,7 +524,7 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "codeMode": false
+            "showUI": false
         },
         {
             "id": "vis94f658d5-2208-46cc-861c-9a21122a4d84",
@@ -526,7 +551,8 @@
                 "\t\t.set(\"background\", \"#2b8cbe\")",
                 "\t\t.execute();",
                 ""
-            ]
+            ],
+            "showUI": true
         },
         {
             "id": "vis09c6c285-cca6-49a0-aa9c-bb1016e68ced",
@@ -553,7 +579,8 @@
                 "\t\t.set(\"background\", \"#2b8cbe\")",
                 "\t\t.execute();",
                 ""
-            ]
+            ],
+            "showUI": true
         },
         {
             "id": "vis6fd2b98d-a318-4a99-80da-123ba9ed1519",
@@ -580,7 +607,8 @@
                 "\t\t.set(\"background\", \"#2b8cbe\")",
                 "\t\t.execute();",
                 ""
-            ]
+            ],
+            "showUI": true
         },
         {
             "id": "vis1c8512dc-10e3-4450-836d-c4314581dfcd",
@@ -632,7 +660,8 @@
                 "\t\t\t.set(\"orientation\", \"horizontal\")",
                 "\t\t\t.execute();",
                 ""
-            ]
+            ],
+            "showUI": true
         },
         {
             "id": "vis16871325-1233-4d19-9131-04417825c9bb",
@@ -694,7 +723,8 @@
                 "\t.set(\"dataZoom\", false)",
                 "\t.execute();",
                 ""
-            ]
+            ],
+            "showUI": true
         },
         {
             "id": "vis4f109de4-d882-43a6-b31d-fabb64faaf8b",
@@ -756,7 +786,8 @@
                 "\t.set(\"dataZoom\", false)",
                 "\t.execute();",
                 ""
-            ]
+            ],
+            "showUI": true
         },
         {
             "id": "vis0c2b240d-283a-4790-82e5-d61145545593",
@@ -818,7 +849,8 @@
                 "\t.set(\"dataZoom\", false)",
                 "\t.execute();",
                 ""
-            ]
+            ],
+            "showUI": true
         },
         {
             "id": "vis59e921bf-08db-45d1-b1d1-7e4edc6712fc",
@@ -848,10 +880,10 @@
                 "// Define attributes to group by",
                 "let group1 = cf.Attribute(\"property_category\")",
                 "\t\t\t.limit(100)",
-                "\t\t\t.sort(\"desc\", cf.Metric());",
+                "\t\t\t.sort(\"desc\", metric0);",
                 "let group2 = cf.Attribute(\"property_type\")",
                 "\t\t\t.limit(10)",
-                "\t\t\t.sort(\"desc\", cf.Metric());",
+                "\t\t\t.sort(\"desc\", metric0);",
                 "",
                 "// Add metrics and groups to data source",
                 "let myData = source.groupby(group1,group2)",
@@ -865,7 +897,8 @@
                 "      .set('color', color)",
                 "\t\t\t.execute();",
                 ""
-            ]
+            ],
+            "showUI": true
         },
         {
             "id": "vis574abc1f-38de-44a1-bb10-0602e382ce3b",
@@ -906,7 +939,8 @@
                 "\t\t\t.set('color', color)",
                 "\t\t\t.execute();",
                 ""
-            ]
+            ],
+            "showUI": true
         },
         {
             "id": "vis01440f40-b9dc-4521-91e3-473fa42d2eba",
@@ -940,6 +974,7 @@
                 "\t\t\t.limit(1000)",
                 "\t\t\t.func(\"DAY\")",
                 "\t\t\t.sort(\"asc\",\"date_of_call\");",
+                "",
                 "// Add metrics and groups to data source",
                 "let myData = source.groupby(group1)",
                 "\t\t\t.metrics(metric);",
@@ -949,7 +984,8 @@
                 "\t\t\t.set('sliderData',true)",
                 "\t\t\t.execute();",
                 ""
-            ]
+            ],
+            "showUI": true
         },
         {
             "id": "viscf0f2e5b-b9ac-42e9-837c-4c08f6113555",
@@ -979,7 +1015,8 @@
                 "// Define attributes to group by",
                 "let group1 = cf.Attribute(\"proper_case\")",
                 "\t\t\t.limit(100)",
-                "\t\t\t.sort(\"desc\", cf.Metric());",
+                "\t\t\t.sort(\"desc\", metric0);",
+                "",
                 "// Add metrics and groups to data source",
                 "let myData = source.groupby(group1)",
                 "\t\t\t.metrics(metric0);",
@@ -997,7 +1034,8 @@
                 "\t\t\t.set(\"legend\", \"bottom-right\")",
                 "\t\t\t.execute();",
                 ""
-            ]
+            ],
+            "showUI": true
         },
         {
             "id": "visf6306f3c-1d74-4d84-89a9-cd20113734c3",
@@ -1036,7 +1074,8 @@
                 "let myChart = myData.graph(\"Slicer\")",
                 "\t\t\t.execute();",
                 ""
-            ]
+            ],
+            "showUI": true
         }
     ],
     "filters": [],
