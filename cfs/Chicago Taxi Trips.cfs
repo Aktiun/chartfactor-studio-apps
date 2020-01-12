@@ -1,9 +1,10 @@
 {
-    "id": "628895fb-3969-4b7f-9725-c29c3f98b0b8",
+    "id": "a8215201-2da9-4b68-b2e1-eb1c43616cc7",
     "name": "Chicago Taxi Trips",
     "description": "Application developed using CF Studio",
     "state": "home",
     "readOnly": false,
+    "hasBorder": true,
     "widgetList": [
         {
             "id": "visaa6110ed-9a9a-4aeb-b23b-7b09c8af858e",
@@ -36,7 +37,7 @@
                 "// Define attributes to group by",
                 "let group1 = cf.Attribute(\"pickup_district\")",
                 "\t\t\t.limit(10)",
-                "\t\t\t.sort(\"desc\", cf.Metric());",
+                "\t\t\t.sort(\"desc\", metric0);",
                 "",
                 "// Add metrics and groups to data source",
                 "let myData = source.groupby(group1)",
@@ -54,7 +55,7 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "codeMode": true
+            "showUI": true
         },
         {
             "id": "vis07d3bfc7-6328-4383-adaf-4d66567709ec",
@@ -72,7 +73,7 @@
             "visualization": "Interaction Manager",
             "source": {},
             "code": [
-                "/* Configuration code for the Filter Control*/",
+                "/* Configuration code for the Interaction Manager*/",
                 "",
                 "",
                 "// Drill hierarchy and rule settings can be done like this:",
@@ -108,7 +109,7 @@
                 "",
                 ""
             ],
-            "codeMode": false
+            "showUI": false
         },
         {
             "id": "visb2c47bce-f025-4779-be0f-e6b4e0648216",
@@ -143,6 +144,7 @@
                 "\t\t\t.limit(1000)",
                 "\t\t\t.func(\"MONTH\")",
                 "\t\t\t.sort(\"asc\",\"trip_start_timestamp\");",
+                "",
                 "// Add metrics and groups to data source",
                 "let myData = source.groupby(group1)",
                 "\t\t\t.metrics(metric);",
@@ -158,7 +160,7 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "codeMode": false
+            "showUI": false
         },
         {
             "id": "visa55780cf-3a67-480e-b9b6-f7022463a1f2",
@@ -217,7 +219,7 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "codeMode": false
+            "showUI": false
         },
         {
             "id": "visea2e0692-e514-4e02-8b40-2137616309fe",
@@ -280,7 +282,7 @@
                 "\t.execute();",
                 ""
             ],
-            "codeMode": true
+            "showUI": true
         },
         {
             "id": "vis1f4bb8ae-a594-4203-8a55-09b917f3e057",
@@ -320,7 +322,7 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "codeMode": false
+            "showUI": false
         },
         {
             "id": "visc877bb16-1362-404a-82b3-a2f8ab0dabe9",
@@ -360,7 +362,7 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "codeMode": false
+            "showUI": false
         },
         {
             "id": "vis057be44c-cb89-4a1c-934a-161663410b03",
@@ -406,7 +408,7 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "codeMode": false
+            "showUI": false
         },
         {
             "id": "viscdb0da72-4d30-4d40-8ee6-a35815988666",
@@ -446,7 +448,7 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "codeMode": false
+            "showUI": false
         },
         {
             "id": "vis139d66b6-e4f8-4ea7-baa7-fc0c2e2fdb5f",
@@ -486,7 +488,7 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "codeMode": false
+            "showUI": false
         },
         {
             "id": "vis13483a1e-b675-4608-af02-b5922951e03e",
@@ -526,7 +528,7 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "codeMode": false
+            "showUI": false
         },
         {
             "id": "visc19981c7-1336-43c5-b8c6-7ca18cce024c",
@@ -568,7 +570,7 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "codeMode": true
+            "showUI": true
         },
         {
             "id": "vis795d4668-d2cb-42ca-a502-9380caf967a6",
@@ -605,7 +607,7 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "codeMode": false
+            "showUI": false
         },
         {
             "id": "vis585dcb1f-b667-4929-b798-f6c1dabecd8b",
@@ -642,7 +644,7 @@
                 "\t\t\t.sort(\"asc\",\"trip_start_timestamp\");",
                 "let group2 = cf.Attribute(\"company\")",
                 "\t\t\t.limit(10)",
-                "\t\t\t.sort(\"desc\", cf.Metric());",
+                "\t\t\t.sort(\"desc\", metric0);",
                 "",
                 "// Add metrics and groups to data source",
                 "let myData = source.groupby(group1,group2)",
@@ -660,7 +662,7 @@
                 "      \t\t\t.execute();",
                 ""
             ],
-            "codeMode": false
+            "showUI": false
         },
         {
             "id": "viscee229bb-c6c4-428c-b9b6-d1baab8d0e02",
@@ -693,10 +695,10 @@
                 "// Define attributes to group by",
                 "let group1 = cf.Attribute(\"pickup_community_area_desc\")",
                 "\t\t\t.limit(10)",
-                "\t\t\t.sort(\"desc\", cf.Metric());",
+                "\t\t\t.sort(\"desc\", metric0);",
                 "let group2 = cf.Attribute(\"company\")",
                 "\t\t\t.limit(10)",
-                "\t\t\t.sort(\"desc\", cf.Metric());",
+                "\t\t\t.sort(\"desc\", metric0);",
                 "",
                 "// Add metrics and groups to data source",
                 "let myData = source.groupby(group1,group2)",
@@ -713,7 +715,7 @@
                 "      \t\t\t.set(\"showValues\", true)",
                 "      \t\t\t.execute();"
             ],
-            "codeMode": false
+            "showUI": false
         },
         {
             "id": "vis3ad08ee8-cd85-48e7-9fa6-8d00a8e717f4",
@@ -761,7 +763,7 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "codeMode": false
+            "showUI": false
         },
         {
             "id": "visf0892ae6-8f8f-4772-a903-fd511309ef2e",
@@ -807,7 +809,7 @@
                 "\t\t\t      .execute();",
                 ""
             ],
-            "codeMode": true
+            "showUI": true
         },
         {
             "id": "vis384c15b1-a9fb-4e7f-9211-548c92d940f9",
@@ -872,7 +874,7 @@
                 "\t.execute();",
                 ""
             ],
-            "codeMode": true
+            "showUI": true
         },
         {
             "id": "vis6ddce408-23be-40c3-90d7-bcbd6eb354ca",
@@ -927,7 +929,7 @@
                 "\t.execute();",
                 ""
             ],
-            "codeMode": true
+            "showUI": true
         },
         {
             "id": "vis04e800cc-905d-41f0-b975-3d4f68a1f634",
@@ -991,7 +993,7 @@
                 "\t.execute();",
                 ""
             ],
-            "codeMode": true
+            "showUI": true
         },
         {
             "id": "vis6fa64965-e6ff-45c7-846d-73aadf5f29bc",
@@ -1043,7 +1045,7 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "codeMode": false
+            "showUI": false
         },
         {
             "id": "vis07f4059f-1186-4fe6-8c07-62967036b827",
@@ -1112,7 +1114,7 @@
                 "\t\t\t.set(\"color\", color)",
                 "\t\t\t.execute();"
             ],
-            "codeMode": false
+            "showUI": false
         },
         {
             "id": "visf70ee515-7bf3-4f91-8d64-4f412f1a6534",
@@ -1154,7 +1156,7 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "codeMode": true
+            "showUI": true
         },
         {
             "id": "vis7ee165e2-62d7-49b5-b036-7b4be45c5dce",
@@ -1181,21 +1183,27 @@
                 "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source('chicago_taxi_trips');",
                 "// Define metrics",
-                "let metric0 = cf.Metric(\"tips\",\"avg\");",
+                "let metric0 = cf.Metric(\"tips\", \"avg\");",
                 "// Define attributes to group by",
                 "let group1 = cf.Attribute(\"pickup_community_area_desc\")",
-                "\t\t\t.limit(70)",
-                "\t\t\t.sort(\"desc\", metric0);",
-                "",
+                "\t.limit(70)",
+                "\t.sort(\"desc\", cf.Metric(\"tips\", \"avg\"));",
                 "// Add metrics and groups to data source",
                 "let myData = source.groupby(group1)",
-                "\t\t\t.metrics(metric0);",
+                "\t.metrics(metric0);",
                 "// Define chart options",
+                "// Define Color Palette",
+                "let color = cf.Color()",
+                "\t.palette([\"#0095b7\", \"#a0b774\", \"#f4c658\",",
+                "\t\t\"#fe8b3e\", \"#cf2f23\", \"#756c56\",",
+                "\t\t\"#007896\", \"#47a694\", \"#f9a94b\",",
+                "\t\t\"#ff6b30\", \"#e94d29\", \"#005b76\"]);",
                 "let myChart = myData.graph(\"Packed Bubbles\")",
-                "\t\t\t.execute();",
+                "\t.set(\"color\", color)",
+                "\t.execute();",
                 ""
             ],
-            "codeMode": true
+            "showUI": true
         },
         {
             "id": "vis488940cd-77a3-4ea5-a887-6017ec5e3ecc",
@@ -1231,13 +1239,13 @@
                 "\t\t// \t.metrics(metricCount, metricFare);",
                 "// Define chart options",
                 "let myChart = myData.graph(\"Geo Map\")",
-                "\t\t\t.set(\"center\", [41.42186071301468,-87.35583543777466])",
-                "\t\t\t.set(\"zoom\", 8)",
+                "\t\t\t.set(\"center\", [41.85728792769137,-87.9064178466797])",
+                "\t\t\t.set(\"zoom\", 10)",
                 "      .limit(10000)",
                 "\t\t\t.execute();",
                 ""
             ],
-            "codeMode": false
+            "showUI": false
         }
     ],
     "filters": [],
