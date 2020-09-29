@@ -1,5 +1,5 @@
 {
-    "id": "c864acfb-3b2f-47b4-86f5-1fefa8e4e477",
+    "id": "9fecc053-4b78-4b8f-bffb-57bf7c74f4a4",
     "name": "Chicago Taxi Trips",
     "description": "Application developed using CF Studio",
     "state": "home",
@@ -1114,13 +1114,11 @@
                 "let metricFare = new cf.Metric(\"fare\", \"sum\");",
                 "// Add fields to data source.",
                 "let myData = source",
-                "\t\t// \t.rows('dropoff_latitude', 'dropoff_longitude', 'dropoff_community_area_desc')",
                 "\t\t\t.fields('dropoff_latitude', 'dropoff_longitude', 'dropoff_community_area_desc', 'fare', 'tips', 'tolls', 'extras')",
-                "\t\t// \t.metrics(metricCount, metricFare);",
                 "// Define chart options",
                 "let myChart = myData.graph(\"Geo Map\")",
-                "\t\t\t.set(\"center\", [41.84194349089866,-87.74299621582033])",
-                "\t\t\t.set(\"zoom\", 11)",
+                "\t\t\t.set(\"center\", [42.24732685217714,-87.44430541992189])",
+                "\t\t\t.set(\"zoom\", 7)",
                 "      .limit(10000)",
                 "\t\t\t.execute();",
                 ""
@@ -1837,13 +1835,14 @@
             "  }",
             "}"
         ]
-    }
+    },
+    "customQueries": {}
 }||||[
     {
         "name": "Elastic Demo",
         "url": "https://chartfactor.com/elastic",
         "active": true,
         "provider": "elasticsearch",
-        "id": "fc2162fc-de96-4f24-9f60-19076e266797"
+        "id": "037781a3-f942-48ec-8f4e-406ce0a0b94f"
     }
 ]
