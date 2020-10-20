@@ -29,3 +29,9 @@ This application was created using ChartFactor Studio. The data is sourced from 
 This ChartFactor Studio interactive dashboard visualizes COVID-19 infections and deaths in the United States since pandemic data started in January 2020. Use the time slider to replay history. Select your State to visualize its Counties and select a county to visualize total cases, death rates, and other KPIs. Also, check out the scatter plot to see where your State stands in the infections vs deaths cuadrant.  
 
 This application was created using ChartFactor Studio. The data is sourced from [chinapower.csis.org](https://chinapower.csis.org/data/daily-air-pollution-statistics/). A published application is available online at https://chartfactor.com/covid-19-us/. 
+
+### London Fire Brigade Calls
+
+This ChartFactor Studio interactive application visualizes London Fire Brigade calls that occurred during the first quarter of 2017. You can click on any visualization to further analyze the data. For example, you can select a day and/or an hour of the day using the Trend charts and then analyze call distribution. Or you can select a shape in the vector map to filter down calls by the selected Borough.
+
+This application was created using ChartFactor Studio.
