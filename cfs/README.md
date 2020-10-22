@@ -1,6 +1,6 @@
 # ChartFactor Studio Applications
 
-This is the public collection of ChartFactor Studio applications in the form of CFS files, ready to be used with ChartFactor Studio.
+This is the public collection of ChartFactor Studio applications in the form of CFS files, ready to be imported into ChartFactor Studio.
 
 ## Instructions to load CFS files in ChartFactor Studio
 
