@@ -35,3 +35,9 @@ This application was created using ChartFactor Studio. The data is sourced from 
 This ChartFactor Studio interactive application visualizes London Fire Brigade calls that occurred during the first quarter of 2017. You can click on any visualization to further analyze the data. For example, you can select a day and/or an hour of the day using the Trend charts and then analyze call distribution. Or you can select a shape in the vector map to filter down calls by the selected Borough.
 
 This application was created using ChartFactor Studio.
+
+### US Airlines Customer Experience
+
+This ChartFactor Studio streaming and interactive application visualizes US Airline customer experience at any time, day or night. You can visualize currently streaming tweets as well as historical tweets. You can identify top entities and phrases, analyze specific categories and sentiments, narrow down negative sentiment to specific themes and airlines, and see volume trend and KPI comparisions!
+
+This application was created using ChartFactor Studio.  A published application is available online at https://chartfactor.com/cx-analytics/. 
