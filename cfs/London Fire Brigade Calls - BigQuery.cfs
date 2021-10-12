@@ -1,18 +1,13 @@
 {
-    "dashboardId": "7ffac82d-bc22-42de-8d78-6efd760fbf8a",
+    "id": "825569de-1e78-4e13-9e7e-2f94a341dcec",
     "name": "London Fire Brigade Calls - BigQuery",
-    "visualizationDef": [
+    "description": "Application developed using CF Studio",
+    "state": "home",
+    "readOnly": false,
+    "hasBorder": true,
+    "widgetList": [
         {
-            "widgetId": "vis9474ce9b-061d-410c-96b9-a5c76dc98580",
-            "type": "visualization",
-            "providerData": {
-                "title": "Calls by Incident Group and Type",
-                "provider": {
-                    "provider": "google-bigquery"
-                }
-            },
-            "isFC": false,
-            "visualization": "Heat Map",
+            "id": "vis9474ce9b-061d-410c-96b9-a5c76dc98580",
             "layout": {
                 "w": 3,
                 "h": 8,
@@ -20,6 +15,15 @@
                 "y": 3,
                 "i": "vis9474ce9b-061d-410c-96b9-a5c76dc985801",
                 "moved": false
+            },
+            "title": "Calls by Incident Group and Type",
+            "visualization": "Heat Map",
+            "source": {
+                "name": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
+                "provider": {
+                    "name": "BigQuery",
+                    "type": "google-bigquery"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -52,29 +56,10 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerId": "fbfd5716-cba4-490a-9a7b-a3a5d9156f5d"
-                },
-                "name": {
-                    "sourceName": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerName": "BigQuery"
-                },
-                "type": "DATASET"
-            }
+            "showUI": true
         },
         {
-            "widgetId": "visb1b8baf1-bc9c-4b9f-b9bb-c5ace2c922e5",
-            "type": "visualization",
-            "providerData": {
-                "title": "Calls by Incident Group / Type",
-                "provider": {
-                    "provider": "google-bigquery"
-                }
-            },
-            "isFC": false,
-            "visualization": "Bars",
+            "id": "visb1b8baf1-bc9c-4b9f-b9bb-c5ace2c922e5",
             "layout": {
                 "w": 3,
                 "h": 8,
@@ -82,6 +67,15 @@
                 "y": 3,
                 "i": "visb1b8baf1-bc9c-4b9f-b9bb-c5ace2c922e51",
                 "moved": false
+            },
+            "title": "Calls by Incident Group / Type",
+            "visualization": "Bars",
+            "source": {
+                "name": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
+                "provider": {
+                    "name": "BigQuery",
+                    "type": "google-bigquery"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -118,29 +112,10 @@
                 "\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerId": "fbfd5716-cba4-490a-9a7b-a3a5d9156f5d"
-                },
-                "name": {
-                    "sourceName": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerName": "BigQuery"
-                },
-                "type": "DATASET"
-            }
+            "showUI": true
         },
         {
-            "widgetId": "vis60c6edf7-8afe-4f10-a93b-8a8c6317a792",
-            "type": "visualization",
-            "providerData": {
-                "title": "Call Trend by Hour of the Day",
-                "provider": {
-                    "provider": "google-bigquery"
-                }
-            },
-            "isFC": false,
-            "visualization": "Bars",
+            "id": "vis60c6edf7-8afe-4f10-a93b-8a8c6317a792",
             "layout": {
                 "w": 9,
                 "h": 5,
@@ -148,6 +123,15 @@
                 "y": 11,
                 "i": "vis60c6edf7-8afe-4f10-a93b-8a8c6317a7921",
                 "moved": false
+            },
+            "title": "Call Trend by Hour of the Day",
+            "visualization": "Bars",
+            "source": {
+                "name": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
+                "provider": {
+                    "name": "BigQuery",
+                    "type": "google-bigquery"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -183,29 +167,10 @@
                 "\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerId": "fbfd5716-cba4-490a-9a7b-a3a5d9156f5d"
-                },
-                "name": {
-                    "sourceName": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerName": "BigQuery"
-                },
-                "type": "DATASET"
-            }
+            "showUI": true
         },
         {
-            "widgetId": "vis01e57239-b314-408f-bf02-2108dd33532c",
-            "type": "visualization",
-            "providerData": {
-                "title": "Number of Calls by Borough and Ward",
-                "provider": {
-                    "provider": "google-bigquery"
-                }
-            },
-            "isFC": false,
-            "visualization": "Bars",
+            "id": "vis01e57239-b314-408f-bf02-2108dd33532c",
             "layout": {
                 "w": 3,
                 "h": 11,
@@ -213,6 +178,15 @@
                 "y": 24,
                 "i": "vis01e57239-b314-408f-bf02-2108dd33532c1",
                 "moved": false
+            },
+            "title": "Number of Calls by Borough and Ward",
+            "visualization": "Bars",
+            "source": {
+                "name": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
+                "provider": {
+                    "name": "BigQuery",
+                    "type": "google-bigquery"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -248,29 +222,10 @@
                 "\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerId": "fbfd5716-cba4-490a-9a7b-a3a5d9156f5d"
-                },
-                "name": {
-                    "sourceName": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerName": "BigQuery"
-                },
-                "type": "DATASET"
-            }
+            "showUI": true
         },
         {
-            "widgetId": "vis52c9c3c2-60bd-4c62-84c8-628f4e4239bc",
-            "type": "visualization",
-            "providerData": {
-                "title": "Trend of Calls between January and April 2017",
-                "provider": {
-                    "provider": "google-bigquery"
-                }
-            },
-            "isFC": false,
-            "visualization": "Multimetric Trend",
+            "id": "vis52c9c3c2-60bd-4c62-84c8-628f4e4239bc",
             "layout": {
                 "w": 6,
                 "h": 9,
@@ -278,6 +233,15 @@
                 "y": 2,
                 "i": "vis52c9c3c2-60bd-4c62-84c8-628f4e4239bc1",
                 "moved": false
+            },
+            "title": "Trend of Calls between January and April 2017",
+            "visualization": "Multimetric Trend",
+            "source": {
+                "name": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
+                "provider": {
+                    "name": "BigQuery",
+                    "type": "google-bigquery"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -308,26 +272,11 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerId": "fbfd5716-cba4-490a-9a7b-a3a5d9156f5d"
-                },
-                "name": {
-                    "sourceName": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerName": "BigQuery"
-                },
-                "type": "DATASET"
-            }
+            "showUI": true
         },
         {
-            "widgetId": "vis4194457b-50d1-47ea-a832-5064a41be5be",
-            "type": "visualization",
-            "providerData": {
-                "title": "Filters"
-            },
-            "isFC": true,
-            "visualization": "Interaction Manager",
+            "id": "vis4194457b-50d1-47ea-a832-5064a41be5be",
+            "isIManager": true,
             "layout": {
                 "w": 6,
                 "h": 2,
@@ -336,6 +285,9 @@
                 "i": "vis4194457b-50d1-47ea-a832-5064a41be5be1",
                 "moved": false
             },
+            "title": "Filters",
+            "visualization": "Interaction Manager",
+            "source": {},
             "code": [
                 "/* Configuration code for the Filter Control*/",
                 "// Drill hierarchy settings can be done like this:",
@@ -366,19 +318,10 @@
                 "\t\t.execute();",
                 ""
             ],
-            "source": {}
+            "showUI": true
         },
         {
-            "widgetId": "visc1b80ca7-5f80-4f9d-8948-a5de1afdfac1",
-            "type": "visualization",
-            "providerData": {
-                "title": "Disk showing Calls by Hour of the Day",
-                "provider": {
-                    "provider": "google-bigquery"
-                }
-            },
-            "isFC": false,
-            "visualization": "Disk",
+            "id": "visc1b80ca7-5f80-4f9d-8948-a5de1afdfac1",
             "layout": {
                 "w": 3,
                 "h": 5,
@@ -386,6 +329,15 @@
                 "y": 11,
                 "i": "visc1b80ca7-5f80-4f9d-8948-a5de1afdfac11",
                 "moved": false
+            },
+            "title": "Disk showing Calls by Hour of the Day",
+            "visualization": "Disk",
+            "source": {
+                "name": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
+                "provider": {
+                    "name": "BigQuery",
+                    "type": "google-bigquery"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -412,29 +364,10 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerId": "fbfd5716-cba4-490a-9a7b-a3a5d9156f5d"
-                },
-                "name": {
-                    "sourceName": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerName": "BigQuery"
-                },
-                "type": "DATASET"
-            }
+            "showUI": true
         },
         {
-            "widgetId": "vis123f9e5c-eccd-499a-a717-671de3d1df4d",
-            "type": "visualization",
-            "providerData": {
-                "title": "Distribution of First Response by Hour of Call",
-                "provider": {
-                    "provider": "google-bigquery"
-                }
-            },
-            "isFC": false,
-            "visualization": "Box Plot",
+            "id": "vis123f9e5c-eccd-499a-a717-671de3d1df4d",
             "layout": {
                 "w": 3,
                 "h": 7,
@@ -442,6 +375,15 @@
                 "y": 17,
                 "i": "vis123f9e5c-eccd-499a-a717-671de3d1df4d1",
                 "moved": false
+            },
+            "title": "Distribution of First Response by Hour of Call",
+            "visualization": "Box Plot",
+            "source": {
+                "name": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
+                "provider": {
+                    "name": "BigQuery",
+                    "type": "google-bigquery"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -474,31 +416,10 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerId": "fbfd5716-cba4-490a-9a7b-a3a5d9156f5d"
-                },
-                "name": {
-                    "sourceName": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerName": "BigQuery"
-                },
-                "type": "DATASET"
-            },
-            "codeMode": false
+            "showUI": false
         },
         {
-            "widgetId": "vis16c6abb3-2555-49ea-8bcc-c653ba766b0b",
-            "type": "visualization",
-            "providerData": {
-                "title": "Total Calls",
-                "provider": {
-                    "provider": "google-bigquery"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "KPI",
+            "id": "vis16c6abb3-2555-49ea-8bcc-c653ba766b0b",
             "layout": {
                 "w": 2,
                 "h": 2,
@@ -506,6 +427,15 @@
                 "y": 0,
                 "i": "vis16c6abb3-2555-49ea-8bcc-c653ba766b0b1",
                 "moved": false
+            },
+            "title": "Total Calls",
+            "visualization": "KPI",
+            "source": {
+                "name": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
+                "provider": {
+                    "name": "BigQuery",
+                    "type": "google-bigquery"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -523,30 +453,10 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerId": "44c5a651-5c1d-4438-b631-7ec4ed30a5da"
-                },
-                "name": {
-                    "sourceName": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerName": "BigQuery"
-                },
-                "type": "DATASET"
-            }
+            "showUI": true
         },
         {
-            "widgetId": "vis1ed186e9-6d7d-4054-9f8d-dbc608cdeeed",
-            "type": "visualization",
-            "providerData": {
-                "title": "Distribution of Second Response by Hour of Call",
-                "provider": {
-                    "provider": "google-bigquery"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Box Plot",
+            "id": "vis1ed186e9-6d7d-4054-9f8d-dbc608cdeeed",
             "layout": {
                 "w": 3,
                 "h": 7,
@@ -554,6 +464,15 @@
                 "y": 17,
                 "i": "vis1ed186e9-6d7d-4054-9f8d-dbc608cdeeed1",
                 "moved": false
+            },
+            "title": "Distribution of Second Response by Hour of Call",
+            "visualization": "Box Plot",
+            "source": {
+                "name": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
+                "provider": {
+                    "name": "BigQuery",
+                    "type": "google-bigquery"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -586,28 +505,11 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerId": "44c5a651-5c1d-4438-b631-7ec4ed30a5da"
-                },
-                "name": {
-                    "sourceName": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerName": "BigQuery"
-                },
-                "type": "DATASET"
-            },
-            "codeMode": false
+            "showUI": false
         },
         {
-            "widgetId": "vis94f658d5-2208-46cc-861c-9a21122a4d84",
-            "type": "visualization",
-            "providerData": {
-                "title": ""
-            },
-            "isFC": false,
+            "id": "vis94f658d5-2208-46cc-861c-9a21122a4d84",
             "isMarkup": true,
-            "visualization": "Bars",
             "layout": {
                 "w": 6,
                 "h": 1,
@@ -616,6 +518,9 @@
                 "i": "vis94f658d5-2208-46cc-861c-9a21122a4d841",
                 "moved": false
             },
+            "title": "",
+            "visualization": "Markup",
+            "source": {},
             "code": [
                 "/* Configuration code for the Markup Widget*/",
                 "",
@@ -628,17 +533,11 @@
                 "\t\t.execute();",
                 ""
             ],
-            "source": {}
+            "showUI": true
         },
         {
-            "widgetId": "vis09c6c285-cca6-49a0-aa9c-bb1016e68ced",
-            "type": "visualization",
-            "providerData": {
-                "title": ""
-            },
-            "isFC": false,
+            "id": "vis09c6c285-cca6-49a0-aa9c-bb1016e68ced",
             "isMarkup": true,
-            "visualization": "Bars",
             "layout": {
                 "w": 6,
                 "h": 1,
@@ -647,6 +546,9 @@
                 "i": "vis09c6c285-cca6-49a0-aa9c-bb1016e68ced1",
                 "moved": false
             },
+            "title": "",
+            "visualization": "Markup",
+            "source": {},
             "code": [
                 "/* Configuration code for the Markup Widget*/",
                 "",
@@ -659,17 +561,11 @@
                 "\t\t.execute();",
                 ""
             ],
-            "source": {}
+            "showUI": true
         },
         {
-            "widgetId": "vis6fd2b98d-a318-4a99-80da-123ba9ed1519",
-            "type": "visualization",
-            "providerData": {
-                "title": ""
-            },
-            "isFC": false,
+            "id": "vis6fd2b98d-a318-4a99-80da-123ba9ed1519",
             "isMarkup": true,
-            "visualization": "Bars",
             "layout": {
                 "w": 6,
                 "h": 1,
@@ -678,6 +574,9 @@
                 "i": "vis6fd2b98d-a318-4a99-80da-123ba9ed15191",
                 "moved": false
             },
+            "title": "",
+            "visualization": "Markup",
+            "source": {},
             "code": [
                 "/* Configuration code for the Markup Widget*/",
                 "",
@@ -690,20 +589,10 @@
                 "\t\t.execute();",
                 ""
             ],
-            "source": {}
+            "showUI": true
         },
         {
-            "widgetId": "vis1c8512dc-10e3-4450-836d-c4314581dfcd",
-            "type": "visualization",
-            "providerData": {
-                "title": "Distribution of First Response Time by Borough and Ward",
-                "provider": {
-                    "provider": "google-bigquery"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Box Plot",
+            "id": "vis1c8512dc-10e3-4450-836d-c4314581dfcd",
             "layout": {
                 "w": 3,
                 "h": 11,
@@ -711,6 +600,15 @@
                 "y": 24,
                 "i": "vis1c8512dc-10e3-4450-836d-c4314581dfcd1",
                 "moved": false
+            },
+            "title": "Distribution of First Response Time by Borough and Ward",
+            "visualization": "Box Plot",
+            "source": {
+                "name": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
+                "provider": {
+                    "name": "BigQuery",
+                    "type": "google-bigquery"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -744,31 +642,10 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerId": "44c5a651-5c1d-4438-b631-7ec4ed30a5da"
-                },
-                "name": {
-                    "sourceName": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerName": "BigQuery"
-                },
-                "type": "DATASET"
-            },
-            "codeMode": false
+            "showUI": false
         },
         {
-            "widgetId": "vis16871325-1233-4d19-9131-04417825c9bb",
-            "type": "visualization",
-            "providerData": {
-                "title": "Average First Response Time by Borough and Ward",
-                "provider": {
-                    "provider": "google-bigquery"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Bars",
+            "id": "vis16871325-1233-4d19-9131-04417825c9bb",
             "layout": {
                 "w": 3,
                 "h": 11,
@@ -776,6 +653,15 @@
                 "y": 24,
                 "i": "vis16871325-1233-4d19-9131-04417825c9bb1",
                 "moved": false
+            },
+            "title": "Average First Response Time by Borough and Ward",
+            "visualization": "Bars",
+            "source": {
+                "name": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
+                "provider": {
+                    "name": "BigQuery",
+                    "type": "google-bigquery"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -818,30 +704,10 @@
                 "\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerId": "44c5a651-5c1d-4438-b631-7ec4ed30a5da"
-                },
-                "name": {
-                    "sourceName": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerName": "BigQuery"
-                },
-                "type": "DATASET"
-            }
+            "showUI": true
         },
         {
-            "widgetId": "vis4f109de4-d882-43a6-b31d-fabb64faaf8b",
-            "type": "visualization",
-            "providerData": {
-                "title": "Average First Response Time by Hour of Call",
-                "provider": {
-                    "provider": "google-bigquery"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Bars",
+            "id": "vis4f109de4-d882-43a6-b31d-fabb64faaf8b",
             "layout": {
                 "w": 3,
                 "h": 7,
@@ -849,6 +715,15 @@
                 "y": 17,
                 "i": "vis4f109de4-d882-43a6-b31d-fabb64faaf8b1",
                 "moved": false
+            },
+            "title": "Average First Response Time by Hour of Call",
+            "visualization": "Bars",
+            "source": {
+                "name": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
+                "provider": {
+                    "name": "BigQuery",
+                    "type": "google-bigquery"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -891,30 +766,10 @@
                 "\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerId": "44c5a651-5c1d-4438-b631-7ec4ed30a5da"
-                },
-                "name": {
-                    "sourceName": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerName": "BigQuery"
-                },
-                "type": "DATASET"
-            }
+            "showUI": true
         },
         {
-            "widgetId": "vis0c2b240d-283a-4790-82e5-d61145545593",
-            "type": "visualization",
-            "providerData": {
-                "title": "Average Second Response Time by Hour of Call",
-                "provider": {
-                    "provider": "google-bigquery"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Bars",
+            "id": "vis0c2b240d-283a-4790-82e5-d61145545593",
             "layout": {
                 "w": 3,
                 "h": 7,
@@ -922,6 +777,15 @@
                 "y": 17,
                 "i": "vis0c2b240d-283a-4790-82e5-d611455455931",
                 "moved": false
+            },
+            "title": "Average Second Response Time by Hour of Call",
+            "visualization": "Bars",
+            "source": {
+                "name": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
+                "provider": {
+                    "name": "BigQuery",
+                    "type": "google-bigquery"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -964,30 +828,10 @@
                 "\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerId": "44c5a651-5c1d-4438-b631-7ec4ed30a5da"
-                },
-                "name": {
-                    "sourceName": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerName": "BigQuery"
-                },
-                "type": "DATASET"
-            }
+            "showUI": true
         },
         {
-            "widgetId": "vis59e921bf-08db-45d1-b1d1-7e4edc6712fc",
-            "type": "visualization",
-            "providerData": {
-                "title": "Calls by Property Category and Property Type",
-                "provider": {
-                    "provider": "google-bigquery"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Tree Map 2D",
+            "id": "vis59e921bf-08db-45d1-b1d1-7e4edc6712fc",
             "layout": {
                 "w": 12,
                 "h": 6,
@@ -995,6 +839,15 @@
                 "y": 35,
                 "i": "vis59e921bf-08db-45d1-b1d1-7e4edc6712fc1",
                 "moved": false
+            },
+            "title": "Calls by Property Category and Property Type",
+            "visualization": "Tree Map 2D",
+            "source": {
+                "name": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
+                "provider": {
+                    "name": "BigQuery",
+                    "type": "google-bigquery"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -1023,30 +876,10 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerId": "44c5a651-5c1d-4438-b631-7ec4ed30a5da"
-                },
-                "name": {
-                    "sourceName": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerName": "BigQuery"
-                },
-                "type": "DATASET"
-            }
+            "showUI": true
         },
         {
-            "widgetId": "vis574abc1f-38de-44a1-bb10-0602e382ce3b",
-            "type": "visualization",
-            "providerData": {
-                "title": "Call Events",
-                "provider": {
-                    "provider": "google-bigquery"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Raw Data Table",
+            "id": "vis574abc1f-38de-44a1-bb10-0602e382ce3b",
             "layout": {
                 "w": 12,
                 "h": 7,
@@ -1054,6 +887,15 @@
                 "y": 41,
                 "i": "vis574abc1f-38de-44a1-bb10-0602e382ce3b1",
                 "moved": false
+            },
+            "title": "Call Events",
+            "visualization": "Raw Data Table",
+            "source": {
+                "name": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
+                "provider": {
+                    "name": "BigQuery",
+                    "type": "google-bigquery"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -1073,33 +915,25 @@
                 "\t\t\t.set(\"showRowNumber\", true)",
                 "\t\t\t.set(\"autoSizeColumns\", true)",
                 "\t\t\t.set('color', color)",
+                "      .set('columnFilters', [",
+                "          { field: 'cal_year'},",
+                "          { field: 'hour_of_call'},",
+                "          { field: 'incident_group'},",
+                "          { field: 'stop_code_description'},",
+                "          { field: 'special_service_type'},",
+                "          { field: 'property_category'},",
+                "          { field: 'property_type'},",
+                "          { field: 'address_qualifier' },",
+                "          { field: 'postcode_full' },",
+                "          { field: 'postcode_district' } ",
+                "        ])",
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerId": "44c5a651-5c1d-4438-b631-7ec4ed30a5da"
-                },
-                "name": {
-                    "sourceName": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerName": "BigQuery"
-                },
-                "type": "DATASET"
-            }
+            "showUI": true
         },
         {
-            "widgetId": "vis01440f40-b9dc-4521-91e3-473fa42d2eba",
-            "type": "visualization",
-            "providerData": {
-                "title": "Time Range Filter",
-                "provider": {
-                    "provider": "google-bigquery"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Time Range Filter",
+            "id": "vis01440f40-b9dc-4521-91e3-473fa42d2eba",
             "layout": {
                 "w": 4,
                 "h": 2,
@@ -1107,6 +941,15 @@
                 "y": 0,
                 "i": "vis01440f40-b9dc-4521-91e3-473fa42d2eba1",
                 "moved": false
+            },
+            "title": "Time Range Filter",
+            "visualization": "Time Range Filter",
+            "source": {
+                "name": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
+                "provider": {
+                    "name": "BigQuery",
+                    "type": "google-bigquery"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -1131,30 +974,10 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerId": "44c5a651-5c1d-4438-b631-7ec4ed30a5da"
-                },
-                "name": {
-                    "sourceName": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerName": "BigQuery"
-                },
-                "type": "DATASET"
-            }
+            "showUI": true
         },
         {
-            "widgetId": "viscf0f2e5b-b9ac-42e9-837c-4c08f6113555",
-            "type": "visualization",
-            "providerData": {
-                "title": "Number of Calls by Borough",
-                "provider": {
-                    "provider": "google-bigquery"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Vector Map",
+            "id": "viscf0f2e5b-b9ac-42e9-837c-4c08f6113555",
             "layout": {
                 "w": 3,
                 "h": 7,
@@ -1162,6 +985,15 @@
                 "y": 24,
                 "i": "viscf0f2e5b-b9ac-42e9-837c-4c08f61135551",
                 "moved": false
+            },
+            "title": "Number of Calls by Borough",
+            "visualization": "Vector Map",
+            "source": {
+                "name": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
+                "provider": {
+                    "name": "BigQuery",
+                    "type": "google-bigquery"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -1192,30 +1024,10 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerId": "44c5a651-5c1d-4438-b631-7ec4ed30a5da"
-                },
-                "name": {
-                    "sourceName": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerName": "BigQuery"
-                },
-                "type": "DATASET"
-            }
+            "showUI": true
         },
         {
-            "widgetId": "visf6306f3c-1d74-4d84-89a9-cd20113734c3",
-            "type": "visualization",
-            "providerData": {
-                "title": "Slicer",
-                "provider": {
-                    "provider": "google-bigquery"
-                }
-            },
-            "isFC": false,
-            "isMarkup": false,
-            "visualization": "Slicer",
+            "id": "visf6306f3c-1d74-4d84-89a9-cd20113734c3",
             "layout": {
                 "w": 3,
                 "h": 4,
@@ -1223,6 +1035,15 @@
                 "y": 31,
                 "i": "visf6306f3c-1d74-4d84-89a9-cd20113734c31",
                 "moved": false
+            },
+            "title": "Slicer",
+            "visualization": "Slicer",
+            "source": {
+                "name": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
+                "provider": {
+                    "name": "BigQuery",
+                    "type": "google-bigquery"
+                }
             },
             "code": [
                 "/* Configuration code for this widget */",
@@ -1243,30 +1064,13 @@
                 "\t\t\t.execute();",
                 ""
             ],
-            "source": {
-                "id": {
-                    "sourceId": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerId": "44c5a651-5c1d-4438-b631-7ec4ed30a5da"
-                },
-                "name": {
-                    "sourceName": "bigquery-public-data:london_fire_brigade.fire_brigade_service_calls",
-                    "providerName": "BigQuery"
-                },
-                "type": "DATASET"
-            }
+            "showUI": true
         }
     ],
     "filters": [],
-    "theme": {
-        "name": "light",
-        "font": "black",
-        "palette": "intense",
-        "background": "white",
-        "fullBackground": "#ececec",
-        "headerFont": "white"
-    },
-    "creationDate": 1541545534808,
-    "lastModDate": 1541545534808,
+    "savedFilters": [],
+    "folderPath": "/",
+    "deletedWidgets": [],
     "metadata": {
         "BigQuery": [
             "let lfb_DateOfWeek = {",
@@ -1377,209 +1181,7 @@
             "}"
         ]
     },
-    "resources": {
-        "London Shapes": "https://chartfactor.com/wp-content/lib/london.js"
-    },
-    "layout": [
-        {
-            "w": 3,
-            "h": 8,
-            "x": 6,
-            "y": 3,
-            "i": "vis9474ce9b-061d-410c-96b9-a5c76dc985801",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 3,
-            "h": 8,
-            "x": 9,
-            "y": 3,
-            "i": "visb1b8baf1-bc9c-4b9f-b9bb-c5ace2c922e51",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 9,
-            "h": 5,
-            "x": 0,
-            "y": 11,
-            "i": "vis60c6edf7-8afe-4f10-a93b-8a8c6317a7921",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 3,
-            "h": 11,
-            "x": 0,
-            "y": 24,
-            "i": "vis01e57239-b314-408f-bf02-2108dd33532c1",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 6,
-            "h": 9,
-            "x": 0,
-            "y": 2,
-            "i": "vis52c9c3c2-60bd-4c62-84c8-628f4e4239bc1",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 6,
-            "h": 2,
-            "x": 0,
-            "y": 0,
-            "i": "vis4194457b-50d1-47ea-a832-5064a41be5be1",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 3,
-            "h": 5,
-            "x": 9,
-            "y": 11,
-            "i": "visc1b80ca7-5f80-4f9d-8948-a5de1afdfac11",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 3,
-            "h": 7,
-            "x": 0,
-            "y": 17,
-            "i": "vis123f9e5c-eccd-499a-a717-671de3d1df4d1",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 2,
-            "h": 2,
-            "x": 10,
-            "y": 0,
-            "i": "vis16c6abb3-2555-49ea-8bcc-c653ba766b0b1",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 3,
-            "h": 7,
-            "x": 6,
-            "y": 17,
-            "i": "vis1ed186e9-6d7d-4054-9f8d-dbc608cdeeed1",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 6,
-            "h": 1,
-            "x": 0,
-            "y": 16,
-            "i": "vis94f658d5-2208-46cc-861c-9a21122a4d841",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 6,
-            "h": 1,
-            "x": 6,
-            "y": 16,
-            "i": "vis09c6c285-cca6-49a0-aa9c-bb1016e68ced1",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 6,
-            "h": 1,
-            "x": 6,
-            "y": 2,
-            "i": "vis6fd2b98d-a318-4a99-80da-123ba9ed15191",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 3,
-            "h": 11,
-            "x": 9,
-            "y": 24,
-            "i": "vis1c8512dc-10e3-4450-836d-c4314581dfcd1",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 3,
-            "h": 11,
-            "x": 6,
-            "y": 24,
-            "i": "vis16871325-1233-4d19-9131-04417825c9bb1",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 3,
-            "h": 7,
-            "x": 3,
-            "y": 17,
-            "i": "vis4f109de4-d882-43a6-b31d-fabb64faaf8b1",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 3,
-            "h": 7,
-            "x": 9,
-            "y": 17,
-            "i": "vis0c2b240d-283a-4790-82e5-d611455455931",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 12,
-            "h": 6,
-            "x": 0,
-            "y": 35,
-            "i": "vis59e921bf-08db-45d1-b1d1-7e4edc6712fc1",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 12,
-            "h": 7,
-            "x": 0,
-            "y": 41,
-            "i": "vis574abc1f-38de-44a1-bb10-0602e382ce3b1",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 4,
-            "h": 2,
-            "x": 6,
-            "y": 0,
-            "i": "vis01440f40-b9dc-4521-91e3-473fa42d2eba1",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 3,
-            "h": 7,
-            "x": 3,
-            "y": 24,
-            "i": "viscf0f2e5b-b9ac-42e9-837c-4c08f61135551",
-            "moved": false,
-            "static": false
-        },
-        {
-            "w": 3,
-            "h": 4,
-            "x": 3,
-            "y": 31,
-            "i": "visf6306f3c-1d74-4d84-89a9-cd20113734c31",
-            "moved": false,
-            "static": false
-        }
-    ]
+    "customQueries": {}
 }||||[
     {
         "name": "BigQuery",
