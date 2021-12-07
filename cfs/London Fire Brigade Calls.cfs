@@ -1,9 +1,10 @@
 {
-    "id": "bdc3b7eb-5e2c-4f0a-91ab-4738674a8283",
+    "id": "a1adef1c-6687-4b39-adfa-c90bb47514f3",
     "name": "London Fire Brigade Calls",
     "description": "Application developed using CF Studio",
     "state": "home",
     "readOnly": false,
+    "hasBorder": true,
     "widgetList": [
         {
             "id": "vis9474ce9b-061d-410c-96b9-a5c76dc98580",
@@ -20,13 +21,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elastic Demo",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source('london_fire_brigade');",
                 "//Configuration for grid",
                 "let grid = cf.Grid().left(10).right(15).bottom(10).top(10);",
@@ -72,13 +73,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elastic Demo",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source('london_fire_brigade');",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
@@ -130,13 +131,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elastic Demo",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source('london_fire_brigade');",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
@@ -186,13 +187,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elastic Demo",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source('london_fire_brigade');",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
@@ -242,13 +243,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elastic Demo",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source('london_fire_brigade');",
                 "//Configuration for grid",
                 "let grid = cf.Grid().left(65).right(20).bottom(65).top(10);",
@@ -354,13 +355,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elastic Demo",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source('london_fire_brigade');",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
@@ -400,13 +401,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elastic Demo",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source('london_fire_brigade');",
                 "//Configuration for grid",
                 "let grid = cf.Grid().left(70).right(15).bottom(50).top(50);",
@@ -452,13 +453,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elastic Demo",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source('london_fire_brigade');",
                 "// Define metrics",
                 "let metric0 = cf.Metric();",
@@ -489,13 +490,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elastic Demo",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source('london_fire_brigade');",
                 "//Configuration for grid",
                 "let grid = cf.Grid().left(70).right(15).bottom(50).top(50);",
@@ -625,13 +626,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elastic Demo",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source('london_fire_brigade');",
                 "//Configuration for grid",
                 "let grid = cf.Grid().left(80).right(35).bottom(50).top(35);",
@@ -678,13 +679,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elastic Demo",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source('london_fire_brigade');",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"first_response_mins_avg\");",
@@ -741,13 +742,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elastic Demo",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source('london_fire_brigade');",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"first_response_mins_avg\");",
@@ -804,13 +805,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elastic Demo",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source('london_fire_brigade');",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"second_response_min_avg\");",
@@ -867,13 +868,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elastic Demo",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source('london_fire_brigade');",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
@@ -915,30 +916,138 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elastic Demo",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source('london_fire_brigade');",
-                "let myData = source.fields();",
-                "// Define chart options",
-                "let theme = {",
-                "    \"headerStyle\": 'background: #737373; color: #e5f5e0;',",
-                "    \"bodyStyle\": 'background: #ffffff; color: #3e4953;',",
-                "    \"rowOddStyle\":\"background: #ffffff\",",
-                "    \"rowEvenStyle\":\"background: #f0f0f0\"",
-                "};",
-                "let color = cf.Color().theme(theme);",
-                "// Define chart options",
+                "// Declare your fields (do not remove this comment line)",
+                "const fields = [",
+                "    cf.Field('address_qualifier', 'Address Qualifier'),",
+                "    cf.Field('borough_code', 'borough_code'),",
+                "    cf.Field('borough_name', 'borough_name'),",
+                "    cf.Field('cal_year', 'cal_year'),",
+                "    cf.Field('date_of_call', 'Date of Call'),",
+                "    cf.Field('easting_m', 'easting_m'),",
+                "    cf.Field('easting_rounded', 'easting_rounded'),",
+                "    cf.Field('first_pump_arriving_attendance_time', 'First Response Time Secs'),",
+                "    cf.Field('first_pump_arriving_deployed_from_station', 'first_pump_arriving_deployed_from_station'),",
+                "    cf.Field('frs', 'frs'),",
+                "    cf.Field('hour_of_call', 'Hour'),",
+                "    cf.Field('incident_group', 'Incident Group'),",
+                "    cf.Field('incident_number', 'incident_number'),",
+                "    cf.Field('incident_station_ground', 'incident_station_ground'),",
+                "    cf.Field('northing_m', 'northing_m'),",
+                "    cf.Field('northing_rounded', 'northing_rounded'),",
+                "    cf.Field('num_pumps_attending', 'Num Pumps Attending'),",
+                "    cf.Field('num_stations_with_pumps_attending', 'num_stations_with_pumps_attending'),",
+                "    cf.Field('postcode_district', 'postcode_district'),",
+                "    cf.Field('postcode_full', 'postcode_full'),",
+                "    cf.Field('proper_case', 'Borough'),",
+                "    cf.Field('property_category', 'Property Category'),",
+                "    cf.Field('property_type', 'Property Type'),",
+                "    cf.Field('second_pump_arriving_attendance_time', 'Second Response Time Secs'),",
+                "    cf.Field('second_pump_arriving_deployed_from_station', 'second_pump_arriving_deployed_from_station'),",
+                "    cf.Field('special_service_type', 'Special Service Type'),",
+                "    cf.Field('stop_code_description', 'Incident Type'),",
+                "    cf.Field('time_of_call', 'time_of_call'),",
+                "    cf.Field('timestamp_of_call', 'timestamp_of_call'),",
+                "    cf.Field('ward_code', 'ward_code'),",
+                "    cf.Field('ward_name', 'ward_name'),",
+                "    cf.Field('ward_name_new', 'Ward'),",
+                "];",
+                "let myData = source.fields(fields);",
+                "let color = cf.Color();",
+                "color.theme({",
+                "    \"headerStyle\":\"background: #607d8b; color: #fff; font-size: 16px;\",",
+                "    \"headerIconStyle\":\"color: #fff; font-size: 16px;\",",
+                "    \"rowOddStyle\":\"background: #fff; color: #000;\",",
+                "    \"rowEvenStyle\":\"background: #eceff1; color: #000;\",",
+                "    \"headerResizeLineStyle\":\"border-right-color: #fff; border-right-width: 1px;\",",
+                "    \"headerHorizontalLineStyle\":\"border-bottom-color: #fff; border-bottom-width: 1px;\",",
+                "    \"tpButtonActive\":\"color: #fff; background: #607d8b;\",",
+                "    \"cellMoving\":\"color: black; background: #b0bec5;\",",
+                "});",
+                "// --- Define chart options and static filters ---",
                 "let myChart = myData.graph(\"Raw Data Table\")",
-                "\t\t\t.set(\"showRowNumber\", true)",
-                "\t\t\t.set(\"autoSizeColumns\", true)",
-                "\t\t\t.set('color', color)",
-                "\t\t\t.execute();",
-                ""
+                "    .set('color',color)",
+                "    .set(\"columnFilters\", [",
+                "        { field: \"address_qualifier\", component: \"slicer\"},",
+                "        { field: \"borough_code\", component: \"slicer\"},",
+                "        { field: \"borough_name\", component: \"slicer\"},",
+                "        { field: \"cal_year\", component: \"slicer\"},",
+                "        { field: \"date_of_call\", component: \"datePicker\", props: {func: 'DAY'}},",
+                "        { field: \"easting_m\", component: \"slicer\"},",
+                "        { field: \"easting_rounded\", component: \"slicer\"},",
+                "        { field: \"first_pump_arriving_attendance_time\", component: \"slicer\"},",
+                "        { field: \"first_pump_arriving_deployed_from_station\", component: \"slicer\"},",
+                "        { field: \"frs\", component: \"slicer\"},",
+                "        { field: \"hour_of_call\", component: \"slicer\"},",
+                "        { field: \"incident_group\", component: \"slicer\"},",
+                "        { field: \"incident_number\", component: \"slicer\"},",
+                "        { field: \"incident_station_ground\", component: \"slicer\"},",
+                "        { field: \"northing_m\", component: \"slicer\"},",
+                "        { field: \"northing_rounded\", component: \"slicer\"},",
+                "        { field: \"num_pumps_attending\", component: \"slicer\"},",
+                "        { field: \"num_stations_with_pumps_attending\", component: \"slicer\"},",
+                "        { field: \"postcode_district\", component: \"slicer\"},",
+                "        { field: \"postcode_full\", component: \"slicer\"},",
+                "        { field: \"proper_case\", component: \"slicer\"},",
+                "        { field: \"property_category\", component: \"slicer\"},",
+                "        { field: \"property_type\", component: \"slicer\"},",
+                "        { field: \"second_pump_arriving_attendance_time\", component: \"slicer\"},",
+                "        { field: \"second_pump_arriving_deployed_from_station\", component: \"slicer\"},",
+                "        { field: \"special_service_type\", component: \"slicer\"},",
+                "        { field: \"stop_code_description\", component: \"slicer\"},",
+                "        { field: \"time_of_call\", component: \"slicer\"},",
+                "        { field: \"timestamp_of_call\", component: \"datePicker\", props: {func: 'DAY'}},",
+                "        { field: \"ward_code\", component: \"slicer\"},",
+                "        { field: \"ward_name\", component: \"slicer\"},",
+                "        { field: \"ward_name_new\", component: \"slicer\"},",
+                "    ])",
+                "    .set(\"showRowNumber\", true)",
+                "    .set(\"autoSizeColumns\", true)",
+                "    .limit(100)",
+                "\t.set(\"columnsWidth\", [",
+                "\t\t\t\t\t{\"rn\":60},",
+                "\t\t\t\t\t{\"address_qualifier\":192},",
+                "\t\t\t\t\t{\"borough_code\":165},",
+                "\t\t\t\t\t{\"borough_name\":155},",
+                "\t\t\t\t\t{\"cal_year\":111},",
+                "\t\t\t\t\t{\"date_of_call\":185},",
+                "\t\t\t\t\t{\"easting_m\":103},",
+                "\t\t\t\t\t{\"easting_rounded\":238},",
+                "\t\t\t\t\t{\"first_pump_arriving_attendance_time\":239},",
+                "\t\t\t\t\t{\"first_pump_arriving_deployed_from_station\":381},",
+                "\t\t\t\t\t{\"frs\":145},",
+                "\t\t\t\t\t{\"hour_of_call\":80},",
+                "\t\t\t\t\t{\"incident_group\":164},",
+                "\t\t\t\t\t{\"incident_number\":178},",
+                "\t\t\t\t\t{\"incident_station_ground\":182},",
+                "\t\t\t\t\t{\"northing_m\":141},",
+                "\t\t\t\t\t{\"northing_rounded\":181},",
+                "\t\t\t\t\t{\"num_pumps_attending\":218},",
+                "\t\t\t\t\t{\"num_stations_with_pumps_attending\":332},",
+                "\t\t\t\t\t{\"postcode_district\":100},",
+                "\t\t\t\t\t{\"postcode_full\":157},",
+                "\t\t\t\t\t{\"proper_case\":156},",
+                "\t\t\t\t\t{\"property_category\":189},",
+                "\t\t\t\t\t{\"property_type\":324},",
+                "\t\t\t\t\t{\"second_pump_arriving_attendance_time\":270},",
+                "\t\t\t\t\t{\"second_pump_arriving_deployed_from_station\":259},",
+                "\t\t\t\t\t{\"special_service_type\":100},",
+                "\t\t\t\t\t{\"stop_code_description\":170},",
+                "\t\t\t\t\t{\"time_of_call\":166},",
+                "\t\t\t\t\t{\"timestamp_of_call\":200},",
+                "\t\t\t\t\t{\"ward_code\":146},",
+                "\t\t\t\t\t{\"ward_name\":157},",
+                "\t\t\t\t\t{\"ward_name_new\":100}])",
+                "\t.set(\"sort\", [",
+                "\t\t\t\t\t])",
+                "    .execute();"
             ],
             "showUI": true
         },
@@ -957,13 +1066,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elastic Demo",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source('london_fire_brigade');",
                 "//Configuration for grid",
                 "let grid = cf.Grid().left(80).right(80).bottom(65).top(0);",
@@ -1002,13 +1111,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elastic Demo",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source('london_fire_brigade');",
                 "// Define metrics",
                 "let metric0 = cf.Metric();",
@@ -1052,13 +1161,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elastic Demo",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source('london_fire_brigade');",
                 "// Define metrics",
                 "let metric0 = cf.Metric();",
@@ -1079,8 +1188,11 @@
         }
     ],
     "filters": [],
+    "savedFilters": [],
+    "folderPath": "/",
+    "deletedWidgets": [],
     "metadata": {
-        "Aktiun Elastic": [
+        "Elastic Demo": [
             "let lfb_DateOfWeek = {",
             "    'name': 'day_of_week',",
             "    'label': 'Day Of Week',",
@@ -1176,13 +1288,14 @@
             "    }",
             "};"
         ]
-    }
+    },
+    "customQueries": {}
 }||||[
     {
-        "name": "Aktiun Elastic",
-        "url": "https://chartfactor.com/elastic/",
+        "name": "Elastic Demo",
+        "url": "https://chartfactor.com/elastic",
         "active": true,
         "provider": "elasticsearch",
-        "id": "f22bfbbe-5eb4-4003-8242-a75674b7874b"
+        "id": "217a1f8f-3439-40a8-99bc-3e85f6a81abb"
     }
 ]
