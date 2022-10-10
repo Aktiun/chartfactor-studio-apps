@@ -520,70 +520,7 @@
     "filters": [],
     "savedFilters": [],
     "folderPath": "/",
-    "deletedWidgets": [
-        {
-            "id": "viscd7eadab-3527-4db8-8432-77cf063f3575",
-            "visualization": "Raw Data Table",
-            "layout": {
-                "w": 3,
-                "h": 5,
-                "x": 0,
-                "y": 1,
-                "i": "viscd7eadab-3527-4db8-8432-77cf063f35751",
-                "moved": false,
-                "static": false
-            },
-            "title": "airline_tweets_class_percolator (1)",
-            "syncedFields": [],
-            "loading": false,
-            "error": false,
-            "errorMessage": null,
-            "code": "// Interaction Manager uses filter(), filters(), clientFilter(),\n// and clientFilters() to manage filters. To apply additional\n// filters, use staticFilters() or your code could be overwritten.\n//\n/* Configuration code for this widget */\nlet provider = cf.provider(\"ChartFactor Elastic\");\nlet source = provider.source(\"airline_tweets_class_percolator\");\n// Declare your fields (do not remove this comment line)\nlet myData = source.fields();\n// --- Define chart options and static filters ---\nlet myChart = myData.graph(\"Raw Data Table\")\n    .set(\"showRowNumber\", false)\n    .set(\"autoSizeColumns\", true)\n    .execute();\n",
-            "dataVersion": 1,
-            "showTitle": true,
-            "showDataView": false,
-            "showUI": true,
-            "source": {
-                "name": "airline_tweets_class_percolator",
-                "provider": {
-                    "name": "ChartFactor Elastic",
-                    "type": "elasticsearch"
-                }
-            },
-            "data": []
-        },
-        {
-            "id": "visb2b89555-c923-413f-a501-aa1e4665b963",
-            "visualization": "Raw Data Table",
-            "layout": {
-                "w": 3,
-                "h": 5,
-                "x": 0,
-                "y": 1,
-                "i": "visb2b89555-c923-413f-a501-aa1e4665b9631",
-                "moved": false,
-                "static": false
-            },
-            "title": ".opendistro_security (1)",
-            "syncedFields": [],
-            "loading": false,
-            "error": false,
-            "errorMessage": null,
-            "code": "// Interaction Manager uses filter(), filters(), clientFilter(),\n// and clientFilters() to manage filters. To apply additional\n// filters, use staticFilters() or your code could be overwritten.\n//\n/* Configuration code for this widget */\nlet provider = cf.provider(\"ChartFactor Elastic\");\nlet source = provider.source(\".opendistro_security\");\n// Declare your fields (do not remove this comment line)\nlet myData = source.fields();\n// --- Define chart options and static filters ---\nlet myChart = myData.graph(\"Raw Data Table\")\n    .set(\"showRowNumber\", false)\n    .set(\"autoSizeColumns\", true)\n    .execute();\n",
-            "dataVersion": 1,
-            "showTitle": true,
-            "showDataView": false,
-            "showUI": true,
-            "source": {
-                "name": ".opendistro_security",
-                "provider": {
-                    "name": "ChartFactor Elastic",
-                    "type": "elasticsearch"
-                }
-            },
-            "data": []
-        }
-    ],
+    "deletedWidgets": [],
     "IM": {
         "id": "cfs-interaction-manager",
         "isIManager": true,
@@ -652,7 +589,6 @@
         "url": "https://chartfactor.com/vcairlines",
         "active": true,
         "provider": "elasticsearch",
-        "isLocal": true,
         "id": "73500ec4-291a-46ac-b185-6b68992c6bd7"
     }
 ]
