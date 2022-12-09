@@ -1,5 +1,5 @@
 {
-    "id": "cda96768-da89-414d-b032-a45d23b4b4f4",
+    "id": "b714029c-79da-453a-abc9-a7cab87ed40c",
     "name": "London Fire Brigade Calls",
     "description": "Application developed using CF Studio",
     "state": "home",
@@ -418,7 +418,7 @@
                 "// Define chart options",
                 "let myChart = myData.graph(\"KPI\")",
                 "    .set(\"showLabels\", false)",
-                "    .set(\"mainTextSize\", 40)",
+                "    .set(\"mainTextSize\", 32)",
                 "    .execute();",
                 ""
             ],
@@ -1153,7 +1153,7 @@
     ],
     "filters": [],
     "savedFilters": [],
-    "folderPath": "/Studio Apps",
+    "folderPath": "/",
     "deletedWidgets": [],
     "IM": {
         "id": "cfs-interaction-manager",
