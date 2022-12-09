@@ -1,5 +1,5 @@
 {
-    "id": "f63a50aa-d233-4bb4-b96a-0e98760bd0da",
+    "id": "20ce81f9-06b1-475f-8d4f-ee48d389cdcc",
     "name": "London Fire Brigade Calls - BigQuery",
     "description": "Application developed using CF Studio",
     "state": "home",
@@ -408,7 +408,7 @@
                 "// Define chart options",
                 "let myChart = myData.graph(\"KPI\")",
                 "    .set(\"showLabels\", false)",
-                "    .set(\"mainTextSize\", 40)",
+                "    .set(\"mainTextSize\", 32)",
                 "    .execute();",
                 ""
             ],

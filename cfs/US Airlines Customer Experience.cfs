@@ -1,5 +1,5 @@
 {
-    "id": "009d0a82-9a37-479f-9807-b955b3a7d39a",
+    "id": "0198a5a7-adb3-4343-8c3d-cc628d86535a",
     "name": "US Airlines Customer Experience",
     "description": "Application developed using CF Studio",
     "state": "favorite",
@@ -192,7 +192,7 @@
             "id": "visc14be4fa-89fb-4653-a7e8-435dab4413b2",
             "layout": {
                 "w": 4,
-                "h": 12,
+                "h": 13,
                 "x": 0,
                 "y": 1,
                 "i": "visc14be4fa-89fb-4653-a7e8-435dab4413b21",
@@ -395,7 +395,7 @@
             "id": "visce193c13-b880-4213-9d93-8661b737395a",
             "layout": {
                 "w": 3,
-                "h": 5,
+                "h": 6,
                 "x": 7,
                 "y": 8,
                 "i": "visce193c13-b880-4213-9d93-8661b737395a1",
@@ -471,7 +471,7 @@
             "id": "visd9b51eb3-4a49-4e6b-a9fe-2d91c6675b1f",
             "layout": {
                 "w": 3,
-                "h": 8,
+                "h": 9,
                 "x": 4,
                 "y": 2,
                 "i": "visd9b51eb3-4a49-4e6b-a9fe-2d91c6675b1f1",
@@ -515,7 +515,7 @@
             "id": "visb9405fb9-3c20-4e00-96f0-425461dec480",
             "layout": {
                 "w": 2,
-                "h": 3,
+                "h": 4,
                 "x": 10,
                 "y": 6,
                 "i": "visb9405fb9-3c20-4e00-96f0-425461dec4801",
@@ -637,7 +637,7 @@
                 "w": 2,
                 "h": 4,
                 "x": 10,
-                "y": 9,
+                "y": 10,
                 "i": "visf97edfb6-5948-4a08-8990-f7331b450f881",
                 "moved": false,
                 "static": false
@@ -680,7 +680,7 @@
                 "w": 3,
                 "h": 3,
                 "x": 4,
-                "y": 10,
+                "y": 11,
                 "i": "vis9870f68f-2a11-42a7-a146-e95a0ee6f63d1",
                 "moved": false,
                 "static": false
@@ -1359,33 +1359,7 @@
         }
     ],
     "folderPath": "/",
-    "deletedWidgets": [
-        {
-            "id": "visd2aadac0-0da0-4f25-9635-4def8fb20f9b",
-            "visualization": "Interaction Manager",
-            "layout": {
-                "w": 7,
-                "h": 2,
-                "x": 4,
-                "y": 0,
-                "i": "visd2aadac0-0da0-4f25-9635-4def8fb20f9b1",
-                "moved": false,
-                "static": false
-            },
-            "title": "Filters",
-            "loading": false,
-            "error": false,
-            "errorMessage": null,
-            "code": "/* Configuration code for the Interaction Manager*/\n\n\n// Drill hierarchy and rule settings can be done like this:\nlet viz1 = getId(\"Categories\")\n// let viz2 = getId(\"widget_title_2\")\n// let drill = { [viz1]: { group1: []}}\nlet rules = { [viz1]: { clientFilter: true }}\n\n// NOTE: Drill hierarchy will change your code!\n// Define options\nlet aktive = cf.create();\nlet myChart = aktive.graph(\"Interaction Manager\")\n// \t.set(\"rules\", rules)\n\t//.set(\"drill\", drill)\n\t.set(\"skin\", { \n    type: \"modern\",\n    filter: {\n        palette: [\"#51b364\", \"#e39802\", \"#309143\", \"#f0bd27\"]\n    },\n\t})\n\t.execute();\n",
-            "dataVersion": 1,
-            "showTitle": true,
-            "showDataView": false,
-            "showUI": false,
-            "isIManager": true,
-            "source": null,
-            "data": []
-        }
-    ],
+    "deletedWidgets": [],
     "IM": {
         "id": "cfs-interaction-manager",
         "isIManager": true,

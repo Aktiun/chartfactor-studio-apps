@@ -1,5 +1,5 @@
 {
-    "id": "d094a540-682c-4493-8786-8e332411a28e",
+    "id": "1a161041-740c-484e-b286-e7df32f72b60",
     "name": "Ticket Sales",
     "description": "Application developed using CF Studio",
     "state": "home",
@@ -280,8 +280,8 @@
                 "    .set(\"shape\", \"usa\")",
                 "    .set(\"enableZoom\", false)",
                 "    .set(\"min\", 0)",
-                "    .set(\"zoom\", 0.8322319472772369)",
-                "    .set(\"center\", [-99.63091549796751, 38.97539346402534])",
+                "    .set(\"zoom\", 0.5338208527311633)",
+                "    .set(\"center\", [-96.31197381449562, 39.63511515788519])",
                 "    .set(\"legend\", \"right\")",
                 "    .set(\"color\", color)",
                 "    .execute();",
@@ -445,51 +445,7 @@
     "filters": [],
     "savedFilters": [],
     "folderPath": "/",
-    "deletedWidgets": [
-        {
-            "id": "vise27bd26f-8b9c-4b73-b69e-22fdf834d652",
-            "visualization": "Range Filter",
-            "layout": {
-                "w": 3,
-                "h": 2,
-                "x": 0,
-                "y": 15,
-                "i": "vise27bd26f-8b9c-4b73-b69e-22fdf834d6521",
-                "moved": false,
-                "static": false
-            },
-            "title": "Range Filter",
-            "loading": false,
-            "error": false,
-            "errorMessage": null,
-            "code": "/* Configuration code for this widget */\nlet provider = cf.provider(\"Elasticsearch\");\nlet source = provider.source(\"ticket_sales\");\n// Define metrics\nlet metrics = [\n    cf.Metric(\"qtysold\")\n];\n// Add metrics and groups to data source\nlet myData = source.metrics(...metrics);\n// Define chart options\nlet myChart = myData.graph(\"Range Filter\")\n    .execute();\n",
-            "dataVersion": 1,
-            "showTitle": true,
-            "showDataView": false,
-            "showUI": true,
-            "source": {
-                "name": "ticket_sales",
-                "provider": {
-                    "name": "Elasticsearch",
-                    "type": "elasticsearch"
-                }
-            },
-            "data": [
-                {
-                    "group": [],
-                    "current": {
-                        "count": 172456,
-                        "metrics": {
-                            "qtysold": {
-                                "max": 8,
-                                "min": 1
-                            }
-                        }
-                    }
-                }
-            ]
-        }
-    ],
+    "deletedWidgets": [],
     "IM": {
         "id": "cfs-interaction-manager",
         "isIManager": true,
