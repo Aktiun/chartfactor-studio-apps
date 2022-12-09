@@ -1,5 +1,5 @@
 {
-    "id": "3fc084cf-3949-4c0b-af65-1af12c72727b",
+    "id": "cd916e21-60a3-42fb-a2ab-feb5790e18c3",
     "name": "COVID-19 Infections in the United States",
     "description": "Application developed using CF Studio",
     "state": "home",
@@ -615,7 +615,7 @@
                 "// Define options",
                 "let aktive = cf.create();",
                 "let myChart = aktive.graph(\"Markup\")",
-                "\t\t.set(\"content\", {\"ops\":[{\"insert\":\"Created using \"},{\"attributes\":{\"link\":\"https://chartfactor.com\"},\"insert\":\"ChartFactor\"},{\"insert\":\", data sourced from \"},{\"attributes\":{\"link\":\"https://usafacts.org/visualizations/coronavirus-covid-19-spread-map/\"},\"insert\":\"USAFacts\"},{\"insert\":\"\\t\"},{\"attributes\":{\"header\":3},\"insert\":\"\\n\"}]})",
+                "\t\t.set(\"content\", {\"ops\":[{\"attributes\":{\"header\":5},\"insert\":\"\\n\"},{\"insert\":\"Created using \"},{\"attributes\":{\"link\":\"https://chartfactor.com\"},\"insert\":\"ChartFactor\"},{\"insert\":\", data sourced from \"},{\"attributes\":{\"link\":\"https://usafacts.org/visualizations/coronavirus-covid-19-spread-map/\"},\"insert\":\"USAFacts\"},{\"insert\":\"\\t\"},{\"attributes\":{\"header\":5},\"insert\":\"\\n\"}]})",
                 "\t\t.set(\"enable\", false)",
                 "\t\t.set(\"background\", \"white\")",
                 "\t\t.set(\"lock\", false)",
@@ -646,7 +646,7 @@
                 "// Define options",
                 "let aktive = cf.create();",
                 "let myChart = aktive.graph(\"Markup\")",
-                "\t.set(\"content\", {\"ops\":[{\"insert\":\"USAFacts Note from April 18 \"},{\"attributes\":{\"header\":1},\"insert\":\"\\n\"},{\"attributes\":{\"header\":3},\"insert\":\"\\n\"},{\"insert\":\"Certain states have changed their methodology in reporting deaths due to COVID-19. As a result, we are holding off on reporting death data in a few key states (New York is notable among these states due to the high number of confirmed cases and deaths). USAFacts is committed to providing official numbers confirmed by state or local health agencies, and we will appropriately backfill the death data when we receive more guidance from the CDC and relevant health departments.\"},{\"attributes\":{\"header\":3},\"insert\":\"\\n\"}]})",
+                "\t.set(\"content\", {\"ops\":[{\"insert\":\"USAFacts Note from April 18 \"},{\"attributes\":{\"header\":3},\"insert\":\"\\n\\n\"},{\"insert\":\"Certain states have changed their methodology in reporting deaths due to COVID-19. As a result, we are holding off on reporting death data in a few key states (New York is notable among these states due to the high number of confirmed cases and deaths). USAFacts is committed to providing official numbers confirmed by state or local health agencies, and we will appropriately backfill the death data when we receive more guidance from the CDC and relevant health departments.\"},{\"attributes\":{\"header\":5},\"insert\":\"\\n\"}]})",
                 "\t.set(\"enable\", false)",
                 "\t.set(\"background\", \"white\")",
                 "\t.set(\"lock\", false)",
@@ -1377,7 +1377,7 @@
             ]
         }
     ],
-    "folderPath": "/",
+    "folderPath": "/Studio Apps",
     "deletedWidgets": [],
     "IM": {
         "id": "cfs-interaction-manager",
@@ -2137,6 +2137,6 @@
         "url": "https://chartfactor.com/elastic",
         "active": true,
         "provider": "elasticsearch",
-        "id": "217a1f8f-3439-40a8-99bc-3e85f6a81abb"
+        "id": "ad692b94-4677-482b-b546-7dbb7a86ea07"
     }
 ]

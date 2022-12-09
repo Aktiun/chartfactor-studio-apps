@@ -1,5 +1,5 @@
 {
-    "id": "fc9550b8-7d43-4e80-ba9d-5cc1c9f82e0f",
+    "id": "cda96768-da89-414d-b032-a45d23b4b4f4",
     "name": "London Fire Brigade Calls",
     "description": "Application developed using CF Studio",
     "state": "home",
@@ -498,7 +498,7 @@
                 "// Define options\r",
                 "let aktive = cf.create();\r",
                 "let myChart = aktive.graph(\"Markup\")\r",
-                "    .set(\"content\", {\"ops\":[{\"attributes\":{\"header\":3},\"insert\":\"\\n\"},{\"attributes\":{\"color\":\"#ffffff\"},\"insert\":\"Regardless of the hour of call, the average first response time is around 5 mins for all hours of the day. This is within the department's target of 6 mins.\"},{\"attributes\":{\"header\":3},\"insert\":\"\\n\"}]})\r",
+                "    .set(\"content\", {\"ops\":[{\"attributes\":{\"color\":\"#ffffff\"},\"insert\":\"Regardless of the hour of call, the average first response time is around 5 mins for all hours of the day. This is within the department's target of 6 mins.\"},{\"attributes\":{\"header\":6},\"insert\":\"\\n\"}]})\r",
                 "    .set(\"enable\", false)\r",
                 "    .set(\"lock\", false)\r",
                 "    .set(\"background\", \"#2b8cbe\")\r",
@@ -528,7 +528,7 @@
                 "// Define options\r",
                 "let aktive = cf.create();\r",
                 "let myChart = aktive.graph(\"Markup\")\r",
-                "    .set(\"content\", {\"ops\":[{\"attributes\":{\"header\":3},\"insert\":\"\\n\"},{\"attributes\":{\"color\":\"#ffffff\"},\"insert\":\"The Second Response average is also well within the target of 8 mins set by the Fire Department.\"},{\"attributes\":{\"header\":3},\"insert\":\"\\n\"}]})\r",
+                "    .set(\"content\", {\"ops\":[{\"attributes\":{\"color\":\"#ffffff\"},\"insert\":\"The Second Response average is also well within the target of 8 mins set by the Fire Department.\"},{\"attributes\":{\"header\":6},\"insert\":\"\\n\"}]})\r",
                 "    .set(\"enable\", false)\r",
                 "    .set(\"lock\", false)\r",
                 "    .set(\"background\", \"#2b8cbe\")\r",
@@ -558,7 +558,7 @@
                 "// Define options\r",
                 "let aktive = cf.create();\r",
                 "let myChart = aktive.graph(\"Markup\")\r",
-                "    .set(\"content\", {\"ops\":[{\"attributes\":{\"header\":2},\"insert\":\"\\n\"},{\"attributes\":{\"color\":\"#ffffff\"},\"insert\":\"- The most number of calls are from AFA or Automatic Fire Alarm\"},{\"attributes\":{\"header\":3},\"insert\":\"\\n\"},{\"attributes\":{\"color\":\"#ffffff\"},\"insert\":\"- Special Services are non-emergency situations.  Select it to drill-in into Special Service Types.\"},{\"attributes\":{\"header\":3},\"insert\":\"\\n\"}]})\r",
+                "    .set(\"content\", {\"ops\":[{\"attributes\":{\"color\":\"#ffffff\"},\"insert\":\"- The most number of calls are from AFA or Automatic Fire Alarm\"},{\"attributes\":{\"header\":6},\"insert\":\"\\n\"},{\"attributes\":{\"color\":\"#ffffff\"},\"insert\":\"- Special Services are non-emergency situations.  Select it to drill-in into Special Service Types.\"},{\"attributes\":{\"header\":6},\"insert\":\"\\n\"}]})\r",
                 "    .set(\"enable\", false)\r",
                 "    .set(\"lock\", false)\r",
                 "    .set(\"background\", \"#2b8cbe\")\r",
@@ -1153,7 +1153,7 @@
     ],
     "filters": [],
     "savedFilters": [],
-    "folderPath": "/",
+    "folderPath": "/Studio Apps",
     "deletedWidgets": [],
     "IM": {
         "id": "cfs-interaction-manager",
@@ -1315,6 +1315,6 @@
         "url": "https://chartfactor.com/elastic",
         "active": true,
         "provider": "elasticsearch",
-        "id": "217a1f8f-3439-40a8-99bc-3e85f6a81abb"
+        "id": "ad692b94-4677-482b-b546-7dbb7a86ea07"
     }
 ]

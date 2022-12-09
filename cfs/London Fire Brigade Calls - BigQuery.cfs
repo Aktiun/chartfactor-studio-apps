@@ -1,5 +1,5 @@
 {
-    "id": "8540537b-866d-494d-b62d-9e0beb7e1aeb",
+    "id": "f63a50aa-d233-4bb4-b96a-0e98760bd0da",
     "name": "London Fire Brigade Calls - BigQuery",
     "description": "Application developed using CF Studio",
     "state": "home",
@@ -14,7 +14,8 @@
                 "x": 6,
                 "y": 3,
                 "i": "vis9474ce9b-061d-410c-96b9-a5c76dc985801",
-                "moved": false
+                "moved": false,
+                "static": false
             },
             "title": "Calls by Incident Group and Type",
             "visualization": "Heat Map",
@@ -66,7 +67,8 @@
                 "x": 9,
                 "y": 3,
                 "i": "visb1b8baf1-bc9c-4b9f-b9bb-c5ace2c922e51",
-                "moved": false
+                "moved": false,
+                "static": false
             },
             "title": "Calls by Incident Group / Type",
             "visualization": "Bars",
@@ -122,7 +124,8 @@
                 "x": 0,
                 "y": 11,
                 "i": "vis60c6edf7-8afe-4f10-a93b-8a8c6317a7921",
-                "moved": false
+                "moved": false,
+                "static": false
             },
             "title": "Call Trend by Hour of the Day",
             "visualization": "Bars",
@@ -176,7 +179,8 @@
                 "x": 0,
                 "y": 24,
                 "i": "vis01e57239-b314-408f-bf02-2108dd33532c1",
-                "moved": false
+                "moved": false,
+                "static": false
             },
             "title": "Number of Calls by Borough and Ward",
             "visualization": "Bars",
@@ -281,7 +285,8 @@
                 "x": 9,
                 "y": 11,
                 "i": "visc1b80ca7-5f80-4f9d-8948-a5de1afdfac11",
-                "moved": false
+                "moved": false,
+                "static": false
             },
             "title": "Disk showing Calls by Hour of the Day",
             "visualization": "Disk",
@@ -327,7 +332,8 @@
                 "x": 0,
                 "y": 17,
                 "i": "vis123f9e5c-eccd-499a-a717-671de3d1df4d1",
-                "moved": false
+                "moved": false,
+                "static": false
             },
             "title": "Distribution of First Response by Hour of Call",
             "visualization": "Box Plot",
@@ -417,7 +423,8 @@
                 "x": 6,
                 "y": 17,
                 "i": "vis1ed186e9-6d7d-4054-9f8d-dbc608cdeeed1",
-                "moved": false
+                "moved": false,
+                "static": false
             },
             "title": "Distribution of Second Response by Hour of Call",
             "visualization": "Box Plot",
@@ -470,7 +477,8 @@
                 "x": 0,
                 "y": 16,
                 "i": "vis94f658d5-2208-46cc-861c-9a21122a4d841",
-                "moved": false
+                "moved": false,
+                "static": false
             },
             "title": "",
             "visualization": "Markup",
@@ -481,7 +489,7 @@
                 "// Define options",
                 "let aktive = cf.create();",
                 "let myChart = aktive.graph(\"Markup\")",
-                "\t\t.set(\"content\", {\"ops\":[{\"attributes\":{\"color\":\"#ffffff\"},\"insert\":\"Regardless of the hour of call, the average first response time is around 5 mins for all hours of the day. This is within the department's target of 6 mins.\"},{\"insert\":\"\\n\"}]})",
+                "\t\t.set(\"content\", {\"ops\":[{\"attributes\":{\"color\":\"#ffffff\"},\"insert\":\"Regardless of the hour of call, the average first response time is around 5 mins for all hours of the day. This is within the department's target of 6 mins.\"},{\"attributes\":{\"header\":6},\"insert\":\"\\n\"}]})",
                 "\t\t.set(\"enable\", false)",
                 "\t\t.set(\"background\", \"#2b8cbe\")",
                 "\t\t.execute();",
@@ -499,7 +507,8 @@
                 "x": 6,
                 "y": 16,
                 "i": "vis09c6c285-cca6-49a0-aa9c-bb1016e68ced1",
-                "moved": false
+                "moved": false,
+                "static": false
             },
             "title": "",
             "visualization": "Markup",
@@ -510,7 +519,7 @@
                 "// Define options",
                 "let aktive = cf.create();",
                 "let myChart = aktive.graph(\"Markup\")",
-                "\t\t.set(\"content\", {\"ops\":[{\"attributes\":{\"color\":\"#ffffff\"},\"insert\":\"The Second Response average is also well within the target of 8 mins set by the Fire Department.\"},{\"insert\":\"\\n\"}]})",
+                "\t\t.set(\"content\", {\"ops\":[{\"attributes\":{\"color\":\"#ffffff\"},\"insert\":\"The Second Response average is also well within the target of 8 mins set by the Fire Department.\"},{\"attributes\":{\"header\":6},\"insert\":\"\\n\"}]})",
                 "\t\t.set(\"enable\", false)",
                 "\t\t.set(\"background\", \"#2b8cbe\")",
                 "\t\t.execute();",
@@ -528,7 +537,8 @@
                 "x": 6,
                 "y": 2,
                 "i": "vis6fd2b98d-a318-4a99-80da-123ba9ed15191",
-                "moved": false
+                "moved": false,
+                "static": false
             },
             "title": "",
             "visualization": "Markup",
@@ -539,7 +549,7 @@
                 "// Define options",
                 "let aktive = cf.create();",
                 "let myChart = aktive.graph(\"Markup\")",
-                "\t\t.set(\"content\", {\"ops\":[{\"attributes\":{\"color\":\"#ffffff\"},\"insert\":\"- The most number of calls are from AFA or Automatic Fire Alarm\"},{\"insert\":\"\\n\"},{\"attributes\":{\"color\":\"#ffffff\"},\"insert\":\"- Special Services are non-emergency situations.  Select it to drill-in into Special Service Types.\"},{\"insert\":\"\\n\"}]})",
+                "\t\t.set(\"content\", {\"ops\":[{\"attributes\":{\"color\":\"#ffffff\"},\"insert\":\"- The most number of calls are from AFA or Automatic Fire Alarm\"},{\"attributes\":{\"header\":6},\"insert\":\"\\n\"},{\"attributes\":{\"color\":\"#ffffff\"},\"insert\":\"- Special Services are non-emergency situations.  Select it to drill-in into Special Service Types.\"},{\"attributes\":{\"header\":6},\"insert\":\"\\n\"}]})",
                 "\t\t.set(\"enable\", false)",
                 "\t\t.set(\"background\", \"#2b8cbe\")",
                 "\t\t.execute();",
@@ -556,7 +566,8 @@
                 "x": 9,
                 "y": 24,
                 "i": "vis1c8512dc-10e3-4450-836d-c4314581dfcd1",
-                "moved": false
+                "moved": false,
+                "static": false
             },
             "title": "Distribution of First Response Time by Borough and Ward",
             "visualization": "Box Plot",
@@ -609,7 +620,8 @@
                 "x": 6,
                 "y": 24,
                 "i": "vis16871325-1233-4d19-9131-04417825c9bb1",
-                "moved": false
+                "moved": false,
+                "static": false
             },
             "title": "Average First Response Time by Borough and Ward",
             "visualization": "Bars",
@@ -671,7 +683,8 @@
                 "x": 3,
                 "y": 17,
                 "i": "vis4f109de4-d882-43a6-b31d-fabb64faaf8b1",
-                "moved": false
+                "moved": false,
+                "static": false
             },
             "title": "Average First Response Time by Hour of Call",
             "visualization": "Bars",
@@ -733,7 +746,8 @@
                 "x": 9,
                 "y": 17,
                 "i": "vis0c2b240d-283a-4790-82e5-d611455455931",
-                "moved": false
+                "moved": false,
+                "static": false
             },
             "title": "Average Second Response Time by Hour of Call",
             "visualization": "Bars",
@@ -795,7 +809,8 @@
                 "x": 0,
                 "y": 35,
                 "i": "vis59e921bf-08db-45d1-b1d1-7e4edc6712fc1",
-                "moved": false
+                "moved": false,
+                "static": false
             },
             "title": "Calls by Property Category and Property Type",
             "visualization": "Tree Map 2D",
@@ -843,7 +858,8 @@
                 "x": 0,
                 "y": 41,
                 "i": "vis574abc1f-38de-44a1-bb10-0602e382ce3b1",
-                "moved": false
+                "moved": false,
+                "static": false
             },
             "title": "Call Events",
             "visualization": "Raw Data Table",
@@ -1040,7 +1056,8 @@
                 "x": 3,
                 "y": 24,
                 "i": "viscf0f2e5b-b9ac-42e9-837c-4c08f61135551",
-                "moved": false
+                "moved": false,
+                "static": false
             },
             "title": "Number of Calls by Borough",
             "visualization": "Vector Map",
@@ -1090,7 +1107,8 @@
                 "x": 3,
                 "y": 31,
                 "i": "visf6306f3c-1d74-4d84-89a9-cd20113734c31",
-                "moved": false
+                "moved": false,
+                "static": false
             },
             "title": "Slicer",
             "visualization": "Slicer",
@@ -1125,33 +1143,8 @@
     ],
     "filters": [],
     "savedFilters": [],
-    "folderPath": "/studio-apps",
-    "deletedWidgets": [
-        {
-            "id": "vis4194457b-50d1-47ea-a832-5064a41be5be",
-            "visualization": "Interaction Manager",
-            "layout": {
-                "w": 6,
-                "h": 2,
-                "x": 0,
-                "y": 0,
-                "i": "vis4194457b-50d1-47ea-a832-5064a41be5be1",
-                "moved": false
-            },
-            "title": "Filters",
-            "loading": false,
-            "error": false,
-            "errorMessage": null,
-            "code": "/* Configuration code for the Filter Control*/\n// Drill hierarchy settings can be done like this:\nvar vizId = getId(\"Calls by Incident Group / Type\")\nvar vizId2 = getId(\"Average First Response Time by Borough and Ward\");\nvar vizId3 = getId(\"Number of Calls by Borough and Ward\");\nvar vizId4 = getId(\"Distribution of First Response Time by Borough and Ward\");\n\nvar drill = { \n  [vizId]: { \n    group1: ['incident_group', 'stop_code_description', 'special_service_type']\n  },\n  [vizId2]: {\n    group1: ['proper_case', 'ward_name_new']\n  },\n  [vizId3]: {\n    group1: ['proper_case', 'ward_name_new']    \n  },\n  [vizId4]: {\n    group1: ['proper_case', 'ward_name_new']      \n  }\n}\n\n// Define options\nlet aktive = cf.create();\nlet myChart = aktive.graph(\"Interaction Manager\")\n\t\t.set(\"drill\", drill)\n\t\t.execute();\n",
-            "dataVersion": 1,
-            "showTitle": true,
-            "showDataView": false,
-            "showUI": true,
-            "isIManager": true,
-            "source": null,
-            "data": []
-        }
-    ],
+    "folderPath": "/Studio Apps",
+    "deletedWidgets": [],
     "IM": {
         "id": "cfs-interaction-manager",
         "isIManager": true,
@@ -1310,7 +1303,7 @@
         "active": true,
         "provider": "google-bigquery",
         "projectId": "tidal-solstice-206117",
-        "otherProjects": "cloude-sandbox",
-        "id": "6ceb92a8-53ff-4731-9172-4d5a34d991a2"
+        "otherProjects": "",
+        "id": "44f7bbf3-981a-464f-a32a-726e330b6184"
     }
 ]

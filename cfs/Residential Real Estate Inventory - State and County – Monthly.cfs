@@ -1,5 +1,5 @@
 {
-    "id": "2b21a072-193a-4db5-bb3e-ea1d4673f666",
+    "id": "95761606-70f0-4cfe-9c4b-9fb96bc05e12",
     "name": "Residential Real Estate Inventory - State and County – Monthly",
     "description": "Application developed using CF Studio",
     "state": "home",
@@ -822,7 +822,7 @@
                 "// Define options",
                 "let aktive = cf.create();",
                 "let myChart = aktive.graph(\"Markup\")",
-                "    .set(\"content\", {\"ops\":[{\"attributes\":{\"header\":6},\"insert\":\"\\n\"},{\"attributes\":{\"bold\":true},\"insert\":\"Note\"},{\"insert\":\": We use the same color scheme for the trend lines, bars, and word cloud visualizations. The colors of the map are metric-driven.\"},{\"attributes\":{\"header\":2},\"insert\":\"\\n\"}]})",
+                "    .set(\"content\", {\"ops\":[{\"attributes\":{\"header\":6},\"insert\":\"\\n\"},{\"attributes\":{\"bold\":true},\"insert\":\"Note\"},{\"insert\":\": We use the same color scheme for the trend lines, bars, and word cloud visualizations. The colors of the map are metric-driven.\"},{\"attributes\":{\"header\":5},\"insert\":\"\\n\"}]})",
                 "    .set(\"enable\", false)",
                 "    .set(\"background\", \"white\")",
                 "    .set(\"lock\", false)",
@@ -874,7 +874,7 @@
         }
     ],
     "savedFilters": [],
-    "folderPath": "/",
+    "folderPath": "/Studio Apps",
     "deletedWidgets": [],
     "IM": {
         "id": "cfs-interaction-manager",
@@ -4989,9 +4989,9 @@
 }||||[
     {
         "name": "Aktiun Elastic",
-        "url": "https://chartfactor.com/elastic/",
+        "url": "https://chartfactor.com/elastic",
         "active": true,
         "provider": "elasticsearch",
-        "id": "f22bfbbe-5eb4-4003-8242-a75674b7874b"
+        "id": "3581c374-5faa-40ab-abf1-a8f3421e2c3b"
     }
 ]

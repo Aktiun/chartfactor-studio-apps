@@ -1,5 +1,5 @@
 {
-    "id": "67dfb67e-d759-494f-997b-681776dc7314",
+    "id": "1b63869b-a19c-464a-a729-5e2d252b521a",
     "name": "China - Daily Pollution 2015",
     "description": "Application developed using CF Studio",
     "state": "home",
@@ -275,7 +275,7 @@
                 "// Define options",
                 "let aktive = cf.create();",
                 "let myChart = aktive.graph(\"Markup\")",
-                "\t.set(\"content\", {\"ops\":[{\"attributes\":{\"color\":\"#444444\",\"italic\":true},\"insert\":\"“Exposure to PM <2.5 μm in diameter (PM2.5) over a few hours to weeks can trigger cardiovascular disease-related mortality and nonfatal events; longer-term exposure (eg, a few years) increases the risk for cardiovascular mortality to an even greater extent than exposures over a few days and reduces life expectancy within more highly exposed segments of the population by several months to a few years.”\"},{\"attributes\":{\"header\":2},\"insert\":\"\\n\"}]})",
+                "\t.set(\"content\", {\"ops\":[{\"attributes\":{\"color\":\"#444444\",\"italic\":true},\"insert\":\"“Exposure to PM <2.5 μm in diameter (PM2.5) over a few hours to weeks can trigger cardiovascular disease-related mortality and nonfatal events; longer-term exposure (eg, a few years) increases the risk for cardiovascular mortality to an even greater extent than exposures over a few days and reduces life expectancy within more highly exposed segments of the population by several months to a few years.”\"},{\"attributes\":{\"header\":5},\"insert\":\"\\n\"}]})",
                 "\t.set(\"enable\", false)",
                 "\t.set(\"background\", \"white\")",
                 "\t.set(\"lock\", false)",
@@ -410,7 +410,7 @@
                 "// Define options",
                 "let aktive = cf.create();",
                 "let myChart = aktive.graph(\"Markup\")",
-                "\t.set(\"content\", {\"ops\":[{\"attributes\":{\"color\":\"#444444\"},\"insert\":\"Data source\"},{\"attributes\":{\"color\":\"#444444\",\"italic\":true},\"insert\":\": \"},{\"attributes\":{\"link\":\"https://chinapower.csis.org/data/daily-air-pollution-statistics/\"},\"insert\":\"https://chinapower.csis.org/data/daily-air-pollution-statistics/\"},{\"attributes\":{\"header\":2},\"insert\":\"\\n\"},{\"attributes\":{\"color\":\"#444444\"},\"insert\":\"AQI Legend:\"},{\"insert\":\" \"},{\"attributes\":{\"link\":\"http://www.sparetheair.com/aqi.cfm\"},\"insert\":\"http://www.sparetheair.com/aqi.cfm\"},{\"attributes\":{\"header\":2},\"insert\":\"\\n\"}]})",
+                "\t.set(\"content\", {\"ops\":[{\"attributes\":{\"color\":\"#444444\"},\"insert\":\"Data source\"},{\"attributes\":{\"color\":\"#444444\",\"italic\":true},\"insert\":\": \"},{\"attributes\":{\"link\":\"https://chinapower.csis.org/data/daily-air-pollution-statistics/\"},\"insert\":\"https://chinapower.csis.org/data/daily-air-pollution-statistics/\"},{\"attributes\":{\"header\":4},\"insert\":\"\\n\"},{\"attributes\":{\"color\":\"#444444\"},\"insert\":\"AQI Legend:\"},{\"insert\":\" \"},{\"attributes\":{\"link\":\"http://www.sparetheair.com/aqi.cfm\"},\"insert\":\"http://www.sparetheair.com/aqi.cfm\"},{\"attributes\":{\"header\":4},\"insert\":\"\\n\"}]})",
                 "\t.set(\"enable\", false)",
                 "\t.set(\"background\", \"white\")",
                 "\t.set(\"lock\", false)",
@@ -750,7 +750,7 @@
             ]
         }
     ],
-    "folderPath": "/",
+    "folderPath": "/Studio Apps",
     "deletedWidgets": [],
     "IM": {
         "id": "cfs-interaction-manager",
@@ -791,6 +791,6 @@
         "url": "https://chartfactor.com/elastic",
         "active": true,
         "provider": "elasticsearch",
-        "id": "217a1f8f-3439-40a8-99bc-3e85f6a81abb"
+        "id": "ad692b94-4677-482b-b546-7dbb7a86ea07"
     }
 ]
