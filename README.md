@@ -45,3 +45,17 @@ This ChartFactor Studio application visualizes the [Netflix Movies and TV Shows 
 This ChartFactor Studio streaming and interactive application visualizes US Airline customer experience at any time, day or night. You can visualize currently streaming tweets as well as historical tweets. You can identify top entities and phrases, analyze specific categories and sentiments, narrow down negative sentiment to specific themes and airlines, and see volume trend and KPI comparisions! Data streamed from May 11 2021 through April 30 2022.
 
 This application was created using ChartFactor Studio.  A published application is available online at https://chartfactor.com/cx-analytics/. 
+
+### Residential Real Estate Inventory - State and County
+
+This application visualizes monthly residential real estate inventory at the state and county levels.
+
+It was created using ChartFactor Studio and converted into a web application using its "Generate web app" feature. It includes the following features:
+
+* Drill-in across tables: the data published by realtor.com resides in separate tables: the state table for state-level metrics and the county table for county-level metrics. ChartFactor allows you to configure drill-ins that span multiple tables in addition to geojson shapes, zoom levels, map centers between other visualization properties.
+* End-users can easily switch between metrics such as Active Listings, Median Days on the Market, Median Listing Price, and many more metrics available in these datasets. The ChartFactor Field Selector component enables metric selection for individual charts or for a group of charts.
+* Maintain the same colors for states and counties across trend lines, bars, and word cloud visualizations. ChartFactor allows you to assign colors to attribute values for color consistency across the charts you choose. 
+* End-users can filter by any month without being allowed to remove the month filter. ChartFactor enables you to easily declare “required” filter restrictions, no imperative programming needed.
+* End users can select a county only after selecting a state. If users select a county, for example using the “County Name” table column filter, before selecting a state, they get an error message. ChartFactor enables you to easily declare a “depends on” filter restriction for these scenarios, no imperative programming needed.
+
+A published application is available online at https://chartfactor.com/residential-real-estate-inventory/. 
