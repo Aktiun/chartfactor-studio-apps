@@ -1,5 +1,5 @@
 {
-    "id": "446d042b-8928-4bdf-8dcc-4c70ca72ddd8",
+    "id": "5a45e096-dc16-4f26-bc31-df6ac7b02374",
     "name": "Netflix Titles App",
     "description": "Application developed using CF Studio",
     "state": "home",
@@ -111,7 +111,10 @@
                 "listed_in",
                 "country"
             ],
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis4ef4742b-16f9-4908-9cbc-4f6a8ff9e90e",
@@ -192,7 +195,10 @@
                 "listed_in",
                 "country"
             ],
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis4b037b87-4c1f-4ced-ae7c-3aca77c659a0",
@@ -273,13 +279,16 @@
                 "listed_in",
                 "country"
             ],
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis9c418dec-740e-4b36-adc3-307ba77e38cf",
             "layout": {
                 "w": 6,
-                "h": 13,
+                "h": 14,
                 "x": 0,
                 "y": 15,
                 "i": "vis9c418dec-740e-4b36-adc3-307ba77e38cf1",
@@ -314,7 +323,7 @@
                 "    .limit(10)",
                 "    .sort(\"desc\", cf.Metric());",
                 "// Add metrics and groups to data source",
-                "let myData = source.groupby(group1, group2)",
+                "let myData = source.groupby(group1).colgroupby(group2)",
                 "    .metrics(metric0);",
                 "// --- Define chart options and static filters ---",
                 "// Define Grid",
@@ -329,7 +338,9 @@
                 "    .metric(metricColor);",
                 "let myChart = myData.graph(\"Heat Map\")",
                 "    .set(\"color\", color)",
+                "    .set(\"transpose\", true)",
                 "    .set(\"showValues\", true)",
+                "    .set(\"xAxisPosition\", \"top\")",
                 "    .set(\"grid\", grid)",
                 "    .set(\"color\", color)",
                 "    .execute();",
@@ -344,7 +355,10 @@
                 "listed_in",
                 "country"
             ],
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "visbd7d8234-5457-4abc-bb34-964b3724a7f7",
@@ -410,7 +424,10 @@
                 "listed_in",
                 "country"
             ],
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "visd7706deb-02a7-45bc-b310-dd238c7ece6a",
@@ -433,39 +450,39 @@
                 }
             },
             "code": [
-                "// Interaction Manager uses filter(), filters(), clientFilter(),",
-                "// and clientFilters() to manage filters. To apply additional",
-                "// filters, use staticFilters() or your code could be overwritten.",
-                "//",
-                "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"ChartFactor Elastic\");",
-                "let source = provider.source(\"netflix_titles\");",
-                "// Define metrics",
-                "let metric0 = cf.Metric(\"count\");",
-                "// Define attributes to group by",
-                "let group1 = cf.Attribute(\"country\")",
-                "    .limit(10000)",
-                "    .sort(\"desc\", cf.Metric());",
-                "let metricColor = cf.Metric(\"count\");",
-                "// Add metrics and groups to data source",
-                "let myData = source.groupby(group1)",
-                "    .metrics(metric0);",
-                "// --- Define chart options and static filters ---",
-                "// Define Color Palette",
-                "let color = cf.Color()",
-                "    .autoRange({ dynamic: true })",
-                "    .palette([\"#a50026\", \"#d73027\", \"#d73027\", \"#f46d43\", \"#fdae61\", \"#fee090\"])",
-                "    .metric(metricColor);",
-                "let myChart = myData.graph(\"Vector Map\")",
-                "    .set(\"showValues\", true)",
-                "    .set(\"shape\", \"world\")",
-                "    .set(\"enableZoom\", true)",
-                "    .set(\"min\", 0)",
-                "    .set(\"zoom\", 0.6733864678459239)",
-                "    .set(\"center\", [22.165945347835873, 1.7573444636492468])",
-                "    .set(\"legend\", \"left\")",
-                "    .set(\"color\", color)",
-                "    .execute();",
+                "// Interaction Manager uses filter(), filters(), clientFilter(),\r",
+                "// and clientFilters() to manage filters. To apply additional\r",
+                "// filters, use staticFilters() or your code could be overwritten.\r",
+                "//\r",
+                "/* Configuration code for this widget */\r",
+                "let provider = cf.provider(\"ChartFactor Elastic\");\r",
+                "let source = provider.source(\"netflix_titles\");\r",
+                "// Define metrics\r",
+                "let metric0 = cf.Metric(\"count\");\r",
+                "// Define attributes to group by\r",
+                "let group1 = cf.Attribute(\"country\")\r",
+                "    .limit(10000)\r",
+                "    .sort(\"desc\", cf.Metric());\r",
+                "let metricColor = cf.Metric(\"count\");\r",
+                "// Add metrics and groups to data source\r",
+                "let myData = source.groupby(group1)\r",
+                "    .metrics(metric0);\r",
+                "// --- Define chart options and static filters ---\r",
+                "// Define Color Palette\r",
+                "let color = cf.Color()\r",
+                "    .autoRange({ dynamic: true })\r",
+                "    .palette([\"#a50026\", \"#d73027\", \"#d73027\", \"#f46d43\", \"#fdae61\", \"#fee090\"])\r",
+                "    .metric(metricColor);\r",
+                "let myChart = myData.graph(\"Vector Map\")\r",
+                "    .set(\"showValues\", true)\r",
+                "    .set(\"shape\", \"world\")\r",
+                "    .set(\"enableZoom\", true)\r",
+                "    .set(\"min\", 0)\r",
+                "    .set(\"zoom\", 0.8147976260935688)\r",
+                "    .set(\"center\", [-12.590677758397447, 14.213044683667206])\r",
+                "    .set(\"legend\", \"left\")\r",
+                "    .set(\"color\", color)\r",
+                "    .execute();\r",
                 ""
             ],
             "showUI": true,
@@ -477,7 +494,10 @@
                 "listed_in",
                 "country"
             ],
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "visa146a09c-6b85-4e40-a6ca-dba6147f644e",
@@ -514,7 +534,10 @@
                 "listed_in",
                 "country"
             ],
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         }
     ],
     "filters": [],
@@ -550,7 +573,10 @@
         ],
         "showUI": false,
         "syncedFields": [],
-        "showTitle": true
+        "showTitle": true,
+        "enableClientFilters": false,
+        "enableAutoDrill": false,
+        "staticFilters": 0
     },
     "hideIM": false,
     "metadata": {
