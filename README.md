@@ -46,6 +46,18 @@ This ChartFactor Studio streaming and interactive application visualizes US Airl
 
 This application was created using ChartFactor Studio.  A published application is available online at https://chartfactor.com/cx-analytics/. 
 
+### Residential Real Estate Inventory - State and ZIP Codes
+
+This application visualizes monthly residential real estate inventory at the state and ZIP code levels.
+
+It was generated using ChartFactor Studio and styled for a special look/feel. It includes drill-ins for state and ZIP codes, a search widget, trends for active listings and median listing prices, and range filtering, between many other features:
+
+* Drill-in across tables: the data published by realtor.com resides in separate tables: the country table for country level metrics, the state table for state-level metrics and the ZIP code table for ZIP-code-level metrics. ChartFactor allows you to configure drill-ins that span multiple tables in addition to geojson shapes, zoom levels, map centers between other visualization properties.
+* An interaction manager's "required" restriction rule prevents users from removing the month filter. Users can select different months using the trend charts.
+* An interaction manager's "depends on" restriction removes ZIP code filters when users remove state filters. ChartFactor enables you to easily declare a “depends on” restriction for these scenarios, no imperative programming needed.
+
+A published application is available online at https://chartfactor.com/residential-real-estate/. 
+
 ### Residential Real Estate Inventory - State and County
 
 This application visualizes monthly residential real estate inventory at the state and county levels.
