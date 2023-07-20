@@ -1,10 +1,12 @@
 {
-    "id": "1b63869b-a19c-464a-a729-5e2d252b521a",
+    "id": "93789b36-54b3-4442-a555-9e5f222b7269",
     "name": "China - Daily Pollution 2015",
     "description": "Application developed using CF Studio",
     "state": "home",
     "readOnly": false,
     "hasBorder": true,
+    "isSampleApp": false,
+    "thumbnailPath": "img/mix.png",
     "widgetList": [
         {
             "id": "vis21d66460-773d-4882-bf65-004744eca672",
@@ -27,6 +29,10 @@
                 }
             },
             "code": [
+                "let filter154 = cf.Filter(\"Date\")",
+                "    .label(\"Date\")",
+                "    .operation(\"BETWEEN\")",
+                "    .value([\"2015-12-01 00:00:00.000\", \"2015-12-31 23:59:59.999\"]);",
                 "// Interaction Manager uses filter(), filters(), clientFilter(),",
                 "// and clientFilters() to manage filters. To apply additional",
                 "// filters, use staticFilters() or your code could be overwritten.",
@@ -71,6 +77,7 @@
                 "    \"Shenzhen\": \"#af8d00\"",
                 "})",
                 "    .palette([\"#ff0029\", \"#377eb8\", \"#66a61e\", \"#984ea3\", \"#00d2d5\", \"#ff7f00\", \"#af8d00\", \"#7f80cd\", \"#b3e900\", \"#c42e60\", \"#a65628\", \"#f781bf\"]);",
+                "myData.clientFilter(filter154);",
                 "let myChart = myData.graph(\"Trend\")",
                 "    .set(\"legend\", legend)",
                 "    .set(\"grid\", grid)",
@@ -81,7 +88,10 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis3d398cf1-0ea5-46ec-b185-2897fc05de49",
@@ -104,10 +114,14 @@
                 }
             },
             "code": [
-                "let filter205 = cf.Filter(\"Main Pollutant\")",
+                "let staticFilter1 = cf.Filter(\"Main Pollutant\")",
                 "    .label(\"Main Pollutant\")",
                 "    .operation(\"IN\")",
                 "    .value([\"PM2.5\", \"PM10,PM2.5\", \"PM2.5,O3\", \"O3\", \"SO2,PM2.5\", \"CO\", \"PM10\", \"SO2\", \"NO2,PM2.5\", \"NO2\"]);",
+                "let filter154 = cf.Filter(\"Date\")",
+                "    .label(\"Date\")",
+                "    .operation(\"BETWEEN\")",
+                "    .value([\"2015-12-01 00:00:00.000\", \"2015-12-31 23:59:59.999\"]);",
                 "// Interaction Manager uses filter(), filters(), clientFilter(),",
                 "// and clientFilters() to manage filters. To apply additional",
                 "// filters, use staticFilters() or your code could be overwritten.",
@@ -143,7 +157,8 @@
                 "// Define Color Palette",
                 "let color = cf.Color()",
                 "    .palette([\"#ff0029\", \"#377eb8\", \"#66a61e\", \"#984ea3\", \"#00d2d5\", \"#ff7f00\", \"#af8d00\", \"#7f80cd\", \"#b3e900\", \"#c42e60\", \"#a65628\", \"#f781bf\"]);",
-                "myData.staticFilters(filter205);",
+                "myData.clientFilter(filter154);",
+                "myData.staticFilters(staticFilter1);",
                 "let myChart = myData.graph(\"Trend\")",
                 "    .set(\"legend\", legend)",
                 "    .set(\"grid\", grid)",
@@ -154,7 +169,10 @@
                 ""
             ],
             "showUI": false,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis1f5b8029-680d-43a8-9a6f-c447220571ba",
@@ -177,6 +195,10 @@
                 }
             },
             "code": [
+                "let filter154 = cf.Filter(\"Date\")",
+                "    .label(\"Date\")",
+                "    .operation(\"BETWEEN\")",
+                "    .value([\"2015-12-01 00:00:00.000\", \"2015-12-31 23:59:59.999\"]);",
                 "/* Configuration code for this widget */",
                 "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source(\"china-pollution\");",
@@ -185,6 +207,7 @@
                 "// Define the time field to be used",
                 "let field = cf.Attribute(\"Date\").func(\"MONTH\");",
                 "let myData = source.timeField(field);",
+                "myData.clientFilter(filter154);",
                 "//<end exec filter212>",
                 "let myChart = myData.graph(\"Time Slider\")",
                 "    .set(\"grid\", grid)",
@@ -203,7 +226,10 @@
                 ""
             ],
             "showUI": false,
-            "showTitle": false
+            "showTitle": false,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "visd1832997-e02f-4d9f-a623-49594ed10616",
@@ -226,6 +252,10 @@
                 }
             },
             "code": [
+                "let filter154 = cf.Filter(\"Date\")",
+                "    .label(\"Date\")",
+                "    .operation(\"BETWEEN\")",
+                "    .value([\"2015-12-01 00:00:00.000\", \"2015-12-31 23:59:59.999\"]);",
                 "/* Configuration code for this widget */",
                 "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source(\"china-pollution\");",
@@ -245,6 +275,7 @@
                 "// Add metrics and groups to data source",
                 "let myData = source.groupby(group1, group2)",
                 "    .metrics(...metrics);",
+                "myData.filter(filter154);",
                 "//<end exec filter212>",
                 "let myChart = myData.graph(\"Floating Bubbles\")",
                 "    .set(\"legend\", \"right\")",
@@ -252,7 +283,10 @@
                 ""
             ],
             "showUI": false,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis1bbd2a55-ca56-4209-81d8-5ac663054d19",
@@ -283,7 +317,10 @@
                 ""
             ],
             "showUI": false,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "viscbd4d922-ee3c-4845-876a-daa522b51f89",
@@ -306,6 +343,10 @@
                 }
             },
             "code": [
+                "let filter154 = cf.Filter(\"Date\")",
+                "    .label(\"Date\")",
+                "    .operation(\"BETWEEN\")",
+                "    .value([\"2015-12-01 00:00:00.000\", \"2015-12-31 23:59:59.999\"]);",
                 "/* Configuration code for this widget */",
                 "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source(\"china-pollution\");",
@@ -331,6 +372,7 @@
                 "    \"tpButtonActive\": \"color: #fff; background: #607d8b;\",",
                 "    \"cellMoving\": \"color: black; background: #b0bec5;\",",
                 "});",
+                "myData.filter(filter154);",
                 "//<end exec filter212>",
                 "let myChart = myData.graph(\"Raw Data Table\")",
                 "    .set(\"color\", color)",
@@ -356,7 +398,10 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "visa56a2218-9f2a-4ec6-bd74-7aee565fd254",
@@ -387,7 +432,10 @@
                 ""
             ],
             "showUI": false,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "visa0eca3d1-7922-42fc-94ff-ef0e6a13a683",
@@ -418,7 +466,10 @@
                 ""
             ],
             "showUI": false,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "visc4f47a43-37d6-48c5-92c8-514ca2812904",
@@ -441,6 +492,10 @@
                 }
             },
             "code": [
+                "let filter154 = cf.Filter(\"Date\")",
+                "    .label(\"Date\")",
+                "    .operation(\"BETWEEN\")",
+                "    .value([\"2015-12-01 00:00:00.000\", \"2015-12-31 23:59:59.999\"]);",
                 "/* Configuration code for this widget */",
                 "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source(\"china-pollution\");",
@@ -450,9 +505,11 @@
                 "// Add metrics and groups to data source",
                 "let myData = source",
                 "    .metrics(metric0);",
+                "myData.filter(filter154);",
                 "//<end exec filter212>",
                 "let myChart = myData.graph(\"Gauge\")",
                 "    .set(\"ranges\", [[0, 500]])",
+                "    .set(\"radius\", [\"95%\"])",
                 "    .set(\"rangeColors\", [",
                 "    [[0.1, \"green\"], [0.2, \"yellow\"], [0.3, \"orange\"], [0.4, \"red\"], [0.6, \"purple\"], [1, \"maroon\"]]",
                 "])",
@@ -475,7 +532,10 @@
                 ""
             ],
             "showUI": false,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis718574cf-3d07-4002-a62a-17466b81f97c",
@@ -498,6 +558,10 @@
                 }
             },
             "code": [
+                "let filter154 = cf.Filter(\"Date\")",
+                "    .label(\"Date\")",
+                "    .operation(\"BETWEEN\")",
+                "    .value([\"2015-12-01 00:00:00.000\", \"2015-12-31 23:59:59.999\"]);",
                 "// Interaction Manager uses filter(), filters(), clientFilter(),",
                 "// and clientFilters() to manage filters. To apply additional",
                 "// filters, use staticFilters() or your code could be overwritten.",
@@ -561,6 +625,7 @@
                 "])",
                 "    .palette([\"#08519c\", \"#3182bd\", \"#6baed6\", \"#9ecae1\", \"#c6dbef\", \"#eff3ff\"])",
                 "    .metric(metricColor);",
+                "myData.filter(filter154);",
                 "let myChart = myData.graph(\"Heat Map\")",
                 "    .set(\"color\", color)",
                 "    .set(\"showValues\", true)",
@@ -570,10 +635,53 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         }
     ],
-    "filters": [],
+    "filters": [
+        {
+            "path": "Date",
+            "label": "Date",
+            "enabled": true,
+            "coexistent": true,
+            "operation": "BETWEEN",
+            "value": [
+                "2015-12-01 00:00:00.000",
+                "2015-12-31 23:59:59.999"
+            ],
+            "relative": false,
+            "presetValue": false,
+            "isTextFilter": false,
+            "alias": null,
+            "type": null,
+            "granularity": "MONTH",
+            "source": {
+                "name": "china-pollution",
+                "provider": "Elastic Demo",
+                "id": "china-pollution",
+                "reference": "china-pollution"
+            },
+            "oneTimeUnit": true,
+            "id": "f6dbe5e2-8705-45d2-9369-63d71c91ae5b",
+            "sender": {
+                "type": "Time Slider",
+                "id": "vis1f5b8029-680d-43a8-9a6f-c447220571ba"
+            },
+            "origin": {
+                "name": "Date",
+                "type": "TIME",
+                "originName": "Date",
+                "originalType": "date",
+                "label": "Date",
+                "format": "MM/DD/YYYY",
+                "timestampGranularity": "YEAR"
+            },
+            "code": "filter154"
+        }
+    ],
     "savedFilters": [
         {
             "id": "05b66b58-34a1-482a-b700-6f4865f7fb75",
@@ -780,7 +888,10 @@
         ],
         "showUI": false,
         "syncedFields": [],
-        "showTitle": true
+        "showTitle": true,
+        "enableClientFilters": false,
+        "enableAutoDrill": false,
+        "staticFilters": 0
     },
     "hideIM": false,
     "metadata": {},
@@ -791,6 +902,6 @@
         "url": "https://chartfactor.com/elastic",
         "active": true,
         "provider": "elasticsearch",
-        "id": "ad692b94-4677-482b-b546-7dbb7a86ea07"
+        "id": "07b3d2ad-c8f0-486c-b276-c604c5a2cfd9"
     }
 ]
