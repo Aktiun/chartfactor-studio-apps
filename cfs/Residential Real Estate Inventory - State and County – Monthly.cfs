@@ -1,10 +1,12 @@
 {
-    "id": "a10f20cd-0cde-4dd6-ab68-97da0b8cea0f",
+    "id": "f2396714-1808-4a8a-a79b-9c74e52f8515",
     "name": "Residential Real Estate Inventory - State and County – Monthly",
     "description": "Application developed using CF Studio",
     "state": "home",
     "readOnly": false,
     "hasBorder": true,
+    "isSampleApp": false,
+    "thumbnailPath": "img/mix.png",
     "widgetList": [
         {
             "id": "visc7c56eaa-c92b-482c-aaa2-936e8fa4f50a",
@@ -58,7 +60,10 @@
                 ""
             ],
             "showUI": false,
-            "showTitle": false
+            "showTitle": false,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "visd866065a-6e14-4ee7-8fda-97fc0e045be4",
@@ -102,7 +107,10 @@
                 ""
             ],
             "showUI": false,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "visea48ba8c-d0ca-4ad3-b8a5-031be7c4cdf2",
@@ -165,7 +173,10 @@
                 ""
             ],
             "showUI": false,
-            "showTitle": false
+            "showTitle": false,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis167b9a90-cd9b-438f-b94f-7ec8f6a38ce4",
@@ -216,7 +227,10 @@
                 ""
             ],
             "showUI": false,
-            "showTitle": false
+            "showTitle": false,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "viscd081f6f-221f-4a7e-be45-fbf320bda1b0",
@@ -246,7 +260,10 @@
                 ""
             ],
             "showUI": false,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "visbb93a343-c976-4edc-966c-8eb0eb2dd71c",
@@ -309,7 +326,10 @@
                 ""
             ],
             "showUI": false,
-            "showTitle": false
+            "showTitle": false,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis559ddb78-30ad-4481-8faa-ea22e067f9be",
@@ -372,7 +392,10 @@
                 ""
             ],
             "showUI": false,
-            "showTitle": false
+            "showTitle": false,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis99502ae6-a490-473e-a261-b57f656b1d6e",
@@ -572,7 +595,10 @@
             ],
             "showUI": true,
             "syncedFields": [],
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis4cd4900d-9f2e-4e55-af26-f36f0f794866",
@@ -800,7 +826,10 @@
             ],
             "showUI": true,
             "syncedFields": [],
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "visac5c7dc9-c10e-44e3-9d9f-9c713f01aded",
@@ -831,7 +860,10 @@
             ],
             "showUI": false,
             "syncedFields": [],
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         }
     ],
     "filters": [
@@ -839,6 +871,7 @@
             "path": "@timestamp",
             "label": "Date",
             "enabled": true,
+            "coexistent": true,
             "operation": "BETWEEN",
             "value": [
                 "2022-11-01 00:00:00.000",
@@ -847,6 +880,8 @@
             "relative": false,
             "presetValue": false,
             "isTextFilter": false,
+            "alias": null,
+            "type": null,
             "granularity": "MONTH",
             "source": {
                 "name": "realtor_monthly_inventory_state_all",
@@ -1035,29 +1070,29 @@
             "    \"Washington\",",
             "    \"Wilcox\",",
             "    \"Winston\",",
-            "    \"Aleutians East Borough[d]\",",
+            "    \"Aleutians East\",",
             "    \"Aleutians West Census Area[e]\",",
             "    \"Anchorage, Municipality of[d][f]\",",
             "    \"Bethel Census Area[e]\",",
-            "    \"Bristol Bay Borough[d]\",",
+            "    \"Bristol Bay\",",
             "    \"Chugach Census Area[e]\",",
             "    \"Copper River Census Area[e]\",",
-            "    \"Denali Borough[d]\",",
+            "    \"Denali\",",
             "    \"Dillingham Census Area[e]\",",
-            "    \"Fairbanks North Star Borough[d]\",",
-            "    \"Haines Borough[d]\",",
+            "    \"Fairbanks North Star\",",
+            "    \"Haines\",",
             "    \"Hoonah\\u2013Angoon Census Area[e]\",",
             "    \"Juneau, City and Borough of[d][g]\",",
-            "    \"Kenai Peninsula Borough[d]\",",
-            "    \"Ketchikan Gateway Borough[d]\",",
-            "    \"Kodiak Island Borough[d]\",",
+            "    \"Kenai Peninsula\",",
+            "    \"Ketchikan Gateway\",",
+            "    \"Kodiak Island\",",
             "    \"Kusilvak Census Area[e]\",",
-            "    \"Lake and Peninsula Borough[d]\",",
-            "    \"Matanuska-Susitna Borough[d]\",",
+            "    \"Lake and Peninsula\",",
+            "    \"Matanuska-Susitna\",",
             "    \"Nome Census Area[e]\",",
-            "    \"North Slope Borough[d]\",",
-            "    \"Northwest Arctic Borough[d]\",",
-            "    \"Petersburg Borough[d][h]\",",
+            "    \"North Slope\",",
+            "    \"Northwest Arctic\",",
+            "    \"Petersburg[h]\",",
             "    \"Prince of Wales \\u2013 Hyder Census Area[e]\",",
             "    \"Sitka, City and Borough of[d][i]\",",
             "    \"Skagway, Municipality of[d]\",",
@@ -4214,6 +4249,7 @@
             "    \"Washakie\",",
             "    \"Weston\"",
             "];",
+            "",
             "counties.forEach((county) => {",
             "    if (countyColor === colors.length)",
             "        countyColor = 0;",
@@ -4259,7 +4295,7 @@
             "                        center: [-86.79078390990962, 32.785884142494666]",
             "                    },",
             "                    \"Alaska\": {",
-            "                        shape: \"https://chartfactor.com/resources/us-states/AK-02-alaska-counties.geo.json\",",
+            "                        shape: \"https://chartfactor.com/resources/us-states/AK-02-alaska-counties2.geo.json\",",
             "                        zoom: 6.290212452619455,",
             "                        center: [-152.33510932174278, 62.26908294003965],",
             "                        legend: \"top-right\"",
@@ -4607,7 +4643,10 @@
         ],
         "showUI": false,
         "syncedFields": [],
-        "showTitle": true
+        "showTitle": true,
+        "enableClientFilters": false,
+        "enableAutoDrill": false,
+        "staticFilters": 0
     },
     "hideIM": false,
     "metadata": {
