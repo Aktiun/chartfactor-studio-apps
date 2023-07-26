@@ -1,10 +1,12 @@
 {
-    "id": "cd916e21-60a3-42fb-a2ab-feb5790e18c3",
+    "id": "85583bd0-f8a1-41ab-8459-94197c611ad5",
     "name": "COVID-19 Infections in the United States",
-    "description": "Application developed using CF Studio",
+    "description": "This interactive dashboard visualizes COVID-19 infections and deaths in the United States since pandemic data started in January 2020. It was also created using ChartFactor Studio and generated into a web application using ChartFactor Studio CLI.",
     "state": "home",
     "readOnly": false,
     "hasBorder": true,
+    "isSampleApp": true,
+    "thumbnailPath": "data/covid_infections_usa.jpg",
     "widgetList": [
         {
             "id": "visd8108385-5092-47ec-94a5-ce9c110a6140",
@@ -31,29 +33,43 @@
                 "    .label(\"Date\")",
                 "    .operation(\"BETWEEN\")",
                 "    .value([\"2021-08-16 00:00:00.000\", \"2021-08-16 23:59:59.999\"]);",
+                "// Interaction Manager uses filter(), filters(), clientFilter(),",
+                "// and clientFilters() to manage filters. To apply additional",
+                "// filters, use staticFilters() or your code could be overwritten.",
+                "//",
                 "/* Configuration code for this widget */",
                 "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source(\"covid_joined_usafacts\");",
-                "//<end filter147>",
-                "// Define metrics",
                 "let metric0 = cf.Metric(\"Cases\", \"sum\");",
+                "// Define Color config",
+                "let color = cf.Color();",
+                "color.theme({",
+                "    \"name\": \"light\",",
+                "    \"font\": \"black\",",
+                "    \"background\": \"white\"",
+                "});",
                 "// Add metrics and groups to data source",
                 "let myData = source",
                 "    .metrics(metric0);",
                 "myData.filter(filter188);",
-                "//<end exec filter147>",
+                "// --- Define chart options and static filters ---",
                 "let myChart = myData.graph(\"KPI\")",
+                "    .set(\"color\", color)",
                 "    .set(\"mainTextSize\", 22)",
                 "    .set(\"secondaryTextSize\", 12)",
                 "    .set(\"diffTextSize\", 12)",
                 "    .set(\"labelTextSize\", 8)",
-                "    .set(\"showLabels\", false)",
                 "    .set(\"valuesLeft\", 20)",
+                "    .set(\"showArrow\", false)",
+                "    .set(\"showLabels\", false)",
                 "    .execute();",
                 ""
             ],
-            "showUI": false,
-            "showTitle": true
+            "showUI": true,
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis3aa4e877-eaec-4aed-aa65-52279092a046",
@@ -61,7 +77,7 @@
                 "w": 12,
                 "h": 2,
                 "x": 0,
-                "y": 1,
+                "y": 0,
                 "i": "vis3aa4e877-eaec-4aed-aa65-52279092a0461",
                 "moved": false,
                 "static": false
@@ -117,7 +133,10 @@
                 ""
             ],
             "showUI": false,
-            "showTitle": false
+            "showTitle": false,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis72eb9316-16a2-46b7-a34a-b1b5a94ac7d9",
@@ -144,38 +163,53 @@
                 "    .label(\"Date\")",
                 "    .operation(\"BETWEEN\")",
                 "    .value([\"2021-08-16 00:00:00.000\", \"2021-08-16 23:59:59.999\"]);",
+                "// Interaction Manager uses filter(), filters(), clientFilter(),",
+                "// and clientFilters() to manage filters. To apply additional",
+                "// filters, use staticFilters() or your code could be overwritten.",
+                "//",
                 "/* Configuration code for this widget */",
                 "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source(\"covid_joined_usafacts\");",
-                "//<end filter147>",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"Cases\", \"sum\");",
                 "// Define attributes to group by",
                 "let group1 = cf.Attribute(\"state_str\")",
                 "    .limit(100000)",
-                "    .sort(\"desc\", metric0);",
+                "    .sort(\"desc\", cf.Metric(\"Cases\", \"sum\"));",
+                "let metricColor = cf.Metric(\"Cases\", \"sum\");",
                 "// Add metrics and groups to data source",
                 "let myData = source.groupby(group1)",
                 "    .metrics(metric0);",
                 "// --- Define chart options and static filters ---",
-                "let color = cf.Color().metric(metric0);",
-                "color.palette([\"#ffffb2\", \"#fed976\", \"#feb24c\", \"#fd8d3c\", \"#fc4e2a\", \"#e31a1c\", \"#b10026\"].reverse());",
-                "color.autoRange({ dynamic: true });",
+                "// Define Grid",
+                "let grid = cf.Grid()",
+                "    .top(10)",
+                "    .right(15)",
+                "    .bottom(35)",
+                "    .left(65);",
+                "// Define Color Palette",
+                "let color = cf.Color()",
+                "    .autoRange({ dynamic: true })",
+                "    .palette([\"#b10026\", \"#e31a1c\", \"#fc4e2a\", \"#fd8d3c\", \"#feb24c\", \"#fed976\", \"#ffffb2\"])",
+                "    .metric(metricColor);",
                 "myData.filter(filter188);",
-                "//<end exec filter147>",
                 "let myChart = myData.graph(\"Vector Map\")",
                 "    .set(\"shape\", \"usa\")",
+                "    .set(\"enableZoom\", false)",
                 "    .set(\"min\", 0)",
                 "    .set(\"zoom\", 0.9350000000000024)",
                 "    .set(\"center\", [-94.57113927217495, 37.48584466749503])",
-                "    .set(\"color\", color)",
                 "    .set(\"legend\", \"right\")",
-                "    .set(\"enableZoom\", false)",
+                "    .set(\"grid\", grid)",
+                "    .set(\"color\", color)",
                 "    .execute();",
                 ""
             ],
-            "showUI": false,
-            "showTitle": true
+            "showUI": true,
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis7392ed79-ce6c-4100-955f-39a18ed8d3c6",
@@ -228,7 +262,10 @@
                 ""
             ],
             "showUI": false,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis9cf1e8cd-89e0-4c47-99b4-c8e1b0074afe",
@@ -255,29 +292,43 @@
                 "    .label(\"Date\")",
                 "    .operation(\"BETWEEN\")",
                 "    .value([\"2021-08-16 00:00:00.000\", \"2021-08-16 23:59:59.999\"]);",
+                "// Interaction Manager uses filter(), filters(), clientFilter(),",
+                "// and clientFilters() to manage filters. To apply additional",
+                "// filters, use staticFilters() or your code could be overwritten.",
+                "//",
                 "/* Configuration code for this widget */",
                 "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source(\"covid_joined_usafacts\");",
-                "//<end filter147>",
-                "// Define metrics",
                 "let metric0 = cf.Metric(\"Deaths\", \"sum\");",
+                "// Define Color config",
+                "let color = cf.Color();",
+                "color.theme({",
+                "    \"name\": \"light\",",
+                "    \"font\": \"black\",",
+                "    \"background\": \"white\"",
+                "});",
                 "// Add metrics and groups to data source",
                 "let myData = source",
                 "    .metrics(metric0);",
                 "myData.filter(filter188);",
-                "//<end exec filter147>",
+                "// --- Define chart options and static filters ---",
                 "let myChart = myData.graph(\"KPI\")",
+                "    .set(\"color\", color)",
                 "    .set(\"mainTextSize\", 25)",
                 "    .set(\"secondaryTextSize\", 12)",
                 "    .set(\"diffTextSize\", 12)",
                 "    .set(\"labelTextSize\", 8)",
-                "    .set(\"showLabels\", false)",
                 "    .set(\"valuesLeft\", 20)",
+                "    .set(\"showArrow\", false)",
+                "    .set(\"showLabels\", false)",
                 "    .execute();",
                 ""
             ],
-            "showUI": false,
-            "showTitle": true
+            "showUI": true,
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis4ac4d3dd-2743-4f40-a0a2-f8163bdd4279",
@@ -325,12 +376,15 @@
                 "    .set(\"diffTextSize\", 12)",
                 "    .set(\"labelTextSize\", 8)",
                 "    .set(\"showLabels\", false)",
-                "    .set(\"valuesLeft\", 28)",
+                "    .set(\"valuesLeft\", 40)",
                 "    .execute();",
                 ""
             ],
             "showUI": false,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "visba2a8ce1-fc71-470c-9f03-c5209f7acf8a",
@@ -357,47 +411,62 @@
                 "    .label(\"Date\")",
                 "    .operation(\"BETWEEN\")",
                 "    .value([\"2021-08-16 00:00:00.000\", \"2021-08-16 23:59:59.999\"]);",
+                "// Interaction Manager uses filter(), filters(), clientFilter(),",
+                "// and clientFilters() to manage filters. To apply additional",
+                "// filters, use staticFilters() or your code could be overwritten.",
+                "//",
                 "/* Configuration code for this widget */",
                 "let provider = cf.provider(\"Elastic Demo\");",
                 "let source = provider.source(\"covid_joined_usafacts\");",
-                "//<end filter147>",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"Deaths\", \"sum\");",
                 "// Define attributes to group by",
                 "let group1 = cf.Attribute(\"state_str\")",
                 "    .limit(100000)",
-                "    .sort(\"desc\", metric0);",
+                "    .sort(\"desc\", cf.Metric(\"Deaths\", \"sum\"));",
+                "let metricColor = cf.Metric(\"Deaths\", \"sum\");",
                 "// Add metrics and groups to data source",
                 "let myData = source.groupby(group1)",
                 "    .metrics(metric0);",
                 "// --- Define chart options and static filters ---",
-                "let color = cf.Color().metric(metric0);",
-                "color.palette([\"#4d004b\", \"#810f7c\", \"#88419d\", \"#8c6bb1\", \"#8c96c6\", \"#9ebcda\", \"#bfd3e6\"]);",
-                "color.autoRange({ dynamic: true });",
+                "// Define Grid",
+                "let grid = cf.Grid()",
+                "    .top(10)",
+                "    .right(15)",
+                "    .bottom(35)",
+                "    .left(65);",
+                "// Define Color Palette",
+                "let color = cf.Color()",
+                "    .autoRange({ dynamic: true })",
+                "    .palette([\"#4d004b\", \"#810f7c\", \"#88419d\", \"#8c6bb1\", \"#8c96c6\", \"#9ebcda\", \"#bfd3e6\"])",
+                "    .metric(metricColor);",
                 "myData.filter(filter188);",
-                "//<end exec filter147>",
                 "let myChart = myData.graph(\"Vector Map\")",
                 "    .set(\"shape\", \"usa\")",
+                "    .set(\"enableZoom\", false)",
                 "    .set(\"min\", 0)",
                 "    .set(\"zoom\", 0.9350000000000024)",
                 "    .set(\"center\", [-94.57113927217495, 37.48584466749503])",
-                "    .set(\"color\", color)",
                 "    .set(\"legend\", \"right\")",
-                "    .set(\"enableZoom\", false)",
+                "    .set(\"grid\", grid)",
+                "    .set(\"color\", color)",
                 "    .execute();",
                 ""
             ],
-            "showUI": false,
-            "showTitle": true
+            "showUI": true,
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis5eccb107-6f9b-4ccc-b251-19b118b0e3fe",
             "isMarkup": true,
             "layout": {
-                "w": 12,
+                "w": 6,
                 "h": 1,
                 "x": 0,
-                "y": 0,
+                "y": 2,
                 "i": "vis5eccb107-6f9b-4ccc-b251-19b118b0e3fe1",
                 "moved": false,
                 "static": false
@@ -410,7 +479,7 @@
                 "// Define options\r",
                 "let aktive = cf.create();\r",
                 "let myChart = aktive.graph(\"Markup\")\r",
-                "    .set(\"content\", {\"ops\":[{\"attributes\":{\"bold\":true},\"insert\":\"USA Infections and Deaths by State\"},{\"attributes\":{\"header\":1},\"insert\":\"\\n\"}]})\r",
+                "    .set(\"content\", {\"ops\":[{\"attributes\":{\"bold\":true},\"insert\":\"USA Infections by State\"},{\"attributes\":{\"header\":3},\"insert\":\"\\n\"}]})\r",
                 "    .set(\"enable\", false)\r",
                 "    .set(\"background\", \"white\")\r",
                 "    .set(\"lock\", false)\r",
@@ -418,7 +487,10 @@
                 ""
             ],
             "showUI": false,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis700bc6eb-0011-4a66-8680-df74ee06cd40",
@@ -467,7 +539,10 @@
                 ""
             ],
             "showUI": false,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis2a5d16d2-98a2-4240-a496-fe1a828cd1a8",
@@ -592,7 +667,10 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis73effeae-fa5c-46a6-9130-cc624f30ff61",
@@ -615,7 +693,7 @@
                 "// Define options",
                 "let aktive = cf.create();",
                 "let myChart = aktive.graph(\"Markup\")",
-                "\t\t.set(\"content\", {\"ops\":[{\"attributes\":{\"header\":5},\"insert\":\"\\n\"},{\"insert\":\"Created using \"},{\"attributes\":{\"link\":\"https://chartfactor.com\"},\"insert\":\"ChartFactor\"},{\"insert\":\", data sourced from \"},{\"attributes\":{\"link\":\"https://usafacts.org/visualizations/coronavirus-covid-19-spread-map/\"},\"insert\":\"USAFacts\"},{\"insert\":\"\\t\"},{\"attributes\":{\"header\":5},\"insert\":\"\\n\"}]})",
+                "\t\t.set(\"content\", {\"ops\":[{\"insert\":\"Created using \"},{\"attributes\":{\"link\":\"https://chartfactor.com\"},\"insert\":\"ChartFactor\"},{\"insert\":\", data sourced from \"},{\"attributes\":{\"link\":\"https://usafacts.org/visualizations/coronavirus-covid-19-spread-map/\"},\"insert\":\"USAFacts\"},{\"insert\":\"\\t\"},{\"attributes\":{\"header\":5},\"insert\":\"\\n\"}]})",
                 "\t\t.set(\"enable\", false)",
                 "\t\t.set(\"background\", \"white\")",
                 "\t\t.set(\"lock\", false)",
@@ -623,7 +701,10 @@
                 ""
             ],
             "showUI": false,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "viscbefebab-9b8e-45d4-a15c-9088cf861349",
@@ -654,7 +735,10 @@
                 ""
             ],
             "showUI": false,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis71e6fc14-788f-4563-9747-310babf97ca6",
@@ -667,7 +751,7 @@
                 "moved": false,
                 "static": false
             },
-            "title": "#### Infection trend - Top 5 on a given day",
+            "title": "Infection trend - Top 5 on a given day",
             "visualization": "Trend",
             "source": {
                 "name": "covid_joined_usafacts",
@@ -774,7 +858,10 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "visa63412dd-6cf4-4105-8630-0a7f147e9e6a",
@@ -787,7 +874,7 @@
                 "moved": false,
                 "static": false
             },
-            "title": "#### Death trend - Top 5 on a given day",
+            "title": "Death trend - Top 5 on a given day",
             "visualization": "Trend",
             "source": {
                 "name": "covid_joined_usafacts",
@@ -894,7 +981,10 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis546f5f76-0ef4-49d3-98f8-d02057e6fd5f",
@@ -1005,8 +1095,8 @@
                 "    .set(\"orientation\", \"vertical\")",
                 "    .set(\"pagePosition\", \"end\")",
                 "    .set(\"charts\", [",
-                "    getId(\"#### Infection trend - Top 5 on a given day\"),",
-                "    getId(\"#### Death trend - Top 5 on a given day\")",
+                "    getId(\"Infection trend - Top 5 on a given day\"),",
+                "    getId(\"Death trend - Top 5 on a given day\")",
                 "])",
                 "    .set(\"options\", {",
                 "    \"horizontalPosition\": \"left\"",
@@ -1020,7 +1110,43 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": false
+            "showTitle": false,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
+        },
+        {
+            "id": "vis3716521d-183d-4795-b077-dd598c8ff2d2",
+            "isMarkup": true,
+            "layout": {
+                "w": 6,
+                "h": 1,
+                "x": 6,
+                "y": 2,
+                "i": "vis3716521d-183d-4795-b077-dd598c8ff2d21",
+                "moved": false,
+                "static": false
+            },
+            "title": "",
+            "visualization": "Markup",
+            "source": {},
+            "code": [
+                "/* Configuration code for the Markup Widget*/\r",
+                "// Define options\r",
+                "let aktive = cf.create();\r",
+                "let myChart = aktive.graph(\"Markup\")\r",
+                "    .set(\"content\", {\"ops\":[{\"attributes\":{\"bold\":true},\"insert\":\"USA Deaths by State\"},{\"attributes\":{\"header\":3},\"insert\":\"\\n\"}]})\r",
+                "    .set(\"enable\", false)\r",
+                "    .set(\"background\", \"white\")\r",
+                "    .set(\"lock\", false)\r",
+                "    .execute();\r",
+                ""
+            ],
+            "showUI": false,
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         }
     ],
     "filters": [
@@ -1028,6 +1154,7 @@
             "path": "Date",
             "label": "Date",
             "enabled": true,
+            "coexistent": true,
             "operation": "BETWEEN",
             "value": [
                 "2021-08-16 00:00:00.000",
@@ -1036,6 +1163,8 @@
             "relative": false,
             "presetValue": false,
             "isTextFilter": false,
+            "alias": null,
+            "type": null,
             "granularity": "DAY",
             "source": {
                 "name": "covid_joined_usafacts",
@@ -1994,7 +2123,10 @@
         ],
         "showUI": false,
         "syncedFields": [],
-        "showTitle": true
+        "showTitle": true,
+        "enableClientFilters": false,
+        "enableAutoDrill": false,
+        "staticFilters": 0
     },
     "hideIM": false,
     "metadata": {
@@ -2137,6 +2269,6 @@
         "url": "https://chartfactor.com/elastic",
         "active": true,
         "provider": "elasticsearch",
-        "id": "ad692b94-4677-482b-b546-7dbb7a86ea07"
+        "id": "07b3d2ad-c8f0-486c-b276-c604c5a2cfd9"
     }
 ]
