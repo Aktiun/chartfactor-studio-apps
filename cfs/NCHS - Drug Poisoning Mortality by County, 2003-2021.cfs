@@ -1,5 +1,5 @@
 {
-    "id": "290a57c5-a658-432c-ab9e-7c3214e302cc",
+    "id": "eb2c9209-7a9a-4dcf-a30c-1a95935d3612",
     "name": "NCHS - Drug Poisoning Mortality by County, 2003-2021",
     "description": "Application developed using CF Studio",
     "state": "favorite",
@@ -24,7 +24,7 @@
             "source": {
                 "name": "nchs_drug_poisoning_mortality_by_county",
                 "provider": {
-                    "name": "ES Local",
+                    "name": "cxairlines",
                     "type": "elasticsearch"
                 }
             },
@@ -40,7 +40,7 @@
                 "            \"name\": \"Drug poisoning mortality\",\r",
                 "            \"priority\": 3,\r",
                 "            \"type\": \"shape\",\r",
-                "            \"provider\": \"ES Local\",\r",
+                "            \"provider\": \"cxairlines\",\r",
                 "            \"source\": \"nchs_drug_poisoning_mortality_by_county\",\r",
                 "            \"properties\": {\r",
                 "                \"legend\": \"top-right\",\r",
@@ -50,13 +50,13 @@
                 "                    }\r",
                 "                ],\r",
                 "                \"filters\": [\r",
-                "                    cf.Filter(\"Year\").label(\"Year\").operation(\"BETWEEN\").value([\"2021-01-01 00:00:00.000\", \"2021-12-31 23:59:59.999\"])\r",
+                "                    cf.Filter(\"Year\").label(\"Year\").operation(\"BETWEEN\").value([\"2012-01-01 00:00:00.000\", \"2012-12-31 23:59:59.999\"])\r",
                 "                ],\r",
                 "                \"visibilityZoomRange\": [0, 24],\r",
                 "                \"limit\": 20000,\r",
                 "                \"options\": {\r",
                 "                    \"rows\": [\r",
-                "                        cf.Row(\"County\")\r",
+                "                        cf.Row(\"County.keyword\")\r",
                 "                    ],\r",
                 "                    \"style\": { \"weight\": 0.5, \"color\": \"#101010\" },\r",
                 "                    \"featureProperty\": \"NAME\",\r",
@@ -112,8 +112,8 @@
                 "            },\r",
                 "        },\r",
                 "    ])\r",
-                "    .set(\"zoom\", 4.32189164073638)\r",
-                "    .set(\"center\", [-87.53058558483639, 37.38809763732628])\r",
+                "    .set(\"zoom\", 3.665795078426497)\r",
+                "    .set(\"center\", [-98.13183887798277, 40.681382426550186])\r",
                 "    .set(\"layersControl\", {\r",
                 "        \"collapsed\": true,\r",
                 "        \"position\": \"bottom-left\"\r",
@@ -129,7 +129,7 @@
             "enableAutoDrill": false,
             "staticFilters": 0,
             "layersProviders": [
-                "ES Local"
+                "cxairlines"
             ]
         },
         {
@@ -183,7 +183,7 @@
             "source": {
                 "name": "nchs_drug_poisoning_mortality_by_county",
                 "provider": {
-                    "name": "ES Local",
+                    "name": "cxairlines",
                     "type": "elasticsearch"
                 }
             },
@@ -193,13 +193,13 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"ES Local\");",
+                "let provider = cf.provider(\"cxairlines\");",
                 "let source = provider.source(\"nchs_drug_poisoning_mortality_by_county\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"Model-based Death Rate\", \"avg\").hideFunction();",
                 "let metricColor = cf.Metric(\"Model-based Death Rate\", \"avg\");",
                 "// Define attributes to group by",
-                "let group1 = cf.Attribute(\"County\")",
+                "let group1 = cf.Attribute(\"County.keyword\")",
                 "    .limit(50)",
                 "    .sort(\"desc\", cf.Metric(\"Model-based Death Rate\", \"avg\"));",
                 "let group2 = cf.Attribute(\"Year\")",
@@ -252,7 +252,7 @@
             "source": {
                 "name": "nchs_drug_poisoning_mortality_by_county",
                 "provider": {
-                    "name": "ES Local",
+                    "name": "cxairlines",
                     "type": "elasticsearch"
                 }
             },
@@ -260,13 +260,13 @@
                 "let filter244 = cf.Filter(\"Year\")",
                 "    .label(\"Year\")",
                 "    .operation(\"BETWEEN\")",
-                "    .value([\"2021-01-01 00:00:00.000\", \"2021-12-31 23:59:59.999\"]);",
+                "    .value([\"2012-01-01 00:00:00.000\", \"2012-12-31 23:59:59.999\"]);",
                 "// Interaction Manager uses filter(), filters(), clientFilter(),",
                 "// and clientFilters() to manage filters. To apply additional",
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"ES Local\");",
+                "let provider = cf.provider(\"cxairlines\");",
                 "let source = provider.source(\"nchs_drug_poisoning_mortality_by_county\");",
                 "let grid = cf.Grid().right(20).left(10);",
                 "// Define the time field to be used",
@@ -315,7 +315,7 @@
             "source": {
                 "name": "nchs_drug_poisoning_mortality_by_county",
                 "provider": {
-                    "name": "ES Local",
+                    "name": "cxairlines",
                     "type": "elasticsearch"
                 }
             },
@@ -323,12 +323,12 @@
                 "let filter244 = cf.Filter(\"Year\")",
                 "    .label(\"Year\")",
                 "    .operation(\"BETWEEN\")",
-                "    .value([\"2021-01-01 00:00:00.000\", \"2021-12-31 23:59:59.999\"]);",
+                "    .value([\"2012-01-01 00:00:00.000\", \"2012-12-31 23:59:59.999\"]);",
                 "const restrictions = [",
                 "    { filter: \"County\" }",
                 "];",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"ES Local\");",
+                "let provider = cf.provider(\"cxairlines\");",
                 "let source = provider.source(\"nchs_drug_poisoning_mortality_by_county\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"Model-based Death Rate\", \"avg\").hideFunction();",
@@ -336,7 +336,7 @@
                 "let group1 = cf.Attribute(\"Year\")",
                 "    .limit(1000).func(\"YEAR\")",
                 "    .sort(\"asc\", \"Year\");",
-                "let group2 = cf.Attribute(\"County\")",
+                "let group2 = cf.Attribute(\"County.keyword\")",
                 "    .limit(10)",
                 "    .sort(\"desc\", cf.Metric(\"Model-based Death Rate\", \"avg\"));",
                 "// Add metrics and groups to data source",
@@ -358,7 +358,7 @@
                 "// Define Color Palette",
                 "let color = cf.Color()",
                 "    .palette([\"#0095b7\", \"#a0b774\", \"#f4c658\", \"#fe8b3e\", \"#cf2f23\", \"#756c56\", \"#007896\", \"#47a694\", \"#f9a94b\", \"#ff6b30\", \"#e94d29\", \"#005b76\"]);",
-                "myData.clientFilter(filter244);",
+                "myData.filter(filter244);",
                 "let myChart = myData.graph(\"Trend\")",
                 "    .set(\"legend\", legend)",
                 "    .set(\"grid\", grid)",
@@ -387,18 +387,18 @@
             "coexistent": true,
             "operation": "BETWEEN",
             "value": [
-                "2021-01-01 00:00:00.000",
-                "2021-12-31 23:59:59.999"
+                "2012-01-01 00:00:00.000",
+                "2012-12-31 23:59:59.999"
             ],
             "relative": false,
             "presetValue": false,
             "isTextFilter": false,
-            "alias": null,
             "type": null,
+            "alias": null,
             "granularity": "YEAR",
             "source": {
                 "name": "nchs_drug_poisoning_mortality_by_county",
-                "provider": "ES Local",
+                "provider": "cxairlines",
                 "id": "nchs_drug_poisoning_mortality_by_county",
                 "reference": "nchs_drug_poisoning_mortality_by_county"
             },
@@ -460,8 +460,8 @@
     "customQueries": {}
 }||||[
     {
-        "name": "ES Local",
-        "url": "http://localhost:9200",
+        "name": "cxairlines",
+        "url": "https://chartfactor.com/vcairlines",
         "active": true,
         "provider": "elasticsearch",
         "id": "ecd481c6-324e-4bd4-8ea0-95512ab5222c",
