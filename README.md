@@ -71,3 +71,13 @@ It was created using ChartFactor Studio and converted into a web application usi
 * End users can select a county only after selecting a state. If users select a county, for example using the “County Name” table column filter, before selecting a state, they get an error message. ChartFactor enables you to easily declare a “depends on” filter restriction for these scenarios, no imperative programming needed.
 
 A published application is available online at https://chartfactor.com/residential-real-estate-inventory/. 
+
+## NCHS Drug Poisoning Mortality by County
+
+This application visualizes the National Center for Health Statistics (NCHS) drug poisoning mortality rates by county. We are using a time slider to replay the data over time. A tab on the right side opens a trend chart to compare county trends for counties you select on the map. And the tab below visualizes a heat map for the top 20 counties by drug poisoning mortality across years.
+
+You can access this app live at https://chartfactor.com/NCHS-drug-poisoning-app/. We created this web application using ChartFactor Studio and made sure to give it our own special look and feel.
+
+Data provided by the NCHS and available at https://data.cdc.gov/NCHS/NCHS-Drug-Poisoning-Mortality-by-County-United-Sta/rpvx-m2md
+
+Data engine is OpenSearch, base map tiles provided by OpenStreetMap.
