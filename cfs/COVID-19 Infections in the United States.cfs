@@ -1,5 +1,5 @@
 {
-    "id": "85583bd0-f8a1-41ab-8459-94197c611ad5",
+    "id": "96abf018-a03a-40ad-9613-71856cb396db",
     "name": "COVID-19 Infections in the United States",
     "description": "This interactive dashboard visualizes COVID-19 infections and deaths in the United States since pandemic data started in January 2020. It was also created using ChartFactor Studio and generated into a web application using ChartFactor Studio CLI.",
     "state": "home",
@@ -69,7 +69,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis3aa4e877-eaec-4aed-aa65-52279092a046",
@@ -136,7 +137,8 @@
             "showTitle": false,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis72eb9316-16a2-46b7-a34a-b1b5a94ac7d9",
@@ -209,7 +211,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis7392ed79-ce6c-4100-955f-39a18ed8d3c6",
@@ -265,7 +268,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis9cf1e8cd-89e0-4c47-99b4-c8e1b0074afe",
@@ -328,7 +332,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis4ac4d3dd-2743-4f40-a0a2-f8163bdd4279",
@@ -384,7 +389,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "visba2a8ce1-fc71-470c-9f03-c5209f7acf8a",
@@ -457,7 +463,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis5eccb107-6f9b-4ccc-b251-19b118b0e3fe",
@@ -490,7 +497,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis700bc6eb-0011-4a66-8680-df74ee06cd40",
@@ -542,7 +550,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis2a5d16d2-98a2-4240-a496-fe1a828cd1a8",
@@ -670,7 +679,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis73effeae-fa5c-46a6-9130-cc624f30ff61",
@@ -693,7 +703,7 @@
                 "// Define options",
                 "let aktive = cf.create();",
                 "let myChart = aktive.graph(\"Markup\")",
-                "\t\t.set(\"content\", {\"ops\":[{\"insert\":\"Created using \"},{\"attributes\":{\"link\":\"https://chartfactor.com\"},\"insert\":\"ChartFactor\"},{\"insert\":\", data sourced from \"},{\"attributes\":{\"link\":\"https://usafacts.org/visualizations/coronavirus-covid-19-spread-map/\"},\"insert\":\"USAFacts\"},{\"insert\":\"\\t\"},{\"attributes\":{\"header\":5},\"insert\":\"\\n\"}]})",
+                "\t\t.set(\"content\", {\"ops\":[{\"insert\":\"Created using \"},{\"attributes\":{\"link\":\"https://chartfactor.com\"},\"insert\":\"ChartFactor\"},{\"insert\":\", data sourced from \"},{\"attributes\":{\"link\":\"https://usafacts.org/visualizations/coronavirus-covid-19-spread-map/\"},\"insert\":\"USAFacts\"},{\"insert\":\"\\t\\n\"}]})",
                 "\t\t.set(\"enable\", false)",
                 "\t\t.set(\"background\", \"white\")",
                 "\t\t.set(\"lock\", false)",
@@ -704,7 +714,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "viscbefebab-9b8e-45d4-a15c-9088cf861349",
@@ -727,7 +738,7 @@
                 "// Define options",
                 "let aktive = cf.create();",
                 "let myChart = aktive.graph(\"Markup\")",
-                "\t.set(\"content\", {\"ops\":[{\"insert\":\"USAFacts Note from April 18 \"},{\"attributes\":{\"header\":3},\"insert\":\"\\n\\n\"},{\"insert\":\"Certain states have changed their methodology in reporting deaths due to COVID-19. As a result, we are holding off on reporting death data in a few key states (New York is notable among these states due to the high number of confirmed cases and deaths). USAFacts is committed to providing official numbers confirmed by state or local health agencies, and we will appropriately backfill the death data when we receive more guidance from the CDC and relevant health departments.\"},{\"attributes\":{\"header\":5},\"insert\":\"\\n\"}]})",
+                "\t.set(\"content\", {\"ops\":[{\"insert\":\"USAFacts Note from April 18 \"},{\"attributes\":{\"header\":3},\"insert\":\"\\n\"},{\"insert\":\"\\nCertain states have changed their methodology in reporting deaths due to COVID-19. As a result, we are holding off on reporting death data in a few key states (New York is notable among these states due to the high number of confirmed cases and deaths). USAFacts is committed to providing official numbers confirmed by state or local health agencies, and we will appropriately backfill the death data when we receive more guidance from the CDC and relevant health departments.\\n\"}]})",
                 "\t.set(\"enable\", false)",
                 "\t.set(\"background\", \"white\")",
                 "\t.set(\"lock\", false)",
@@ -738,7 +749,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis71e6fc14-788f-4563-9747-310babf97ca6",
@@ -861,7 +873,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "visa63412dd-6cf4-4105-8630-0a7f147e9e6a",
@@ -984,7 +997,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis546f5f76-0ef4-49d3-98f8-d02057e6fd5f",
@@ -1113,7 +1127,8 @@
             "showTitle": false,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis3716521d-183d-4795-b077-dd598c8ff2d2",
@@ -1146,7 +1161,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         }
     ],
     "filters": [
@@ -2126,7 +2142,8 @@
         "showTitle": true,
         "enableClientFilters": false,
         "enableAutoDrill": false,
-        "staticFilters": 0
+        "staticFilters": 0,
+        "description": null
     },
     "hideIM": false,
     "metadata": {
