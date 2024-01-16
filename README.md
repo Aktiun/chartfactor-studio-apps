@@ -76,8 +76,18 @@ A published application is available online at https://chartfactor.com/residenti
 
 This application visualizes the National Center for Health Statistics (NCHS) drug poisoning mortality rates by county. We are using a time slider to replay the data over time. A tab on the right side opens a trend chart to compare county trends for counties you select on the map. And the tab below visualizes a heat map for the top 20 counties by drug poisoning mortality across years.
 
-You can access this app live at https://chartfactor.com/NCHS-drug-poisoning-app/. We created this web application using ChartFactor Studio and made sure to give it our own special look and feel.
+You can access this app live at https://chartfactor.com/NCHS-drug-poisoning-app/. 
 
 Data provided by the NCHS and available at https://data.cdc.gov/NCHS/NCHS-Drug-Poisoning-Mortality-by-County-United-Sta/rpvx-m2md
+
+Data engine is OpenSearch, base map tiles provided by OpenStreetMap.
+
+## Medicare Inpatient Hospitals by Provider
+
+This application visualizes the use, payment, and hospital charges for more than 3,000 U.S. hospitals that received IPPS (Inpatient Prospective Payment System) payments in the United States. You can select any hospital and see how its metrics compare to their the national and state frequency distribution.
+
+You can access this app live at https://chartfactor.com/medicare-ip-prov-2021/.
+
+Data provided by the [Centers for Medicare & Medicaid Services](https://data.cms.gov/search?keywords=Medicare%20Inpatient%20Hospitals%20-%20by%20Provider&sort=Relevancy).
 
 Data engine is OpenSearch, base map tiles provided by OpenStreetMap.
