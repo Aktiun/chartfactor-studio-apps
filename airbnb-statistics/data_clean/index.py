@@ -6,13 +6,19 @@ import os
 import csv
 import re
 import logging
+from logging.handlers import RotatingFileHandler #debug
 from elasticsearch.helpers import bulk, streaming_bulk
 from elasticsearch import Elasticsearch, RequestsHttpConnection
 
 logger = logging.getLogger('listings_ny')
 logger.setLevel(logging.INFO)
+log_file = 'abnb_listings.log' #debug
+file_handler = RotatingFileHandler(log_file, maxBytes=10485760, backupCount=5) #debug
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s') #debug
+file_handler.setFormatter(formatter) #debug
 ch = logging.StreamHandler()
 logger.addHandler(ch)
+logger.addHandler(file_handler) #debug
 
 categories_map = {
     "TV": ["TV", "HDTV", "Netflix", "Roku", "Disney+", "Fire TV", "Amazon Prime Video", "Hulu", "premium cable", "Apple TV", "standard cable"],
@@ -54,9 +60,6 @@ def create_index(client, index_name):
             ],
             "properties":
  				{
-				    "@timestamp": {
-				        "type": "date"
-				    },
 				    "accommodates": {
 				        "type": "long"
 				    },
@@ -106,7 +109,6 @@ def create_index(client, index_name):
 				    },
 				    "calendar_last_scraped": {
 				        "type": "date",
-				        "format": "iso8601"
 				    },
 				    "description": {
 				        "type": "keyword",
@@ -114,7 +116,6 @@ def create_index(client, index_name):
 				    },
 				    "first_review": {
 				        "type": "date",
-				        "format": "iso8601"
 				    },
 				    "has_availability": {
 				        "type": "boolean",
@@ -169,7 +170,6 @@ def create_index(client, index_name):
 				    },
 				    "host_since": {
 				        "type": "date",
-				        "format": "iso8601"
 				    },
 				    "host_thumbnail_url": {
 				        "type": "keyword",
@@ -187,7 +187,8 @@ def create_index(client, index_name):
 				        "null_value": "null"
 				    },
 				    "id": {
-				        "type": "long"
+				        "type": "keyword",
+                        "null_value": "null"
 				    },
 				    "instant_bookable": {
 				        "type": "keyword",
@@ -195,11 +196,9 @@ def create_index(client, index_name):
 				    },
 				    "last_review": {
 				        "type": "date",
-				        "format": "iso8601"
 				    },
 				    "last_scraped": {
 				        "type": "date",
-				        "format": "iso8601"
 				    },
 				    "latitude": {
 				        "type": "double"
@@ -312,7 +311,6 @@ def create_index(client, index_name):
 				    },
 				    "scrape_id": {
 				        "type": "date",
-				        "format": "yyyyMMddHHmmss"
 				    },
 				    "source": {
 				        "type": "keyword",
@@ -332,11 +330,14 @@ def get_value(csv_file):
         next(reader)  # skip header
         for r in reader:
             logger.debug(r)
+            if len(r) < 75:  # Expected columns length for listings files IMPORTANT
+                logger.error(f"Row with incorrect columns number: {r}")
+                continue
             doc = {
                 "id": r[0],
 				"listing_url": r[1] if r[1] != '' else None,
-				"scrape_id": r[2],
-				"last_scraped": r[3],
+				"scrape_id": r[2] if r[2] != '' else None,
+				"last_scraped": r[3] if r[3] != '' else None,
 				"source": r[4] if r[4] != '' else None,
 				"name": r[5] if r[5] != '' else None,
 				"description": r[6] if r[6] != '' else None,
@@ -345,7 +346,7 @@ def get_value(csv_file):
 				"host_id": r[9],
 				"host_url": r[10] if r[10] != '' else None,
 				"host_name": r[11] if r[11] != '' else None,
-				"host_since": r[12],
+				"host_since": r[12] if r[12] != '' else None,
 				"host_location": r[13] if r[13] != '' else None,
 				"host_about": r[14] if r[14] != '' else None,
 				"host_response_time": r[15] if r[15] != '' else None,
@@ -360,7 +361,8 @@ def get_value(csv_file):
 				"host_verifications": r[24] if r[24] != '' else None,
 				"host_has_profile_pic": r[25] == "t",
 				"host_identity_verified": r[26] if r[26] != '' else None,
-				"neighbourhood": clean_and_normalize_neighborhood(r[27]) if r[27] != '' else None,
+				# "neighbourhood": clean_and_normalize_neighborhood(r[27]) if r[27] != '' else None,
+				"neighbourhood": r[27] if r[27] != '' else None,
 				"neighbourhood_cleansed": r[28] if r[28] != '' else None,
 				"neighbourhood_group_cleansed": r[29] if r[29] != '' else None,
 				"latitude": r[30],
@@ -391,12 +393,12 @@ def get_value(csv_file):
 				"availability_60": r[52],
 				"availability_90": r[53],
 				"availability_365": r[54],
-				"calendar_last_scraped": r[55],
+				"calendar_last_scraped": r[55] if r[55] != '' else None,
 				"number_of_reviews": r[56],
 				"number_of_reviews_ltm": r[57],
 				"number_of_reviews_l30d": r[58],
-				"first_review": r[59],
-				"last_review": r[60],
+				"first_review": r[59] if r[59] != '' else None,
+				"last_review": r[60] if r[60] != '' else None,
 				"review_scores_rating": r[61],
 				"review_scores_accuracy": r[62],
 				"review_scores_cleanliness": r[63],

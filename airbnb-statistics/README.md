@@ -13,22 +13,25 @@ TODO:
 ### 2. Clean the data
 There are some sub steps that we need to acomplish to complete this step in order to complete this process.
 
-1. go to the root of this project in a terminal, I assume you are in `chartfactor-studio-apps`.
+1. Create a python virtual env: (WIP)
 
-`cd airbnb-statistics`
 
-2. (WIP) Copy all the `.csv.gz` files in any folder, all of them in the same folder (no more than compressed files should live in that forder), and run the python script `uncompress.py`.
+1. go to the data clean folder on this project in a terminal, I assume you are in `chartfactor-studio-apps`.
 
-`python -m data_clean/uncompress.py -s compressed_files_path -d uncompressed_files_path`
+`cd airbnb-statistics/data_clean`
+
+2. Copy all the `.csv.gz` files in any folder, all of them in the same folder (no more than compressed files should live in that forder), and run the python script `unzip.py`.
+
+`python unzip.py -s compressed_files_path -d uncompressed_files_path`
 
 `uncompressed_files_path` could be any location in your machine.
 
-3. (WIP) Join all files in one using
+3. Join all files in one using
 
-`python -m data_clean/join_datasets.py -s uncompressed_files_path -d data_folder_path`
+`python join.py -s uncompressed_files_path`
 
-`data_folder_path` is the path to `data` folder in this project.
+After `join.py` execution, there should be a file named `abnb_listings.csv` in the `data` folder on this project.
 
 3. Index data in ElastikSearch using `index.py`
 
-`python -m data_clean/index.py`
+`python index.py`
