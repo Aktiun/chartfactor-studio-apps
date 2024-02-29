@@ -91,3 +91,15 @@ You can access this app live at https://chartfactor.com/medicare-ip-prov-2021/.
 Data provided by the [Centers for Medicare & Medicaid Services](https://data.cms.gov/search?keywords=Medicare%20Inpatient%20Hospitals%20-%20by%20Provider&sort=Relevancy).
 
 Data engine is OpenSearch, base map tiles provided by OpenStreetMap.
+
+## Medicare Inpatient Hospitals by Service and Provider
+
+This application helps you understand average covered charges and average total payments, as well as other metrics, for different procedures carried out by more than 3,000 U.S. hospitals that received IPPS (Inpatient Prospective Payment System) payments in the United States. 
+
+It also integrates OpenAI-generated explanations that help interpret and explain the currently selected metric and its related distributions. (Please note that this feature requires you to enter your OpenAI API token the first time you use it.)
+
+You can access this app live at https://chartfactor.com/medicare-ip-svc-prov-2021/.
+
+Data provided by the [Centers for Medicare & Medicaid Services](https://data.cms.gov/search?keywords=Medicare%20Inpatient%20Hospitals%20-%20by%20Provider&sort=Relevancy).
+
+Data engine is OpenSearch, base map tiles provided by OpenStreetMap.
