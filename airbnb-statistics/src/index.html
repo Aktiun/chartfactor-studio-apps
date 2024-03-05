@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" style="background: #ececec;">
+
+<head>
+    <meta charset="utf-8">
+    <title>ABNB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/ico" href="./img/favicon.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.4.0/gridstack.min.css"
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+
+    <div class="cf-im">
+        <div class="menu-btn" id="app-menu-btn">
+            <div style="text-align: center">
+                <img src="img/image.png" alt="Logo" style="width: 100%;"/>
+            </div>
+        </div>
+        <div id="im"></div>
+        <div class="app-logo">
+            <div style="line-height: 1;text-align: left;">
+                <span style="font-weight: bold;color: #0071BC;display: block">Air B&B</span>
+                <span style="font-weight: bold;color: #0071BC;display: block">Washington DC, Ney York, Yersey - 2023</span>
+            </div>
+        </div>
+    </div>
+    <div class="main-layout">
+        <div class="app-content">
+            <div id="cf-main-geomap"></div>
+            <div class="grid-stack">
+                <div class="grid-stack-item" data-gs-x="0" data-gs-y="13" data-gs-width="4" data-gs-height="6">
+                    <div class="card-header">
+                        <div class="title-container ui-draggable-handle cft-gen-header">
+                            <div class="widget-title">bathrooms</div>
+                            <div class="fullViewIcon" style="display: none;" title="Full view">
+                                <svg class="triggerFullViewModal" width="16" height="16" xmlns="http://www.w3.org/2000/svg"
+                                    style="cursor: pointer;" data-title="bathrooms" data-widget="cf-histo-bathrooms" fill="#a9a9a9">
+                                    <path stroke="null" id="svg_2"
+                                        d="m3.106463,9.987789l-1.971325,0l0,4.969444l4.928297,0l0,-1.987781l-2.956971,0l0,-2.981663zm-1.971325,-3.975561l1.971325,0l0,-2.981679l2.956971,0l0,-1.987781l-4.928297,0l0,4.96946zm11.827918,6.957224l-2.956988,0l0,1.987781l4.928297,0l0,-4.969444l-1.971309,0l0,2.981663zm-2.956988,-11.926684l0,1.987781l2.956988,0l0,2.981679l1.971309,0l0,-4.96946l-4.928297,0z" />
+                                </svg>
+                            </div>
+                            <div class="loader"></div>
+                        </div>
+                    </div>
+                    <div id="cf-histo-bathrooms" class="grid-stack-item-content-override"></div>
+                </div>
+                <div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="4" data-gs-height="7">
+                    <div class="card-header">
+                        <div class="title-container ui-draggable-handle cft-gen-header">
+                            <div class="widget-title">range filters</div>
+                            <div class="fullViewIcon" style="display: none;" title="Full view">
+                                <svg class="triggerFullViewModal" width="16" height="16" xmlns="http://www.w3.org/2000/svg"
+                                    style="cursor: pointer;" data-title="range filters" data-widget="cf-range-filters"
+                                    fill="#a9a9a9">
+                                    <path stroke="null" id="svg_2"
+                                        d="m3.106463,9.987789l-1.971325,0l0,4.969444l4.928297,0l0,-1.987781l-2.956971,0l0,-2.981663zm-1.971325,-3.975561l1.971325,0l0,-2.981679l2.956971,0l0,-1.987781l-4.928297,0l0,4.96946zm11.827918,6.957224l-2.956988,0l0,1.987781l4.928297,0l0,-4.969444l-1.971309,0l0,2.981663zm-2.956988,-11.926684l0,1.987781l2.956988,0l0,2.981679l1.971309,0l0,-4.96946l-4.928297,0z" />
+                                </svg>
+                            </div>
+                            <div class="loader"></div>
+                        </div>
+                    </div>
+                    <div id="cf-range-filters" class="grid-stack-item-content-override"></div>
+                </div>
+                <div class="grid-stack-item" data-gs-x="6" data-gs-y="19" data-gs-width="6" data-gs-height="13">
+                    <div class="card-header">
+                        <div class="title-container ui-draggable-handle cft-gen-header">
+                            <div class="widget-title">most popular neighborhoods</div>
+                            <div class="fullViewIcon" style="display: none;" title="Full view">
+                                <svg class="triggerFullViewModal" width="16" height="16" xmlns="http://www.w3.org/2000/svg"
+                                    style="cursor: pointer;" data-title="most popular neighborhoods"
+                                    data-widget="cf-treemap-neighborhoods" fill="#a9a9a9">
+                                    <path stroke="null" id="svg_2"
+                                        d="m3.106463,9.987789l-1.971325,0l0,4.969444l4.928297,0l0,-1.987781l-2.956971,0l0,-2.981663zm-1.971325,-3.975561l1.971325,0l0,-2.981679l2.956971,0l0,-1.987781l-4.928297,0l0,4.96946zm11.827918,6.957224l-2.956988,0l0,1.987781l4.928297,0l0,-4.969444l-1.971309,0l0,2.981663zm-2.956988,-11.926684l0,1.987781l2.956988,0l0,2.981679l1.971309,0l0,-4.96946l-4.928297,0z" />
+                                </svg>
+                            </div>
+                            <div class="loader"></div>
+                        </div>
+                    </div>
+                    <div id="cf-treemap-neighborhoods" class="grid-stack-item-content-override"></div>
+                </div>
+                <div class="grid-stack-item" data-gs-x="4" data-gs-y="19" data-gs-width="2" data-gs-height="10">
+                    <div class="card-header">
+                        <div class="title-container ui-draggable-handle cft-gen-header">
+                            <div class="widget-title">amenities filter</div>
+                            <div class="fullViewIcon" style="display: none;" title="Full view">
+                                <svg class="triggerFullViewModal" width="16" height="16" xmlns="http://www.w3.org/2000/svg"
+                                    style="cursor: pointer;" data-title="amenities filter" data-widget="cf-slicer-amenities"
+                                    fill="#a9a9a9">
+                                    <path stroke="null" id="svg_2"
+                                        d="m3.106463,9.987789l-1.971325,0l0,4.969444l4.928297,0l0,-1.987781l-2.956971,0l0,-2.981663zm-1.971325,-3.975561l1.971325,0l0,-2.981679l2.956971,0l0,-1.987781l-4.928297,0l0,4.96946zm11.827918,6.957224l-2.956988,0l0,1.987781l4.928297,0l0,-4.969444l-1.971309,0l0,2.981663zm-2.956988,-11.926684l0,1.987781l2.956988,0l0,2.981679l1.971309,0l0,-4.96946l-4.928297,0z" />
+                                </svg>
+                            </div>
+                            <div class="loader"></div>
+                        </div>
+                    </div>
+                    <div id="cf-slicer-amenities" class="grid-stack-item-content-override"></div>
+                </div>
+                <div class="grid-stack-item" data-gs-x="0" data-gs-y="29" data-gs-width="6" data-gs-height="8">
+                    <div class="card-header">
+                        <div class="title-container ui-draggable-handle cft-gen-header">
+                            <div class="widget-title">price-property</div>
+                            <div class="fullViewIcon" style="display: none;" title="Full view">
+                                <svg class="triggerFullViewModal" width="16" height="16" xmlns="http://www.w3.org/2000/svg"
+                                    style="cursor: pointer;" data-title="price-property"
+                                    data-widget="cf-histo-price-property" fill="#a9a9a9">
+                                    <path stroke="null" id="svg_2"
+                                        d="m3.106463,9.987789l-1.971325,0l0,4.969444l4.928297,0l0,-1.987781l-2.956971,0l0,-2.981663zm-1.971325,-3.975561l1.971325,0l0,-2.981679l2.956971,0l0,-1.987781l-4.928297,0l0,4.96946zm11.827918,6.957224l-2.956988,0l0,1.987781l4.928297,0l0,-4.969444l-1.971309,0l0,2.981663zm-2.956988,-11.926684l0,1.987781l2.956988,0l0,2.981679l1.971309,0l0,-4.96946l-4.928297,0z" />
+                                </svg>
+                            </div>
+                            <div class="loader"></div>
+                        </div>
+                    </div>
+                    <div id="cf-histo-price-property" class="grid-stack-item-content-override"></div>
+                </div>
+                <div class="grid-stack-item" data-gs-x="0" data-gs-y="19" data-gs-width="4" data-gs-height="10">
+                <div class="card-header">
+                    <div class="title-container ui-draggable-handle cft-gen-header">
+                        <div class="widget-title">nh-number_reviews-scores</div>
+                        <div class="fullViewIcon" style="display: none;" title="Full view">
+                            <svg class="triggerFullViewModal" width="16" height="16" xmlns="http://www.w3.org/2000/svg"
+                                style="cursor: pointer;" data-title="nh-number_reviews-scores" data-widget="cf-bubble-nh-reviews-scores"
+                                fill="#a9a9a9">
+                                <path stroke="null" id="svg_2"
+                                    d="m3.106463,9.987789l-1.971325,0l0,4.969444l4.928297,0l0,-1.987781l-2.956971,0l0,-2.981663zm-1.971325,-3.975561l1.971325,0l0,-2.981679l2.956971,0l0,-1.987781l-4.928297,0l0,4.96946zm11.827918,6.957224l-2.956988,0l0,1.987781l4.928297,0l0,-4.969444l-1.971309,0l0,2.981663zm-2.956988,-11.926684l0,1.987781l2.956988,0l0,2.981679l1.971309,0l0,-4.96946l-4.928297,0z" />
+                            </svg>
+                        </div>
+                        <div class="loader"></div>
+                    </div>
+                </div>
+                <div id="cf-bubble-nh-reviews-scores" class="grid-stack-item-content-override"></div>
+                </div>
+                <div class="grid-stack-item" data-gs-x="6" data-gs-y="32" data-gs-width="6" data-gs-height="7">
+                    <div class="card-header">
+                        <div class="title-container ui-draggable-handle cft-gen-header">
+                            <div class="widget-title">amenities price</div>
+                            <div class="fullViewIcon" style="display: none;" title="Full view">
+                                <svg class="triggerFullViewModal" width="16" height="16" xmlns="http://www.w3.org/2000/svg"
+                                    style="cursor: pointer;" data-title="amenities price"
+                                    data-widget="cf-pie-price-by-amenities" fill="#a9a9a9">
+                                    <path stroke="null" id="svg_2"
+                                        d="m3.106463,9.987789l-1.971325,0l0,4.969444l4.928297,0l0,-1.987781l-2.956971,0l0,-2.981663zm-1.971325,-3.975561l1.971325,0l0,-2.981679l2.956971,0l0,-1.987781l-4.928297,0l0,4.96946zm11.827918,6.957224l-2.956988,0l0,1.987781l4.928297,0l0,-4.969444l-1.971309,0l0,2.981663zm-2.956988,-11.926684l0,1.987781l2.956988,0l0,2.981679l1.971309,0l0,-4.96946l-4.928297,0z" />
+                                </svg>
+                            </div>
+                            <div class="loader"></div>
+                        </div>
+                    </div>
+                    <div id="cf-pie-price-by-amenities" class="grid-stack-item-content-override"></div>
+                </div>
+                <div class="grid-stack-item" data-gs-x="0" data-gs-y="7" data-gs-width="4" data-gs-height="6">
+                    <div class="card-header">
+                        <div class="title-container ui-draggable-handle cft-gen-header">
+                            <div class="widget-title">beds</div>
+                            <div class="fullViewIcon" style="display: none;" title="Full view">
+                                <svg class="triggerFullViewModal" width="16" height="16" xmlns="http://www.w3.org/2000/svg"
+                                    style="cursor: pointer;" data-title="beds" data-widget="cf-bars-beds"
+                                    fill="#a9a9a9">
+                                    <path stroke="null" id="svg_2"
+                                        d="m3.106463,9.987789l-1.971325,0l0,4.969444l4.928297,0l0,-1.987781l-2.956971,0l0,-2.981663zm-1.971325,-3.975561l1.971325,0l0,-2.981679l2.956971,0l0,-1.987781l-4.928297,0l0,4.96946zm11.827918,6.957224l-2.956988,0l0,1.987781l4.928297,0l0,-4.969444l-1.971309,0l0,2.981663zm-2.956988,-11.926684l0,1.987781l2.956988,0l0,2.981679l1.971309,0l0,-4.96946l-4.928297,0z" />
+                                </svg>
+                            </div>
+                            <div class="loader"></div>
+                        </div>
+                    </div>
+                    <div id="cf-bars-beds" class="grid-stack-item-content-override"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="grid-stack">
+
+            
+
+            
+
+            
+
+            
+        </div>
+    </div>
+
+    <div id="fullView" class="modal">
+        <div class="modal-header">
+            <div class="modal-header-title">
+                <h3 id="fullViewTitle" style="padding-left: 10px; font-weight: normal;"></h3>
+            </div>
+            <div class="loader loader-fullview"></div>
+            <span id="closeFullViewModal" class="close-icon">&#215;</span>
+        </div>
+        <div class="modal-body">
+            <div id="fullViewBody"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="./js/libs/cftoolkit.min.js?version=4.1.41"></script>
+    <script type="text/javascript" src="./js/libs/cft-elasticsearch-provider.min.js?version=4.1.41"></script>
+    <script type="text/javascript" src="./js/libs/cft-geogl-charts.min.js?version=4.1.41"></script>
+    <script type="text/javascript" src="./js/libs/cft-interactive-charts.min.js?version=4.1.41"></script>
+    <script type="text/javascript" src="./js/libs/cft-standard-charts.min.js?version=4.1.41"></script>
+    <script type="text/javascript" src="./js/libs/cft-tables-charts.min.js?version=4.1.41"></script>
+    <script>
+        window.jQuery = $ = cf.getDependency('jquery');
+        window._ = cf.getDependency('lodash');
+    </script>
+    <script src="./js/util.js?version=1709331973612"></script>
+    <script src="./js/index.js?version=1709331973612"></script>
+    <script type="text/javascript"
+        src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js'></script>
+    <script type="text/javascript"
+        src='https://cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.4.0/gridstack.min.js'></script>
+    <script type="text/javascript"
+        src='https://cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.4.0/gridstack.jQueryUI.min.js'></script>
+    <script src="./js/providers.js"></script>
+    <script src="./js/widgets.js"></script>
+    <script src="./js/event-listeners.js"></script>
+</body>
+
+</html>
