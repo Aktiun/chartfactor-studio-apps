@@ -13,3 +13,15 @@ const resizeObserver = new ResizeObserver((entries) => {
 });
 
 resizeObserver.observe(document.querySelector(".cf-im"));
+
+function toggleGlassPanel() {
+    const panel = document.getElementById('glassPanel');
+    const tab = document.getElementsByClassName('panel-tab')[0];
+    if (panel.style.right === '0px' || panel.style.right === '') {
+      panel.style.right = '-50%';
+      tab.classList.remove('hidden');
+    } else {
+      panel.style.right = '0px';
+      tab.classList.add('hidden');
+    }
+  }

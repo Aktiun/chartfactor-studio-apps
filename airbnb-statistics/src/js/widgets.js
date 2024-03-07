@@ -99,7 +99,8 @@ function loadGeomap(){
         //
         /* Configuration code for this widget */
         const myTooltip = data => {
-          return `<img style="width: 200px" src=${data[6].value} alt="picture" />`;
+          return getTooltipCardHtml(data);
+          // return `<img style="width: 200px" src=${data[6].value} alt="picture" />`;
       };
 
         let myChart = cf
@@ -133,7 +134,7 @@ function loadGeomap(){
                 location: "location",
                 visibilityZoomRange: [11, 24],
                 precisionLevels: null,
-                fields: ["name", "host_name", "bedrooms", "beds", "price", "picture_url"],
+                fields: ["name", "host_name", "bedrooms", "beds", "price", "picture_url", "number_of_reviews", "review_scores_value"],
                 "customTooltip": myTooltip,
               }
             },
@@ -256,7 +257,14 @@ function loadGeomap(){
             window.toggleIndicator(e.element, false)
           )
           .on("execute:start", e => window.toggleIndicator(e.element, true))
-          .on("execute:stop", e => window.toggleIndicator(e.element, false))
+          .on("execute:stop", e => {
+            window.toggleIndicator(e.element, false);
+            let aktiveMap = cf.getVisualization("cf-main-geomap");
+            let geoMap = aktiveMap.get("map");
+            geoMap.on("zoomend", updateBoundsFilter);
+            geoMap.on("moveend", updateBoundsFilter);
+            geoMap.on("dragend", updateBoundsFilter);
+          })
           .on("error", e => handleError(e.element, e.error))
           .execute()
           .catch(ex => {

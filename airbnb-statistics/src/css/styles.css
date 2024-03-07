@@ -481,4 +481,53 @@ body {
 
 #cf-main-geomap {
   height: 100%;
+  max-height: 90vh;
+}
+
+.glass-panel {
+  position: fixed;
+  top: 0;
+  right: -50%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(5px);
+  transition: right 0.5s;
+  z-index: 1000;
+}
+
+.glass-panel-header {
+  padding: 10px;
+  text-align: right;
+}
+
+.glass-panel-content {
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.close-icon {
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.panel-tab {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  width: 50px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.8);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  text-align: center;
+  line-height: 100px;
+  cursor: pointer;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+  z-index: 1001;
+  transform: translate(0, -50%);
+}
+
+.panel-tab.hidden {
+  display: none;
 }

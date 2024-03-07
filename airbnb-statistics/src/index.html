@@ -32,6 +32,15 @@
     <div class="main-layout">
         <div class="app-content">
             <div id="cf-main-geomap"></div>
+            <div id="glassPanel" class="glass-panel">
+                <div class="glass-panel-header">
+                  <span class="close-icon" onclick="toggleGlassPanel()">&#10005;</span>
+                </div>
+                <div class="glass-panel-content">
+                  <div>Panel content</div>
+                </div>
+              </div>
+              <div class="panel-tab" onclick="toggleGlassPanel()">+</div>
             <div class="grid-stack">
                 <div class="grid-stack-item" data-gs-x="0" data-gs-y="13" data-gs-width="4" data-gs-height="6">
                     <div class="card-header">
@@ -172,19 +181,6 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="grid-stack">
-
-            
-
-            
-
-            
-
-            
-        </div>
-    </div>
-
     <div id="fullView" class="modal">
         <div class="modal-header">
             <div class="modal-header-title">
@@ -217,6 +213,8 @@
     <script type="text/javascript"
         src='https://cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.4.0/gridstack.jQueryUI.min.js'></script>
     <script src="./js/providers.js"></script>
+    <script src="./js/tooltip-builder.js"></script>
+    <script src="./js/geomap-helper.js"></script>
     <script src="./js/widgets.js"></script>
     <script src="./js/event-listeners.js"></script>
 </body>
