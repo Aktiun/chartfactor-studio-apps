@@ -24,7 +24,7 @@
             "source": {
                 "name": "mup_ihp_ry23_p03_v10_dy21_prvsvc_lat_lon",
                 "provider": {
-                    "name": "Elastic Local",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -34,7 +34,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Elastic Local\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"mup_ihp_ry23_p03_v10_dy21_prvsvc_lat_lon\");",
                 "let metric0 = cf.Metric(\"Avg_Tot_Pymt_Amt\", \"avg\").hideFunction();",
                 "let metricColor = cf.Metric(\"Avg_Tot_Pymt_Amt\", \"avg\").hideFunction();",
@@ -110,7 +110,7 @@
             "source": {
                 "name": "mup_ihp_ry23_p03_v10_dy21_prvsvc_lat_lon",
                 "provider": {
-                    "name": "Elastic Local",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -127,7 +127,7 @@
                 "            \"name\": \"Providers\",\r",
                 "            \"priority\": 5,\r",
                 "            \"type\": \"circle\",\r",
-                "            \"provider\": \"Elastic Local\",\r",
+                "            \"provider\": \"Elasticsearch\",\r",
                 "            \"source\": \"mup_ihp_ry23_p03_v10_dy21_prvsvc_lat_lon\",\r",
                 "            \"properties\": {\r",
                 "                \"legend\": \"top-right\",\r",
@@ -157,7 +157,7 @@
                 "            \"name\": \"States\",\r",
                 "            \"priority\": 2,\r",
                 "            \"type\": \"shape\",\r",
-                "            \"provider\": \"Elastic Local\",\r",
+                "            \"provider\": \"Elasticsearch\",\r",
                 "            \"source\": \"mup_ihp_ry23_p03_v10_dy21_prvsvc_lat_lon\",\r",
                 "            \"properties\": {\r",
                 "                \"shapes\": [\r",
@@ -229,21 +229,21 @@
             "staticFilters": 0,
             "description": "This chart displays the average total payment amounts based on the rendering provider's city. It provides insights into payment discrepancies between different cities.",
             "layersProviders": [
-                "Elastic Local"
+                "Elasticsearch"
             ],
             "layerSources": [
                 {
                     "name": "Providers",
                     "layerType": "circle",
                     "source": "mup_ihp_ry23_p03_v10_dy21_prvsvc_lat_lon",
-                    "provider": "Elastic Local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 },
                 {
                     "name": "States",
                     "layerType": "shape",
                     "source": "mup_ihp_ry23_p03_v10_dy21_prvsvc_lat_lon",
-                    "provider": "Elastic Local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             ]
@@ -299,7 +299,7 @@
             "source": {
                 "name": "mup_ihp_ry23_p03_v10_dy21_prvsvc_lat_lon",
                 "provider": {
-                    "name": "Elastic Local",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -309,7 +309,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Elastic Local\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"mup_ihp_ry23_p03_v10_dy21_prvsvc_lat_lon\");",
                 "let myChart = source.graph(\"Field Selector\")",
                 "    .set(\"fields\", [\"Avg_Mdcr_Pymt_Amt\", \"Avg_Submtd_Cvrd_Chrg\", \"Avg_Tot_Pymt_Amt\", \"Tot_Dschrgs\"])",
@@ -362,7 +362,7 @@
             "source": {
                 "name": "mup_ihp_ry23_p03_v10_dy21_prvsvc_lat_lon",
                 "provider": {
-                    "name": "Elastic Local",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -471,7 +471,7 @@
                 "        return { color: \"white\", bgcolor: \"#00577A\" }; // Color 5",
                 "    }",
                 "}",
-                "let provider = cf.provider(\"Elastic Local\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"mup_ihp_ry23_p03_v10_dy21_prvsvc_lat_lon\");",
                 "// Declare your fields (do not remove this comment line)",
                 "const fields = [",
@@ -623,7 +623,7 @@
             "source": {
                 "name": "mup_ihp_ry23_p03_v10_dy21_prvsvc_lat_lon",
                 "provider": {
-                    "name": "Elastic Local",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -633,7 +633,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Elastic Local\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"mup_ihp_ry23_p03_v10_dy21_prvsvc_lat_lon\");",
                 "let myChart = source.graph(\"Field Selector\")",
                 "    .set(\"fields\", [\"Avg_Mdcr_Pymt_Amt\", \"Avg_Submtd_Cvrd_Chrg\", \"Avg_Tot_Pymt_Amt\", \"Tot_Dschrgs\"])",
@@ -757,7 +757,7 @@
     },
     "hideIM": false,
     "metadata": {
-        "Elastic Local": [
+        "Elasticsearch": [
             "let _META_ = {\r",
             "    \"mup_ihp_ry23_p03_v10_dy21_prvsvc_lat_lon\": {\r",
             "        \"count\": {\r",
@@ -834,8 +834,8 @@
         "active": true,
         "id": "a94cc173-3948-418b-a251-f40decabaec0",
         "isLocal": true,
-        "name": "Elastic Local",
+        "name": "Elasticsearch",
         "provider": "elasticsearch",
-        "url": "http://localhost:9200/"
+        "url": "https://chartfactor.com/elastic/"
     }
 ]

@@ -1,10 +1,12 @@
 {
-    "id": "1a161041-740c-484e-b286-e7df32f72b60",
+    "id": "6b704b21-8c3f-41d2-b18d-96c854f83e7d",
     "name": "Ticket Sales",
-    "description": "Application developed using CF Studio",
+    "description": "This dashboard visualizes ticket sales activity for the fictional TICKIT web site, where users buy and sell tickets online for different types of events. The Ticket Sales table is derived from the Amazon’s Sample Database for Redshift.",
     "state": "home",
     "readOnly": false,
     "hasBorder": true,
+    "isSampleApp": true,
+    "thumbnailPath": "data/ticket_sales.png",
     "widgetList": [
         {
             "id": "vis160c8d45-d95e-4a8c-8eb7-f2791a55bc7d",
@@ -64,7 +66,10 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis7c365b9b-e0c3-4267-b32f-ad64679e6fa1",
@@ -117,7 +122,10 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis1322a0cd-6a6b-437d-a5f0-dc7b03f0b8d1",
@@ -185,7 +193,10 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "visd6617fcf-400b-4d1c-83b9-809003bd6303",
@@ -230,7 +241,10 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis6712e9ad-787f-48e1-8ca3-7ce31f148fc0",
@@ -288,7 +302,10 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis9b01e10b-1210-45b3-9d20-853a3ddfca85",
@@ -332,7 +349,10 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "vis79cda086-5dfb-44c9-8ccb-e372f2373f44",
@@ -377,7 +397,10 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         },
         {
             "id": "visc7bf0852-eee2-4e40-a24a-76ccfe9baf55",
@@ -439,7 +462,10 @@
                 ""
             ],
             "showUI": false,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0
         }
     ],
     "filters": [],
@@ -479,7 +505,10 @@
         ],
         "showUI": false,
         "syncedFields": [],
-        "showTitle": true
+        "showTitle": true,
+        "enableClientFilters": false,
+        "enableAutoDrill": false,
+        "staticFilters": 0
     },
     "hideIM": false,
     "metadata": {

@@ -1,5 +1,5 @@
 {
-    "id": "8500f639-98ba-4890-b4d2-1f04447ded4a",
+    "id": "a653a344-49a9-4f25-b8b2-7e88ad5e3a97",
     "name": "Residential Real Estate Inventory - State and County – Monthly",
     "description": "This application visualizes monthly residential real estate inventory at the state and county levels. It was created using ChartFactor Studio and converted into a web application using its 'Generate web app' feature. It includes drill-ins across tables, metric selector, consistent color palette across trend, bars, and word cloud visualizations, plus advanced interaction rules, between many other features.",
     "state": "home",
@@ -24,7 +24,7 @@
             "source": {
                 "name": "realtor_monthly_inventory_state_all",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -32,12 +32,12 @@
                 "let filter103 = cf.Filter(\"@timestamp\")",
                 "    .label(\"Date\")",
                 "    .operation(\"BETWEEN\")",
-                "    .value([\"2023-06-01 00:00:00.000\", \"2023-06-30 23:59:59.999\"]);",
+                "    .value([\"2024-02-01 00:00:00.000\", \"2024-02-29 23:59:59.999\"]);",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"realtor_monthly_inventory_state_all\");",
                 "let metric0 = cf.Metric(\"active_listing_count\", \"avg\").hideFunction();",
-                "let group1 = cf.Attribute(\"state_name\")",
+                "let group1 = cf.Attribute(\"state_name.keyword\")",
                 "    .limit(1000)",
                 "    .sort(\"desc\", metric0);",
                 "// Add metrics and groups to data source",
@@ -63,7 +63,8 @@
             "showTitle": false,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "visd866065a-6e14-4ee7-8fda-97fc0e045be4",
@@ -81,13 +82,13 @@
             "source": {
                 "name": "realtor_monthly_inventory_state_all",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"realtor_monthly_inventory_state_all\");",
                 "let myChart = source.graph(\"Field Selector\")",
                 "    .set(\"type\", [\"NUMBER\", \"INTEGER\", \"PERCENT\"])",
@@ -110,7 +111,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "visea48ba8c-d0ca-4ad3-b8a5-031be7c4cdf2",
@@ -128,7 +130,7 @@
             "source": {
                 "name": "realtor_monthly_inventory_state_all",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -136,13 +138,13 @@
                 "let filter103 = cf.Filter(\"@timestamp\")",
                 "    .label(\"Date\")",
                 "    .operation(\"BETWEEN\")",
-                "    .value([\"2023-06-01 00:00:00.000\", \"2023-06-30 23:59:59.999\"]);",
+                "    .value([\"2024-02-01 00:00:00.000\", \"2024-02-29 23:59:59.999\"]);",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let sourceName = \"realtor_monthly_inventory_state_all\";",
                 "let source = provider.source(sourceName);",
                 "let metric0 = cf.Metric(\"active_listing_count\", \"avg\").hideFunction();",
-                "let group1 = cf.Attribute(\"state_name\")",
+                "let group1 = cf.Attribute(\"state_name.keyword\")",
                 "    .limit(1000)",
                 "    .sort(\"desc\", metric0);",
                 "// Add metrics and groups to data source",
@@ -176,15 +178,16 @@
             "showTitle": false,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis167b9a90-cd9b-438f-b94f-7ec8f6a38ce4",
             "layout": {
                 "w": 3,
-                "h": 9,
+                "h": 10,
                 "x": 9,
-                "y": 5,
+                "y": 4,
                 "i": "vis167b9a90-cd9b-438f-b94f-7ec8f6a38ce41",
                 "moved": false,
                 "static": false
@@ -194,7 +197,7 @@
             "source": {
                 "name": "realtor_monthly_inventory_state_all",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -202,12 +205,12 @@
                 "let filter103 = cf.Filter(\"@timestamp\")",
                 "    .label(\"Date\")",
                 "    .operation(\"BETWEEN\")",
-                "    .value([\"2023-06-01 00:00:00.000\", \"2023-06-30 23:59:59.999\"]);",
+                "    .value([\"2024-02-01 00:00:00.000\", \"2024-02-29 23:59:59.999\"]);",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"realtor_monthly_inventory_state_all\");",
                 "let metric0 = cf.Metric(\"active_listing_count\", \"avg\").hideFunction();",
-                "let group1 = cf.Attribute(\"state_name\")",
+                "let group1 = cf.Attribute(\"state_name.keyword\")",
                 "    .limit(1000)",
                 "    .sort(\"desc\", metric0);",
                 "// Add metrics and groups to data source",
@@ -230,7 +233,8 @@
             "showTitle": false,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "viscd081f6f-221f-4a7e-be45-fbf320bda1b0",
@@ -252,7 +256,7 @@
                 "// Define options",
                 "let aktive = cf.create();",
                 "let myChart = aktive.graph(\"Markup\")",
-                "    .set(\"content\", {\"ops\":[{\"attributes\":{\"header\":6},\"insert\":\"\\n\"},{\"insert\":\"This application uses \"},{\"attributes\":{\"link\":\"https://chartfactor.com/\"},\"insert\":\"chartFactor\"},{\"insert\":\" embedded analytics to visualize the State and County Monthly inventory data published by \"},{\"attributes\":{\"link\":\"https://realtor.com/\"},\"insert\":\"realtor.com\"},{\"insert\":\" on its residential listings database.\"},{\"attributes\":{\"header\":5},\"insert\":\"\\n\\n\"},{\"attributes\":{\"color\":\"#141412\"},\"insert\":\"Realtor.com usually publishes this data the first week of the month with market statistics of the previous month. \"},{\"attributes\":{\"header\":5},\"insert\":\"\\n\"}]})",
+                "    .set(\"content\", {\"ops\":[{\"insert\":\"This application uses \"},{\"attributes\":{\"link\":\"https://chartfactor.com/\"},\"insert\":\"chartFactor\"},{\"insert\":\" embedded analytics to visualize the State and County Monthly inventory data published by \"},{\"attributes\":{\"link\":\"https://realtor.com/\"},\"insert\":\"realtor.com\"},{\"insert\":\" on its residential listings database.\\n\\n\"},{\"attributes\":{\"color\":\"#141412\"},\"insert\":\"Realtor.com usually publishes this data the first week of the month with market statistics of the previous month. \"},{\"insert\":\"\\n\"}]})",
                 "    .set(\"enable\", false)",
                 "    .set(\"background\", \"white\")",
                 "    .set(\"lock\", false)",
@@ -263,7 +267,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "visbb93a343-c976-4edc-966c-8eb0eb2dd71c",
@@ -281,7 +286,7 @@
             "source": {
                 "name": "realtor_monthly_inventory_state_all",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -289,15 +294,15 @@
                 "let filter103 = cf.Filter(\"@timestamp\")",
                 "    .label(\"Date\")",
                 "    .operation(\"BETWEEN\")",
-                "    .value([\"2023-06-01 00:00:00.000\", \"2023-06-30 23:59:59.999\"]);",
+                "    .value([\"2024-02-01 00:00:00.000\", \"2024-02-29 23:59:59.999\"]);",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"realtor_monthly_inventory_state_all\");",
                 "let metric0 = cf.Metric(\"active_listing_count\", \"avg\").hideFunction();",
                 "let group1 = cf.Attribute(\"@timestamp\")",
                 "    .limit(1000).func(\"MONTH\")",
                 "    .sort(\"asc\", \"@timestamp\");",
-                "let group2 = cf.Attribute(\"state_name\")",
+                "let group2 = cf.Attribute(\"state_name.keyword\")",
                 "    .limit(100)",
                 "    .sort(\"desc\", metric0);",
                 "// Add metrics and groups to data source",
@@ -329,7 +334,8 @@
             "showTitle": false,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis559ddb78-30ad-4481-8faa-ea22e067f9be",
@@ -347,7 +353,7 @@
             "source": {
                 "name": "realtor_monthly_inventory_state_all",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -355,9 +361,9 @@
                 "let filter103 = cf.Filter(\"@timestamp\")",
                 "    .label(\"Date\")",
                 "    .operation(\"BETWEEN\")",
-                "    .value([\"2023-06-01 00:00:00.000\", \"2023-06-30 23:59:59.999\"]);",
+                "    .value([\"2024-02-01 00:00:00.000\", \"2024-02-29 23:59:59.999\"]);",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"realtor_monthly_inventory_state_all\");",
                 "let grid = cf.Grid().right(20).left(10);",
                 "// Define the time field to be used",
@@ -395,7 +401,8 @@
             "showTitle": false,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis99502ae6-a490-473e-a261-b57f656b1d6e",
@@ -413,7 +420,7 @@
             "source": {
                 "name": "realtor_monthly_inventory_state_all",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -421,17 +428,17 @@
                 "let filter103 = cf.Filter(\"@timestamp\")",
                 "    .label(\"Date\")",
                 "    .operation(\"BETWEEN\")",
-                "    .value([\"2023-06-01 00:00:00.000\", \"2023-06-30 23:59:59.999\"]);",
+                "    .value([\"2024-02-01 00:00:00.000\", \"2024-02-29 23:59:59.999\"]);",
                 "// Interaction Manager uses filter(), filters(), clientFilter(),",
                 "// and clientFilters() to manage filters. To apply additional",
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"realtor_monthly_inventory_state_all\");",
                 "// Declare your fields (do not remove this comment line)",
                 "const fields = [",
-                "    cf.Field(\"state_name\", \"State Name\"),",
+                "    cf.Field(\"state_name.keyword\", \"State Name\"),",
                 "    cf.Field(\"active_listing_count\", \"Active listings\"),",
                 "    cf.Field(\"active_listing_count_mm\", \"% change in active listings w/prev month\"),",
                 "    cf.Field(\"active_listing_count_yy\", \"% change in active listings w/prev year\"),",
@@ -484,7 +491,7 @@
                 "let myChart = myData.graph(\"Raw Data Table\")",
                 "    .set(\"color\", color)",
                 "    .set(\"columnFilters\", [",
-                "    { field: \"state_name\", component: \"slicer\" },",
+                "    { field: \"state_name.keyword\", component: \"slicer\" },",
                 "    { field: \"active_listing_count\", component: \"slicer\" },",
                 "    { field: \"active_listing_count_mm\", component: \"range\" },",
                 "    { field: \"active_listing_count_yy\", component: \"range\" },",
@@ -520,43 +527,47 @@
                 "])",
                 "    .set(\"autoSizeColumns\", true)",
                 "    .limit(100)",
-                "    .set(\"columnStats\", { enabled: true, height: 70, widgetProps: [",
-                "        { field: \"state_name\", props: { color: histogramColor } },",
+                "    .set(\"columnStats\", {",
+                "    enabled: true,",
+                "    height: 70,",
+                "    widgetProps: [",
+                "        { field: \"state_name.keyword\", props: { color: histogramColor } },",
                 "        { field: \"active_listing_count\", props: { color: histogramColor } },",
-                "        { field: \"active_listing_count_mm\", props: { color: histogramColor } },",
-                "        { field: \"active_listing_count_yy\", props: { color: histogramColor } },",
+                "        { field: \"active_listing_count_mm\", component: \"range\" },",
+                "        { field: \"active_listing_count_yy\", component: \"range\" },",
                 "        { field: \"average_listing_price\", props: { color: histogramColor } },",
-                "        { field: \"average_listing_price_mm\", props: { color: histogramColor } },",
-                "        { field: \"average_listing_price_yy\", props: { color: histogramColor } },",
+                "        { field: \"average_listing_price_mm\", component: \"range\" },",
+                "        { field: \"average_listing_price_yy\", component: \"range\" },",
                 "        { field: \"median_days_on_market\", props: { color: histogramColor } },",
-                "        { field: \"median_days_on_market_mm\", props: { color: histogramColor } },",
-                "        { field: \"median_days_on_market_yy\", props: { color: histogramColor } },",
+                "        { field: \"median_days_on_market_mm\", component: \"range\" },",
+                "        { field: \"median_days_on_market_yy\", component: \"range\" },",
                 "        { field: \"median_listing_price\", props: { color: histogramColor } },",
-                "        { field: \"median_listing_price_mm\", props: { color: histogramColor } },",
+                "        { field: \"median_listing_price_mm\", component: \"range\" },",
                 "        { field: \"median_listing_price_per_square_feet\", props: { color: histogramColor } },",
-                "        { field: \"median_listing_price_per_square_feet_mm\", props: { color: histogramColor } },",
-                "        { field: \"median_listing_price_per_square_feet_yy\", props: { color: histogramColor } },",
-                "        { field: \"median_listing_price_yy\", props: { color: histogramColor } },",
+                "        { field: \"median_listing_price_per_square_feet_mm\", component: \"range\" },",
+                "        { field: \"median_listing_price_per_square_feet_yy\", component: \"range\" },",
+                "        { field: \"median_listing_price_yy\", component: \"range\" },",
                 "        { field: \"median_square_feet\", props: { color: histogramColor } },",
-                "        { field: \"median_square_feet_mm\", props: { color: histogramColor } },",
-                "        { field: \"median_square_feet_yy\", props: { color: histogramColor } },",
+                "        { field: \"median_square_feet_mm\", component: \"range\" },",
+                "        { field: \"median_square_feet_yy\", component: \"range\" },",
                 "        { field: \"month_date_yyyymm\", props: { color: histogramColor } },",
                 "        { field: \"new_listing_count\", props: { color: histogramColor } },",
-                "        { field: \"new_listing_count_mm\", props: { color: histogramColor } },",
-                "        { field: \"new_listing_count_yy\", props: { color: histogramColor } },",
+                "        { field: \"new_listing_count_mm\", component: \"range\" },",
+                "        { field: \"new_listing_count_yy\", component: \"range\" },",
                 "        { field: \"pending_listing_count\", props: { color: histogramColor } },",
-                "        { field: \"pending_listing_count_mm\", props: { color: histogramColor } },",
-                "        { field: \"pending_listing_count_yy\", props: { color: histogramColor } },",
+                "        { field: \"pending_listing_count_mm\", component: \"range\" },",
+                "        { field: \"pending_listing_count_yy\", component: \"range\" },",
                 "        { field: \"price_increased_count\", props: { color: histogramColor } },",
-                "        { field: \"price_increased_count_mm\", props: { color: histogramColor } },",
-                "        { field: \"price_increased_count_yy\", props: { color: histogramColor } },",
+                "        { field: \"price_increased_count_mm\", component: \"range\" },",
+                "        { field: \"price_increased_count_yy\", component: \"range\" },",
                 "        { field: \"price_reduced_count\", props: { color: histogramColor } },",
-                "        { field: \"price_reduced_count_mm\", props: { color: histogramColor } },",
-                "        { field: \"price_reduced_count_yy\", props: { color: histogramColor } },",
+                "        { field: \"price_reduced_count_mm\", component: \"range\" },",
+                "        { field: \"price_reduced_count_yy\", component: \"range\" },",
                 "        { field: \"@timestamp\", props: { color: histogramColor } }",
-                "    ] })",
+                "    ]",
+                "})",
                 "    .set(\"columnsWidth\", [",
-                "    { \"state_name\": 157 },",
+                "    { \"state_name.keyword\": 157 },",
                 "    { \"active_listing_count\": 192 },",
                 "    { \"active_listing_count_mm\": 221 },",
                 "    { \"active_listing_count_yy\": 173 },",
@@ -598,7 +609,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis4cd4900d-9f2e-4e55-af26-f36f0f794866",
@@ -616,7 +628,7 @@
             "source": {
                 "name": "realtor_monthly_inventory_county_all",
                 "provider": {
-                    "name": "Aktiun Elastic",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -624,13 +636,13 @@
                 "let filter103 = cf.Filter(\"@timestamp\")",
                 "    .label(\"Date\")",
                 "    .operation(\"BETWEEN\")",
-                "    .value([\"2023-06-01 00:00:00.000\", \"2023-06-30 23:59:59.999\"]);",
+                "    .value([\"2024-02-01 00:00:00.000\", \"2024-02-29 23:59:59.999\"]);",
                 "// Interaction Manager uses filter(), filters(), clientFilter(),",
                 "// and clientFilters() to manage filters. To apply additional",
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Aktiun Elastic\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"realtor_monthly_inventory_county_all\");",
                 "// Declare your fields (do not remove this comment line)",
                 "const fields = [",
@@ -741,39 +753,39 @@
                 "        { field: \"state_name\", props: { color: histogramColor } },",
                 "        { field: \"county_name\", props: { color: histogramColor } },",
                 "        { field: \"active_listing_count\", props: { color: histogramColor } },",
-                "        { field: \"active_listing_count_mm\", props: { color: histogramColor } },",
-                "        { field: \"active_listing_count_yy\", props: { color: histogramColor } },",
+                "        { field: \"active_listing_count_mm\", component: \"range\" },",
+                "        { field: \"active_listing_count_yy\", component: \"range\" },",
                 "        { field: \"average_listing_price\", props: { color: histogramColor } },",
-                "        { field: \"average_listing_price_mm\", props: { color: histogramColor } },",
-                "        { field: \"average_listing_price_yy\", props: { color: histogramColor } },",
+                "        { field: \"average_listing_price_mm\", component: \"range\" },",
+                "        { field: \"average_listing_price_yy\", component: \"range\" },",
                 "        { field: \"median_days_on_market\", props: { color: histogramColor } },",
-                "        { field: \"median_days_on_market_mm\", props: { color: histogramColor } },",
-                "        { field: \"median_days_on_market_yy\", props: { color: histogramColor } },",
+                "        { field: \"median_days_on_market_mm\", component: \"range\" },",
+                "        { field: \"median_days_on_market_yy\", component: \"range\" },",
                 "        { field: \"median_listing_price\", props: { color: histogramColor } },",
-                "        { field: \"median_listing_price_mm\", props: { color: histogramColor } },",
+                "        { field: \"median_listing_price_mm\", component: \"range\" },",
                 "        { field: \"median_listing_price_per_square_feet\", props: { color: histogramColor } },",
-                "        { field: \"median_listing_price_per_square_feet_mm\", props: { color: histogramColor } },",
-                "        { field: \"median_listing_price_per_square_feet_yy\", props: { color: histogramColor } },",
-                "        { field: \"median_listing_price_yy\", props: { color: histogramColor } },",
+                "        { field: \"median_listing_price_per_square_feet_mm\", component: \"range\" },",
+                "        { field: \"median_listing_price_per_square_feet_yy\", component: \"range\" },",
+                "        { field: \"median_listing_price_yy\", component: \"range\" },",
                 "        { field: \"median_square_feet\", props: { color: histogramColor } },",
-                "        { field: \"median_square_feet_mm\", props: { color: histogramColor } },",
-                "        { field: \"median_square_feet_yy\", props: { color: histogramColor } },",
+                "        { field: \"median_square_feet_mm\", component: \"range\" },",
+                "        { field: \"median_square_feet_yy\", component: \"range\" },",
                 "        { field: \"month_date_yyyymm\", props: { color: histogramColor } },",
                 "        { field: \"new_listing_count\", props: { color: histogramColor } },",
-                "        { field: \"new_listing_count_mm\", props: { color: histogramColor } },",
-                "        { field: \"new_listing_count_yy\", props: { color: histogramColor } },",
+                "        { field: \"new_listing_count_mm\", component: \"range\" },",
+                "        { field: \"new_listing_count_yy\", component: \"range\" },",
                 "        { field: \"pending_listing_count\", props: { color: histogramColor } },",
-                "        { field: \"pending_listing_count_mm\", props: { color: histogramColor } },",
-                "        { field: \"pending_listing_count_yy\", props: { color: histogramColor } },",
+                "        { field: \"pending_listing_count_mm\", component: \"range\" },",
+                "        { field: \"pending_listing_count_yy\", component: \"range\" },",
                 "        { field: \"pending_ratio\", props: { color: histogramColor } },",
                 "        { field: \"pending_ratio_mm\", props: { color: histogramColor } },",
                 "        { field: \"pending_ratio_yy\", props: { color: histogramColor } },",
                 "        { field: \"price_increased_count\", props: { color: histogramColor } },",
-                "        { field: \"price_increased_count_mm\", props: { color: histogramColor } },",
-                "        { field: \"price_increased_count_yy\", props: { color: histogramColor } },",
+                "        { field: \"price_increased_count_mm\", component: \"range\" },",
+                "        { field: \"price_increased_count_yy\", component: \"range\" },",
                 "        { field: \"price_reduced_count\", props: { color: histogramColor } },",
-                "        { field: \"price_reduced_count_mm\", props: { color: histogramColor } },",
-                "        { field: \"price_reduced_count_yy\", props: { color: histogramColor } },",
+                "        { field: \"price_reduced_count_mm\", component: \"range\" },",
+                "        { field: \"price_reduced_count_yy\", component: \"range\" },",
                 "        { field: \"total_listing_count\", props: { color: histogramColor } },",
                 "        { field: \"total_listing_count_mm\", props: { color: histogramColor } },",
                 "        { field: \"total_listing_count_yy\", props: { color: histogramColor } },",
@@ -829,14 +841,15 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "visac5c7dc9-c10e-44e3-9d9f-9c713f01aded",
             "isMarkup": true,
             "layout": {
                 "w": 3,
-                "h": 3,
+                "h": 2,
                 "x": 9,
                 "y": 2,
                 "i": "visac5c7dc9-c10e-44e3-9d9f-9c713f01aded1",
@@ -863,7 +876,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         }
     ],
     "filters": [
@@ -874,18 +888,18 @@
             "coexistent": true,
             "operation": "BETWEEN",
             "value": [
-                "2023-06-01 00:00:00.000",
-                "2023-06-30 23:59:59.999"
+                "2024-02-01 00:00:00.000",
+                "2024-02-29 23:59:59.999"
             ],
             "relative": false,
             "presetValue": false,
             "isTextFilter": false,
-            "alias": null,
             "type": null,
+            "alias": null,
             "granularity": "MONTH",
             "source": {
                 "name": "realtor_monthly_inventory_state_all",
-                "provider": "Aktiun Elastic",
+                "provider": "Elasticsearch",
                 "id": "realtor_monthly_inventory_state_all",
                 "reference": "realtor_monthly_inventory_state_all"
             },
@@ -4270,7 +4284,7 @@
             "const drill = {",
             "    [viz1]: {",
             "        group1: [{",
-            "                field: \"state_name\",",
+            "                field: \"state_name.keyword\",",
             "                default: {",
             "                    source: state_source,",
             "                    shape: \"usa\",",
@@ -4563,7 +4577,7 @@
             "    },",
             "    [viz2]: {",
             "        group1: [{",
-            "                field: \"state_name\",",
+            "                field: \"state_name.keyword\",",
             "                default: {",
             "                    source: state_source,",
             "                    color: cf.Color().match(window.STATE_COLORS)",
@@ -4578,7 +4592,7 @@
             "    },",
             "    [viz3]: {",
             "        group1: [{",
-            "                field: \"state_name\",",
+            "                field: \"state_name.keyword\",",
             "                default: {",
             "                    source: state_source,",
             "                    color: cf.Color().match(window.STATE_COLORS)",
@@ -4593,7 +4607,7 @@
             "    },",
             "    [viz5]: {",
             "        group2: [{",
-            "                field: \"state_name\",",
+            "                field: \"state_name.keyword\",",
             "                default: {",
             "                    source: state_source,",
             "                    color: cf.Color().match(window.STATE_COLORS)",
@@ -4645,7 +4659,8 @@
         "showTitle": true,
         "enableClientFilters": false,
         "enableAutoDrill": false,
-        "staticFilters": 0
+        "staticFilters": 0,
+        "description": null
     },
     "hideIM": false,
     "metadata": {
@@ -4768,7 +4783,7 @@
             "}",
             ""
         ],
-        "Aktiun Elastic": [
+        "Elasticsearch": [
             "let _META_ = {",
             "    realtor_monthly_inventory_state_all: {",
             "        count: {",
@@ -4778,7 +4793,7 @@
             "            \"@timestamp\": {",
             "                label: \"Date\"",
             "            },",
-            "            state_name: {",
+            "            \"state_name.keyword\": {",
             "                label: \"State Name\"",
             "            },",
             "            active_listing_count: {",
@@ -5026,10 +5041,11 @@
     "customQueries": {}
 }||||[
     {
-        "name": "Aktiun Elastic",
+        "name": "Elasticsearch",
         "url": "https://chartfactor.com/elastic",
         "active": true,
         "provider": "elasticsearch",
-        "id": "3581c374-5faa-40ab-abf1-a8f3421e2c3b"
+        "isLocal": true,
+        "id": "516f7a22-3426-4c0c-b903-774a2adbfefb"
     }
 ]

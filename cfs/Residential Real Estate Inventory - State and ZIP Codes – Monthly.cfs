@@ -1,10 +1,12 @@
 {
-    "id": "1aebd6ce-5563-4802-956d-78bea39a521c",
+    "id": "c4293d78-a73d-4e2f-8492-f38deeb2a907",
     "name": "Residential Real Estate Inventory - State and ZIP Codes – Monthly",
-    "description": "Application developed using CF Studio",
+    "description": "With this application, you can visualize monthly residential real estate inventory at the state and ZIP code levels. You can then navigate to available listings at realtor.com using the red Realtor.com button. This app was generated using ChartFactor Studio and styled for a special look/feel. It includes drill-ins for state and ZIP codes, a search widget, trends for active listings and median listing prices, range filtering, and more.",
     "state": "favorite",
     "readOnly": false,
     "hasBorder": true,
+    "isSampleApp": true,
+    "thumbnailPath": "data/residential_real_estate_inventory_state_zip_codes_monthly.png",
     "widgetList": [
         {
             "id": "viscd3e6f65-86b8-4ea0-a12d-6caa275a0715",
@@ -38,9 +40,12 @@
                 "            \"name\": \"Median listing prices\",\r",
                 "            \"priority\": 2,\r",
                 "            \"type\": \"shape\",\r",
-                "            \"provider\": \"cxairlines\",\r",
+                "            \"provider\": \"Elasticsearch\",\r",
                 "            \"source\": \"realtor_monthly_inventory_state_all\",\r",
                 "            \"properties\": {\r",
+                "                \"filters\": [\r",
+                "                    cf.Filter(\"month_date_yyyymm\").label(\"Date\").operation(\"BETWEEN\").value([\"2024-02-01 00:00:00.000\", \"2024-02-29 23:59:59.999\"])\r",
+                "                ],\r",
                 "                \"legend\": \"right\",\r",
                 "                \"shapes\": [\r",
                 "                    {\r",
@@ -48,9 +53,6 @@
                 "                        \"shapeOpacity\": 0.8,\r",
                 "                        \"name\": \"State name\"\r",
                 "                    }\r",
-                "                ],\r",
-                "                \"filters\": [\r",
-                "                    cf.Filter(\"month_date_yyyymm\").label(\"Date\").operation(\"BETWEEN\").value([\"2023-04-01 00:00:00.000\", \"2023-04-30 23:59:59.999\"])\r",
                 "                ],\r",
                 "                \"visibilityZoomRange\": [0, 24],\r",
                 "                \"limit\": 10000,\r",
@@ -99,8 +101,18 @@
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
+            "description": null,
             "layersProviders": [
-                "cxairlines"
+                "Elasticsearch"
+            ],
+            "layerSources": [
+                {
+                    "name": "Median listing prices",
+                    "layerType": "shape",
+                    "source": "realtor_monthly_inventory_state_all",
+                    "provider": "Elasticsearch",
+                    "type": "elasticsearch"
+                }
             ]
         },
         {
@@ -119,7 +131,7 @@
             "source": {
                 "name": "realtor_monthly_inventory_state_all",
                 "provider": {
-                    "name": "cxairlines",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -127,13 +139,13 @@
                 "let filter235 = cf.Filter(\"month_date_yyyymm\")",
                 "    .label(\"Date\")",
                 "    .operation(\"BETWEEN\")",
-                "    .value([\"2023-04-01 00:00:00.000\", \"2023-04-30 23:59:59.999\"]);",
+                "    .value([\"2024-02-01 00:00:00.000\", \"2024-02-29 23:59:59.999\"]);",
                 "// Interaction Manager uses filter(), filters(), clientFilter(),",
                 "// and clientFilters() to manage filters. To apply additional",
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"cxairlines\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"realtor_monthly_inventory_state_all\");",
                 "// Declare your fields (do not remove this comment line)",
                 "const fields = [",
@@ -294,7 +306,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis97fc7894-ab11-4d73-b235-1a62fdc6232f",
@@ -312,7 +325,7 @@
             "source": {
                 "name": "realtor_monthly_inventory_zip_all",
                 "provider": {
-                    "name": "cxairlines",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -320,13 +333,13 @@
                 "let filter235 = cf.Filter(\"month_date_yyyymm\")",
                 "    .label(\"Date\")",
                 "    .operation(\"BETWEEN\")",
-                "    .value([\"2023-04-01 00:00:00.000\", \"2023-04-30 23:59:59.999\"]);",
+                "    .value([\"2024-02-01 00:00:00.000\", \"2024-02-29 23:59:59.999\"]);",
                 "// Interaction Manager uses filter(), filters(), clientFilter(),",
                 "// and clientFilters() to manage filters. To apply additional",
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"cxairlines\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"realtor_monthly_inventory_zip_all\");",
                 "// Declare your fields (do not remove this comment line)",
                 "const fields = [",
@@ -478,7 +491,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis0f4dd4a0-c57e-46e7-9535-2c988cca1f6a",
@@ -496,7 +510,7 @@
             "source": {
                 "name": "realtor_monthly_inventory_zip_all",
                 "provider": {
-                    "name": "cxairlines",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -514,7 +528,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"cxairlines\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"realtor_monthly_inventory_zip_all\");",
                 "// Define metrics",
                 "let metrics = [",
@@ -540,7 +554,8 @@
             "showTitle": false,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 2
+            "staticFilters": 2,
+            "description": null
         },
         {
             "id": "vis2ba9dada-b601-426c-b3bf-aa17ea7302b5",
@@ -558,7 +573,7 @@
             "source": {
                 "name": "realtor_monthly_inventory_country_all",
                 "provider": {
-                    "name": "cxairlines",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -566,13 +581,13 @@
                 "let filter235 = cf.Filter(\"month_date_yyyymm\")",
                 "    .label(\"Date\")",
                 "    .operation(\"BETWEEN\")",
-                "    .value([\"2023-04-01 00:00:00.000\", \"2023-04-30 23:59:59.999\"]);",
+                "    .value([\"2024-02-01 00:00:00.000\", \"2024-02-29 23:59:59.999\"]);",
                 "// Interaction Manager uses filter(), filters(), clientFilter(),",
                 "// and clientFilters() to manage filters. To apply additional",
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"cxairlines\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"realtor_monthly_inventory_country_all\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"active_listing_count\", \"sum\").hideFunction();",
@@ -614,7 +629,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "visc2c2be67-cf94-473a-882b-6fc02775d0aa",
@@ -632,7 +648,7 @@
             "source": {
                 "name": "realtor_monthly_inventory_country_all",
                 "provider": {
-                    "name": "cxairlines",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -640,13 +656,13 @@
                 "let filter235 = cf.Filter(\"month_date_yyyymm\")",
                 "    .label(\"Date\")",
                 "    .operation(\"BETWEEN\")",
-                "    .value([\"2023-04-01 00:00:00.000\", \"2023-04-30 23:59:59.999\"]);",
+                "    .value([\"2024-02-01 00:00:00.000\", \"2024-02-29 23:59:59.999\"]);",
                 "// Interaction Manager uses filter(), filters(), clientFilter(),",
                 "// and clientFilters() to manage filters. To apply additional",
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"cxairlines\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"realtor_monthly_inventory_country_all\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"median_listing_price\", \"avg\").hideFunction();",
@@ -688,7 +704,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis6793eebd-f8b8-4a84-b0fa-354c49748af7",
@@ -706,7 +723,7 @@
             "source": {
                 "name": "realtor_monthly_inventory_country_all",
                 "provider": {
-                    "name": "cxairlines",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -714,13 +731,13 @@
                 "let filter235 = cf.Filter(\"month_date_yyyymm\")",
                 "    .label(\"Date\")",
                 "    .operation(\"BETWEEN\")",
-                "    .value([\"2023-04-01 00:00:00.000\", \"2023-04-30 23:59:59.999\"]);",
+                "    .value([\"2024-02-01 00:00:00.000\", \"2024-02-29 23:59:59.999\"]);",
                 "// Interaction Manager uses filter(), filters(), clientFilter(),",
                 "// and clientFilters() to manage filters. To apply additional",
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"cxairlines\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"realtor_monthly_inventory_country_all\");",
                 "let metric0 = cf.Metric(\"active_listing_count\", \"sum\").hideFunction();",
                 "// Define Color config",
@@ -758,7 +775,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis78b7a215-b920-481e-a9cf-7581bb851ed3",
@@ -776,7 +794,7 @@
             "source": {
                 "name": "realtor_monthly_inventory_zip_all",
                 "provider": {
-                    "name": "cxairlines",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -784,13 +802,13 @@
                 "let filter235 = cf.Filter(\"month_date_yyyymm\")",
                 "    .label(\"Date\")",
                 "    .operation(\"BETWEEN\")",
-                "    .value([\"2023-04-01 00:00:00.000\", \"2023-04-30 23:59:59.999\"]);",
+                "    .value([\"2024-02-01 00:00:00.000\", \"2024-02-29 23:59:59.999\"]);",
                 "// Interaction Manager uses filter(), filters(), clientFilter(),",
                 "// and clientFilters() to manage filters. To apply additional",
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"cxairlines\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"realtor_monthly_inventory_zip_all\");",
                 "let grid = cf.Grid().right(20).left(10);",
                 "// Define the time field to be used",
@@ -827,7 +845,8 @@
             "showTitle": false,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "viscc91856e-13da-46da-9309-54d4edb82040",
@@ -850,7 +869,7 @@
                 "// Define options",
                 "let aktive = cf.create();",
                 "let myChart = aktive.graph(\"Markup\")",
-                "\t.set(\"content\", {\"ops\":[{\"attributes\":{\"header\":6},\"insert\":\"\\n\"},{\"insert\":\"This application uses \"},{\"attributes\":{\"link\":\"https://chartfactor.com/\"},\"insert\":\"chartFactor\"},{\"insert\":\" embedded analytics to visualize the State and County Monthly inventory data published by \"},{\"attributes\":{\"link\":\"https://realtor.com/\"},\"insert\":\"realtor.com\"},{\"insert\":\" on its residential listings database.\"},{\"attributes\":{\"header\":5},\"insert\":\"\\n\\n\"},{\"attributes\":{\"color\":\"#141412\"},\"insert\":\"Realtor.com usually publishes this data the first week of the month with market statistics of the previous month. \"},{\"attributes\":{\"header\":5},\"insert\":\"\\n\"},{\"insert\":\"\\n\"}]})",
+                "\t.set(\"content\", {\"ops\":[{\"insert\":\"This application uses \"},{\"attributes\":{\"link\":\"https://chartfactor.com/\"},\"insert\":\"chartFactor\"},{\"insert\":\" embedded analytics to visualize the State and County Monthly inventory data published by \"},{\"attributes\":{\"link\":\"https://realtor.com/\"},\"insert\":\"realtor.com\"},{\"insert\":\" on its residential listings database.\"},{\"attributes\":{\"header\":5},\"insert\":\"\\n\\n\"},{\"attributes\":{\"color\":\"#141412\"},\"insert\":\"Realtor.com usually publishes this data the first week of the month with market statistics of the previous month. \"},{\"attributes\":{\"header\":5},\"insert\":\"\\n\"},{\"insert\":\"\\n\"}]})",
                 "\t.set(\"enable\", false)",
                 "\t.set(\"background\", \"white\")",
                 "\t.set(\"lock\", false)",
@@ -862,7 +881,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         }
     ],
     "filters": [
@@ -873,16 +893,17 @@
             "coexistent": true,
             "operation": "BETWEEN",
             "value": [
-                "2023-04-01 00:00:00.000",
-                "2023-04-30 23:59:59.999"
+                "2024-02-01 00:00:00.000",
+                "2024-02-29 23:59:59.999"
             ],
             "relative": false,
             "presetValue": false,
             "isTextFilter": false,
+            "type": null,
             "granularity": "MONTH",
             "source": {
                 "name": "realtor_monthly_inventory_zip_all",
-                "provider": "cxairlines",
+                "provider": "Elasticsearch",
                 "id": "realtor_monthly_inventory_zip_all",
                 "reference": "realtor_monthly_inventory_zip_all"
             },
@@ -931,7 +952,7 @@
                     "granularity": "MONTH",
                     "source": {
                         "name": "realtor_monthly_inventory_zip_all",
-                        "provider": "cxairlines",
+                        "provider": "Elasticsearch",
                         "id": "realtor_monthly_inventory_zip_all",
                         "reference": "realtor_monthly_inventory_zip_all"
                     },
@@ -1027,7 +1048,7 @@
                     "granularity": "MONTH",
                     "source": {
                         "name": "realtor_monthly_inventory_zip_all",
-                        "provider": "cxairlines",
+                        "provider": "Elasticsearch",
                         "id": "realtor_monthly_inventory_zip_all",
                         "reference": "realtor_monthly_inventory_zip_all"
                     },
@@ -1123,7 +1144,7 @@
                     "granularity": "MONTH",
                     "source": {
                         "name": "realtor_monthly_inventory_zip_all",
-                        "provider": "cxairlines",
+                        "provider": "Elasticsearch",
                         "id": "realtor_monthly_inventory_zip_all",
                         "reference": "realtor_monthly_inventory_zip_all"
                     },
@@ -1326,11 +1347,12 @@
         "showTitle": true,
         "enableClientFilters": false,
         "enableAutoDrill": false,
-        "staticFilters": 0
+        "staticFilters": 0,
+        "description": null
     },
     "hideIM": false,
     "metadata": {
-        "cxairlines": [
+        "Elasticsearch": [
             "let _META_ = {\r",
             "    \"realtor_monthly_inventory_country_all\": {\r",
             "        \"fields\": {\r",
@@ -1800,6 +1822,14 @@
     "customQueries": {}
 }||||[
     {
+        "name": "Elasticsearch",
+        "url": "https://chartfactor.com/elastic",
+        "active": true,
+        "provider": "elasticsearch",
+        "isLocal": true,
+        "id": "516f7a22-3426-4c0c-b903-774a2adbfefb"
+    },
+    {
         "name": "BigQuery",
         "clientId": "268751109809-vvk3e2a2cr3o107g747rn9rjb5cv1s6q.apps.googleusercontent.com",
         "active": true,
@@ -1807,13 +1837,5 @@
         "projectId": "tidal-solstice-206117",
         "otherProjects": "",
         "id": "44f7bbf3-981a-464f-a32a-726e330b6184"
-    },
-    {
-        "name": "cxairlines",
-        "url": "https://chartfactor.com/vcairlines",
-        "active": true,
-        "provider": "elasticsearch",
-        "isLocal": true,
-        "id": "516f7a22-3426-4c0c-b903-774a2adbfefb"
     }
 ]

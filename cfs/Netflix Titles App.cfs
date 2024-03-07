@@ -1,10 +1,11 @@
 {
-    "id": "d6681fea-7017-43a7-9a0c-3f55a7d9df9a",
+    "id": "dd1af423-8580-4d29-9bd4-185cd471f01a",
     "name": "Netflix Titles App",
-    "description": "Application developed using CF Studio",
+    "description": "This application visualizes the Netflix Movies and TV Shows dataset provided by Shivam Bansal in Kaggle. You can filer by any table column value and by any visualization shape. This app was created using ChartFactor Studio and generated into a web application using Studio's Generate Web App feature.",
     "state": "home",
     "readOnly": false,
     "hasBorder": true,
+    "isSampleApp": true,
     "thumbnailPath": "data/netflix_titles_app.png",
     "widgetList": [
         {
@@ -23,7 +24,7 @@
             "source": {
                 "name": "netflix_titles",
                 "provider": {
-                    "name": "ChartFactor Elastic",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -33,7 +34,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"ChartFactor Elastic\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"netflix_titles\");",
                 "// Declare your fields (do not remove this comment line)",
                 "const fields = [",
@@ -115,7 +116,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis4ef4742b-16f9-4908-9cbc-4f6a8ff9e90e",
@@ -133,7 +135,7 @@
             "source": {
                 "name": "netflix_titles",
                 "provider": {
-                    "name": "ChartFactor Elastic",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -143,7 +145,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"ChartFactor Elastic\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"netflix_titles\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
@@ -199,7 +201,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis4b037b87-4c1f-4ced-ae7c-3aca77c659a0",
@@ -217,7 +220,7 @@
             "source": {
                 "name": "netflix_titles",
                 "provider": {
-                    "name": "ChartFactor Elastic",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -227,7 +230,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"ChartFactor Elastic\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"netflix_titles\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
@@ -283,7 +286,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis9c418dec-740e-4b36-adc3-307ba77e38cf",
@@ -301,7 +305,7 @@
             "source": {
                 "name": "netflix_titles",
                 "provider": {
-                    "name": "ChartFactor Elastic",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -311,7 +315,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"ChartFactor Elastic\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"netflix_titles\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
@@ -359,7 +363,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "visbd7d8234-5457-4abc-bb34-964b3724a7f7",
@@ -377,7 +382,7 @@
             "source": {
                 "name": "netflix_titles",
                 "provider": {
-                    "name": "ChartFactor Elastic",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -387,7 +392,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"ChartFactor Elastic\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"netflix_titles\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
@@ -428,7 +433,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "visd7706deb-02a7-45bc-b310-dd238c7ece6a",
@@ -446,7 +452,7 @@
             "source": {
                 "name": "netflix_titles",
                 "provider": {
-                    "name": "ChartFactor Elastic",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -456,7 +462,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"ChartFactor Elastic\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"netflix_titles\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
@@ -498,7 +504,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "visa146a09c-6b85-4e40-a6ca-dba6147f644e",
@@ -516,7 +523,7 @@
             "source": {
                 "name": "netflix_titles",
                 "provider": {
-                    "name": "ChartFactor Elastic",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -538,7 +545,8 @@
             "showTitle": true,
             "enableClientFilters": false,
             "enableAutoDrill": false,
-            "staticFilters": 0
+            "staticFilters": 0,
+            "description": null
         }
     ],
     "filters": [],
@@ -577,15 +585,16 @@
         "showTitle": true,
         "enableClientFilters": false,
         "enableAutoDrill": false,
-        "staticFilters": 0
+        "staticFilters": 0,
+        "description": null
     },
     "hideIM": false,
     "metadata": {
-        "ChartFactor Elastic": [
+        "Elasticsearch": [
             "let _META_ = {\r",
             "    \"netflix_titles\": {\r",
             "        \"count\": {\r",
-            "          \"label\": \"Titles\"\r",
+            "            \"label\": \"Titles\"\r",
             "        },\r",
             "        \"fields\": {\r",
             "            \"type\": {\r",
@@ -615,10 +624,10 @@
     "customQueries": {}
 }||||[
     {
-        "name": "ChartFactor Elastic",
-        "url": "https://chartfactor.com/vcairlines",
+        "name": "Elasticsearch",
+        "url": "https://chartfactor.com/elastic",
         "active": true,
         "provider": "elasticsearch",
-        "id": "73500ec4-291a-46ac-b185-6b68992c6bd7"
+        "id": "07b3d2ad-c8f0-486c-b276-c604c5a2cfd9"
     }
 ]

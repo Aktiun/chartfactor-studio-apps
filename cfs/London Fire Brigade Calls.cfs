@@ -1,10 +1,12 @@
 {
-    "id": "b714029c-79da-453a-abc9-a7cab87ed40c",
+    "id": "1635467a-056a-4c5c-88e8-78b93d9581f0",
     "name": "London Fire Brigade Calls",
-    "description": "Application developed using CF Studio",
+    "description": "This application consists of 32K calls to the London Fire Brigade from January 01 to April 30 2017. This illustrates how you can embed visual analytics into your data applications with ChartFactor using basic Html, Css and Javascript.",
     "state": "home",
     "readOnly": false,
     "hasBorder": true,
+    "isSampleApp": true,
+    "thumbnailPath": "data/london_fire_brigade.jpg",
     "widgetList": [
         {
             "id": "vis9474ce9b-061d-410c-96b9-a5c76dc98580",
@@ -22,42 +24,56 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Elastic Demo",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
             "code": [
+                "// Interaction Manager uses filter(), filters(), clientFilter(),",
+                "// and clientFilters() to manage filters. To apply additional",
+                "// filters, use staticFilters() or your code could be overwritten.",
+                "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Elastic Demo\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"london_fire_brigade\");",
-                "//Configuration for grid",
-                "let grid = cf.Grid().left(10).right(15).bottom(10).top(10);",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
+                "let metricColor = cf.Metric(\"count\");",
                 "// Define attributes to group by",
-                "let group1 = cf.Attribute(\"incident_group\")",
+                "let group1 = cf.Attribute(\"stop_code_description\")",
                 "    .limit(100)",
-                "    .sort(\"desc\", metric0);",
-                "let group2 = cf.Attribute(\"stop_code_description\")",
+                "    .sort(\"desc\", cf.Metric());",
+                "let group2 = cf.Attribute(\"incident_group\")",
                 "    .limit(100)",
-                "    .sort(\"desc\", metric0);",
+                "    .sort(\"desc\", cf.Metric());",
                 "// Add metrics and groups to data source",
-                "let myData = source.groupby(group1, group2)",
+                "let myData = source.groupby(group1).colgroupby(group2)",
                 "    .metrics(metric0);",
-                "// Color",
-                "var color = cf.Color();",
-                "var palette = [\"#ccebc5\", \"#a8ddb5\", \"#7bccc4\", \"#4eb3d3\", \"#2b8cbe\", \"#08589e\"].reverse();",
-                "color.palette(palette);",
-                "color.metric(metric0);",
-                "// Define chart options",
+                "// --- Define chart options and static filters ---",
+                "// Define Grid",
+                "let grid = cf.Grid()",
+                "    .top(10)",
+                "    .right(15)",
+                "    .bottom(10)",
+                "    .left(10);",
+                "// Define Color Palette",
+                "let color = cf.Color()",
+                "    .palette([\"#08589e\", \"#2b8cbe\", \"#4eb3d3\", \"#7bccc4\", \"#a8ddb5\", \"#ccebc5\"])",
+                "    .metric(metricColor);",
                 "let myChart = myData.graph(\"Heat Map\")",
+                "    .set(\"color\", color)",
+                "    .set(\"showValues\", true)",
                 "    .set(\"grid\", grid)",
                 "    .set(\"color\", color)",
                 "    .execute();",
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "visb1b8baf1-bc9c-4b9f-b9bb-c5ace2c922e5",
@@ -75,13 +91,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Elastic Demo",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Elastic Demo\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"london_fire_brigade\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
@@ -115,7 +131,11 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis60c6edf7-8afe-4f10-a93b-8a8c6317a792",
@@ -133,13 +153,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Elastic Demo",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Elastic Demo\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"london_fire_brigade\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
@@ -170,7 +190,11 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis01e57239-b314-408f-bf02-2108dd33532c",
@@ -188,13 +212,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Elastic Demo",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Elastic Demo\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"london_fire_brigade\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
@@ -226,7 +250,11 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis52c9c3c2-60bd-4c62-84c8-628f4e4239bc",
@@ -244,7 +272,7 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Elastic Demo",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -254,7 +282,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Elastic Demo\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"london_fire_brigade\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
@@ -285,7 +313,11 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "visc1b80ca7-5f80-4f9d-8948-a5de1afdfac1",
@@ -303,13 +335,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Elastic Demo",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Elastic Demo\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"london_fire_brigade\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
@@ -332,7 +364,11 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis123f9e5c-eccd-499a-a717-671de3d1df4d",
@@ -350,13 +386,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Elastic Demo",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Elastic Demo\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"london_fire_brigade\");",
                 "//Configuration for grid",
                 "let grid = cf.Grid().left(70).right(15).bottom(50).top(50);",
@@ -385,7 +421,11 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis16c6abb3-2555-49ea-8bcc-c653ba766b0b",
@@ -402,13 +442,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Elastic Demo",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Elastic Demo\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"london_fire_brigade\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric();",
@@ -423,7 +463,11 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis1ed186e9-6d7d-4054-9f8d-dbc608cdeeed",
@@ -441,13 +485,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Elastic Demo",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Elastic Demo\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"london_fire_brigade\");",
                 "//Configuration for grid",
                 "let grid = cf.Grid().left(70).right(15).bottom(50).top(50);",
@@ -476,7 +520,11 @@
                 ""
             ],
             "showUI": false,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis94f658d5-2208-46cc-861c-9a21122a4d84",
@@ -506,7 +554,11 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis09c6c285-cca6-49a0-aa9c-bb1016e68ced",
@@ -536,7 +588,11 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis6fd2b98d-a318-4a99-80da-123ba9ed1519",
@@ -566,7 +622,11 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis1c8512dc-10e3-4450-836d-c4314581dfcd",
@@ -584,13 +644,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Elastic Demo",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Elastic Demo\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"london_fire_brigade\");",
                 "//Configuration for grid",
                 "let grid = cf.Grid().left(80).right(35).bottom(50).top(35);",
@@ -620,7 +680,11 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis16871325-1233-4d19-9131-04417825c9bb",
@@ -638,13 +702,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Elastic Demo",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Elastic Demo\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"london_fire_brigade\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"first_response_mins_avg\");",
@@ -683,7 +747,11 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis4f109de4-d882-43a6-b31d-fabb64faaf8b",
@@ -701,13 +769,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Elastic Demo",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Elastic Demo\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"london_fire_brigade\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"first_response_mins_avg\");",
@@ -746,7 +814,11 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis0c2b240d-283a-4790-82e5-d61145545593",
@@ -764,13 +836,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Elastic Demo",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Elastic Demo\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"london_fire_brigade\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"second_response_min_avg\");",
@@ -809,7 +881,11 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis59e921bf-08db-45d1-b1d1-7e4edc6712fc",
@@ -827,13 +903,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Elastic Demo",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Elastic Demo\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"london_fire_brigade\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
@@ -858,7 +934,11 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis574abc1f-38de-44a1-bb10-0602e382ce3b",
@@ -876,13 +956,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Elastic Demo",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Elastic Demo\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"london_fire_brigade\");",
                 "// Declare your fields (do not remove this comment line)",
                 "const fields = [",
@@ -1011,7 +1091,11 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "vis01440f40-b9dc-4521-91e3-473fa42d2eba",
@@ -1029,13 +1113,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Elastic Demo",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Elastic Demo\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"london_fire_brigade\");",
                 "//Configuration for grid",
                 "let grid = cf.Grid().left(80).right(80).bottom(65).top(0);",
@@ -1056,7 +1140,11 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": false
+            "showTitle": false,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "viscf0f2e5b-b9ac-42e9-837c-4c08f6113555",
@@ -1074,13 +1162,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Elastic Demo",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Elastic Demo\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"london_fire_brigade\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric();",
@@ -1107,7 +1195,11 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0,
+            "description": null
         },
         {
             "id": "visf6306f3c-1d74-4d84-89a9-cd20113734c3",
@@ -1125,13 +1217,13 @@
             "source": {
                 "name": "london_fire_brigade",
                 "provider": {
-                    "name": "Elastic Demo",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
             "code": [
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Elastic Demo\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"london_fire_brigade\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric();",
@@ -1148,7 +1240,11 @@
                 ""
             ],
             "showUI": true,
-            "showTitle": true
+            "showTitle": true,
+            "enableClientFilters": false,
+            "enableAutoDrill": false,
+            "staticFilters": 0,
+            "description": null
         }
     ],
     "filters": [],
@@ -1207,11 +1303,15 @@
         ],
         "showUI": false,
         "syncedFields": [],
-        "showTitle": true
+        "showTitle": true,
+        "enableClientFilters": false,
+        "enableAutoDrill": false,
+        "staticFilters": 0,
+        "description": null
     },
     "hideIM": false,
     "metadata": {
-        "Elastic Demo": [
+        "Elasticsearch": [
             "let lfb_DateOfWeek = {",
             "    'name': 'day_of_week',",
             "    'label': 'Day Of Week',",
@@ -1311,10 +1411,10 @@
     "customQueries": {}
 }||||[
     {
-        "name": "Elastic Demo",
+        "name": "Elasticsearch",
         "url": "https://chartfactor.com/elastic",
         "active": true,
         "provider": "elasticsearch",
-        "id": "ad692b94-4677-482b-b546-7dbb7a86ea07"
+        "id": "07b3d2ad-c8f0-486c-b276-c604c5a2cfd9"
     }
 ]
