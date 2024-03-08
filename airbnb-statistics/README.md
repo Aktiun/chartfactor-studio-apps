@@ -33,3 +33,5 @@ There are some sub steps that we need to acomplish to complete this step in orde
 This will download the files, unzip, join and index in elastiksearch.
 The process would take around 10 minutes.
 The logs for this process are written to `abnb_listings_log` in `data_clean` folder.
+
+When the process finishes, you could delete all the files in `tmp_compressed`, `tmp_unzipped`, `tmp_downloaded` and also you can delete the file `abnb_listings.csv` in `data` folder.
