@@ -10,7 +10,7 @@ from logging.handlers import RotatingFileHandler #debug
 from elasticsearch.helpers import bulk, streaming_bulk
 from elasticsearch import Elasticsearch, RequestsHttpConnection
 
-logger = logging.getLogger('listings_ny')
+logger = logging.getLogger('listings_abnb')
 logger.setLevel(logging.INFO)
 log_file = 'abnb_listings.log' #debug
 file_handler = RotatingFileHandler(log_file, maxBytes=10485760, backupCount=5) #debug
@@ -456,6 +456,10 @@ def index(es, index_name, csv_file):
 def main():
     es = Elasticsearch()
     index(es, 'abnb_listings', '../data/abnb_listings.csv')
+
+def index_data(csv_file_path):
+	es = Elasticsearch()
+	index(es, 'abnb_listings', csv_file_path)
 
 if __name__ == "__main__":
     main()

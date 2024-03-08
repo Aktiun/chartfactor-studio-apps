@@ -2,6 +2,9 @@ import os
 import gzip
 import shutil
 import argparse
+import logging
+
+logger = logging.getLogger("listings_abnb")
 
 def unzip_gz_file(source_path, dest_path):
     """
@@ -21,7 +24,7 @@ def process_directory(source_dir, dest_dir):
             dest_filename = filename[:-3]
             dest_path = os.path.join(dest_dir, dest_filename)
             unzip_gz_file(source_path, dest_path)
-            print(f"Unzipped file: {dest_path}")
+            logger.info(f"Unzipped file: {dest_path}")
 
 def main():
     parser = argparse.ArgumentParser(description='Unzip files .csv.gz from a source path to a destination path.')

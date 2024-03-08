@@ -1,13 +1,10 @@
 # datasets
-.csv
-.gz
+*.csv
+*.gz
 
 # temp folders
 __pycache__/
 .ipynb_checkpoints/
-
-tmp_compressed/
-tmp_uncompressed/
 
 # venv
 venv/
