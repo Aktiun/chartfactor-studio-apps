@@ -168,14 +168,15 @@ window.addEventListener("load", function() {
   // Load charts
   loadInteractionManager();
   loadGeomap();
-  loadBathroomsHistogram();
-  loadRangeFilters();
-  loadPopularNeighborhoods();
-  loadAmenitiesFilter();
-  loadPropertiesPerPriceHistogram();
-  loadNeighborhoodsByReviewsBubbleChart();
-  loadPriceByAmenitiesPieChart();
-  loadBedsByProperty();
+  loadActivityByPropertyType();
+  // loadBathroomsHistogram();
+  // loadRangeFilters();
+  // loadPopularNeighborhoods();
+  // loadAmenitiesFilter();
+  // loadPropertiesPerPriceHistogram();
+  // loadNeighborhoodsByReviewsBubbleChart();
+  // loadPriceByAmenitiesPieChart();
+  // loadBedsByProperty();
 
   (function() {
     const IM = cf.getIManager();

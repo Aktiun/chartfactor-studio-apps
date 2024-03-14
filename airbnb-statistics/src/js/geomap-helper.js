@@ -1,5 +1,4 @@
 
-
 const updateBoundsFilter = () => {
     let aktiveInstance = cf.getVisualization("cf-main-geomap")
     let map = aktiveInstance.get("map")
@@ -10,17 +9,13 @@ const updateBoundsFilter = () => {
     let sw = {"lng":nw.lng, "lat":se.lat};
     let center = bounds.getCenter();
 
-    console.log(`NW: ${nw.lat}, ${nw.lng}`);
-    console.log(`NE: ${ne.lat}, ${ne.lng}`);
-    console.log(`SE: ${se.lat}, ${se.lng}`);
-    console.log(`SW: ${sw.lat}, ${sw.lng}`);
-    console.log(`Center: ${center.lat}, ${center.lng}`);
-
     let filterBoundaries = [[nw.lng, nw.lat], [ne.lng, ne.lat], [se.lng, se.lat], [sw.lng, sw.lat], [nw.lng, nw.lat]];
 
     let boundaryFilter = cf.Filter("location").label("bound").type("POLYGON").operation("IN").value(filterBoundaries);
 
-    let manager = cf.getIManager();
-    let api = manager.get("api");
-    api.updateFilters([boundaryFilter]);
+    cf.getAllVisualizations().filter(c => {
+        return !c._isAktiveLayer && !["im", "cf-main-geomap"].includes(c._elementId);
+    }).forEach(c => {
+        c.staticFilters(boundaryFilter).execute();
+    });
 }

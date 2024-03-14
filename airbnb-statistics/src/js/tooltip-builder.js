@@ -1,7 +1,7 @@
-const getPrice = (price) => {
+const getPrice = (price, minimum_nights) => {
     price = parseFloat(price);
     if (price > 0) {
-       return `$${price}`
+       return `$${price}/night, ${minimum_nights} night min`;
     } else {
         return 'Price not available';
     }
@@ -88,7 +88,7 @@ const getTooltipCardHtml = (data) => {
     `;
     template = template.replace("{{imageUrl}}", data[6].value);
     template = template.replace("{{name}}", data[1].value);
-    template = template.replace("{{price}}", getPrice(data[5].value));
+    template = template.replace("{{price}}", getPrice(data[5].value, data[9].value));
     template = template.replace("{{reviews}}", data[7].value);
     template = template.replace("{{stars}}", getStars(data[8].value));
 
