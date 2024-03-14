@@ -470,6 +470,7 @@ body {
           "header header"
           "left main";
   height: 100vh;
+  padding-bottom: 10px;
 }
 
 #cf-interaction-manager {
@@ -530,12 +531,33 @@ body {
   margin-bottom: 20px;
   height: auto;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  /* box-shadow: 0 2px 4px rgba(0,0,0,0.1); */
   border-radius: 5px;
+  /* box-sizing: border-box; */  
+}
+
+.widget-visualization {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
   box-sizing: border-box;
 }
 
-#cf-activity {
+.widget-description {
+  padding: 10px;
+  font-size: small;
+  line-height: 1.5;
+  color: #333;
+  text-align: justify;
+}
+
+.widget-visualization-container{
+  display: grid;
+  grid-template-columns: [visualization]55% [statistics]45%;
+}
+
+#cf-roomType {
   height: 100%;
-  border-radius: 10px;
+  /* border-radius: 10px; */
+  background-color: rgba(255, 255, 255, 0.8);
 }

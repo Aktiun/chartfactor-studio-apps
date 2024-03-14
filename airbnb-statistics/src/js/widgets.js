@@ -4,7 +4,7 @@ const widgetsTitleId = [
       title: "abnb ny, wdc, jersey",
       id: "cf-main-geomap"
     },
-    { title: "bathrooms", id: "visba6d179c-94cb-4f0f-848a-e884f2253c8a" },
+    { title: "roomType", id: "cf-roomType" },
     { title: "range filters", id: "vis8ee433d1-85a6-43bb-92da-ccde73f4f184" },
     {
       title: "most popular neighborhoods",
@@ -40,15 +40,15 @@ const widgetsTitleId = [
 function loadInteractionManager(){
     const elementId = "im";
       try {
-        let viz3 = getId("beds");
-        let viz2 = getId("amenities price");
-        let viz5 = getId("amenities filter");
-        let viz1 = getId("most popular neighborhoods");
+        let viz3 = getId("roomType");
+        // let viz2 = getId("amenities price");
+        // let viz5 = getId("amenities filter");
+        // let viz1 = getId("most popular neighborhoods");
         let rules1 = {
-          [viz3]: { clientFilters: false },
-          [viz2]: { clientFilters: false },
-          [viz5]: { clientFilters: false },
-          [viz1]: { clientFilters: false }
+          [viz3]: { clientFilters: true },
+          // [viz2]: { clientFilters: false },
+          // [viz5]: { clientFilters: false },
+          // [viz1]: { clientFilters: false }
         };
         /* Configuration code for the Interaction Manager*/
         // Drill hierarchy and rule settings can be done like this:
@@ -293,8 +293,8 @@ function loadGeomap(){
       }
 }
 
-function loadActivityByPropertyType() {
-  const elementId = "cf-activity";
+function loadPropertyType() {
+  const elementId = "cf-roomType";
   try {
     let provider = cf.provider("local");
     let source = provider.source("abnb_listings");
@@ -311,23 +311,35 @@ function loadActivityByPropertyType() {
     // --- Define chart options and static filters ---
     // Define Grid
     let grid = cf.Grid()
-      .top(10)
-      .right(15)
-      .bottom(35)
-      .left(10);
+      .top(0)
+      .right(5)
+      .bottom(0)
+      .left(0);
     // Define Color Palette
     let color = cf.Color()
+      // .theme({ background:'rgb(255 255 255 / 80%)', font: 'black' })
       .palette(["#ff0000", "#ff8000", "#6437db", "#478509", "#00ff00", "#00ff80", "#00ffff", "#0080ff", "#0000ff", "#8000ff", "#ff00ff", "#ff0080"]);
     let myChart = myData.graph("Bars")
       .set("grid", grid)
       .set("color", color)
       .set("orientation", "horizontal")
-      .set("xAxis", { "show": true, "lines": true })
-      .set("yAxis", { "text": "out" })
+      .set("axisLabels", false)
+      .set("xAxis", { "show": true, "lines": false })
+      .set("yAxis", { "text": "out", "lines": false })
       .set("dataZoom", false)
       .set("serieLabel", {
         "show": true,
         "fontWeight": "bold"
+      })
+      .on("execute:stop", () => {
+        // TODO: test code, use statistics from chart
+        var htmlString = createInfoHtmlString(
+          { percentage: '53.2', count: '20,853' },
+          { percentage: '44.8', count: '17,543' },
+          { percentage: '1.4', count: '537' },
+          { percentage: '0.7', count: '269' }
+        );
+        document.getElementById("cf-roomType-statistics").innerHTML = htmlString;
       })
       .element(elementId)
       .execute();

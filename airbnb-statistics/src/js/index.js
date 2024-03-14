@@ -168,7 +168,7 @@ window.addEventListener("load", function() {
   // Load charts
   loadInteractionManager();
   loadGeomap();
-  loadActivityByPropertyType();
+  loadPropertyType();
   // loadBathroomsHistogram();
   // loadRangeFilters();
   // loadPopularNeighborhoods();
