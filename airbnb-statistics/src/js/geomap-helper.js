@@ -22,29 +22,76 @@ const updateBoundsFilter = () => {
 
 // move to another file
 
-function createInfoHtmlString(entireHomes, privateRooms, sharedRooms, hotelRooms) {
-    return `
-      <div style="font-family: sans-serif; color: #333;">
-        <div style="margin-bottom: 8px;">
-          <div style="font-size: 1.5em; font-weight: bold; text-align: center;">${entireHomes.percentage}%</div>
-          <div style="font-size: x-small; text-align: center;">entire homes/apartments</div>
-        </div>
-        <div style="margin-bottom: 4px;">
-          <div style="font-size: 1em; font-weight: bold; text-align: center;">${entireHomes.count} (${entireHomes.percentage}%)</div>
-          <div style="font-size: x-small; text-align: center;">entire home/apartments</div>
-        </div>
-        <div style="margin-bottom: 4px;">
-          <div style="font-size: 1em; font-weight: bold; text-align: center;">${privateRooms.count}(${privateRooms.percentage}%)</div>
-          <div style="font-size: x-small; text-align: center;">private rooms</div>
-        </div>
-        <div style="margin-bottom: 4px;">
-          <div style="font-size: 1em; font-weight: bold; text-align: center;">${sharedRooms.count} (${sharedRooms.percentage}%)</div>
-          <div style="font-size: x-small; text-align: center;">shared rooms</div>
-        </div>
-        <div>
-          <div style="font-size: 1em; font-weight: bold; text-align: center;">${hotelRooms.count} (${hotelRooms.percentage}%)</div>
-          <div style="font-size: x-small; text-align: center;">hotel rooms</div>
-        </div>
-      </div>
-    `;
+function getZeroCleanedData(){
+  return {
+    count: 0,
+    rate: 0,
+    description: ""
   }
+}
+
+function animateValue(obj, end, formatFunction) {
+  let startTimestamp = null;
+  let duration = 800;
+  let start = 0;
+  const step = (timestamp) => {
+    if (!startTimestamp) startTimestamp = timestamp;
+    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+    const value = progress * (end - start) + start;
+    obj.innerHTML = formatFunction(value, progress === 1);
+    if (progress < 1) {
+      window.requestAnimationFrame(step);
+    }
+  };
+  window.requestAnimationFrame(step);
+}
+
+function formatCount(value, isFinal) {
+  return isFinal ? `${value.toFixed(0)}` : `${Math.round(value)}`;
+}
+
+function formatRate(value, isFinal) {
+  return `${value.toFixed(2)}%`;
+}
+
+function animateBothValues(countObj, countEnd, rateObj, rateEnd) {
+  animateValue(countObj, countEnd, formatCount);
+  animateValue(rateObj, rateEnd, formatRate);
+}
+
+function buildHtmlString(element1, element2, element3, element4){
+  return `
+  <div style="font-family: sans-serif; color: #333;">
+      <div style="margin-bottom: 8px;">
+        <div id="element1Percentage" style="font-size: 1.5em; font-weight: bold; text-align: center;">${element1.rate}%</div>
+        <div style="font-size: small; text-align: center;">${element1.description}</div>
+      </div>
+      <div style="margin-bottom: 8px;">
+      <div style="text-align: center;">
+        <span id="element1Count" style="font-size: 1em; font-weight: bold; text-align: center;">${element1.count}</span>
+        (<span id="element1Rate" style="font-size: 1em; text-align: center; font-weight: bold;"> (${element1.rate}%)</span>)
+      </div>
+        <div style="font-size: small; text-align: center;">${element1.description}</div>
+      </div>
+      <div style="margin-bottom: 8px;">
+      <div style="text-align: center;">
+        <span id="element2Count" style="font-size: 1em; font-weight: bold; text-align: center;">${element2.count}</span>
+        (<span id="element2Rate" style="font-size: 1em; text-align: center; font-weight: bold;"> (${element2.rate}%)</span>)
+      </div>
+        <div style="font-size: small; text-align: center;">${element2.description}</div>
+      </div>
+      <div style="margin-bottom: 8px;">
+      <div style="text-align: center;">
+        <span id="element3Count" style="font-size: 1em; font-weight: bold; text-align: center;">${element3.count}</span>
+        (<span id="element3Rate" style="font-size: 1em; text-align: center; font-weight: bold;"> (${element3.rate}%)</span>)
+        <div style="font-size: small; text-align: center;">${element3.description}</div>
+      </div>
+      </div>
+      <div style="text-align: center;">
+        <span id="element4Count" style="font-size: 1em; font-weight: bold; text-align: center;">${element4.count}</span>
+        (<span id="element4Rate" style="font-size: 1em; text-align: center; font-weight: bold;"> (${element4.rate}%)</span>)
+        <div style="font-size: small; text-align: center;">${element4.description}</div>
+      </div>
+    </div>
+  `
+}

@@ -332,14 +332,80 @@ function loadPropertyType() {
         "fontWeight": "bold"
       })
       .on("execute:stop", () => {
-        // TODO: test code, use statistics from chart
-        var htmlString = createInfoHtmlString(
-          { percentage: '53.2', count: '20,853' },
-          { percentage: '44.8', count: '17,543' },
-          { percentage: '1.4', count: '537' },
-          { percentage: '0.7', count: '269' }
-        );
+
+        let chart = cf.getVisualization("cf-roomType");
+        let data = chart.get("data");
+
+        console.log(data.length)
+        if (data.length < 4) {
+          console.log(data);
+        }
+
+        let roomTypes = ["Entire home/apt", "Private room", "Shared room", "Hotel room"];
+
+        let element1 = data[0];
+        let element2 = data.length > 1 ? data[1] : undefined;
+        let element3 = data.length > 2 ? data[2] : undefined;
+        let element4 = data.length > 3 ? data[3] : undefined;
+
+        let element1Clean = element1 ? {
+          count: element1.current.count,
+          rate: element1.current.metrics.rate.count,
+          description: element1.group[0]
+        } : getZeroCleanedData();
+        let element2Clean = element2 ?{
+          count: element2.current.count,
+          rate: element2.current.metrics.rate.count,
+          description: element2.group[0]
+        } : getZeroCleanedData();
+        let element3Clean = element3 ? {
+          count: element3.current.count,
+          rate: element3.current.metrics.rate.count,
+          description: element3.group[0]
+        } : getZeroCleanedData();
+        let element4Clean = element4 ? {
+          count: element4.current.count,
+          rate: element4.current.metrics.rate.count,
+          description: element4.group[0]
+        } : getZeroCleanedData();
+
+        let notFirstElementClean = [element2Clean, element3Clean, element4Clean];
+
+        notFirstElementClean.map((element, index) => {
+          if (element.description === ""){
+            element.description = roomTypes.filter(type => {
+              return type !== element1Clean.description && type !== element2Clean.description && type !== element3Clean.description && type !== element4Clean.description;
+            })
+          }
+        });
+
+        var htmlString = buildHtmlString(element1Clean, element2Clean, element3Clean, element4Clean);
         document.getElementById("cf-roomType-statistics").innerHTML = htmlString;
+        animateValue(document.getElementById('element1Percentage'), element1Clean.rate, formatRate);
+        animateBothValues(
+          document.getElementById('element1Count'),
+          element1Clean.count,
+          document.getElementById('element1Rate'),
+          element1Clean.rate
+        );
+        animateBothValues(
+          document.getElementById('element2Count'),
+          element2Clean.count,
+          document.getElementById('element2Rate'),
+          element2Clean.rate
+        );
+        animateBothValues(
+          document.getElementById('element3Count'),
+          element3Clean.count,
+          document.getElementById('element3Rate'),
+          element3Clean.rate
+        );
+        animateBothValues(
+          document.getElementById('element4Count'),
+          element4Clean.count,
+          document.getElementById('element4Rate'),
+          element4Clean.rate
+        );
       })
       .element(elementId)
       .execute();
