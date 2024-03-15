@@ -370,12 +370,21 @@ function loadPropertyType() {
         } : getZeroCleanedData();
 
         let notFirstElementClean = [element2Clean, element3Clean, element4Clean];
-
+        let descriptionsAssigned = new Set();
         notFirstElementClean.map((element, index) => {
-          if (element.description === ""){
-            element.description = roomTypes.filter(type => {
-              return type !== element1Clean.description && type !== element2Clean.description && type !== element3Clean.description && type !== element4Clean.description;
-            })
+          if (element.description === "") {
+            let availableDescriptions = roomTypes.filter(type =>
+              !descriptionsAssigned.has(type) &&
+              type !== element1Clean.description &&
+              type !== element2Clean.description &&
+              type !== element3Clean.description &&
+              type !== element4Clean.description
+            );
+
+            if (availableDescriptions.length > 0) {
+              element.description = availableDescriptions[0];
+              descriptionsAssigned.add(availableDescriptions[0]);
+            }
           }
         });
 
