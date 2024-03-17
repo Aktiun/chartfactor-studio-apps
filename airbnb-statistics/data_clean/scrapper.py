@@ -22,11 +22,12 @@ def get_listings_links() -> dict:
 
     for index, link in enumerate(links):
         href = link.get('href')
-        if href and 'data/listings.csv.gz' in href:
+        if href and 'data/listings.csv.gz' in href and 'united-states' in href:
             id = f"ID_{index}"
             listings_links[id] = href
 
     logger.info(f"Found {len(listings_links)} listings links.")
+    logger.info(f"Links: {listings_links}")
     return listings_links
 
 def get_listings_files() -> bool:

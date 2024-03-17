@@ -141,7 +141,7 @@ def main():
     if not os.path.isdir(args.source):
         raise Exception("Source path not found")
 
-    combine_csv_files(args.source, "../data/abnb_listings.csv")
+    combine_csv_files(args.source, "../tmp_joined/joined.csv")
 
 
 if __name__ == "__main__":
