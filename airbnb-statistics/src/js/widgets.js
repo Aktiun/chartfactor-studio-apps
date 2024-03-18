@@ -388,7 +388,7 @@ function loadPropertyType() {
           }
         });
 
-        var htmlString = buildHtmlString(element1Clean, element2Clean, element3Clean, element4Clean);
+        var htmlString = buildHtmlStringRoomtype(element1Clean, element2Clean, element3Clean, element4Clean);
         document.getElementById("cf-roomType-statistics").innerHTML = htmlString;
         animateValue(document.getElementById('element1Percentage'), element1Clean.rate, formatRate);
         animateBothValues(
@@ -415,6 +415,149 @@ function loadPropertyType() {
           document.getElementById('element4Rate'),
           element4Clean.rate
         );
+      })
+      .element(elementId)
+      .execute();
+  } catch (ex) {
+    console.error(ex);
+    handleError(elementId, ex);
+  }
+}
+
+function loadActivity() {
+  const elementId = "cf-activity";
+  try {
+    let staticFilter1 = cf.Filter("income_ltm")
+      .label("income_ltm")
+      .operation("GE,LT")
+      .value([0, 46278]); // Interaction Manager uses filter(), filters(), clientFilter(),
+    // and clientFilters() to manage filters. To apply additional
+    // filters, use staticFilters() or your code could be overwritten.
+    //
+    /* Configuration code for this widget */
+    let provider = cf.provider("local");
+    let source = provider.source("abnb_listings");
+    // Define metrics
+    let metric0 = cf.Metric("income_ltm", "histogram").fixedBars(6)
+      .offset(0)
+      .showEmptyIntervals(false);
+    // Add metrics and groups to data source
+    let myData = source
+      .metrics(metric0)
+      .limit(100);
+    // Define Color Palette
+    let color = cf.Color()
+      .palette(["#0095b7", "#a0b774", "#f4c658", "#fe8b3e", "#cf2f23", "#756c56", "#007896", "#47a694", "#f9a94b", "#ff6b30", "#e94d29", "#005b76"]);
+    myData.staticFilters(staticFilter1);
+    // --- Define chart options and static filters ---
+    let myChart = myData.graph("Histogram")
+      .set("color", color)
+      .set("yAxis", { "type": "log" })
+      .on("execute:stop", () => {
+        let chart = cf.getVisualization("cf-activity");
+        let data = chart.get("data");
+        let element1 = data[0];
+
+        totalListings = data.reduce((acc, bar) => acc + bar.current.count, 0);
+
+      })
+      .element(elementId)
+      .execute();
+  } catch (ex) {
+    console.error(ex);
+    handleError(elementId, ex);
+  }
+}
+
+function loadAvgNights(){
+  const elementId = "cf-avg-nights";
+  try {
+    let provider = cf.provider("local");
+    let source = provider.source("abnb_listings");
+    let metric0 = cf.Metric("estimated_occupied_time", "avg").hideFunction();
+    let metric1 = cf.Metric("availability_365", "avg");
+    // Define Color config
+    let color = cf.Color();
+    color.theme({
+      "name": "light",
+      "font": "black",
+      "background": "white"
+    });
+    // Add metrics and groups to data source
+    let myData = source
+      .metrics(metric0, metric1);
+    // --- Define chart options and static filters ---
+    let myChart = myData.graph("KPI")
+      .set("color", color)
+      .set("mainTextSize", 16)
+      .set("secondaryTextSize", 12)
+      .set("diffTextSize", 12)
+      .set("labelTextSize", 8)
+      .set("showLabels", false)
+      .set("diff", true)
+      .on("execute:stop", () => {
+        let chart = cf.getVisualization("cf-avg-nights");
+        let data = chart.get("data");
+        let avgNights = data[0].current.metrics.estimated_occupied_time.avg;
+        let avgAvailability = data[0].current.metrics.availability_365.avg;
+        // TODO: calculate better average nights, could't be > 360
+        avgNights = avgNights > avgAvailability ? avgAvailability : avgNights;
+        let avgNightsHtmlString = buildHtmlStringAvgNights(avgNights);
+        document.getElementById("cf-avg-nights").innerHTML = avgNightsHtmlString;
+        animateValue(document.getElementById('avgNights'), avgNights, formatCount);
+      })
+      .element(elementId)
+      .execute();
+  } catch (ex) {
+    console.error(ex);
+    handleError(elementId, ex);
+  }
+}
+
+function loadAvgPrice() {
+  const elementId = "cf-avg-price";
+  try {
+    let provider = cf.provider("local");
+    let source = provider.source("abnb_listings");
+    let metric0 = cf.Metric("price", "avg").hideFunction();
+    // Define Color config
+    let color = cf.Color();
+    color.theme({
+      "name": "light",
+      "font": "black",
+      "background": "white"
+    });
+    // Add metrics and groups to data source
+    let myData = source
+      .metrics(metric0);
+    // --- Define chart options and static filters ---
+    let myChart = myData.graph("KPI")
+      .set("color", color)
+      .set("mainTextSize", 16)
+      .set("secondaryTextSize", 12)
+      .set("diffTextSize", 12)
+      .set("labelTextSize", 8)
+      .set("showLabels", false)
+      .set("diff", true)
+      .on("execute:stop", () => {
+        let nightsChart = cf.getVisualization("cf-avg-nights");
+        let nightsData = nightsChart.get("data");
+        let avgNights = nightsData[0].current.metrics.estimated_occupied_time.avg;
+        let avgAvailability = nightsData[0].current.metrics.availability_365.avg;
+        avgNights = avgNights > avgAvailability ? avgAvailability : avgNights;
+
+        let chart = cf.getVisualization("cf-avg-price");
+        let data = chart.get("data");
+        let avgPrice = data[0].current.metrics.price.avg;
+        let avgPriceHtmlString = buildHtmlStringAvgPrice(avgPrice);
+
+        let avgIncome = avgPrice * avgNights;
+        let avgIncomeHtmlString = buildHtmlStringAvgIncome(avgIncome);
+
+        document.getElementById("cf-avg-price").innerHTML = avgPriceHtmlString;
+        document.getElementById("cf-avg-income").innerHTML = avgIncomeHtmlString;
+        animateValue(document.getElementById('avgPrice'), avgPrice, formatCurrency);
+        animateValue(document.getElementById('avgIncome'), avgIncome, formatCurrency);
       })
       .element(elementId)
       .execute();

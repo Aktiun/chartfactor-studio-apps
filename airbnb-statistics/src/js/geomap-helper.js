@@ -47,11 +47,15 @@ function animateValue(obj, end, formatFunction) {
 }
 
 function formatCount(value, isFinal) {
-  return isFinal ? `${value.toFixed(0)}` : `${Math.round(value)}`;
+  return isFinal ? `${Number(value.toFixed(0)).toLocaleString("us-US")}` : `${Math.round(value).toLocaleString("us-US")}`;
 }
 
 function formatRate(value, isFinal) {
   return `${value.toFixed(2)}%`;
+}
+
+function formatCurrency(value, isFinal) {
+  return isFinal ? `$${Number(value.toFixed(2)).toLocaleString("us-US")}` : `$${Math.round(value).toLocaleString("us-US")}`;
 }
 
 function animateBothValues(countObj, countEnd, rateObj, rateEnd) {
@@ -59,7 +63,7 @@ function animateBothValues(countObj, countEnd, rateObj, rateEnd) {
   animateValue(rateObj, rateEnd, formatRate);
 }
 
-function buildHtmlString(element1, element2, element3, element4){
+function buildHtmlStringRoomtype(element1, element2, element3, element4){
   return `
   <div style="font-family: sans-serif; color: #333;">
       <div style="margin-bottom: 8px;">
@@ -68,30 +72,65 @@ function buildHtmlString(element1, element2, element3, element4){
       </div>
       <div style="margin-bottom: 8px;">
       <div style="text-align: center;">
-        <span id="element1Count" style="font-size: 1em; font-weight: bold; text-align: center;">${element1.count}</span>
+        <span id="element1Count" style="font-size: 1em; font-weight: bold; text-align: center;">${element1.count.toLocaleString("us-US")}</span>
         (<span id="element1Rate" style="font-size: 1em; text-align: center; font-weight: bold;"> (${element1.rate}%)</span>)
       </div>
         <div style="font-size: small; text-align: center;">${element1.description}</div>
       </div>
       <div style="margin-bottom: 8px;">
       <div style="text-align: center;">
-        <span id="element2Count" style="font-size: 1em; font-weight: bold; text-align: center;">${element2.count}</span>
+        <span id="element2Count" style="font-size: 1em; font-weight: bold; text-align: center;">${element2.count.toLocaleString("us-US")}</span>
         (<span id="element2Rate" style="font-size: 1em; text-align: center; font-weight: bold;"> (${element2.rate}%)</span>)
       </div>
         <div style="font-size: small; text-align: center;">${element2.description}</div>
       </div>
       <div style="margin-bottom: 8px;">
       <div style="text-align: center;">
-        <span id="element3Count" style="font-size: 1em; font-weight: bold; text-align: center;">${element3.count}</span>
+        <span id="element3Count" style="font-size: 1em; font-weight: bold; text-align: center;">${element3.count.toLocaleString("us-US")}</span>
         (<span id="element3Rate" style="font-size: 1em; text-align: center; font-weight: bold;"> (${element3.rate}%)</span>)
         <div style="font-size: small; text-align: center;">${element3.description}</div>
       </div>
       </div>
       <div style="text-align: center;">
-        <span id="element4Count" style="font-size: 1em; font-weight: bold; text-align: center;">${element4.count}</span>
+        <span id="element4Count" style="font-size: 1em; font-weight: bold; text-align: center;">${element4.count.toLocaleString("us-US")}</span>
         (<span id="element4Rate" style="font-size: 1em; text-align: center; font-weight: bold;"> (${element4.rate}%)</span>)
         <div style="font-size: small; text-align: center;">${element4.description}</div>
       </div>
     </div>
+  `
+}
+
+function buildHtmlStringAvgNights(nights){
+  return `
+  <div style="font-family: sans-serif; color: #333;">
+    <div style="text-align: center;">
+      <span id="avgNights" style="font-size: 1.5em; font-weight: bold; text-align: center;">${nights}</span>
+      <div style="font-size: small; text-align: center;">Average nights booked</div>
+    </div>
+    <div style="margin-bottom: 12px;">
+  </div>
+  `
+}
+
+function buildHtmlStringAvgPrice(price){
+  return `
+  <div style="font-family: sans-serif; color: #333;">
+    <div style="text-align: center;">
+      <span id="avgPrice" style="font-size: 1em; font-weight: bold; text-align: center;">${price}</span>
+      <div style="font-size: small; text-align: center;">Average price/night</div>
+    </div>
+  </div>
+  `
+}
+
+function buildHtmlStringAvgIncome(income){
+  return `
+  <div style="font-family: sans-serif; color: #333;">
+    <div style="text-align: center;">
+      <span id="avgIncome" style="font-size: 1em; font-weight: bold; text-align: center;">${income}</span>
+      <div style="font-size: small; text-align: center;">Average income</div>
+    </div>
+    <div style="margin-bottom: 12px;">
+  </div>
   `
 }

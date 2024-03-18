@@ -228,7 +228,13 @@ function loadProviders() {
                     },
                     source: {
                         label: "Source"
-                    }
+                    },
+                    income_ltm: {
+                        label: "Income (last 12 months)"
+                    },
+                    estimated_occupied_time: {
+                        label: "Estimated booked time (last 12 months)"
+                    },
                 }
             }
         };
