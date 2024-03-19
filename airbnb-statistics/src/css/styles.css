@@ -492,7 +492,7 @@ body {
   height: calc(100vh - 67px); /* Full height minus the header height */
   background: rgba(255, 255, 255, 0.8); /* Glass effect */
   backdrop-filter: blur(5px);
-  overflow-y: auto; /* Allows vertical scrolling */
+  overflow-y: hidden;
   z-index: 1000; /* Ensure it's above other content */
   padding-top: 10px;
   max-height: 100vh;

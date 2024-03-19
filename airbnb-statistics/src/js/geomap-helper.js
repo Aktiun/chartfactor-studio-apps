@@ -134,3 +134,40 @@ function buildHtmlStringAvgIncome(income){
   </div>
   `
 }
+
+function buildHtmlStringLicenses(element1, element2, element3, element4) {
+  return `
+  <div style="font-family: sans-serif; color: #333;">
+  <div style="margin-bottom: 8px;">
+    <div id="element1LicensePercentage" style="font-size: 1.5em; font-weight: bold; text-align: center;">${element1.rate}%</div>
+    <div style="font-size: small; text-align: center;">${element1.description}</div>
+  </div>
+  <div style="margin-bottom: 8px;">
+  <div style="text-align: center;">
+    <span id="element1LicenseCount" style="font-size: 1em; font-weight: bold; text-align: center;">${element1.count.toLocaleString("us-US")}</span>
+    (<span id="element1LicenseRate" style="font-size: 1em; text-align: center; font-weight: bold;"> (${element1.rate}%)</span>)
+  </div>
+    <div style="font-size: small; text-align: center;">${element1.description}</div>
+  </div>
+  <div style="margin-bottom: 8px;">
+  <div style="text-align: center;">
+    <span id="element2LicenseCount" style="font-size: 1em; font-weight: bold; text-align: center;">${element2.count.toLocaleString("us-US")}</span>
+    (<span id="element2LicenseRate" style="font-size: 1em; text-align: center; font-weight: bold;"> (${element2.rate}%)</span>)
+  </div>
+    <div style="font-size: small; text-align: center;">${element2.description}</div>
+  </div>
+  <div style="margin-bottom: 8px;">
+  <div style="text-align: center;">
+    <span id="element3LicenseCount" style="font-size: 1em; font-weight: bold; text-align: center;">${element3.count.toLocaleString("us-US")}</span>
+    (<span id="element3LicenseRate" style="font-size: 1em; text-align: center; font-weight: bold;"> (${element3.rate}%)</span>)
+    <div style="font-size: small; text-align: center;">${element3.description}</div>
+  </div>
+  </div>
+  <div style="text-align: center;">
+    <span id="element4LicenseCount" style="font-size: 1em; font-weight: bold; text-align: center;">${element4.count.toLocaleString("us-US")}</span>
+    (<span id="element4LicenseRate" style="font-size: 1em; text-align: center; font-weight: bold;"> (${element4.rate}%)</span>)
+    <div style="font-size: small; text-align: center;">${element4.description}</div>
+  </div>
+</div>
+  `
+}

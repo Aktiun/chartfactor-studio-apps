@@ -7,8 +7,8 @@ const widgetsTitleId = [
     { title: "roomType", id: "cf-roomType" },
     { title: "range filters", id: "vis8ee433d1-85a6-43bb-92da-ccde73f4f184" },
     {
-      title: "most popular neighborhoods",
-      id: "vis55a44820-f5e8-4a0e-a21a-bd603f05f4dd"
+      title: "licenses",
+      id: "cf-licenses"
     },
     {
       title: "amenities filter",
@@ -41,12 +41,12 @@ function loadInteractionManager(){
     const elementId = "im";
       try {
         let viz3 = getId("roomType");
-        // let viz2 = getId("amenities price");
+        let viz2 = getId("licenses");
         // let viz5 = getId("amenities filter");
         // let viz1 = getId("most popular neighborhoods");
         let rules1 = {
           [viz3]: { clientFilters: true },
-          // [viz2]: { clientFilters: false },
+          [viz2]: { clientFilters: true },
           // [viz5]: { clientFilters: false },
           // [viz1]: { clientFilters: false }
         };
@@ -336,11 +336,6 @@ function loadPropertyType() {
         let chart = cf.getVisualization("cf-roomType");
         let data = chart.get("data");
 
-        console.log(data.length)
-        if (data.length < 4) {
-          console.log(data);
-        }
-
         let roomTypes = ["Entire home/apt", "Private room", "Shared room", "Hotel room"];
 
         let element1 = data[0];
@@ -470,7 +465,7 @@ function loadActivity() {
 }
 
 function loadAvgNights(){
-  const elementId = "cf-avg-nights";
+  const elementId = "cf-avg-nights-inv";
   try {
     let provider = cf.provider("local");
     let source = provider.source("abnb_listings");
@@ -496,7 +491,7 @@ function loadAvgNights(){
       .set("showLabels", false)
       .set("diff", true)
       .on("execute:stop", () => {
-        let chart = cf.getVisualization("cf-avg-nights");
+        let chart = cf.getVisualization("cf-avg-nights-inv");
         let data = chart.get("data");
         let avgNights = data[0].current.metrics.estimated_occupied_time.avg;
         let avgAvailability = data[0].current.metrics.availability_365.avg;
@@ -515,7 +510,7 @@ function loadAvgNights(){
 }
 
 function loadAvgPrice() {
-  const elementId = "cf-avg-price";
+  const elementId = "cf-avg-price-inv";
   try {
     let provider = cf.provider("local");
     let source = provider.source("abnb_listings");
@@ -540,13 +535,13 @@ function loadAvgPrice() {
       .set("showLabels", false)
       .set("diff", true)
       .on("execute:stop", () => {
-        let nightsChart = cf.getVisualization("cf-avg-nights");
+        let nightsChart = cf.getVisualization("cf-avg-nights-inv");
         let nightsData = nightsChart.get("data");
         let avgNights = nightsData[0].current.metrics.estimated_occupied_time.avg;
         let avgAvailability = nightsData[0].current.metrics.availability_365.avg;
         avgNights = avgNights > avgAvailability ? avgAvailability : avgNights;
 
-        let chart = cf.getVisualization("cf-avg-price");
+        let chart = cf.getVisualization("cf-avg-price-inv");
         let data = chart.get("data");
         let avgPrice = data[0].current.metrics.price.avg;
         let avgPriceHtmlString = buildHtmlStringAvgPrice(avgPrice);
@@ -558,6 +553,131 @@ function loadAvgPrice() {
         document.getElementById("cf-avg-income").innerHTML = avgIncomeHtmlString;
         animateValue(document.getElementById('avgPrice'), avgPrice, formatCurrency);
         animateValue(document.getElementById('avgIncome'), avgIncome, formatCurrency);
+      })
+      .element(elementId)
+      .execute();
+  } catch (ex) {
+    console.error(ex);
+    handleError(elementId, ex);
+  }
+}
+
+function loadLicenses() {
+  const elementId = "cf-licenses";
+  try {
+    let provider = cf.provider("local");
+    let source = provider.source("abnb_listings");
+    // Define metrics
+    let metric0 = cf.Metric("count");
+    let metric1 = cf.CompareMetric("count", "").rate().label("Rate");
+    // Define attributes to group by
+    let group1 = cf.Attribute("license")
+      .limit(10)
+      .sort("desc", cf.Metric());
+    // Add metrics and groups to data source
+    let myData = source.groupby(group1)
+      .metrics(metric0, metric1);
+    // --- Define chart options and static filters ---
+    let legend = cf.Legend()
+      .position("right")
+      .width(100)
+      .height(150)
+      .sort("none");
+    // Define Grid
+    let grid = cf.Grid()
+      .top(0)
+      .right(0)
+      .bottom(0)
+      .left(0);
+    // Define Color Palette
+    let color = cf.Color()
+      .palette(["#0095b7", "#a0b774", "#f4c658", "#fe8b3e", "#cf2f23", "#756c56", "#007896", "#47a694", "#f9a94b", "#ff6b30", "#e94d29", "#005b76"]);    let myChart = myData.graph("Donut")
+      .set("legend", legend)
+      .set("grid", grid)
+      .set("color", color)
+      .set("orientation", "horizontal")
+      .set("xAxis", { "show": true, "lines": true })
+      .set("yAxis", { "text": "out" })
+      .set("labelPosition", "inside")
+      .set("metricValue", false)
+      .on("execute:stop", () => {
+        let chart = cf.getVisualization("cf-licenses");
+        let data = chart.get("data");
+        let element1 = data[0];
+        let element2 = data.length > 1 ? data[1] : undefined;
+        let element3 = data.length > 2 ? data[2] : undefined;
+        let element4 = data.length > 3 ? data[3] : undefined;
+        let element1Clean = element1 ? {
+          count: element1.current.count,
+          rate: element1.current.metrics.rate.count,
+          description: element1.group[0]
+        } : getZeroCleanedData();
+        let element2Clean = element2 ? {
+          count: element2.current.count,
+          rate: element2.current.metrics.rate.count,
+          description: element2.group[0]
+        } : getZeroCleanedData();
+        let element3Clean = element3 ? {
+          count: element3.current.count,
+          rate: element3.current.metrics.rate.count,
+          description: element3.group[0]
+        } : getZeroCleanedData();
+        let element4Clean = element4 ? {
+          count: element4.current.count,
+          rate: element4.current.metrics.rate.count,
+          description: element4.group[0]
+        } : getZeroCleanedData();
+
+        let licenseTypes = ["Unlicensed", "Licensed", "Exempt", "Pending"];
+
+        let notFirstElementClean = [element2Clean, element3Clean, element4Clean];
+        let descriptionsAssigned = new Set();
+        notFirstElementClean.map((element, index) => {
+          if (element.description === "") {
+            let availableDescriptions = licenseTypes.filter(type =>
+              !descriptionsAssigned.has(type) &&
+              type !== element1Clean.description &&
+              type !== element2Clean.description &&
+              type !== element3Clean.description &&
+              type !== element4Clean.description
+            );
+
+            if (availableDescriptions.length > 0) {
+              element.description = availableDescriptions[0];
+              descriptionsAssigned.add(availableDescriptions[0]);
+            }
+          }
+        });
+
+
+
+        var htmlString = buildHtmlStringLicenses(element1Clean, element2Clean, element3Clean, element4Clean);
+        document.getElementById("cf-licenses-statistics").innerHTML = htmlString;
+        animateValue(document.getElementById('element1LicensePercentage'), element1Clean.rate, formatRate);
+        animateBothValues(
+          document.getElementById('element1LicenseCount'),
+          element1Clean.count,
+          document.getElementById('element1LicenseRate'),
+          element1Clean.rate
+        );
+        animateBothValues(
+          document.getElementById('element2LicenseCount'),
+          element2Clean.count,
+          document.getElementById('element2LicenseRate'),
+          element2Clean.rate
+        );
+        animateBothValues(
+          document.getElementById('element3LicenseCount'),
+          element3Clean.count,
+          document.getElementById('element3LicenseRate'),
+          element3Clean.rate
+        );
+        animateBothValues(
+          document.getElementById('element4LicenseCount'),
+          element4Clean.count,
+          document.getElementById('element4LicenseRate'),
+          element4Clean.rate
+        );
       })
       .element(elementId)
       .execute();
