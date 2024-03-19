@@ -42,6 +42,15 @@ def clean_and_normalize_neighborhood(neighborhood):
     cleaned_location = re.sub(r'\s*,\s*', ', ', neighborhood).title()
     return cleaned_location
 
+def get_license_type(license):
+    if not license:
+        return "Unlicensed"
+    if "exempt" in license.lower():
+        return "Exempt"
+    if "pending" in license.lower():
+        return "Pending"
+    return "Licensed"
+
 def create_index(client, index_name):
     doc = {
         "settings": {
@@ -426,7 +435,7 @@ def get_value(csv_file):
 				"review_scores_communication": r[65],
 				"review_scores_location": r[66],
 				"review_scores_value": r[67],
-				"license": r[68] if r[68] != '' else None,
+				"license": get_license_type(r[68]),
 				"instant_bookable": r[69] if r[69] != '' else None,
 				"calculated_host_listings_count": r[70],
 				"calculated_host_listings_count_entire_homes": r[71],
