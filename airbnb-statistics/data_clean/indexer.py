@@ -51,6 +51,12 @@ def get_license_type(license):
         return "Pending"
     return "Licensed"
 
+def get_hotel_room_count(room_type, home_apt_count, private_room_count, shared_room_count, calculated_total):
+    if room_type.lower() == "hotel room":
+        hotel_rooms = int(float(calculated_total)) - int(float(home_apt_count)) - int(float(private_room_count)) - int(float(shared_room_count))
+        return hotel_rooms if hotel_rooms > 0 else 0
+    return 0
+
 def create_index(client, index_name):
     doc = {
         "settings": {
@@ -340,7 +346,10 @@ def create_index(client, index_name):
 				    },
                     "amenities_categorized": {
                     "type": "keyword"
-                    }
+                    },
+                    "calculated_host_listings_count_hotel_rooms": {
+                        "type": "integer"
+					}
 				}
         }
     }
@@ -445,6 +454,7 @@ def get_value(csv_file):
 				"estimated_occupied_time": r[75],
 				"income_ltm": r[76],
 				"zipcode": r[77],
+                "calculated_host_listings_count_hotel_rooms": get_hotel_room_count(r[33], r[71], r[72], r[73], r[70])
             }
             
 			# Categorize amenities

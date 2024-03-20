@@ -174,14 +174,7 @@ window.addEventListener("load", function() {
   loadLicenses();
   loadHostListings();
   loadHostListingsStatistics();
-  // loadBathroomsHistogram();
-  // loadRangeFilters();
-  // loadPopularNeighborhoods();
-  // loadAmenitiesFilter();
-  // loadPropertiesPerPriceHistogram();
-  // loadNeighborhoodsByReviewsBubbleChart();
-  // loadPriceByAmenitiesPieChart();
-  // loadBedsByProperty();
+  loadTopHosts();
 
   (function() {
     const IM = cf.getIManager();

@@ -742,3 +742,49 @@ function loadHostListingsStatistics() {
     handleError(elementId, ex);
   }
 }
+
+function loadTopHosts() {
+  const elementId = "cf-top-hosts";
+  try {
+    let color = cf.Color();
+    color.theme({
+      "headerStyle": "background: unset; color: unset; font-size: x-small;",
+      "rowOddStyle": "background: #dee2e6; color: unset;font-size: x-small;",
+      "rowEvenStyle": "background: #f8f9fa; color: unset;font-size: x-small;",
+    });
+    let provider = cf.provider("local");
+    let source = provider.source("abnb_listings");
+    // Define metrics
+    let metric = new cf.Metric("calculated_host_listings_count_entire_homes", "sum");
+    let metric2 = new cf.Metric("calculated_host_listings_count_private_rooms", "sum");
+    let metric3 = new cf.Metric("calculated_host_listings_count_shared_rooms", "sum");
+    let metric4 = new cf.Metric("calculated_host_listings_count_hotel_rooms", "sum");
+    let metric5 = new cf.Metric("calculated_host_listings_count", "sum");
+    // Add fields to data source.
+    let myData = source
+      .rows(cf.Row("host_name"))
+      .columns()
+      // Metrics (do not remove this line)
+      .metrics(metric, metric2, metric3, metric4, metric5);
+    // --- Define chart options and static filters ---
+    let myChart = myData.graph("Pivot Table")
+      .limit(50)
+      .set("sizeColumnsToFit", true)
+      .set("color", color)
+      .set("autoSizeColumns", true)
+      .set('showTotals', { rows: true, columns: false })
+      // .set("columnsWidth", [
+      //   { "host_name": 50 },
+      //   { "calculated_host_listings_count_entire_homes": 100 },
+      //   { "calculated_host_listings_count_private_rooms": 100 },
+      //   { "calculated_host_listings_count_shared_rooms": 100 },
+      //   { "calculated_host_listings_count_hotel_rooms": 100 },
+      //   { "calculated_host_listings_count": 100 }])
+      .element(elementId)
+      .execute();
+  } catch (ex) {
+    console.error(ex);
+    handleError(elementId, ex);
+
+  }
+}

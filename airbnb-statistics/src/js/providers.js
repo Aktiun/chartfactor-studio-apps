@@ -35,16 +35,19 @@ function loadProviders() {
                         label: "Beds"
                     },
                     calculated_host_listings_count: {
-                        label: "Calculated host listings count"
+                        label: "#Listings"
                     },
                     calculated_host_listings_count_entire_homes: {
-                        label: "Calculated host listings count entire homes"
+                        label: "#Entire homes/apt"
                     },
                     calculated_host_listings_count_private_rooms: {
-                        label: "Calculated host listings count private rooms"
+                        label: "#Private rooms"
                     },
                     calculated_host_listings_count_shared_rooms: {
-                        label: "Calculated host listings count shared rooms"
+                        label: "#Shared rooms"
+                    },
+                    calculated_host_listings_count_hotel_rooms: {
+                        label: "#Hotel rooms"
                     },
                     calendar_last_scraped: {
                         label: "Calendar last scraped"
