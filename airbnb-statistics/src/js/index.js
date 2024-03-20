@@ -173,6 +173,9 @@ window.addEventListener("load", function() {
   loadAvgNights();
   loadAvgPrice();
   loadLicenses();
+  loadHostListings();
+  loadHostMultiListings();
+  loadHostListingsStatistics();
   // loadBathroomsHistogram();
   // loadRangeFilters();
   // loadPopularNeighborhoods();

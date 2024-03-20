@@ -171,3 +171,25 @@ function buildHtmlStringLicenses(element1, element2, element3, element4) {
 </div>
   `
 }
+
+function buildHtmlStringHostListings(element1, element2){
+  return `
+  <div style="font-family: sans-serif; color: #333;">
+  <div style="margin-bottom: 8px;">
+    <div id="element1HostListingsPercentage" style="font-size: 1.5em; font-weight: bold; text-align: center;">${element1.rate}%</div>
+    <div style="font-size: small; text-align: center;">${element1.description}</div>
+  </div>
+  <div style="margin-bottom: 8px;">
+  <div style="text-align: center;">
+    <span id="element1HostListingsCount" style="font-size: 1em; font-weight: bold; text-align: center;">${element1.count.toLocaleString("us-US")}</span>
+    (<span id="element1HostListingsRate" style="font-size: 1em; text-align: center; font-weight: bold;"> (${element1.rate}%)</span>)
+  </div>
+    <div style="font-size: small; text-align: center;">${element1.description}</div>
+  </div>
+  <div style="text-align: center;">
+    <span id="element2HostListingsCount" style="font-size: 1em; font-weight: bold; text-align: center;">${element2.count.toLocaleString("us-US")}</span>
+    (<span id="element2HostListingsRate" style="font-size: 1em; text-align: center; font-weight: bold;"> (${element2.rate}%)</span>)
+    <div style="font-size: small; text-align: center;">${element2.description}</div>
+  </div>
+  `
+}

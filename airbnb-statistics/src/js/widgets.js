@@ -11,8 +11,8 @@ const widgetsTitleId = [
       id: "cf-licenses"
     },
     {
-      title: "amenities filter",
-      id: "vis0d7f4c9f-e908-4815-941d-2b40d1eafd84"
+      title: "hostListings",
+      id: "cf-host-listings"
     },
     {
       title: "price-property",
@@ -42,12 +42,12 @@ function loadInteractionManager(){
       try {
         let viz3 = getId("roomType");
         let viz2 = getId("licenses");
-        // let viz5 = getId("amenities filter");
+        let viz4 = getId("hostListings");
         // let viz1 = getId("most popular neighborhoods");
         let rules1 = {
           [viz3]: { clientFilters: true },
           [viz2]: { clientFilters: true },
-          // [viz5]: { clientFilters: false },
+          [viz4]: { clientFilters: true },
           // [viz1]: { clientFilters: false }
         };
         /* Configuration code for the Interaction Manager*/
@@ -447,7 +447,7 @@ function loadActivity() {
     // --- Define chart options and static filters ---
     let myChart = myData.graph("Histogram")
       .set("color", color)
-      .set("yAxis", { "type": "log" })
+      .set("yAxis", { "type": "log", "lines": false })
       .on("execute:stop", () => {
         let chart = cf.getVisualization("cf-activity");
         let data = chart.get("data");
@@ -467,29 +467,13 @@ function loadActivity() {
 function loadAvgNights(){
   const elementId = "cf-avg-nights-inv";
   try {
-    let provider = cf.provider("local");
-    let source = provider.source("abnb_listings");
-    let metric0 = cf.Metric("estimated_occupied_time", "avg").hideFunction();
-    let metric1 = cf.Metric("availability_365", "avg");
-    // Define Color config
-    let color = cf.Color();
-    color.theme({
-      "name": "light",
-      "font": "black",
-      "background": "white"
-    });
-    // Add metrics and groups to data source
-    let myData = source
-      .metrics(metric0, metric1);
-    // --- Define chart options and static filters ---
-    let myChart = myData.graph("KPI")
-      .set("color", color)
-      .set("mainTextSize", 16)
-      .set("secondaryTextSize", 12)
-      .set("diffTextSize", 12)
-      .set("labelTextSize", 8)
-      .set("showLabels", false)
-      .set("diff", true)
+    cf.provider('local')
+      .source('abnb_listings')
+      .filter(cf.Filter("host_total_listings_count")
+        .label("host_total_listings_count")
+        .operation("NOT IN")
+        .value([0, 1]))
+      .metrics(cf.Metric("estimated_occupied_time", "avg"), cf.Metric("availability_365", "avg"))
       .on("execute:stop", () => {
         let chart = cf.getVisualization("cf-avg-nights-inv");
         let data = chart.get("data");
@@ -502,7 +486,7 @@ function loadAvgNights(){
         animateValue(document.getElementById('avgNights'), avgNights, formatCount);
       })
       .element(elementId)
-      .execute();
+      .execute()
   } catch (ex) {
     console.error(ex);
     handleError(elementId, ex);
@@ -512,29 +496,16 @@ function loadAvgNights(){
 function loadAvgPrice() {
   const elementId = "cf-avg-price-inv";
   try {
-    let provider = cf.provider("local");
-    let source = provider.source("abnb_listings");
-    let metric0 = cf.Metric("price", "avg").hideFunction();
-    // Define Color config
-    let color = cf.Color();
-    color.theme({
-      "name": "light",
-      "font": "black",
-      "background": "white"
-    });
-    // Add metrics and groups to data source
-    let myData = source
-      .metrics(metric0);
-    // --- Define chart options and static filters ---
-    let myChart = myData.graph("KPI")
-      .set("color", color)
-      .set("mainTextSize", 16)
-      .set("secondaryTextSize", 12)
-      .set("diffTextSize", 12)
-      .set("labelTextSize", 8)
-      .set("showLabels", false)
-      .set("diff", true)
+
+    cf.provider('local')
+      .source('abnb_listings')
+      .filter(cf.Filter("host_total_listings_count")
+        .label("host_total_listings_count")
+        .operation("NOT IN")
+        .value([0, 1]))
+      .metrics(cf.Metric("price", "avg"))
       .on("execute:stop", () => {
+
         let nightsChart = cf.getVisualization("cf-avg-nights-inv");
         let nightsData = nightsChart.get("data");
         let avgNights = nightsData[0].current.metrics.estimated_occupied_time.avg;
@@ -546,6 +517,10 @@ function loadAvgPrice() {
         let avgPrice = data[0].current.metrics.price.avg;
         let avgPriceHtmlString = buildHtmlStringAvgPrice(avgPrice);
 
+        let avgNightsHtmlString = buildHtmlStringAvgNights(avgNights);
+        document.getElementById("cf-avg-nights").innerHTML = avgNightsHtmlString;
+        animateValue(document.getElementById('avgNights'), avgNights, formatCount);
+
         let avgIncome = avgPrice * avgNights;
         let avgIncomeHtmlString = buildHtmlStringAvgIncome(avgIncome);
 
@@ -553,9 +528,10 @@ function loadAvgPrice() {
         document.getElementById("cf-avg-income").innerHTML = avgIncomeHtmlString;
         animateValue(document.getElementById('avgPrice'), avgPrice, formatCurrency);
         animateValue(document.getElementById('avgIncome'), avgIncome, formatCurrency);
+
       })
       .element(elementId)
-      .execute();
+      .execute()
   } catch (ex) {
     console.error(ex);
     handleError(elementId, ex);
@@ -649,8 +625,6 @@ function loadLicenses() {
           }
         });
 
-
-
         var htmlString = buildHtmlStringLicenses(element1Clean, element2Clean, element3Clean, element4Clean);
         document.getElementById("cf-licenses-statistics").innerHTML = htmlString;
         animateValue(document.getElementById('element1LicensePercentage'), element1Clean.rate, formatRate);
@@ -687,585 +661,110 @@ function loadLicenses() {
   }
 }
 
-// function loadBathroomsHistogram(){
-//     const elementId = "cf-activity";
-//       try {
-//         // Interaction Manager uses filter(), filters(), clientFilter(),
-//         // and clientFilters() to manage filters. To apply additional
-//         // filters, use staticFilters() or your code could be overwritten.
-//         //
-//         /* Configuration code for this widget */
-//         let provider = cf.provider("local");
-//         let source = provider.source("abnb_listings");
-//         // Define metrics
-//         let metric0 = cf
-//           .Metric("bathrooms", "histogram")
-//           .fixedBars(6)
-//           .offset(0)
-//           .showEmptyIntervals(false);
-//         // Add metrics and groups to data source
-//         let myData = source.metrics(metric0).limit(100);
-//         // Define Grid
-//         let grid = cf
-//           .Grid()
-//           .top(10)
-//           .right(0)
-//           .bottom(0)
-//           .left(0);
-//         // Define Color Palette
-//         let color = cf
-//           .Color()
-//           .palette([
-//             "#0095b7",
-//             "#a0b774",
-//             "#f4c658",
-//             "#fe8b3e",
-//             "#cf2f23",
-//             "#756c56",
-//             "#007896",
-//             "#47a694",
-//             "#f9a94b",
-//             "#ff6b30",
-//             "#e94d29",
-//             "#005b76"
-//           ]);
-//         // --- Define chart options and static filters ---
-//         let myChart = myData
-//           .graph("Histogram")
-//           .set("grid", grid)
-//           .set("color", color)
-//           .set("xAxis", { position: "bottom" })
-//           .set("yAxis", { type: "log" })
-//           .set("serieLabel", {
-//             show: false
-//           })
+function loadHostListings() {
+  const elementId = "cf-host-listings";
 
-//           .element(elementId)
-//           .on("notification", e => {
-//             window.toast({
-//               message: e.message,
-//               type: e.type
-//             });
-//           })
-//           .on("execute:start", e => window.toggleIndicator(e.element, true))
-//           .on("execute:stop", e => window.toggleIndicator(e.element, false))
-//           .on("error", e => handleError(e.element, e.error))
-//           .execute()
-//           .catch(ex => {
-//             if (typeof provider !== "undefined") {
-//               const currentProvider = provider.getProvider();
-//               const providerName = currentProvider
-//                 ? currentProvider.get("provider")
-//                 : null;
+  try {
+    let provider = cf.provider("local");
+    let source = provider.source("abnb_listings");
+    // Define metrics
+    let metric0 = cf.Metric("calculated_host_listings_count", "histogram").fixedBars(10)
+      .offset(0)
+      .showEmptyIntervals(false);
+    // Add metrics and groups to data source
+    let myData = source
+      .metrics(metric0)
+      .limit(100);
+    // Define Color Palette
+    let color = cf.Color()
+      .palette(["#1d91c0", "#1d91c0"]);
+    // --- Define chart options and static filters ---
+    let myChart = myData.graph("Histogram")
+      .set("color", color)
+      .set("xAxis", { "show": true, "lines": false })
+      .set("yAxis", { "lines": false, "type": "log" })
+      .element(elementId)
+      .execute();
+  } catch (ex) {
+    console.error(ex);
+    handleError(elementId, ex);
+  }
+}
 
-//               handleForbiddenError(ex, providerName);
-//             }
-//             handleError(elementId, ex);
-//           });
-//       } catch (ex) {
-//         console.error(ex);
-//         handleError(elementId, ex);
-//       }
-// }
+function loadHostMultiListings(){
+  const elementId = "cf-host-multi-listings";
+  try {
+    cf.provider('local')
+    .source('abnb_listings')
+    .filter(cf.Filter("host_total_listings_count")
+    .label("host_total_listings_count")
+    .operation("NOT IN")
+    .value([0, 1]))
+    .metrics(cf.Metric("host_id", "unique"))
+    .element(elementId)
+    .execute()
+  } catch (ex) {
+    console.error(ex);
+    handleError(elementId, ex);
+  }
+}
 
-// function loadRangeFilters(){
-//     const elementId = "cf-range-filters";
-//       try {
-//         // Interaction Manager uses filter(), filters(), clientFilter(),
-//         // and clientFilters() to manage filters. To apply additional
-//         // filters, use staticFilters() or your code could be overwritten.
-//         //
-//         /* Configuration code for this widget */
-//         let provider = cf.provider("local");
-//         let source = provider.source("abnb_listings");
-//         // Define metrics
-//         let metrics = [
-//           cf.Metric("price"),
-//           cf.Metric("bathrooms"),
-//           cf.Metric("bedrooms"),
-//           cf.Metric("beds"),
-//           cf.Metric("review_scores_value"),
-//           cf.Metric("reviews_per_month")
-//         ];
-//         // Add metrics and groups to data source
-//         let myData = source.metrics(...metrics);
-//         // --- Define chart options and static filters ---
-//         let myChart = myData
-//           .graph("Range Filter")
+function loadHostListingsStatistics() {
+  const elementId = "cf-host-single-listings";
+  try {
+    cf.provider('local')
+    .source('abnb_listings')
+    .filter(cf.Filter("host_total_listings_count")
+      .label("host_total_listings_count")
+      .operation("IN")
+      .value([1]))
+    .metrics(cf.Metric("host_id", "unique"))
+    .on("execute:stop", () => {
+      let chart = cf.getVisualization("cf-host-single-listings");
+      let data = chart.get("data");
+      let hostsWithOneListing = data[0].current.metrics.host_id.unique;
 
-//           .element(elementId)
-//           .on("notification", e => {
-//             window.toast({
-//               message: e.message,
-//               type: e.type
-//             });
-//           })
-//           .on("execute:start", e => window.toggleIndicator(e.element, true))
-//           .on("execute:stop", e => window.toggleIndicator(e.element, false))
-//           .on("error", e => handleError(e.element, e.error))
-//           .execute()
-//           .catch(ex => {
-//             if (typeof provider !== "undefined") {
-//               const currentProvider = provider.getProvider();
-//               const providerName = currentProvider
-//                 ? currentProvider.get("provider")
-//                 : null;
-
-//               handleForbiddenError(ex, providerName);
-//             }
-//             handleError(elementId, ex);
-//           });
-//       } catch (ex) {
-//         console.error(ex);
-//         handleError(elementId, ex);
-//       }
-// }
-
-// function loadPopularNeighborhoods(){
-//     const elementId = "cf-treemap-neighborhoods";
-//       try {
-//         let staticFilter1 = cf
-//           .Filter("neighbourhood")
-//           .label("neighbourhood")
-//           .operation("NOT IN")
-//           .value(["null"]);
-//         /* Configuration code for this widget */
-//         let provider = cf.provider("local");
-//         let source = provider.source("abnb_listings");
-//         // Define metrics
-//         let metric0 = cf.Metric("count");
-//         // Define attributes to group by
-//         let group1 = cf
-//           .Attribute("neighbourhood")
-//           .limit(10)
-//           .sort("desc", cf.Metric());
-//         // Add metrics and groups to data source
-//         let myData = source.groupby(group1).metrics(metric0);
-//         // --- Define chart options and static filters ---
-//         // Define Color Palette
-//         let color = cf
-//           .Color()
-//           .palette([
-//             "#0095b7",
-//             "#a0b774",
-//             "#f4c658",
-//             "#fe8b3e",
-//             "#cf2f23",
-//             "#756c56",
-//             "#007896",
-//             "#47a694",
-//             "#f9a94b",
-//             "#ff6b30",
-//             "#e94d29",
-//             "#005b76"
-//           ]);
-//         myData.staticFilters(staticFilter1);
-//         let myChart = myData
-//           .graph("Tree Map")
-//           .set("color", color)
-//           .staticFilters(staticFilter1)
-
-//           .element(elementId)
-//           .on("notification", e => {
-//             window.toast({
-//               message: e.message,
-//               type: e.type
-//             });
-//           })
-//           .on("execute:start", e => window.toggleIndicator(e.element, true))
-//           .on("execute:stop", e => window.toggleIndicator(e.element, false))
-//           .on("error", e => handleError(e.element, e.error))
-//           .execute()
-//           .catch(ex => {
-//             if (typeof provider !== "undefined") {
-//               const currentProvider = provider.getProvider();
-//               const providerName = currentProvider
-//                 ? currentProvider.get("provider")
-//                 : null;
-
-//               handleForbiddenError(ex, providerName);
-//             }
-//             handleError(elementId, ex);
-//           });
-//       } catch (ex) {
-//         console.error(ex);
-//         handleError(elementId, ex);
-//       }
-// }
-
-// function loadAmenitiesFilter(){
-//     const elementId = "cf-slicer-amenities";
-//       try {
-//         // Interaction Manager uses filter(), filters(), clientFilter(),
-//         // and clientFilters() to manage filters. To apply additional
-//         // filters, use staticFilters() or your code could be overwritten.
-//         //
-//         /* Configuration code for this widget */
-//         let provider = cf.provider("local");
-//         let source = provider.source("abnb_listings");
-//         // Define metrics
-//         let metric0 = cf.Metric("amenities", "unique");
-//         // Define attributes to group by
-//         let group1 = cf.Attribute("amenities_categorized").limit(10000);
-//         // Add metrics and groups to data source
-//         let myData = source.groupby(group1).metrics(metric0);
-//         // --- Define chart options and static filters ---
-//         let myChart = myData
-//           .graph("Slicer")
-
-//           .element(elementId)
-//           .on("notification", e => {
-//             window.toast({
-//               message: e.message,
-//               type: e.type
-//             });
-//           })
-//           .on("execute:start", e => window.toggleIndicator(e.element, true))
-//           .on("execute:stop", e => window.toggleIndicator(e.element, false))
-//           .on("error", e => handleError(e.element, e.error))
-//           .execute()
-//           .catch(ex => {
-//             if (typeof provider !== "undefined") {
-//               const currentProvider = provider.getProvider();
-//               const providerName = currentProvider
-//                 ? currentProvider.get("provider")
-//                 : null;
-
-//               handleForbiddenError(ex, providerName);
-//             }
-//             handleError(elementId, ex);
-//           });
-//       } catch (ex) {
-//         console.error(ex);
-//         handleError(elementId, ex);
-//       }
-// }
-
-// function loadPropertiesPerPriceHistogram(){
-//     const elementId = "cf-histo-price-property";
-//       try {
-//         let staticFilter1 = cf
-//           .Filter("price")
-//           .label("price")
-//           .operation("GT")
-//           .value([0]);
-//         /* Configuration code for this widget */
-//         let provider = cf.provider("local");
-//         let source = provider.source("abnb_listings");
-//         // Define metrics
-//         let metric0 = cf
-//           .Metric("price", "histogram")
-//           .fixedBars(100)
-//           .offset(0)
-//           .showEmptyIntervals(false);
-//         // Add metrics and groups to data source
-//         let myData = source.metrics(metric0).limit(100);
-//         // Define Grid
-//         let grid = cf
-//           .Grid()
-//           .top(10)
-//           .right(0)
-//           .bottom(0)
-//           .left(0);
-//         // Define Color Palette
-//         let color = cf
-//           .Color()
-//           .palette([
-//             "#0095b7",
-//             "#a0b774",
-//             "#f4c658",
-//             "#fe8b3e",
-//             "#cf2f23",
-//             "#756c56",
-//             "#007896",
-//             "#47a694",
-//             "#f9a94b",
-//             "#ff6b30",
-//             "#e94d29",
-//             "#005b76"
-//           ]);
-//         myData.staticFilters(staticFilter1);
-//         // --- Define chart options and static filters ---
-//         let myChart = myData
-//           .graph("Histogram")
-//           .set("grid", grid)
-//           .set("color", color)
-//           .set("xAxis", { position: "bottom" })
-//           .set("yAxis", { type: "log" })
-//           .set("serieLabel", {
-//             show: false
-//           })
-//           .staticFilters(staticFilter1)
-
-//           .element(elementId)
-//           .on("notification", e => {
-//             window.toast({
-//               message: e.message,
-//               type: e.type
-//             });
-//           })
-//           .on("execute:start", e => window.toggleIndicator(e.element, true))
-//           .on("execute:stop", e => window.toggleIndicator(e.element, false))
-//           .on("error", e => handleError(e.element, e.error))
-//           .execute()
-//           .catch(ex => {
-//             if (typeof provider !== "undefined") {
-//               const currentProvider = provider.getProvider();
-//               const providerName = currentProvider
-//                 ? currentProvider.get("provider")
-//                 : null;
-
-//               handleForbiddenError(ex, providerName);
-//             }
-//             handleError(elementId, ex);
-//           });
-//       } catch (ex) {
-//         console.error(ex);
-//         handleError(elementId, ex);
-//       }
-// }
-
-// function loadNeighborhoodsByReviewsBubbleChart(){
-//     const elementId = "cf-bubble-nh-reviews-scores";
-//       try {
-//         let staticFilter1 = cf
-//           .Filter("price")
-//           .label("price")
-//           .operation("GT")
-//           .value([0]); // Interaction Manager uses filter(), filters(), clientFilter(),
-//         // and clientFilters() to manage filters. To apply additional
-//         // filters, use staticFilters() or your code could be overwritten.
-//         //
-//         /* Configuration code for this widget */
-//         let provider = cf.provider("local");
-//         let source = provider.source("abnb_listings");
-//         // Define metrics
-//         let metrics = [cf.Metric("review_scores_value", "avg")];
-//         // Define attributes to group by
-//         let group = cf
-//           .Attribute("neighbourhood")
-//           .limit(40)
-//           .sort("desc", cf.Metric("review_scores_value", "avg"));
-//         let group2 = cf
-//           .Attribute("number_of_reviews")
-//           .limit(10)
-//           .sort("desc", cf.Metric("review_scores_value", "avg"));
-//         // Add metrics and groups to data source
-//         let myData = source.groupby(group, group2).metrics(...metrics);
-//         // --- Define chart options and static filters ---
-//         // Define Legend
-//         let legend = cf
-//           .Legend()
-//           .position("right")
-//           .width(150)
-//           .height("95%")
-//           .sort("none");
-//         // Define Grid
-//         let grid = cf
-//           .Grid()
-//           .top(10)
-//           .right(15)
-//           .bottom(35)
-//           .left(65);
-//         // Define Color Palette
-//         let color = cf
-//           .Color()
-//           .palette([
-//             "#0095b7",
-//             "#a0b774",
-//             "#f4c658",
-//             "#fe8b3e",
-//             "#cf2f23",
-//             "#756c56",
-//             "#007896",
-//             "#47a694",
-//             "#f9a94b",
-//             "#ff6b30",
-//             "#e94d29",
-//             "#005b76"
-//           ]);
-//         myData.staticFilters(staticFilter1);
-//         let myChart = myData
-//           .graph("Floating Bubbles")
-//           .set("legend", legend)
-//           .set("grid", grid)
-//           .set("color", color)
-//           .set("yAxis", { type: "value" })
-
-//           .element(elementId)
-//           .on("notification", e => {
-//             window.toast({
-//               message: e.message,
-//               type: e.type
-//             });
-//           })
-//           .on("execute:start", e => window.toggleIndicator(e.element, true))
-//           .on("execute:stop", e => window.toggleIndicator(e.element, false))
-//           .on("error", e => handleError(e.element, e.error))
-//           .execute()
-//           .catch(ex => {
-//             if (typeof provider !== "undefined") {
-//               const currentProvider = provider.getProvider();
-//               const providerName = currentProvider
-//                 ? currentProvider.get("provider")
-//                 : null;
-
-//               handleForbiddenError(ex, providerName);
-//             }
-//             handleError(elementId, ex);
-//           });
-//       } catch (ex) {
-//         console.error(ex);
-//         handleError(elementId, ex);
-//       }
-// }
-// function loadPriceByAmenitiesPieChart(){
-//       const elementId = "cf-pie-price-by-amenities";
-//       try {
-//         // Interaction Manager uses filter(), filters(), clientFilter(),
-//         // and clientFilters() to manage filters. To apply additional
-//         // filters, use staticFilters() or your code could be overwritten.
-//         //
-//         /* Configuration code for this widget */
-//         let provider = cf.provider("local");
-//         let source = provider.source("abnb_listings");
-//         // Define metrics
-//         let metric0 = cf.Metric("price", "avg");
-//         // Define attributes to group by
-//         let group1 = cf
-//           .Attribute("amenities_categorized")
-//           .limit(9)
-//           .sort("asc", cf.Metric());
-//         // Add metrics and groups to data source
-//         let myData = source.groupby(group1).metrics(metric0);
-//         // --- Define chart options and static filters ---
-//         // Define Color Palette
-//         let color = cf
-//           .Color()
-//           .palette([
-//             "#0095b7",
-//             "#a0b774",
-//             "#f4c658",
-//             "#fe8b3e",
-//             "#cf2f23",
-//             "#756c56",
-//             "#007896",
-//             "#47a694",
-//             "#f9a94b",
-//             "#ff6b30",
-//             "#e94d29",
-//             "#005b76"
-//           ]);
-//         let myChart = myData
-//           .graph("Pie")
-//           .set("color", color)
-
-//           .element(elementId)
-//           .on("notification", e => {
-//             window.toast({
-//               message: e.message,
-//               type: e.type
-//             });
-//           })
-//           .on("execute:start", e => window.toggleIndicator(e.element, true))
-//           .on("execute:stop", e => window.toggleIndicator(e.element, false))
-//           .on("error", e => handleError(e.element, e.error))
-//           .execute()
-//           .catch(ex => {
-//             if (typeof provider !== "undefined") {
-//               const currentProvider = provider.getProvider();
-//               const providerName = currentProvider
-//                 ? currentProvider.get("provider")
-//                 : null;
-
-//               handleForbiddenError(ex, providerName);
-//             }
-//             handleError(elementId, ex);
-//           });
-//       } catch (ex) {
-//         console.error(ex);
-//         handleError(elementId, ex);
-//       }
-//     }
+      let chartMulti = cf.getVisualization("cf-host-multi-listings");
+      let dataMulti = chartMulti.get("data");
+      let hostsMultiListings = dataMulti[0].current.metrics.host_id.unique;
 
 
-// function loadBedsByProperty() {
-//       const elementId = "cf-bars-beds";
-//       try {
-//         let staticFilter1 = cf
-//           .Filter("beds")
-//           .label("beds")
-//           .operation("GT")
-//           .value([0]);
-//         let provider = cf.provider("local");
-//         let source = provider.source("abnb_listings");
-//         // Define metrics
-//         let metric0 = cf.Metric("count");
-//         // Define attributes to group by
-//         let group1 = cf
-//           .Attribute("beds")
-//           .limit(13)
-//           .sort("asc", "beds");
-//         // Add metrics and groups to data source
-//         let myData = source.groupby(group1).metrics(metric0);
-//         // --- Define chart options and static filters ---
-//         // Define Grid
-//         let grid = cf
-//           .Grid()
-//           .top(10)
-//           .right(15)
-//           .bottom(35)
-//           .left(65);
-//         // Define Color Palette
-//         let color = cf
-//           .Color()
-//           .palette([
-//             "#0095b7",
-//             "#a0b774",
-//             "#f4c658",
-//             "#fe8b3e",
-//             "#cf2f23",
-//             "#756c56",
-//             "#007896",
-//             "#47a694",
-//             "#f9a94b",
-//             "#ff6b30",
-//             "#e94d29",
-//             "#005b76"
-//           ]);
-//         myData.staticFilters(staticFilter1);
-//         let myChart = myData
-//           .graph("Bars")
-//           .set("grid", grid)
-//           .set("color", color)
-//           .set("yAxis", { type: "log" })
-//           .set("dataZoom", "dragFilter")
-//           .staticFilters(staticFilter1)
+      let element1 = hostsWithOneListing >= hostsMultiListings ? hostsWithOneListing : hostsMultiListings;
+      let element2 = element1 === hostsWithOneListing ? hostsMultiListings : hostsWithOneListing;
 
-//           .element(elementId)
-//           .on("notification", e => {
-//             window.toast({
-//               message: e.message,
-//               type: e.type
-//             });
-//           })
-//           .on("execute:start", e => window.toggleIndicator(e.element, true))
-//           .on("execute:stop", e => window.toggleIndicator(e.element, false))
-//           .on("error", e => handleError(e.element, e.error))
-//           .execute()
-//           .catch(ex => {
-//             if (typeof provider !== "undefined") {
-//               const currentProvider = provider.getProvider();
-//               const providerName = currentProvider
-//                 ? currentProvider.get("provider")
-//                 : null;
+      let listingsType = ["single listings", "multi-listings"]
 
-//               handleForbiddenError(ex, providerName);
-//             }
-//             handleError(elementId, ex);
-//           });
-//       } catch (ex) {
-//         console.error(ex);
-//         handleError(elementId, ex);
-//       }
-//     }
+      let statisticsObj1 = {
+        count: element1,
+        rate: element1 / (element1 + element2) * 100,
+        description: element1 === hostsWithOneListing ? "single listings" : "multi-listings"
+      }
+      let statisticsObj2 = {
+        count: element2,
+        rate: element2 / (element1 + element2) * 100,
+        description: listingsType.filter(type => type !== statisticsObj1.description)[0]
+      }
+
+      var htmlString = buildHtmlStringHostListings(statisticsObj1, statisticsObj2);
+      document.getElementById("cf-host-listings-statistics").innerHTML = htmlString;
+      animateValue(document.getElementById('element1HostListingsPercentage'), statisticsObj1.rate, formatRate);
+      animateBothValues(
+        document.getElementById('element1HostListingsCount'),
+        statisticsObj1.count,
+        document.getElementById('element1HostListingsRate'),
+        statisticsObj1.rate
+      );
+      animateBothValues(
+        document.getElementById('element2HostListingsCount'),
+        statisticsObj2.count,
+        document.getElementById('element2HostListingsRate'),
+        statisticsObj2.rate
+      );
+    })
+    .element(elementId)
+    .execute()
+  } catch (ex) {
+    console.error(ex);
+    handleError(elementId, ex);
+  }
+}
