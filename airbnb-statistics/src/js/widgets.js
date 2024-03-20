@@ -464,74 +464,57 @@ function loadActivity() {
   }
 }
 
-function loadAvgNights(){
-  const elementId = "cf-avg-nights-inv";
-  try {
-    cf.provider('local')
-      .source('abnb_listings')
-      .filter(cf.Filter("host_total_listings_count")
-        .label("host_total_listings_count")
-        .operation("NOT IN")
-        .value([0, 1]))
-      .metrics(cf.Metric("estimated_occupied_time", "avg"), cf.Metric("availability_365", "avg"))
-      .on("execute:stop", () => {
-        let chart = cf.getVisualization("cf-avg-nights-inv");
-        let data = chart.get("data");
-        let avgNights = data[0].current.metrics.estimated_occupied_time.avg;
-        let avgAvailability = data[0].current.metrics.availability_365.avg;
-        // TODO: calculate better average nights, could't be > 360
-        avgNights = avgNights > avgAvailability ? avgAvailability : avgNights;
-        let avgNightsHtmlString = buildHtmlStringAvgNights(avgNights);
-        document.getElementById("cf-avg-nights").innerHTML = avgNightsHtmlString;
-        animateValue(document.getElementById('avgNights'), avgNights, formatCount);
-      })
-      .element(elementId)
-      .execute()
-  } catch (ex) {
-    console.error(ex);
-    handleError(elementId, ex);
-  }
+let dataHandler = (result) => {
+  result.keep = true;
+  return result;
 }
 
 function loadAvgPrice() {
   const elementId = "cf-avg-price-inv";
   try {
 
-    cf.provider('local')
-      .source('abnb_listings')
-      .filter(cf.Filter("host_total_listings_count")
+    cf.create('Query1')
+    .provider('local')
+    .source('abnb_listings')
+    .filter(cf.Filter("host_total_listings_count")
         .label("host_total_listings_count")
         .operation("NOT IN")
         .value([0, 1]))
-      .metrics(cf.Metric("price", "avg"))
-      .on("execute:stop", () => {
+    .metrics(cf.Metric("estimated_occupied_time", "avg"), cf.Metric("availability_365", "avg"))
+    .create('Query2')
+    .provider('local')
+    .source('abnb_listings')
+    .filter(cf.Filter("host_total_listings_count")
+        .label("host_total_listings_count")
+        .operation("NOT IN")
+        .value([0, 1]))
+    .metrics(cf.Metric("price", "avg"))
+    .processWith(dataHandler)
+    .on("execute:stop", (result) => {
 
-        let nightsChart = cf.getVisualization("cf-avg-nights-inv");
-        let nightsData = nightsChart.get("data");
-        let avgNights = nightsData[0].current.metrics.estimated_occupied_time.avg;
-        let avgAvailability = nightsData[0].current.metrics.availability_365.avg;
-        avgNights = avgNights > avgAvailability ? avgAvailability : avgNights;
+      let nightsData = result.data.Query1;
+      let avgNights = nightsData[0].current.metrics.estimated_occupied_time.avg;
+      let avgAvailability = nightsData[0].current.metrics.availability_365.avg;
+      avgNights = avgNights > avgAvailability ? avgAvailability : avgNights;
 
-        let chart = cf.getVisualization("cf-avg-price-inv");
-        let data = chart.get("data");
-        let avgPrice = data[0].current.metrics.price.avg;
-        let avgPriceHtmlString = buildHtmlStringAvgPrice(avgPrice);
+      let data = result.data.Query2;
+      let avgPrice = data[0].current.metrics.price.avg;
+      let avgPriceHtmlString = buildHtmlStringAvgPrice(avgPrice);
 
-        let avgNightsHtmlString = buildHtmlStringAvgNights(avgNights);
-        document.getElementById("cf-avg-nights").innerHTML = avgNightsHtmlString;
-        animateValue(document.getElementById('avgNights'), avgNights, formatCount);
+      let avgNightsHtmlString = buildHtmlStringAvgNights(avgNights);
+      document.getElementById("cf-avg-nights").innerHTML = avgNightsHtmlString;
+      animateValue(document.getElementById('avgNights'), avgNights, formatCount);
 
-        let avgIncome = avgPrice * avgNights;
-        let avgIncomeHtmlString = buildHtmlStringAvgIncome(avgIncome);
+      let avgIncome = avgPrice * avgNights;
+      let avgIncomeHtmlString = buildHtmlStringAvgIncome(avgIncome);
 
-        document.getElementById("cf-avg-price").innerHTML = avgPriceHtmlString;
-        document.getElementById("cf-avg-income").innerHTML = avgIncomeHtmlString;
-        animateValue(document.getElementById('avgPrice'), avgPrice, formatCurrency);
-        animateValue(document.getElementById('avgIncome'), avgIncome, formatCurrency);
-
-      })
-      .element(elementId)
-      .execute()
+      document.getElementById("cf-avg-price").innerHTML = avgPriceHtmlString;
+      document.getElementById("cf-avg-income").innerHTML = avgIncomeHtmlString;
+      animateValue(document.getElementById('avgPrice'), avgPrice, formatCurrency);
+      animateValue(document.getElementById('avgIncome'), avgIncome, formatCurrency);
+    })
+    .element(elementId)
+    .execute()
   } catch (ex) {
     console.error(ex);
     handleError(elementId, ex);
@@ -691,41 +674,32 @@ function loadHostListings() {
   }
 }
 
-function loadHostMultiListings(){
-  const elementId = "cf-host-multi-listings";
+function loadHostListingsStatistics() {
+  const elementId = "cf-host-single-listings";
   try {
-    cf.provider('local')
+    cf.create('Query1')
+    .provider('local')
     .source('abnb_listings')
     .filter(cf.Filter("host_total_listings_count")
     .label("host_total_listings_count")
     .operation("NOT IN")
     .value([0, 1]))
     .metrics(cf.Metric("host_id", "unique"))
-    .element(elementId)
-    .execute()
-  } catch (ex) {
-    console.error(ex);
-    handleError(elementId, ex);
-  }
-}
-
-function loadHostListingsStatistics() {
-  const elementId = "cf-host-single-listings";
-  try {
-    cf.provider('local')
+    .create('Query2')
+    .provider('local')
     .source('abnb_listings')
     .filter(cf.Filter("host_total_listings_count")
       .label("host_total_listings_count")
       .operation("IN")
       .value([1]))
     .metrics(cf.Metric("host_id", "unique"))
-    .on("execute:stop", () => {
-      let chart = cf.getVisualization("cf-host-single-listings");
-      let data = chart.get("data");
+    .processWith(dataHandler)
+    .on("execute:stop", (result) => {
+
+      let data = result.data.Query2;
       let hostsWithOneListing = data[0].current.metrics.host_id.unique;
 
-      let chartMulti = cf.getVisualization("cf-host-multi-listings");
-      let dataMulti = chartMulti.get("data");
+      let dataMulti = result.data.Query1;
       let hostsMultiListings = dataMulti[0].current.metrics.host_id.unique;
 
 

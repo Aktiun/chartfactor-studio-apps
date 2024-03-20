@@ -170,11 +170,9 @@ window.addEventListener("load", function() {
   loadGeomap();
   loadPropertyType();
   loadActivity();
-  loadAvgNights();
   loadAvgPrice();
   loadLicenses();
   loadHostListings();
-  loadHostMultiListings();
   loadHostListingsStatistics();
   // loadBathroomsHistogram();
   // loadRangeFilters();
