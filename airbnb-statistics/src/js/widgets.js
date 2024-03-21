@@ -71,7 +71,6 @@ function loadInteractionManager(){
                 style: "color: red;font-size: 30px;"
             }
         })
-
           .element("im")
           .on("notification", e => {
             window.toast({
@@ -79,7 +78,18 @@ function loadInteractionManager(){
               type: e.type
             });
           })
-          .execute()
+          .execute().then(() => {
+            const im = cf.getIManager();
+
+            im.get("api").setFilters([
+                cf.Filter("month_date_yyyymm")
+                    .label("Date")
+                    .granularity("MONTH")
+                    .oneTimeUnit(true)
+                    .operation("BETWEEN")
+                    .value(window.timeFilter.getValue())
+            ]);
+            im.get("api").updateContent();})
           .catch(ex => {
             handleError(elementId, ex);
           });
@@ -787,4 +797,92 @@ function loadTopHosts() {
     handleError(elementId, ex);
 
   }
+}
+
+// Realtor metrics
+
+function kpi() {
+  let metric0 = cf.Metric("active_listing_count", "sum");
+
+  let filter168 = cf.Filter("month_date_yyyymm")
+      .label("Date")
+      .operation("BETWEEN")
+      .value(window.timeFilter.getValue());
+
+  cf.provider("local")
+      .source("realtor_monthly_inventory_state_all")
+      .metrics(metric0)
+      .filters(filter168)
+      .element("kpi-dummy")
+      .on("execute:stop", data => {
+          if (_ && data) {
+              const value = _.get(data, 'data[0].current.metrics.active_listing_count.sum');
+              const fixedValue = value ? value.toFixed(2) : "0";
+              const formatedValue = value ? value.toLocaleString("en-US") : "0";
+              const values = formatedValue.includes(".") ?
+                  formatedValue.split(".")[0] + "." + fixedValue.split(".")[1] :
+                  formatedValue;
+
+              $('#cf-active-listings').html(values);
+          }
+      })
+      .execute();
+}
+
+function trends() {
+  let filter168 = cf.Filter("month_date_yyyymm")
+      .label("Date")
+      .operation("BETWEEN")
+      .value(window.timeFilter.getValue());
+  let grid = cf.Grid()
+      .top(35)
+      .right(25)
+      .bottom(35)
+      .left(45);
+  let color = cf.Color()
+      .palette(["#0095b7", "#a0b774", "#f4c658", "#fe8b3e", "#cf2f23", "#756c56", "#007896", "#47a694", "#f9a94b", "#ff6b30", "#e94d29", "#005b76"]);
+  color.theme({
+      background: "#FFFFFF7F",
+      font: "black"
+  });
+  let metric0 = cf.Metric("active_listing_count", "sum").hideFunction();
+  let group1 = cf.Attribute("month_date_yyyymm")
+      .limit(1000).func("MONTH")
+      .sort("asc", "month_date_yyyymm");
+
+  cf.provider("local")
+      .source("realtor_monthly_inventory_country_all")
+      .groupby(group1)
+      .metrics(metric0)
+      .clientFilter(filter168)
+      .graph("Trend")
+      .set("grid", grid)
+      .set("color", color)
+      .set("axisLabels", false)
+      .set("xAxis", { "labelGap": 30 })
+      .set("dataZoom", false)
+      .element("cf-active-listings-trend")
+      .execute();
+
+
+  let metric1 = cf.Metric("median_listing_price", "avg").hideFunction();
+  let grid2 = cf.Grid()
+      .top(50)
+      .right(25)
+      .bottom(35)
+      .left(55);
+
+  cf.provider("local")
+      .source("realtor_monthly_inventory_country_all")
+      .groupby(group1)
+      .metrics(metric1)
+      .clientFilter(filter168)
+      .graph("Trend")
+      .set("grid", grid2)
+      .set("color", color)
+      .set("axisLabels", false)
+      .set("xAxis", { "labelGap": 30 })
+      .set("dataZoom", false)
+      .element("cf-median-listing-price-trend")
+      .execute();
 }

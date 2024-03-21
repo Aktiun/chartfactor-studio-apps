@@ -95,9 +95,9 @@ def are_headers_correct(file):
 
 def clean_data(df):
     """
-    Clean the ID column, converting to numeric and handling non-numeric values.
+    Clean the ID column and remove empty records.
     """
-    df.dropna(subset=["id"], inplace=True)
+    df = df[df['id'].str.strip() != '']
 
     return df
 
@@ -120,7 +120,10 @@ def combine_csv_files(source_dir, output_file):
             logger.error(f"Error: File {file} has different headers.")
             continue
         logger.info(f"Processing file: {file}")
-        df = pd.read_csv(file)
+        # read id column as string when reading the file
+        df = pd.read_csv(file, dtype={"id": str})
+        # df = pd.read_csv(file)
+        df['id'] = df['id'].astype(str)
         df_cleaned = clean_data(df)
         dfs.append(df_cleaned)
     combined_df = pd.concat(dfs, ignore_index=True)

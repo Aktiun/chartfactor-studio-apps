@@ -342,7 +342,8 @@ def create_index(client, index_name):
 				        "type": "float"
 				    },
 				    "zipcode": {
-				        "type": "integer"
+				        "type": "keyword",
+				        "null_value": "null"
 				    },
                     "amenities_categorized": {
                     "type": "keyword"
@@ -453,7 +454,7 @@ def get_value(csv_file):
 				"reviews_per_month": r[74],
 				"estimated_occupied_time": r[75],
 				"income_ltm": r[76],
-				"zipcode": r[77],
+				"zipcode": r[77] if r[77] != '' else None,
                 "calculated_host_listings_count_hotel_rooms": get_hotel_room_count(r[33], r[71], r[72], r[73], r[70])
             }
             

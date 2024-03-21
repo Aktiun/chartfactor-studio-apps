@@ -176,6 +176,10 @@ window.addEventListener("load", function() {
   loadHostListingsStatistics();
   loadTopHosts();
 
+  // Realtor metrics
+  kpi();
+  trends();
+
   (function() {
     const IM = cf.getIManager();
     const skin = IM.get("skin");
