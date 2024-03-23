@@ -19,3 +19,8 @@ window.addEventListener("resize", function(event) {
       c.resize();
   });
 });
+
+$("#modal-close").click(function() {
+    $("#provider-modal").css("visibility", "hidden");
+    $("#glassPanel").css("visibility", "visible");
+});

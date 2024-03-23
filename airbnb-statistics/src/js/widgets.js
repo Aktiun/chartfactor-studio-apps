@@ -140,11 +140,11 @@ function loadGeomap(){
                 showLocation: false,
                 disableMarkerEvents: false,
                 maxSpiderifyMarkers: 100,
-                allowClickInRawMarker: true,
+                allowClickInRawMarker: false,
                 location: "location",
                 visibilityZoomRange: [11, 24],
                 precisionLevels: null,
-                fields: ["name", "host_name", "bedrooms", "beds", "price", "picture_url", "number_of_reviews", "review_scores_value", "minimum_nights"],
+                fields: ["name", "host_name", "bedrooms", "beds", "price", "picture_url", "number_of_reviews", "review_scores_value", "minimum_nights", "zipcode"],
                 "customTooltip": myTooltip,
               }
             },
@@ -244,7 +244,7 @@ function loadGeomap(){
               }
             }
           ])
-          .set("zoom", 11.05618467083821)
+          .set("zoom", 15)
           .set("center", [-73.84875467114972, 40.77680058764247])
           .set("layersControl", {
             collapsed: true,
@@ -271,17 +271,27 @@ function loadGeomap(){
             window.toggleIndicator(e.element, false);
             let aktiveMap = cf.getVisualization("cf-main-geomap");
             let geoMap = aktiveMap.get("map");
-            geoMap.on("zoomend", () => {
+            geoMap.on("zoomend", (e) => {
               // console.log("zoomend **********");
-              updateBoundsFilter();
+              updateBnBBoundsFilter();
+              updateRealtorBoundsFilter();
             });
             geoMap.on("moveend", () => {
               // console.log("moveend **********");
-              updateBoundsFilter();
+              updateBnBBoundsFilter();
+              updateRealtorBoundsFilter();
             });
             geoMap.on("dragend", () => {
               // console.log("dragend **********");
-              updateBoundsFilter();
+              updateBnBBoundsFilter();
+              updateRealtorBoundsFilter();
+            });
+            //let hostsLayer = cf.getVisualization("cf-main-geomap-hosts");
+            geoMap.on("click", "hosts_image_layer", (e) => {
+              let markerData = JSON.parse(e.features[0].properties.__cf_data__);
+              console.log(markerData);
+              $("#provider-modal").css("visibility", "visible");
+              $("#glassPanel").css("visibility", "hidden");
             });
           })
           .on("error", e => handleError(e.element, e.error))
@@ -805,28 +815,29 @@ function kpi() {
   let metric0 = cf.Metric("active_listing_count", "sum");
 
   let filter168 = cf.Filter("month_date_yyyymm")
-      .label("Date")
-      .operation("BETWEEN")
-      .value(window.timeFilter.getValue());
+    .label("Date")
+    .operation("BETWEEN")
+    .value(window.timeFilter.getValue());
 
   cf.provider("local")
-      .source("realtor_monthly_inventory_state_all")
-      .metrics(metric0)
-      .filters(filter168)
-      .element("kpi-dummy")
-      .on("execute:stop", data => {
-          if (_ && data) {
-              const value = _.get(data, 'data[0].current.metrics.active_listing_count.sum');
-              const fixedValue = value ? value.toFixed(2) : "0";
-              const formatedValue = value ? value.toLocaleString("en-US") : "0";
-              const values = formatedValue.includes(".") ?
-                  formatedValue.split(".")[0] + "." + fixedValue.split(".")[1] :
-                  formatedValue;
+    .source("realtor_monthly_inventory_zip_all")
+    .metrics(metric0)
+    .filters(filter168)
+    .element("kpi-dummy")
+    .on("execute:stop", data => {
+      if (_ && data) {
 
-              $('#cf-active-listings').html(values);
-          }
-      })
-      .execute();
+        const value = _.get(data, 'data[0].current.metrics.active_listing_count.sum');
+        const fixedValue = value ? value.toFixed(2) : "0";
+        const formatedValue = value ? value.toLocaleString("en-US") : "0";
+        const values = formatedValue.includes(".") ?
+          formatedValue.split(".")[0] + "." + fixedValue.split(".")[1] :
+          formatedValue;
+
+        $('#cf-active-listings').html(values);
+      }
+    })
+    .execute();
 }
 
 function trends() {
@@ -851,7 +862,7 @@ function trends() {
       .sort("asc", "month_date_yyyymm");
 
   cf.provider("local")
-      .source("realtor_monthly_inventory_country_all")
+      .source("realtor_monthly_inventory_zip_all")
       .groupby(group1)
       .metrics(metric0)
       .clientFilter(filter168)
@@ -873,7 +884,7 @@ function trends() {
       .left(55);
 
   cf.provider("local")
-      .source("realtor_monthly_inventory_country_all")
+      .source("realtor_monthly_inventory_zip_all")
       .groupby(group1)
       .metrics(metric1)
       .clientFilter(filter168)

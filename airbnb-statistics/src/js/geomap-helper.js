@@ -1,8 +1,22 @@
 
-const updateBoundsFilter = () => {
-    let aktiveInstance = cf.getVisualization("cf-main-geomap")
-    let map = aktiveInstance.get("map")
-    let bounds = map.getBounds()
+function isPointInBoundary(point, boundary) {
+  return point.lat >= boundary._sw.lat && point.lat <= boundary._ne.lat &&
+         point.lon >= boundary._sw.lng && point.lon <= boundary._ne.lng;
+}
+
+function filterMarkers(markers, filterBoundaries) {
+  return markers.filter(marker => isPointInBoundary({"lat":marker.location[0], "lon":marker.location[1]}, filterBoundaries));
+}
+
+const getVisibleBounds = () => {
+  let aktiveInstance = cf.getVisualization("cf-main-geomap");
+  let map = aktiveInstance.get("map");
+  return map.getBounds();
+}
+
+
+const updateBnBBoundsFilter = () => {
+    let bounds = getVisibleBounds();
     let nw = bounds.getNorthWest();
     let se = bounds.getSouthEast();
     let ne = {"lng":se.lng, "lat":nw.lat};
@@ -14,10 +28,29 @@ const updateBoundsFilter = () => {
     let boundaryFilter = cf.Filter("location").label("zoomFilter").type("POLYGON").operation("IN").value(filterBoundaries);
 
     cf.getAllVisualizations().filter(c => {
-        return !c._isAktiveLayer && !["im", "cf-main-geomap"].includes(c._elementId);
+        let notAllowed = ["im", "cf-main-geomap", "kpi-dummy", "cf-active-listings-trend", "cf-median-listing-price-trend"];
+        return !c._isAktiveLayer && !notAllowed.includes(c._elementId);
     }).forEach(c => {
         c.staticFilters(boundaryFilter).execute();
     });
+
+}
+
+const updateRealtorBoundsFilter = () => {
+  let bounds = getVisibleBounds();
+  let hostsLayer = cf.getVisualization("cf-main-geomap-hosts");
+
+  let markers = hostsLayer.get("data");
+  let visibleMarkers = filterMarkers(markers, bounds);
+
+  let zipcodes = visibleMarkers.map(m => m.zipcode);
+  let filter = cf.Filter("postal_code").label("zoomFilter").operation("IN").value(zipcodes);
+  cf.getVisualization("kpi-dummy").staticFilters(filter).on("execute:stop", (e) => {
+    let value = e.data[0].current.metrics.active_listing_count.sum;
+    animateValue(document.getElementById('cf-active-listings'), value, formatCount);
+  }).execute();
+  cf.getVisualization("cf-active-listings-trend").staticFilters(filter).execute();
+  cf.getVisualization("cf-median-listing-price-trend").staticFilters(filter).execute();
 }
 
 // move to another file
