@@ -20,7 +20,31 @@ window.addEventListener("resize", function(event) {
   });
 });
 
-$("#modal-close").click(function() {
-    $("#provider-modal").css("visibility", "hidden");
+function showInvestorModal() {
+    $("#investors-modal").css("visibility", "visible");
+    $("#glassPanel").css("visibility", "hidden");
+    $(".cf-main-geomap-collapse-draw-control").css("visibility", "hidden");
+    $(".collapsible-draw-control").css("visibility", "hidden");
+    $(".cf-main-geomap-collapse-layers-control").css("visibility", "hidden");
+    $(".collapsible-layers-control").css("visibility", "hidden");
+}
+
+function hideInvestorsModal(){
+    $("#investors-modal").css("visibility", "hidden");
     $("#glassPanel").css("visibility", "visible");
+    $(".cf-main-geomap-collapse-draw-control").css("visibility", "visible");
+    $(".collapsible-draw-control").css("visibility", "visible");
+    $(".cf-main-geomap-collapse-layers-control").css("visibility", "visible");
+    $(".collapsible-layers-control").css("visibility", "visible");
+}
+
+function removeInvestorsModalVisualizations(){
+    cf.getVisualization("kpi-by-zipcode").remove();
+    cf.getVisualization("cf-active-listings-trend-by-zipcode").remove();
+    cf.getVisualization("cf-median-listing-price-trend-by-zipcode").remove();
+}
+
+$("#modal-close").click(function() {
+    hideInvestorsModal();
+    removeInvestorsModalVisualizations();
 });

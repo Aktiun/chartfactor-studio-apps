@@ -562,10 +562,10 @@ body {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
-.provider-modal {
+.investors-modal {
   visibility: hidden;
   width: 100%;
-  height: 100%;
+  height: 90%;
   position: absolute;
   top: 0;
   left: 0;
@@ -576,13 +576,14 @@ body {
   background: rgb(0 0 0 / 60%);
 }
 
-.provider-modal-content {
+.investors-modal-content {
   width: 90vw;
   height: 80vh;
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: 10% 85% 5%;
   grid-template-areas:
-          "modal-header" "widget-titles" "modal-content";
+          "modal-header" "modal-content" "modal-footer";
   grid-gap: 10px;
   padding: 5px 10px 10px 10px;
   background: white;
@@ -591,26 +592,7 @@ body {
   overflow-y: hidden;
 }
 
-.provider-modal-titles {
-  grid-area: widget-titles;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
-  grid-template-areas:
-          "title1 title2 title3";
-  justify-content: center;
-  align-items: center;
-}
-
-.provider-modal-titles > span {
-  display: flex;
-  font-size: 1.5vw;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-}
-
-.provider-modal-header {
+.investors-modal-header {
   grid-area: modal-header;
   display: flex;
   justify-content: space-between;
@@ -618,7 +600,49 @@ body {
   border-bottom: 1px solid #cfd8dc;
 }
 
-.provider-modal-header-title {
+.investors-modal-footer {
+  grid-area: modal-footer;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px 0;
+}
+
+.footer-button {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 24px;
+  background-color: #e53935;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 20px;
+  transition: transform 0.3s;
+  position: relative;
+  white-space: nowrap;
+}
+
+.footer-button:hover {
+  transform: scale(1.05);
+}
+
+.footer-button > a {
+  line-height: 1.2;
+}
+
+.button-top-text {
+  display: block;
+  font-size: 0.7em;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -150%);
+  margin: 0;
+}
+
+.investors-modal-header-title {
   font-size: 3vw;
   font-weight: bold;
   word-wrap: break-word;
@@ -626,12 +650,144 @@ body {
   hyphens: auto;
 }
 
-.provider-modal-header-close {
+.investors-modal-header-close {
   cursor: pointer;
 }
 
-.provider-modal-body {
+.investors-modal-body {
   grid-area: modal-content;
   overflow: scroll;
-  height: 100%;
+}
+
+.counter-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.counter-info {
+  font-size: 3.5vw;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.counter-info span {
+  color: #f4a74a;
+}
+
+.counter-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.counter {
+  font-size: 5vw;
+  font-weight: bold;
+  color: #0095b7;
+  border: 2px solid #a7d9fa;
+  border-radius: 60%;
+  padding: 1vw 2vw;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.credits {
+  color: #9e9e9e;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  font-size: 1em;
+  line-height: 1.2em;
+}
+
+.credits a {
+  text-decoration: none;
+  color: #039be5;
+  margin: 0 0.5em;
+}
+
+.investors-modal-property-details-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+          "property-details-trends property-details-details";
+  grid-gap: 10px;
+}
+
+.investors-modal-property-details-trends {
+  grid-area: property-details-trends;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.trend-by-zip-header{
+  text-align: center;
+  padding: 0px;
+}
+
+.trend-by-zip-content div{
+  height: 20em;
+  align-items: center;
+}
+
+.investors-modal-property-details-details {
+  grid-area: property-details-details;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.listing-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin-bottom: 20px;
+}
+
+.listing-image {
+  width: 100%;
+  height: 20em;
+  object-fit: cover;
+}
+
+.listing-details {
+  padding: 15px;
+  background: #f5f5f5;
+}
+
+.listing-title {
+  margin: 0;
+  color: #039be5;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.listing-price {
+  color: #e53935;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.listing-info {
+  margin: 5px 0;
+  font-size: 0.9em;
+}
+
+.listing-minimum-nights {
+  font-size: 0.9em;
+  background: #e8eaf6;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
 }

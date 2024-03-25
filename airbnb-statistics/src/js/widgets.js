@@ -290,8 +290,15 @@ function loadGeomap(){
             geoMap.on("click", "hosts_image_layer", (e) => {
               let markerData = JSON.parse(e.features[0].properties.__cf_data__);
               console.log(markerData);
-              $("#provider-modal").css("visibility", "visible");
-              $("#glassPanel").css("visibility", "hidden");
+              showInvestorModal();
+              kpiByZipcode(markerData.zipcode);
+              trendsByZipcode(markerData.zipcode);
+
+              let propertyName = markerData.name;
+              let propertyDetails = createListingCard(markerData);
+              $("#property-name").text(propertyName);
+              $("#cf-property-details-features").html(propertyDetails);
+
             });
           })
           .on("error", e => handleError(e.element, e.error))
@@ -896,4 +903,103 @@ function trends() {
       .set("dataZoom", false)
       .element("cf-median-listing-price-trend")
       .execute();
+}
+
+function kpiByZipcode(zipcode) {
+  let metric0 = cf.Metric("active_listing_count", "sum");
+
+  let filter168 = cf.Filter("month_date_yyyymm")
+    .label("Date")
+    .operation("BETWEEN")
+    .value(window.timeFilter.getValue());
+
+  let filterZipcode = cf.Filter("postal_code")
+    .operation("IN")
+    .value([zipcode]);
+
+  cf.provider("local")
+    .source("realtor_monthly_inventory_zip_all")
+    .metrics(metric0)
+    .filters(filter168, filterZipcode)
+    .element("kpi-by-zipcode")
+    .on("execute:stop", data => {
+      if (_ && data) {
+
+        const value = _.get(data, 'data[0].current.metrics.active_listing_count.sum');
+        const fixedValue = value ? value.toFixed(2) : "0";
+        const formatedValue = value ? value.toLocaleString("en-US") : "0";
+        const values = formatedValue.includes(".") ?
+          formatedValue.split(".")[0] + "." + fixedValue.split(".")[1] :
+          formatedValue;
+
+        const realtorHtmlLink = ` <a href="https://www.realtor.com/realestateandhomes-search/${zipcode}" target="_blank" class="footer-button"> <span class="button-top-text">REALTOR.COM</span> Go to listings in zip code: ${zipcode}</a>`;
+
+        $('#cf-active-listings-zipcode').html(values);
+        $('#counter-info-zipcode').text(zipcode);
+        $('#realtor-link').html(realtorHtmlLink);
+      }
+    })
+    .execute();
+}
+
+function trendsByZipcode(zipcode){
+  let filter168 = cf.Filter("month_date_yyyymm")
+      .label("Date")
+      .operation("BETWEEN")
+      .value(window.timeFilter.getValue());
+
+  let filterZipcode = cf.Filter("postal_code")
+    .operation("IN")
+    .value([zipcode]);
+
+  let grid = cf.Grid()
+      .top(35)
+      .right(25)
+      .bottom(35)
+      .left(45);
+  let color = cf.Color()
+      .palette(["#0095b7", "#a0b774", "#f4c658", "#fe8b3e", "#cf2f23", "#756c56", "#007896", "#47a694", "#f9a94b", "#ff6b30", "#e94d29", "#005b76"]);
+  color.theme({
+      background: "#FFFFFF7F",
+      font: "black"
+  });
+  let metric0 = cf.Metric("active_listing_count", "sum").hideFunction();
+  let group1 = cf.Attribute("month_date_yyyymm")
+      .limit(1000).func("MONTH")
+      .sort("asc", "month_date_yyyymm");
+
+  cf.provider("local")
+      .source("realtor_monthly_inventory_zip_all")
+      .groupby(group1)
+      .metrics(metric0)
+      .clientFilter(filter168, filterZipcode)
+      .graph("Trend")
+      .set("grid", grid)
+      .set("color", color)
+      .set("axisLabels", false)
+      .set("xAxis", { "labelGap": 30 })
+      .set("dataZoom", false)
+      .element("cf-active-listings-trend-by-zipcode")
+      .execute();
+
+  let metric1 = cf.Metric("median_listing_price", "avg").hideFunction();
+  let grid2 = cf.Grid()
+    .top(50)
+    .right(25)
+    .bottom(35)
+    .left(55);
+
+  cf.provider("local")
+    .source("realtor_monthly_inventory_zip_all")
+    .groupby(group1)
+    .metrics(metric1)
+    .clientFilter(filter168, zipcode)
+    .graph("Trend")
+    .set("grid", grid2)
+    .set("color", color)
+    .set("axisLabels", false)
+    .set("xAxis", { "labelGap": 30 })
+    .set("dataZoom", false)
+    .element("cf-median-listing-price-trend-by-zipcode")
+    .execute();
 }

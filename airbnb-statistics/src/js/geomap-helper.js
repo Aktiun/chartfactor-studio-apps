@@ -226,3 +226,45 @@ function buildHtmlStringHostListings(element1, element2){
   </div>
   `
 }
+
+
+function createListingCard(marker) {
+  const {
+    picture_url,
+    host_name,
+    price,
+    bedrooms,
+    number_of_reviews,
+    review_scores_value,
+    minimum_nights,
+    name
+  } = marker;
+
+  let cleanPrice = price > 0 ? price.toFixed(2) : "Price not available";
+  let cleanBedrooms = bedrooms !== "" ? bedrooms : "Bedrooms not available";
+  let avgNights = (Number(number_of_reviews) * Number(minimum_nights)).toFixed(0);
+  let rawIncome = (avgNights * Number(price)).toFixed(2);
+  let avgIncome = rawIncome > 0 ? rawIncome : "Income not available";
+  let cleanIncome = rawIncome > 0 ? `$${avgIncome}` : "Income not available";
+  let cleanScore = review_scores_value !== "" ? review_scores_value : "not available";
+
+
+  // Creamos el HTML string usando template literals
+  const htmlString = `
+    <div class="listing-card">
+      <img src="${picture_url}" alt="${name}" class="listing-image" />
+      <div class="listing-details">
+        <h3 class="listing-title">${host_name}'s Place</h3>
+        <p class="listing-price">$${cleanPrice} per night</p>
+        <p class="listing-minimum-nights">Min. Nights: ${minimum_nights}</p>
+        <p class="listing-info">${cleanBedrooms} Bedroom(s) · ${number_of_reviews} Review(s) · Score: ${cleanScore}</p>
+      </div>
+      <div class="investors-info">
+      <div class="avg-nights">Average occupied time last twelve months: ${avgNights}</div>
+      <div class="avg-income">Average income last twelve months: ${cleanIncome}</div>
+      </div>
+    </div>
+  `;
+
+  return htmlString;
+}

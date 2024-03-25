@@ -138,33 +138,76 @@
                         <div id="cf-median-listing-price-trend" class="widget-visualization" style="height: 300px;"></div>
                     </div>
 
+                    <div class="widget">
+                        <div class="widget-header">
+                            <h3>Credits</h3>
+                        </div>
+                        <div class="credits">
+                            DATA AND INSPIRATION FROM <a target="_blank" href="http://insideairbnb.com/get-the-data/">INSIDEAIRBNB.COM</a> DATA FOR PURCHASABLE LISTINGS FROM <a
+                                target="_blank" href="https://www.realtor.com/research/data/">REALTOR.COM</a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
         <div class="app-content">
             <div id="cf-main-geomap"></div>
-            <div id="provider-modal" class="provider-modal">
-                <div class="provider-modal-content">
-                    <div class="provider-modal-header">
-                        <div class="provider-modal-header-title" id="DRG_Desc">Investors Zone</div>
-                        <div class="provider-modal-header-close">
+            <div id="investors-modal" class="investors-modal">
+                <div class="investors-modal-content">
+                    <div class="investors-modal-header">
+                        <div class="investors-modal-header-title" id="DRG_Desc">Investors Zone</div>
+                        <div class="investors-modal-header-close">
                             <span id="modal-close" class="material-symbols-outlined">close</span>
                         </div>
                     </div>
 
-                    <div class="provider-modal-body">
-
-
-
+                    <div class="investors-modal-body">
+                        <div class="counter-wrapper">
+                            <div class="counter-info">
+                              Purchasable listings in postal code <span id="counter-info-zipcode"></span>
+                            </div>
+                            <div class="counter-container">
+                                <span class="counter" id="cf-active-listings-zipcode"></span>
+                            </div>
+                        </div>
+                        <div class="investors-modal-property-details-container">
+                            <div class="property-details-trends">
+                                <div class="tend-by-zip">
+                                    <div class="trend-by-zip-header">
+                                        <h3>Active listings Trend by Zipcode</h3>
+                                    </div>
+                                    <div class="trend-by-zip-content">
+                                        <div id="cf-active-listings-trend-by-zipcode"></div>
+                                    </div>
+                                </div>
+                                <div class="tend-by-zip">
+                                    <div class="trend-by-zip-header">
+                                        <h3>Median listing price by Zipcode</h3>
+                                    </div>
+                                    <div class="trend-by-zip-content">
+                                        <div id="cf-median-listing-price-trend-by-zipcode"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="property-details-details">
+                                <div class="property-details-header">
+                                    <h3 id="property-name" style="text-align: center; font-weight: bold;">Property Details</h3>
+                                </div>
+                                <div class="property-details-content">
+                                    <div id="cf-property-details-features"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="investors-modal-footer">
+                        <div id="realtor-link"></div>
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
-    <div class="credits" style="flex: 1; color: #9e9e9e; grid-row: 5; display: flex; justify-content: center; align-items: center; height: 50px; text-align: center;">
-        DATA FROM &nbsp; <a target="_blank" style="text-decoration: none; color: #039be5;" href="http://insideairbnb.com/get-the-data/">INSIDEAIRBNB.COM &nbsp;</a> and &nbsp;<a target="_blank" style="text-decoration: none; color: #039be5;" href="https://www.realtor.com/research/data/">REALTOR.COM</a>
-      </div>
 
     <div id="fullView" class="modal">
         <div class="modal-header">
