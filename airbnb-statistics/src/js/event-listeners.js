@@ -42,6 +42,7 @@ function removeInvestorsModalVisualizations(){
     cf.getVisualization("kpi-by-zipcode").remove();
     cf.getVisualization("cf-active-listings-trend-by-zipcode").remove();
     cf.getVisualization("cf-median-listing-price-trend-by-zipcode").remove();
+    cf.getVisualization("cf-new-listing-by-zipcode").remove();
 }
 
 $("#modal-close").click(function() {

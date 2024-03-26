@@ -239,6 +239,16 @@ function loadProviders() {
                         label: "Estimated booked time (last 12 months)"
                     },
                 }
+            },
+            "realtor_monthly_inventory_zip_all": {
+                "fields": {
+                    "median_listing_price": {
+                        "label": "Median listing price"
+                    },
+                    "new_listing_count": {
+                        "label": "New listing count"
+                    }
+                }
             }
         };
         return _META_;

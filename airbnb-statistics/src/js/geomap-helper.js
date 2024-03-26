@@ -228,6 +228,15 @@ function buildHtmlStringHostListings(element1, element2){
 }
 
 
+function createStars(score) {
+  let stars = '';
+  for (let i = 0; i < 5; i++) {
+    stars += i < score ? '<span class="score-star fas fa-star"></span>' : '<span class="score-star far fa-star"></span>';
+  }
+  return stars;
+}
+
+
 function createListingCard(marker) {
   const {
     picture_url,
@@ -240,28 +249,34 @@ function createListingCard(marker) {
     name
   } = marker;
 
-  let cleanPrice = price > 0 ? price.toFixed(2) : "Price not available";
+  let cleanPrice = price > 0 ? `$${price.toFixed(2)} per night.` : "Price not available";
   let cleanBedrooms = bedrooms !== "" ? bedrooms : "Bedrooms not available";
   let avgNights = (Number(number_of_reviews) * Number(minimum_nights)).toFixed(0);
   let rawIncome = (avgNights * Number(price)).toFixed(2);
-  let avgIncome = rawIncome > 0 ? rawIncome : "Income not available";
-  let cleanIncome = rawIncome > 0 ? `$${avgIncome}` : "Income not available";
+  let avgIncome = rawIncome > 0 ? rawIncome : "Not available";
+  let cleanIncome = rawIncome > 0 ? `$${avgIncome}` : "Not available";
   let cleanScore = review_scores_value !== "" ? review_scores_value : "not available";
 
+  const scoreStars = createStars(cleanScore);
 
-  // Creamos el HTML string usando template literals
+
   const htmlString = `
     <div class="listing-card">
-      <img src="${picture_url}" alt="${name}" class="listing-image" />
+      <img src="${picture_url}" alt="${host_name}'s Place" class="listing-image" />
       <div class="listing-details">
-        <h3 class="listing-title">${host_name}'s Place</h3>
-        <p class="listing-price">$${cleanPrice} per night</p>
-        <p class="listing-minimum-nights">Min. Nights: ${minimum_nights}</p>
-        <p class="listing-info">${cleanBedrooms} Bedroom(s) · ${number_of_reviews} Review(s) · Score: ${cleanScore}</p>
+        <h3 class="listing-title">${name}</h3>
+        <div class="price-and-min-nights">
+          <p class="listing-price">${cleanPrice}</p>
+          <p class="listing-minimum-nights">Min. Nights: ${minimum_nights}</p>
+        </div>
+        <div class="listing-info">
+          <span>${cleanBedrooms} Bedroom(s) · ${number_of_reviews} Review(s)</span>
+          <div class="listing-score">${scoreStars}</div>
+        </div>
       </div>
       <div class="investors-info">
-      <div class="avg-nights">Average occupied time last twelve months: ${avgNights}</div>
-      <div class="avg-income">Average income last twelve months: ${cleanIncome}</div>
+        <div class="avg-nights">Approx. Nights occupied last twelve months: <span id="avgNights">${avgNights}</span></div>
+        <div class="avg-income">Approx. Income last twelve months: <span id="avgIncome">${cleanIncome}</span></div>
       </div>
     </div>
   `;

@@ -294,9 +294,9 @@ function loadGeomap(){
               kpiByZipcode(markerData.zipcode);
               trendsByZipcode(markerData.zipcode);
 
-              let propertyName = markerData.name;
+              let propertyTitle = `${markerData.host_name}'s Place`;
               let propertyDetails = createListingCard(markerData);
-              $("#property-name").text(propertyName);
+              $("#property-name").text(propertyTitle);
               $("#cf-property-details-features").html(propertyDetails);
 
             });
@@ -1001,5 +1001,34 @@ function trendsByZipcode(zipcode){
     .set("xAxis", { "labelGap": 30 })
     .set("dataZoom", false)
     .element("cf-median-listing-price-trend-by-zipcode")
+    .execute();
+
+  let provider = cf.provider("local");
+  let source = provider.source("realtor_monthly_inventory_zip_all");
+  let metric2 = cf.Metric("median_listing_price", "avg").hideFunction();
+  let group2 = cf.Attribute("new_listing_count")
+    .limit(10)
+    .sort("desc", "new_listing_count");
+  let myData = source.groupby(group2)
+    .metrics(metric2);
+  let grid3 = cf.Grid()
+    .top(10)
+    .right(15)
+    .bottom(35)
+    .left(65);
+  let lines = cf.MarkLine()
+    .data([
+      { "name": "Average", "type": "average" }]);
+  let color2 = cf.Color()
+    .palette(["#0095b7", "#a0b774", "#f4c658", "#fe8b3e", "#cf2f23", "#756c56", "#007896", "#47a694", "#f9a94b", "#ff6b30", "#e94d29", "#005b76"]);
+  let myChart = myData.graph("Bars")
+    .set("grid", grid3)
+    .set("markline", lines)
+    .set("color", color2)
+    .set("dataZoom", false)
+    .set("serieLabel", {
+      "show": false
+    })
+    .element("cf-new-listing-by-zipcode")
     .execute();
 }

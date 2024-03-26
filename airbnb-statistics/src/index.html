@@ -10,6 +10,7 @@
     <link rel="icon" type="image/ico" href="./img/favicon.ico" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.4.0/gridstack.min.css"
         crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 
@@ -158,21 +159,22 @@
                     <div class="investors-modal-header">
                         <div class="investors-modal-header-title" id="DRG_Desc">Investors Zone</div>
                         <div class="investors-modal-header-close">
-                            <span id="modal-close" class="material-symbols-outlined">close</span>
+                            <i id="modal-close" class="fas fa-times" aria-hidden="true"></i>
                         </div>
                     </div>
 
                     <div class="investors-modal-body">
-                        <div class="counter-wrapper">
-                            <div class="counter-info">
-                              Purchasable listings in postal code <span id="counter-info-zipcode"></span>
-                            </div>
-                            <div class="counter-container">
-                                <span class="counter" id="cf-active-listings-zipcode"></span>
-                            </div>
-                        </div>
                         <div class="investors-modal-property-details-container">
-                            <div class="property-details-trends">
+                            <div class="investors-modal-property-details-details">
+                                <div class="property-details-header">
+                                    <h3 id="property-name">Property Features</h3>
+                                </div>
+                                <div class="property-details-content">
+                                    <div id="cf-property-details-features"></div>
+                                </div>
+                            </div>
+
+                            <div class="investors-modal-property-details-trends">
                                 <div class="tend-by-zip">
                                     <div class="trend-by-zip-header">
                                         <h3>Active listings Trend by Zipcode</h3>
@@ -189,20 +191,24 @@
                                         <div id="cf-median-listing-price-trend-by-zipcode"></div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="property-details-details">
-                                <div class="property-details-header">
-                                    <h3 id="property-name" style="text-align: center; font-weight: bold;">Property Details</h3>
+                                <div class="tend-by-zip">
+                                    <div class="trend-by-zip-header">
+                                        <h3>Average price of new listings in Realtor.com by Zipcode</h3>
+                                    </div>
+                                    <div class="trend-by-zip-content">
+                                        <div id="cf-new-listing-by-zipcode"></div>
+                                    </div>
                                 </div>
-                                <div class="property-details-content">
-                                    <div id="cf-property-details-features"></div>
-                                </div>
                             </div>
+
                         </div>
                     </div>
                     <div class="investors-modal-footer">
+                        <div class="counter-info">
+                          Market Listings in ZIP <span id="counter-info-zipcode"></span> - <span class="counter" id="cf-active-listings-zipcode"></span>
+                        </div>
                         <div id="realtor-link"></div>
-                    </div>
+                      </div>
                 </div>
             </div>
 

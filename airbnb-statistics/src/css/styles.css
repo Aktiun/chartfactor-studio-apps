@@ -458,7 +458,7 @@ body {
 .app-content > div > div {
   grid-area: main;
   border-radius: 10px;
-  height: 100%;
+  /* height: 100%; */
 }
 
 .main-layout {
@@ -578,10 +578,11 @@ body {
 
 .investors-modal-content {
   width: 90vw;
-  height: 80vh;
+  /* height: auto; */
+  /* max-height: 70vh; */
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 10% 85% 5%;
+  grid-template-rows: 8% 82% 10%;
   grid-template-areas:
           "modal-header" "modal-content" "modal-footer";
   grid-gap: 10px;
@@ -603,9 +604,13 @@ body {
 .investors-modal-footer {
   grid-area: modal-footer;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 10px 0;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+#realtor-link {
+  margin-left: auto;
 }
 
 .footer-button {
@@ -621,6 +626,8 @@ body {
   transition: transform 0.3s;
   position: relative;
   white-space: nowrap;
+  height: 100%;
+  align-self: center;
 }
 
 .footer-button:hover {
@@ -630,6 +637,7 @@ body {
 .footer-button > a {
   line-height: 1.2;
 }
+
 
 .button-top-text {
   display: block;
@@ -645,53 +653,53 @@ body {
 .investors-modal-header-title {
   font-size: 3vw;
   font-weight: bold;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  hyphens: auto;
+  color: #1a237e;
+  padding: 16px 0;
 }
 
 .investors-modal-header-close {
   cursor: pointer;
+  color: #e53935;
+  font-size: 3vw;
 }
 
 .investors-modal-body {
   grid-area: modal-content;
-  overflow: scroll;
 }
 
 .counter-wrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .counter-info {
-  font-size: 3.5vw;
+  font-size: 1.5em;
   font-weight: bold;
-  color: #000000;
-  margin-bottom: 10px;
-  text-align: center;
+  color: #424242;
+  margin-right: auto;
 }
 
 .counter-info span {
-  color: #f4a74a;
-}
-
-.counter-container {
-  display: flex;
-  justify-content: center;
-  padding: 20px 0;
+  color: #607D8B;
 }
 
 .counter {
-  font-size: 5vw;
+  font-size: 1.2em;
   font-weight: bold;
-  color: #0095b7;
-  border: 2px solid #a7d9fa;
-  border-radius: 60%;
-  padding: 1vw 2vw;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #1A237E;
+  background-color: #ECEFF1;
+  padding: 0.5em 1em;
+  margin-left: 10px;
+  border-radius: 20px;
+  border: 2px solid #1A237E;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  line-height: 1;
+  display: inline-block;
+  min-width: 1em;
+  text-align: center;
 }
 
 .credits {
@@ -716,8 +724,10 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
-          "property-details-trends property-details-details";
+          "property-details-details property-details-trends";
   grid-gap: 10px;
+  max-height: 60vh;
+  overflow: hidden;
 }
 
 .investors-modal-property-details-trends {
@@ -725,6 +735,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: scroll;
 }
 
 
@@ -745,20 +756,6 @@ body {
   align-items: center;
 }
 
-
-.listing-card {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  overflow: hidden;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  margin-bottom: 20px;
-}
-
-.listing-image {
-  width: 100%;
-  height: 20em;
-  object-fit: cover;
-}
 
 .listing-details {
   padding: 15px;
@@ -782,6 +779,9 @@ body {
 .listing-info {
   margin: 5px 0;
   font-size: 0.9em;
+  display: flex; /* Cambio para disponer los elementos en línea */
+  justify-content: space-between; /* Separa adecuadamente la información */
+  align-items: center;
 }
 
 .listing-minimum-nights {
@@ -790,4 +790,90 @@ body {
   display: inline-block;
   padding: 5px 10px;
   border-radius: 4px;
+}
+
+.property-details-header h3 {
+  text-align: left; /* Cambio para alinear el título a la izquierda */
+  font-weight: bold;
+  font-size: 1.5em;
+  color: #424242; /* Un color oscuro para el título */
+  margin-bottom: 20px; /* Espacio debajo del título */
+}
+
+.listing-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin-bottom: 20px;
+}
+
+.listing-image {
+  width: 100%;
+  /* height: auto; Cambiado para mantener la proporción de la imagen */
+  max-height: 25em;
+  /* object-fit: cover; */
+}
+
+.listing-details {
+  padding: 15px;
+  background: #ffffff; /* Cambiado a blanco para más limpieza visual */
+}
+
+.listing-score {
+  display: flex;
+  align-items: center;
+}
+
+.score-star {
+  color: #fbc02d; /* Color de estrellas */
+  margin-right: 5px; /* Espaciado entre estrellas */
+}
+
+.avg-nights,
+.avg-income {
+  font-size: 1em; /* Aumentamos el tamaño de la fuente para mejor lectura */
+  color: #424242; /* Color oscuro para el texto */
+  font-weight: bold; /* Texto en negrita para destacar */
+  background: #e3f2fd; /* Fondo más claro para resaltar los valores */
+  padding: 15px; /* Mayor relleno para un aspecto más grande */
+  border-radius: 4px;
+  margin: 10px 0; /* Mayor margen para más espacio alrededor */
+}
+
+.investors-info {
+  display: flex;
+  flex-direction: column; /* Cambio para una mejor presentación */
+  align-items: flex-start; /* Alineación a la izquierda */
+  padding: 20px; /* Mayor relleno */
+  background: #f5f5f5;
+  border-radius: 4px; /* Bordes redondeados para suavizar */
+}
+
+#avgNights,
+#avgIncome {
+  font-size: large;
+}
+
+.price-and-min-nights {
+  background: #eceff1; /* Fondo en un tono gris claro */
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between; /* Separa el precio y las noches mínimas */
+  margin: 10px 0; /* Margen arriba y abajo para separación de los otros elementos */
+}
+
+.listing-price {
+  color: #424242; /* Cambiando a un gris oscuro para alinear con la paleta */
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.listing-minimum-nights {
+  background: #e8eaf6; /* Fondo azul claro para diferenciar */
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin: 5px 0;
 }
