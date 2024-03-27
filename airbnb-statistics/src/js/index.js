@@ -177,8 +177,6 @@ window.addEventListener("load", function() {
   loadTopHosts();
 
   // Realtor metrics
-  kpi();
-  trends();
 
   (function() {
     const IM = cf.getIManager();
