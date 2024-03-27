@@ -49,3 +49,19 @@ $("#modal-close").click(function() {
     hideInvestorsModal();
     removeInvestorsModalVisualizations();
 });
+
+function onCellClick(event) {
+    if (event.target.tagName.toLowerCase() === 'td') {
+        const row = event.target.parentNode;
+        const cells = row.getElementsByTagName('td');
+        const rowData = Array.from(cells).map(cell => cell.textContent);
+
+        const hostFilter = cf.Filter("host_name").label("Host name").operation("IN").value([rowData[0]]);
+        let manager = cf.getIManager();
+        let api = manager.get("api");
+
+        api.updateFilters([hostFilter]);
+
+        console.log(rowData);
+    }
+}

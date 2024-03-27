@@ -15,8 +15,8 @@ const widgetsTitleId = [
       id: "cf-host-listings"
     },
     {
-      title: "price-property",
-      id: "visb25d9a87-275a-4adb-ba08-822272131d18"
+      title: "realtor_new_listings",
+      id: "cf-new-listing-by-zipcode"
     },
     {
       title: "nh-number_reviews-scores",
@@ -43,12 +43,12 @@ function loadInteractionManager(){
         let viz3 = getId("roomType");
         let viz2 = getId("licenses");
         let viz4 = getId("hostListings");
-        // let viz1 = getId("most popular neighborhoods");
+        let viz5 = getId("realtor_new_listings");
         let rules1 = {
           [viz3]: { clientFilters: true },
           [viz2]: { clientFilters: true },
           [viz4]: { clientFilters: true },
-          // [viz1]: { clientFilters: false }
+          [viz5]: { clientFilters: true }
         };
         /* Configuration code for the Interaction Manager*/
         // Drill hierarchy and rule settings can be done like this:
@@ -78,18 +78,7 @@ function loadInteractionManager(){
               type: e.type
             });
           })
-          .execute().then(() => {
-            const im = cf.getIManager();
-
-            im.get("api").setFilters([
-                cf.Filter("month_date_yyyymm")
-                    .label("Date")
-                    .granularity("MONTH")
-                    .oneTimeUnit(true)
-                    .operation("BETWEEN")
-                    .value(window.timeFilter.getValue())
-            ]);
-            im.get("api").updateContent();})
+          .execute()
           .catch(ex => {
             handleError(elementId, ex);
           });
@@ -770,41 +759,43 @@ function loadHostListingsStatistics() {
 function loadTopHosts() {
   const elementId = "cf-top-hosts";
   try {
-    let color = cf.Color();
-    color.theme({
-      "headerStyle": "background: unset; color: unset; font-size: x-small;",
-      "rowOddStyle": "background: #dee2e6; color: unset;font-size: x-small;",
-      "rowEvenStyle": "background: #f8f9fa; color: unset;font-size: x-small;",
-    });
-    let provider = cf.provider("local");
-    let source = provider.source("abnb_listings");
+
     // Define metrics
     let metric = new cf.Metric("calculated_host_listings_count_entire_homes", "sum");
     let metric2 = new cf.Metric("calculated_host_listings_count_private_rooms", "sum");
     let metric3 = new cf.Metric("calculated_host_listings_count_shared_rooms", "sum");
     let metric4 = new cf.Metric("calculated_host_listings_count_hotel_rooms", "sum");
     let metric5 = new cf.Metric("calculated_host_listings_count", "sum");
-    // Add fields to data source.
-    let myData = source
-      .rows(cf.Row("host_name"))
-      .columns()
-      // Metrics (do not remove this line)
-      .metrics(metric, metric2, metric3, metric4, metric5);
-    // --- Define chart options and static filters ---
-    let myChart = myData.graph("Pivot Table")
-      .limit(50)
-      .set("sizeColumnsToFit", true)
-      .set("color", color)
-      .set("autoSizeColumns", true)
-      .set('showTotals', { rows: true, columns: false })
-      // .set("columnsWidth", [
-      //   { "host_name": 50 },
-      //   { "calculated_host_listings_count_entire_homes": 100 },
-      //   { "calculated_host_listings_count_private_rooms": 100 },
-      //   { "calculated_host_listings_count_shared_rooms": 100 },
-      //   { "calculated_host_listings_count_hotel_rooms": 100 },
-      //   { "calculated_host_listings_count": 100 }])
-      .element(elementId)
+
+    let group = cf.Attribute("host_name").limit(50).sort("desc", metric5);
+
+    cf.provider("local")
+      .source("abnb_listings")
+      .groupby(group)
+      .metrics(metric, metric2, metric3, metric4, metric5)
+      .element("cf-top-hosts-dummy")
+      .on("execute:stop", (e) => {
+        let data = e.data;
+        let topHosts = data.map((host) => {
+          return {
+            host_name: host.group[0],
+            entire_homes: host.current.metrics.calculated_host_listings_count_entire_homes.sum,
+            private_rooms: host.current.metrics.calculated_host_listings_count_private_rooms.sum,
+            shared_rooms: host.current.metrics.calculated_host_listings_count_shared_rooms.sum,
+            hotel_rooms: host.current.metrics.calculated_host_listings_count_hotel_rooms.sum,
+            total_listings: host.current.metrics.calculated_host_listings_count.sum
+          }
+        });
+        let topHostsCount = topHosts.length;
+
+        const tableTitle = `Top ${topHostsCount} Hosts in this area`;
+        const hostsTableHTML = createHostsTable(topHosts);
+        $("#top-hosts-title").text(tableTitle);
+        $(`#${elementId}`).html(hostsTableHTML);
+
+        const dataCells = document.querySelectorAll('.data-row td');
+        dataCells.forEach(cell => cell.addEventListener('click', onCellClick));
+      })
       .execute();
   } catch (ex) {
     console.error(ex);

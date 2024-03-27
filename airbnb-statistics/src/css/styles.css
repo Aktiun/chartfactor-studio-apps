@@ -295,9 +295,6 @@ body {
   border-radius: 50%;
   border-top: 3px solid #CCC;
   animation: rotate 1s infinite linear;
-  /* position: relative; */
-  /* top: -4px; */
-  /* right: -3px; */
   opacity: 1;
   -webkit-transition: opacity 0.5s ease-in;
   -moz-transition: opacity 0.5s ease-in;
@@ -458,7 +455,6 @@ body {
 .app-content > div > div {
   grid-area: main;
   border-radius: 10px;
-  /* height: 100%; */
 }
 
 .main-layout {
@@ -487,13 +483,13 @@ body {
 }
 
 .glass-panel {
-  grid-area: left; /* Assign the glass panel to the 'left' area */
-  width: 100%; /* Full width of the grid column */
-  height: calc(100vh - 67px); /* Full height minus the header height */
-  background: rgba(255, 255, 255, 0.8); /* Glass effect */
+  grid-area: left;
+  width: 100%;
+  height: calc(100vh - 67px);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(5px);
   overflow-y: hidden;
-  z-index: 1000; /* Ensure it's above other content */
+  z-index: 1000;
   padding-top: 10px;
   max-height: 100vh;
   overflow-x: hidden;
@@ -531,9 +527,7 @@ body {
   margin-bottom: 20px;
   height: auto;
   background-color: #fff;
-  /* box-shadow: 0 2px 4px rgba(0,0,0,0.1); */
   border-radius: 5px;
-  /* box-sizing: border-box; */  
 }
 
 .widget-visualization {
@@ -558,7 +552,6 @@ body {
 
 #cf-roomType {
   height: 100%;
-  /* border-radius: 10px; */
   background-color: rgba(255, 255, 255, 0.8);
 }
 
@@ -578,8 +571,6 @@ body {
 
 .investors-modal-content {
   width: 90vw;
-  /* height: auto; */
-  /* max-height: 70vh; */
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 8% 82% 10%;
@@ -723,11 +714,13 @@ body {
 .investors-modal-property-details-container{
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-auto-rows: minmax(0, 1fr);
   grid-template-areas:
           "property-details-details property-details-trends";
   grid-gap: 10px;
-  max-height: 60vh;
+  max-height: 100%;
   overflow: hidden;
+  align-items: start;
 }
 
 .investors-modal-property-details-trends {
@@ -736,6 +729,7 @@ body {
   flex-direction: column;
   align-items: center;
   overflow: scroll;
+  max-height: 100%;
 }
 
 
@@ -754,6 +748,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 }
 
 
@@ -779,8 +774,8 @@ body {
 .listing-info {
   margin: 5px 0;
   font-size: 0.9em;
-  display: flex; /* Cambio para disponer los elementos en línea */
-  justify-content: space-between; /* Separa adecuadamente la información */
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -793,11 +788,11 @@ body {
 }
 
 .property-details-header h3 {
-  text-align: left; /* Cambio para alinear el título a la izquierda */
+  text-align: left;
   font-weight: bold;
   font-size: 1.5em;
-  color: #424242; /* Un color oscuro para el título */
-  margin-bottom: 20px; /* Espacio debajo del título */
+  color: #424242;
+  margin-bottom: 20px;
 }
 
 .listing-card {
@@ -806,18 +801,18 @@ body {
   overflow: hidden;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   margin-bottom: 20px;
+  height: auto;
 }
 
 .listing-image {
   width: 100%;
-  /* height: auto; Cambiado para mantener la proporción de la imagen */
-  max-height: 25em;
-  /* object-fit: cover; */
+  max-height: 25vh;
+  object-fit: cover;
 }
 
 .listing-details {
   padding: 15px;
-  background: #ffffff; /* Cambiado a blanco para más limpieza visual */
+  background: #ffffff;
 }
 
 .listing-score {
@@ -826,28 +821,28 @@ body {
 }
 
 .score-star {
-  color: #fbc02d; /* Color de estrellas */
-  margin-right: 5px; /* Espaciado entre estrellas */
+  color: #fbc02d;
+  margin-right: 5px;
 }
 
 .avg-nights,
 .avg-income {
-  font-size: 1em; /* Aumentamos el tamaño de la fuente para mejor lectura */
-  color: #424242; /* Color oscuro para el texto */
-  font-weight: bold; /* Texto en negrita para destacar */
-  background: #e3f2fd; /* Fondo más claro para resaltar los valores */
-  padding: 15px; /* Mayor relleno para un aspecto más grande */
+  font-size: 1em;
+  color: #424242;
+  font-weight: bold;
+  background: #e3f2fd;
+  padding: 15px;
   border-radius: 4px;
-  margin: 10px 0; /* Mayor margen para más espacio alrededor */
+  margin: 10px 0;
 }
 
 .investors-info {
   display: flex;
-  flex-direction: column; /* Cambio para una mejor presentación */
-  align-items: flex-start; /* Alineación a la izquierda */
-  padding: 20px; /* Mayor relleno */
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
   background: #f5f5f5;
-  border-radius: 4px; /* Bordes redondeados para suavizar */
+  border-radius: 4px;
 }
 
 #avgNights,
@@ -856,24 +851,66 @@ body {
 }
 
 .price-and-min-nights {
-  background: #eceff1; /* Fondo en un tono gris claro */
+  background: #eceff1;
   border-radius: 4px;
   padding: 10px;
   display: flex;
-  justify-content: space-between; /* Separa el precio y las noches mínimas */
-  margin: 10px 0; /* Margen arriba y abajo para separación de los otros elementos */
+  justify-content: space-between;
+  margin: 10px 0;
 }
 
 .listing-price {
-  color: #424242; /* Cambiando a un gris oscuro para alinear con la paleta */
+  color: #424242;
   font-size: 1.2em;
   font-weight: bold;
   margin: 5px 0;
 }
 
 .listing-minimum-nights {
-  background: #e8eaf6; /* Fondo azul claro para diferenciar */
+  background: #e8eaf6;
   padding: 5px 10px;
   border-radius: 4px;
   margin: 5px 0;
+}
+
+
+.table-hosts {
+  width: 30%;
+  font-size: 0.8em;
+  border-collapse: collapse;
+  margin: 0 auto;
+  color: #333;
+}
+
+.table-hosts th, .table-hosts td {
+  padding: 8px;
+  text-align: left;
+}
+
+.table-hosts th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.table-hosts tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.table-hosts, .table-hosts th, .table-hosts td {
+  border: none;
+}
+
+.table-hosts tr {
+  border-bottom: 1px solid #eaeaea;
+}
+
+.table-title {
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.table-hosts td:not(:first-child) {
+  text-align: center;
 }

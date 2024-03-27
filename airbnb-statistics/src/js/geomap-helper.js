@@ -283,3 +283,35 @@ function createListingCard(marker) {
 
   return htmlString;
 }
+
+
+function createHostsTable(dataArray) {
+  let tableHTML = `<table class="table-hosts">
+    <thead>
+      <tr>
+        <th>Host Name</th>
+        <th>#Entire home/apts</th>
+        <th>#Private rooms</th>
+        <th>#Shared rooms</th>
+        <th>#Hotel Rooms</th>
+        <th>#Listings</th>
+      </tr>
+    </thead>
+    <tbody>`;
+
+  dataArray.forEach(host => {
+    tableHTML += `
+      <tr class="data-row">
+        <td>${host.host_name}</td>
+        <td>${host.entire_homes}</td>
+        <td>${host.private_rooms}</td>
+        <td>${host.shared_rooms}</td>
+        <td>${host.hotel_rooms}</td>
+        <td>${host.total_listings}</td>
+      </tr>`;
+  });
+
+  tableHTML += `</tbody></table>`;
+
+  return tableHTML;
+}
