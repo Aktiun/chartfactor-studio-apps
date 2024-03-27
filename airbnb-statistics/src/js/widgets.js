@@ -274,17 +274,14 @@ function loadGeomap(){
             geoMap.on("zoomend", (e) => {
               // console.log("zoomend **********");
               updateBnBBoundsFilter();
-              updateRealtorBoundsFilter();
             });
             geoMap.on("moveend", () => {
               // console.log("moveend **********");
               updateBnBBoundsFilter();
-              updateRealtorBoundsFilter();
             });
             geoMap.on("dragend", () => {
               // console.log("dragend **********");
               updateBnBBoundsFilter();
-              updateRealtorBoundsFilter();
             });
             //let hostsLayer = cf.getVisualization("cf-main-geomap-hosts");
             geoMap.on("click", "hosts_image_layer", (e) => {
