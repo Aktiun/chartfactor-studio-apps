@@ -5,11 +5,20 @@ import unzipper
 import joiner
 import processor
 import indexer
+import sys
+
+is_whole_world = False
+if len(sys.argv) > 1 and sys.argv[1] == "all":
+    print("Whole world indexation selected")
+    is_whole_world = True
+
+else:
+    print("Only USA listings indexation selected")
 
 logger = logging.getLogger('listings_ny')
 # # Scrape data
 logger.info("Scraping data...")
-scrapper.get_listings_files()
+scrapper.get_listings_files(is_whole_world)
 logger.info("Listing files downloaded successfully")
 
 # # Unzip files
@@ -24,7 +33,7 @@ logger.info("Files joined successfully")
 
 # Preprocess data
 logger.info("Preprocessing data...")
-processor.clean_data()
+processor.clean_data(is_whole_world)
 logger.info("Data preprocessed successfully")
 
 # Index data

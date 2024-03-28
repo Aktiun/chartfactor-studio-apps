@@ -235,13 +235,9 @@ function loadGeomap(){
           ])
           .set("zoom", 15)
           .set("center", [-73.84875467114972, 40.77680058764247])
-          .set("layersControl", {
-            collapsed: true,
-            position: "bottom-left"
-          })
           .set("drawControl", true)
           .set("enableZoomInfo", true)
-
+          .set("layersControl", false)
           .element(elementId)
           .on("notification", e => {
             window.toast({

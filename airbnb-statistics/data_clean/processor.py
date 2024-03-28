@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import time
 import logging
 from uszipcode import SearchEngine
@@ -30,7 +31,7 @@ def process_in_batches(df, function, input_columns, output_column, batch_size=10
         
     df[output_column] = results
 
-def clean_data():
+def clean_data(is_whole_world=False):
     # Paths to the input and output CSV files
     input_path = '../tmp_joined/joined.csv'
     output_path = '../data/abnb_listings.csv'
@@ -79,7 +80,7 @@ def clean_data():
     logger.info("Applying geocoding in batches...")
 
     # Filter records with no zipcode
-    df_no_zipcode = df[df['zipcode'].isnull()] if is_zipcode_file else df
+    df_no_zipcode = df[(df['zipcode'].isnull()) & (df['is_usa'] == True)] if is_zipcode_file else df
 
     logger.info(f"Total records to geocode: {len(df_no_zipcode)}")
     print(f"Total records to geocode: {len(df_no_zipcode)}")
@@ -93,8 +94,11 @@ def clean_data():
     else:
         df = df_no_zipcode
 
-    # Remove records with no zipcode
-    df = df[df['zipcode'].notnull()]
+    if is_whole_world:
+        df['zipcode'] = df['zipcode'].replace('', np.nan)
+    else:
+        # Remove records with no zipcode fro usa indexing
+        df = df[df['zipcode'].notnull()]
 
     # remove duplicates of id
     df = df.drop_duplicates(subset='id')

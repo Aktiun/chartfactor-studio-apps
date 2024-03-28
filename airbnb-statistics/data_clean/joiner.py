@@ -122,7 +122,10 @@ def combine_csv_files(source_dir, output_file):
         logger.info(f"Processing file: {file}")
         # read id column as string when reading the file
         df = pd.read_csv(file, dtype={"id": str})
-        # df = pd.read_csv(file)
+        if "united_states" in file:
+            df["is_usa"] = True
+        else:
+            df["is_usa"] = False
         df['id'] = df['id'].astype(str)
         df_cleaned = clean_data(df)
         dfs.append(df_cleaned)

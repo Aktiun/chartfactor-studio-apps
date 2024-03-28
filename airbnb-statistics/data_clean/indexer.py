@@ -365,9 +365,9 @@ def get_value(csv_file):
         next(reader)  # skip header
         for r in reader:
             logger.debug(r)
-            if not r[77]:
-                logger.error(f"Row with empty zipcode: {r}")
-                continue
+            # if not r[77]:
+            #     logger.error(f"Row with empty zipcode: {r}")
+            #     continue
             if len(r) < 78 or not r[77]:  # Expected columns length for listings files IMPORTANT
                 logger.error(f"Row with incorrect columns number: {r}")
                 continue

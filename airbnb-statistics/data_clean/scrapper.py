@@ -12,7 +12,7 @@ def normalize_filename(filename):
     normalized_filename = re.sub(r'[^a-zA-Z0-9]', '_', filename)
     return normalized_filename
 
-def get_listings_links() -> dict:
+def get_listings_links(is_whole_world: bool = False) -> dict:
     url = 'http://insideairbnb.com/get-the-data.html'
 
     response = requests.get(url)
@@ -22,16 +22,19 @@ def get_listings_links() -> dict:
 
     for index, link in enumerate(links):
         href = link.get('href')
-        if href and 'data/listings.csv.gz' in href and 'united-states' in href:
+        if not is_whole_world:
+            if href and 'data/listings.csv.gz' in href and 'united-states' in href:
+                id = f"ID_{index}"
+        elif href and 'data/listings.csv.gz' in href:
             id = f"ID_{index}"
-            listings_links[id] = href
+        listings_links[id] = href
 
     logger.info(f"Found {len(listings_links)} listings links.")
     logger.info(f"Links: {listings_links}")
     return listings_links
 
-def get_listings_files() -> bool:
-    listings_links = get_listings_links()
+def get_listings_files(is_whole_world: bool = False) -> bool:
+    listings_links = get_listings_links(is_whole_world)
 
     download_directory = "../tmp_downloaded/"
     os.makedirs(download_directory, exist_ok=True)
