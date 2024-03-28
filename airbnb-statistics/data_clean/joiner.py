@@ -130,6 +130,8 @@ def combine_csv_files(source_dir, output_file):
         df['is_usa'] = df['is_usa'].astype(bool)
         df['host_id'] = df['host_id'].astype(str)
         df_cleaned = clean_data(df)
+        df_cleaned = df_cleaned.loc[:, ~df_cleaned.columns.str.startswith('region')]
+        df_cleaned = df_cleaned.loc[:, ~df_cleaned.columns.isin(['last_searched', 'requires_license'])]
         dfs.append(df_cleaned)
     combined_df = pd.concat(dfs, ignore_index=True)
     combined_df.to_csv(output_file, index=False)

@@ -26,7 +26,7 @@ logger.info("Unzipping files...")
 unzipper.process_directory("../tmp_downloaded", "../tmp_unzipped")
 logger.info("Files unzipped successfully")
 
-# # Join files
+# Join files
 logger.info("Joining files...")
 joiner.combine_csv_files("../tmp_unzipped", "../tmp_joined/joined.csv")
 logger.info("Files joined successfully")

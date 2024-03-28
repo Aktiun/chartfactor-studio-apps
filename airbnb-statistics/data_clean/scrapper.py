@@ -31,7 +31,7 @@ def get_listings_links(is_whole_world: bool = False) -> dict:
         listings_links = {k: v for k, v in listings_links.items() if 'united-states' in v}
 
     logger.info(f"Found {len(listings_links)} listings links.")
-    logger.info(f"Links: {listings_links}")
+    # logger.info(f"Links: {listings_links}")
     return listings_links
 
 def get_listings_files(is_whole_world: bool = False) -> bool:

@@ -9,6 +9,7 @@ import logging
 from logging.handlers import RotatingFileHandler #debug
 from elasticsearch.helpers import bulk, streaming_bulk
 from elasticsearch import Elasticsearch, RequestsHttpConnection
+import datetime
 
 logger = logging.getLogger('listings_abnb')
 logger.setLevel(logging.INFO)
@@ -128,8 +129,7 @@ def create_index(client, index_name):
 				        "null_value": "null"
 				    },
 				    "host_about": {
-				        "type": "keyword",
-				        "null_value": "null"
+				        "type": "text",
 				    },
 				    "host_response_time": {
 				        "type": "keyword",
@@ -371,6 +371,26 @@ def get_value(csv_file):
             # if not r[77]:
             #     logger.error(f"Row with empty zipcode: {r}")
             #     continue
+            if not r[0].isdigit():
+               logger.error(f"Row with incorrect id: {r}")
+               continue
+            if not r[30] or not r[31]:
+                logger.error(f"Row with empty location: {r}")
+                continue
+            if r[14] and  len(r[14].encode("utf-8")) >= 32765:
+                r[14] = r[14][:-100]
+            try:
+                scrape_date = datetime.datetime.strptime(r[2], "%Y-%m-%d").date()
+            except ValueError:
+                r[2] = None
+            try:
+                last_scrape_date = datetime.datetime.strptime(r[3], "%Y-%m-%d").date()
+            except ValueError:
+                r[3] = None
+            try:
+                last_scrape_date = datetime.datetime.strptime(r[12], "%Y-%m-%d").date()
+            except ValueError:
+                r[12] = None
             if len(r) < 79:  # Expected columns length for listings files IMPORTANT
                 logger.error(f"Row with incorrect columns number: {r}")
                 continue
