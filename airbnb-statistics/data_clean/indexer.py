@@ -475,7 +475,7 @@ def get_value(csv_file):
 				"calculated_host_listings_count_private_rooms": r[72],
 				"calculated_host_listings_count_shared_rooms": r[73],
 				"reviews_per_month": r[74],
-				"is_usa": r[75] == "t",
+				"is_usa": r[75].lower(),
 				"estimated_occupied_time": r[76],
 				"income_ltm": r[77],
 				"zipcode": r[78] if r[78] != '' else None,

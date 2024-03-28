@@ -62,6 +62,5 @@ function onCellClick(event) {
 
         api.updateFilters([hostFilter]);
 
-        console.log(rowData);
     }
 }

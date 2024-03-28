@@ -27,9 +27,12 @@ There are some steps that we need to execute to acomplish this process. I assume
 
 `python data_prep.py`
 
-This will download the files, unzip, join and index in elastiksearch. The process would take around 10 minutes. The logs for this process are written to `abnb_listings_log` in `data_clean` folder.
+This will download the files, unzip, join and index in elastiksearch (for USA cities only). The process would take around 10 minutes. The logs for this process are written to `abnb_listings_log` in `data_clean` folder.
 
 When the process finishes, you can delete all the files in `tmp_compressed`, `tmp_unzipped`, `tmp_downloaded`, `tmp_joined` and also you can delete the file `abnb_listings.csv` in `data` folder.
+
+#### Important: you could index the listings for all cities in [idealairbnb.com](http://insideairbnb.com/get-the-data/) adding `all` to data prep command:
+`python data_prep.py all`
 
 ### (Optional) Zip optimizer
 In order to decrease the time needed to run `data_prep` clean scripts, we created a python script that reads a parquet file with listing ids and zipcodes. This allows us to minimize the time needed to get the zipcode of the listings because we only geocode the missing ones.
