@@ -127,6 +127,8 @@ def combine_csv_files(source_dir, output_file):
         else:
             df["is_usa"] = False
         df['id'] = df['id'].astype(str)
+        df['is_usa'] = df['is_usa'].astype(bool)
+        df['host_id'] = df['host_id'].astype(str)
         df_cleaned = clean_data(df)
         dfs.append(df_cleaned)
     combined_df = pd.concat(dfs, ignore_index=True)

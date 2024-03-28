@@ -22,12 +22,13 @@ def get_listings_links(is_whole_world: bool = False) -> dict:
 
     for index, link in enumerate(links):
         href = link.get('href')
-        if not is_whole_world:
-            if href and 'data/listings.csv.gz' in href and 'united-states' in href:
-                id = f"ID_{index}"
-        elif href and 'data/listings.csv.gz' in href:
+        id = None
+        if href and 'data/listings.csv.gz' in href:
             id = f"ID_{index}"
-        listings_links[id] = href
+            listings_links[id] = href
+
+    if not is_whole_world:
+        listings_links = {k: v for k, v in listings_links.items() if 'united-states' in v}
 
     logger.info(f"Found {len(listings_links)} listings links.")
     logger.info(f"Links: {listings_links}")

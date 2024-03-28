@@ -335,8 +335,11 @@ def create_index(client, index_name):
 				    "reviews_per_month": {
 				        "type": "float"
 				    },
+                    "is_usa": {
+				        "type": "boolean"
+				    },
 				    "estimated_occupied_time": {
-				        "type": "float"
+				        "type": "integer"
 				    },
 				    "income_ltm": {
 				        "type": "float"
@@ -368,7 +371,7 @@ def get_value(csv_file):
             # if not r[77]:
             #     logger.error(f"Row with empty zipcode: {r}")
             #     continue
-            if len(r) < 78 or not r[77]:  # Expected columns length for listings files IMPORTANT
+            if len(r) < 79:  # Expected columns length for listings files IMPORTANT
                 logger.error(f"Row with incorrect columns number: {r}")
                 continue
 			
@@ -392,7 +395,7 @@ def get_value(csv_file):
 				"host_response_rate": r[16] if r[16] != '' else None,
 				"host_acceptance_rate": r[17],
 				"host_is_superhost": r[18] == "t",
-				"host_thumbnail_url": r[19],
+				"host_thumbnail_url": r[19] if r[19] != '' else None,
 				"host_picture_url": r[20] if r[20] != '' else None,
 				"host_neighbourhood": r[21] if r[21] != '' else None,
 				"host_listings_count": r[22],
@@ -452,9 +455,10 @@ def get_value(csv_file):
 				"calculated_host_listings_count_private_rooms": r[72],
 				"calculated_host_listings_count_shared_rooms": r[73],
 				"reviews_per_month": r[74],
-				"estimated_occupied_time": r[75],
-				"income_ltm": r[76],
-				"zipcode": r[77] if r[77] != '' else None,
+				"is_usa": r[75] == "t",
+				"estimated_occupied_time": r[76],
+				"income_ltm": r[77],
+				"zipcode": r[78] if r[78] != '' else None,
                 "calculated_host_listings_count_hotel_rooms": get_hotel_room_count(r[33], r[71], r[72], r[73], r[70])
             }
             
