@@ -1,0 +1,16 @@
+# datasets
+*.csv
+*.gz
+
+# temp folders
+__pycache__/
+.ipynb_checkpoints/
+
+# venv
+venv/
+
+# csv in data folder
+data/*.csv
+
+# log files
+data_clean/*.log
