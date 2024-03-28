@@ -238,6 +238,7 @@ function loadGeomap(){
           .set("drawControl", true)
           .set("enableZoomInfo", true)
           .set("layersControl", false)
+          .set('minZoom', 2.5)
           .element(elementId)
           .on("notification", e => {
             window.toast({
@@ -884,7 +885,7 @@ function trendsByZipcode(zipcode){
     .top(50)
     .right(0)
     .bottom(35)
-    .left(0);
+    .left(30);
 
   cf.provider("local")
     .source("realtor_monthly_inventory_zip_all")
