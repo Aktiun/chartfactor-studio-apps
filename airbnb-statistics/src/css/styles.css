@@ -442,7 +442,7 @@ body {
 
 .app-content {
   grid-area: main;
-  padding: 0 10px 0px 0;
+  padding: 0 10px 20px 0;
 }
 
 
@@ -465,7 +465,7 @@ body {
   grid-template-areas:
           "header header"
           "left main";
-  height: 100vh;
+  height: 100%;
   padding-bottom: 10px;
 }
 
@@ -741,6 +741,7 @@ body {
 .trend-by-zip-content div{
   height: 20em;
   align-items: center;
+  width: 100%;
 }
 
 .investors-modal-property-details-details {

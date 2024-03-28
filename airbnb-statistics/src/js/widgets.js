@@ -805,10 +805,10 @@ function loadTopHosts() {
 function kpiByZipcode(zipcode) {
   let metric0 = cf.Metric("active_listing_count", "sum");
 
-  let filter168 = cf.Filter("month_date_yyyymm")
-    .label("Date")
-    .operation("BETWEEN")
-    .value(window.timeFilter.getValue());
+  // let filter168 = cf.Filter("month_date_yyyymm")
+  //   .label("Date")
+  //   .operation("BETWEEN")
+  //   .value(window.timeFilter.getValue());
 
   let filterZipcode = cf.Filter("postal_code")
     .operation("IN")
@@ -817,7 +817,7 @@ function kpiByZipcode(zipcode) {
   cf.provider("local")
     .source("realtor_monthly_inventory_zip_all")
     .metrics(metric0)
-    .filters(filter168, filterZipcode)
+    .filters(filterZipcode)
     .element("kpi-by-zipcode")
     .on("execute:stop", data => {
       if (_ && data) {
@@ -840,10 +840,10 @@ function kpiByZipcode(zipcode) {
 }
 
 function trendsByZipcode(zipcode){
-  let filter168 = cf.Filter("month_date_yyyymm")
-      .label("Date")
-      .operation("BETWEEN")
-      .value(window.timeFilter.getValue());
+  // let filter168 = cf.Filter("month_date_yyyymm")
+  //     .label("Date")
+  //     .operation("BETWEEN")
+  //     .value(window.timeFilter.getValue());
 
   let filterZipcode = cf.Filter("postal_code")
     .operation("IN")
@@ -851,9 +851,9 @@ function trendsByZipcode(zipcode){
 
   let grid = cf.Grid()
       .top(35)
-      .right(25)
+      .right(0)
       .bottom(35)
-      .left(45);
+      .left(30);
   let color = cf.Color()
       .palette(["#0095b7", "#a0b774", "#f4c658", "#fe8b3e", "#cf2f23", "#756c56", "#007896", "#47a694", "#f9a94b", "#ff6b30", "#e94d29", "#005b76"]);
   color.theme({
@@ -869,7 +869,7 @@ function trendsByZipcode(zipcode){
       .source("realtor_monthly_inventory_zip_all")
       .groupby(group1)
       .metrics(metric0)
-      .clientFilter(filter168, filterZipcode)
+      .clientFilter(filterZipcode)
       .graph("Trend")
       .set("grid", grid)
       .set("color", color)
@@ -882,15 +882,15 @@ function trendsByZipcode(zipcode){
   let metric1 = cf.Metric("median_listing_price", "avg").hideFunction();
   let grid2 = cf.Grid()
     .top(50)
-    .right(25)
+    .right(0)
     .bottom(35)
-    .left(55);
+    .left(0);
 
   cf.provider("local")
     .source("realtor_monthly_inventory_zip_all")
     .groupby(group1)
     .metrics(metric1)
-    .clientFilter(filter168, zipcode)
+    .clientFilter(filterZipcode)
     .graph("Trend")
     .set("grid", grid2)
     .set("color", color)
