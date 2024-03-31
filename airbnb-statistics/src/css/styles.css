@@ -730,6 +730,7 @@ body {
   align-items: center;
   overflow: scroll;
   max-height: 100%;
+  overflow-x: hidden;
 }
 
 

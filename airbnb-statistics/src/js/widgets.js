@@ -878,7 +878,9 @@ function trendsByZipcode(zipcode){
       .set("xAxis", { "labelGap": 30 })
       .set("dataZoom", false)
       .element("cf-active-listings-trend-by-zipcode")
-      .execute();
+      .execute().then(() => {
+        $("#active-listings-zipcode").text(zipcode);
+      });
 
   let metric1 = cf.Metric("median_listing_price", "avg").hideFunction();
   let grid2 = cf.Grid()
@@ -899,7 +901,9 @@ function trendsByZipcode(zipcode){
     .set("xAxis", { "labelGap": 30 })
     .set("dataZoom", false)
     .element("cf-median-listing-price-trend-by-zipcode")
-    .execute();
+    .execute().then(() => {
+      $("#median-price-zipcode").text(zipcode);
+    });
 
   let provider = cf.provider("local");
   let source = provider.source("realtor_monthly_inventory_zip_all");
@@ -928,5 +932,7 @@ function trendsByZipcode(zipcode){
       "show": false
     })
     .element("cf-new-listing-by-zipcode")
-    .execute();
+    .execute().then(() => {
+      $("#new-listings-zipcode").text(zipcode);
+    });
 }
