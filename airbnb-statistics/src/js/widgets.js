@@ -276,6 +276,7 @@ function loadGeomap(){
               showInvestorModal();
               kpiByZipcode(markerData.zipcode);
               trendsByZipcode(markerData.zipcode);
+              trendsByZipcode2(markerData.zipcode);
 
               let propertyTitle = `${markerData.host_name}'s Place`;
               let propertyDetails = createListingCard(markerData);
@@ -907,32 +908,71 @@ function trendsByZipcode(zipcode){
 
   let provider = cf.provider("local");
   let source = provider.source("realtor_monthly_inventory_zip_all");
-  let metric2 = cf.Metric("median_listing_price", "avg").hideFunction();
-  let group2 = cf.Attribute("new_listing_count")
-    .limit(10)
-    .sort("desc", "new_listing_count");
-  let myData = source.groupby(group2)
-    .metrics(metric2);
-  let grid3 = cf.Grid()
+
+  let metricsMedianVsAvg = [
+    cf.Metric("median_listing_price", "avg").hideFunction(),
+    cf.Metric("average_listing_price", "avg").hideFunction()
+  ];
+  let groupMedianVsAvg = cf.Attribute("month_date_yyyymm")
+    .func("MONTH")
+    .limit(12)
+    .sort("desc", "month_date_yyyymm");
+  let dataMedianVsAvg = source.groupby(groupMedianVsAvg)
+    .metrics(...metricsMedianVsAvg);
+  let gridMedianVsAvg = cf.Grid()
     .top(10)
-    .right(15)
+    .right(40)
     .bottom(35)
-    .left(65);
-  let lines = cf.MarkLine()
-    .data([
-      { "name": "Average", "type": "average" }]);
-  let color2 = cf.Color()
+    .left(40);
+  let colorMedianVsAvg = cf.Color()
     .palette(["#0095b7", "#a0b774", "#f4c658", "#fe8b3e", "#cf2f23", "#756c56", "#007896", "#47a694", "#f9a94b", "#ff6b30", "#e94d29", "#005b76"]);
-  let myChart = myData.graph("Bars")
-    .set("grid", grid3)
-    .set("markline", lines)
-    .set("color", color2)
+  dataMedianVsAvg.filter(filterZipcode);
+  let chartMedianVsAvg = dataMedianVsAvg.graph("Multimetric Bars").set("serieLabel", {
+    "show": true
+  })
+    .set("grid", gridMedianVsAvg)
+    .set("color", colorMedianVsAvg)
+    .set("orientation", "horizontal")
+    .set("xAxis", { "show": true, "lines": false })
+    .set("yAxis", { "show": true, "lines": true, "text": "in", "position": "right" })
     .set("dataZoom", false)
-    .set("serieLabel", {
-      "show": false
-    })
-    .element("cf-new-listing-by-zipcode")
+    .element("cf-medianvsavg-listing-by-zipcode")
     .execute().then(() => {
-      $("#new-listings-zipcode").text(zipcode);
+      $("#medvsavg-listings-zipcode").text(zipcode);
+    });
+}
+
+function trendsByZipcode2(zipcode) {
+  let filterZipcode = cf.Filter("postal_code")
+    .operation("IN")
+    .value([zipcode]);
+
+  let metricMedianDaysOnMarket = cf.Metric("median_days_on_market", "avg");
+  let provider = cf.provider("local");
+  let source = provider.source("realtor_monthly_inventory_zip_all");
+  let groupMedianDaysOnMarket = cf.Attribute("month_date_yyyymm")
+    .func("MONTH")
+    .limit(1000)
+    .sort("asc", "month_date_yyyymm");
+  let dataMedianDaysOnMarket = source.groupby(groupMedianDaysOnMarket)
+    .metrics(metricMedianDaysOnMarket);
+  let gridMedianDaysOnMarket = cf.Grid()
+    .top(10)
+    .right(0)
+    .bottom(35)
+    .left(40);
+  let colorMedianDaysOnMarket = cf.Color()
+    .palette(["#0095b7", "#a0b774", "#f4c658", "#fe8b3e", "#cf2f23", "#756c56", "#007896", "#47a694", "#f9a94b", "#ff6b30", "#e94d29", "#005b76"]);
+  dataMedianDaysOnMarket.filter(filterZipcode, window.filterLtm);
+  let chartMedianDaysOnMarket = dataMedianDaysOnMarket.graph("Trend")
+    .set("grid", gridMedianDaysOnMarket)
+    .set("color", colorMedianDaysOnMarket)
+    .set("orientation", "horizontal")
+    .set("xAxis", { "show": true, "lines": false })
+    .set("yAxis", { "show": true, "lines": true, "text": "in", "position": "left" })
+    .set("dataZoom", false)
+    .element("cf-median-days-market-by-zipcode")
+    .execute().then(() => {
+      $("#median-days-market-zipcode").text(zipcode);
     });
 }

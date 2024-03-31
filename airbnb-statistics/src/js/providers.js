@@ -247,6 +247,126 @@ function loadProviders() {
                     },
                     "new_listing_count": {
                         "label": "New listing count"
+                    },
+                    "active_listing_count": {
+                        "label": "Active listing count"
+                    },
+                    "active_listing_count_mm": {
+                        "label": "Active listing count mm"
+                    },
+                    "active_listing_count_yy": {
+                        "label": "Active listing count yy"
+                    },
+                    "average_listing_price": {
+                        "label": "Average listing price"
+                    },
+                    "average_listing_price_mm": {
+                        "label": "Average listing price mm"
+                    },
+                    "average_listing_price_yy": {
+                        "label": "Average listing price yy"
+                    },
+                    "median_days_on_market": {
+                        "label": "Median days on market"
+                    },
+                    "median_days_on_market_mm": {
+                        "label": "Median days on market mm"
+                    },
+                    "median_days_on_market_yy": {
+                        "label": "Median days on market yy"
+                    },
+                    "median_listing_price_mm": {
+                        "label": "Median listing price mm"
+                    },
+                    "median_listing_price_per_square_feet": {
+                        "label": "Median listing price per square feet"
+                    },
+                    "median_listing_price_per_square_feet_mm": {
+                        "label": "Median listing price per square feet mm"
+                    },
+                    "median_listing_price_per_square_feet_yy": {
+                        "label": "Median listing price per square feet yy"
+                    },
+                    "median_listing_price_yy": {
+                        "label": "Median listing price yy"
+                    },
+                    "median_square_feet": {
+                        "label": "Median square feet"
+                    },
+                    "median_square_feet_mm": {
+                        "label": "Median square feet mm"
+                    },
+                    "median_square_feet_yy": {
+                        "label": "Median square feet yy"
+                    },
+                    "month_date_yyyymm": {
+                        "label": "Month date yyyymm"
+                    },
+                    "new_listing_count_mm": {
+                        "label": "New listing count mm"
+                    },
+                    "new_listing_count_yy": {
+                        "label": "New listing count yy"
+                    },
+                    "pending_listing_count": {
+                        "label": "Pending listing count"
+                    },
+                    "pending_listing_count_mm": {
+                        "label": "Pending listing count mm"
+                    },
+                    "pending_listing_count_yy": {
+                        "label": "Pending listing count yy"
+                    },
+                    "pending_ratio": {
+                        "label": "Pending ratio"
+                    },
+                    "pending_ratio_mm": {
+                        "label": "Pending ratio mm"
+                    },
+                    "pending_ratio_yy": {
+                        "label": "Pending ratio yy"
+                    },
+                    "postal_code": {
+                        "label": "Postal code"
+                    },
+                    "price_increased_count": {
+                        "label": "Price increased count"
+                    },
+                    "price_increased_count_mm": {
+                        "label": "Price increased count mm"
+                    },
+                    "price_increased_count_yy": {
+                        "label": "Price increased count yy"
+                    },
+                    "price_reduced_count": {
+                        "label": "Price reduced count"
+                    },
+                    "price_reduced_count_mm": {
+                        "label": "Price reduced count mm"
+                    },
+                    "price_reduced_count_yy": {
+                        "label": "Price reduced count yy"
+                    },
+                    "quality_flag": {
+                        "label": "Quality flag"
+                    },
+                    "state_code": {
+                        "label": "State code"
+                    },
+                    "state_name.keyword": {
+                        "label": "State name"
+                    },
+                    "total_listing_count": {
+                        "label": "Total listing count"
+                    },
+                    "total_listing_count_mm": {
+                        "label": "Total listing count mm"
+                    },
+                    "total_listing_count_yy": {
+                        "label": "Total listing count yy"
+                    },
+                    "zip_name": {
+                        "label": "Zip name"
                     }
                 }
             }
