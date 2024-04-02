@@ -39,16 +39,39 @@ function hideInvestorsModal(){
 }
 
 function removeInvestorsModalVisualizations(){
-    cf.getVisualization("kpi-by-zipcode").remove();
-    cf.getVisualization("cf-active-listings-trend-by-zipcode").remove();
-    cf.getVisualization("cf-median-listing-price-trend-by-zipcode").remove();
-    // cf.getVisualization("cf-medianvsavg-listing-by-zipcode").remove();
-    cf.getVisualization("cf-median-days-market-by-zipcode").remove();
+
+    const visualizationListingIds = [
+        "kpi-by-zipcode",
+        "cf-active-listings-trend-by-zipcode",
+        "cf-median-listing-price-trend-by-zipcode",
+        "cf-median-days-market-by-zipcode",
+        "cf-listings-yy-by-zipcode",
+        "cf-listings-mm-by-zipcode",
+        "mimmaxquery-1",
+        "mimmaxquery-2",
+        "mimmaxquery-3",
+        "mimmaxquery-4",
+        "cf-avg-price-by-zipcode",
+        "cf-avg-price-mm-by-zipcode",
+        "cf-avg-price-yy-by-zipcode",
+        "cf-median-square-feet-by-zipcode",
+        "cf-median-days-market-mm-by-zipcode",
+        "cf-median-days-market-yy-by-zipcode"
+    ];
+    visualizationListingIds.forEach(id => {
+        if (cf.getVisualization(id)){
+            cf.getVisualization(id).remove();
+        }
+    });
+
+    while(cf.getVisualization("")){
+        cf.getVisualization("").remove();
+    }
 }
 
 $("#modal-close").click(function() {
-    hideInvestorsModal();
     removeInvestorsModalVisualizations();
+    hideInvestorsModal();
 });
 
 function onCellClick(event) {
@@ -68,7 +91,7 @@ function onCellClick(event) {
 
 window.addEventListener("keydown", function(event) {
     if (event.key === "Escape") {
-        hideInvestorsModal();
         removeInvestorsModalVisualizations();
+        hideInvestorsModal();
     }
 });
