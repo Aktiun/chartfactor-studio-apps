@@ -59,3 +59,11 @@ window.ltmFilter = window.cf.Filter().fromJSON({
     sender: { type: 'Time Slider', id: 'time-range' },
     value: [firstDayLtm, lastDayCurrent]
 });
+
+window.formatDateString = formatDateString = date =>
+        `${date.getFullYear()}-${formatNumber(date.getMonth() + 1)}-${formatNumber(date.getDate())} 00:00:00`;
+
+window.getTwelveMonthsAgoDate = function getTwelveMonthsAgo(date) {
+    const twelveMonthsAgo = new Date(date.getFullYear() - 1, date.getMonth(), date.getDate());
+    return twelveMonthsAgo;
+}

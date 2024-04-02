@@ -133,7 +133,7 @@ function loadGeomap(){
                 location: "location",
                 visibilityZoomRange: [11, 24],
                 precisionLevels: null,
-                fields: ["name", "host_name", "bedrooms", "beds", "price", "picture_url", "number_of_reviews", "review_scores_value", "minimum_nights", "zipcode","is_usa"],
+                fields: ["name", "host_name", "bedrooms", "beds", "price", "picture_url", "number_of_reviews", "review_scores_value", "minimum_nights", "zipcode","is_usa","host_name","host_url","listing_url"],
                 "customTooltip": myTooltip,
               }
             },
@@ -278,9 +278,9 @@ function loadGeomap(){
               trendsByZipcode(markerData.zipcode);
               trendsByZipcode2(markerData.zipcode);
 
-              let propertyTitle = `${markerData.host_name}'s Place`;
+              let propertyTitle = `<a href="${markerData.host_url}" target="_blank">${markerData.host_name}'s Place</a>`;
               let propertyDetails = createListingCard(markerData);
-              $("#property-name").text(propertyTitle);
+              $("#property-name").html(propertyTitle);
               $("#cf-property-details-features").html(propertyDetails);
 
             });
@@ -805,34 +805,50 @@ function loadTopHosts() {
 // Realtor metrics
 
 function kpiByZipcode(zipcode) {
-  let metric0 = cf.Metric("active_listing_count", "sum");
 
-  // let filter168 = cf.Filter("month_date_yyyymm")
-  //   .label("Date")
-  //   .operation("BETWEEN")
-  //   .value(window.timeFilter.getValue());
+  const monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
 
   let filterZipcode = cf.Filter("postal_code")
     .operation("IN")
     .value([zipcode]);
 
+  let monthName = undefined;
+  let lastDate = undefined;
+
+  let timestampGroup = cf.Attribute("@timestamp")
+      .limit(1).func("MONTH")
+      .sort("desc", "@timestamp");
+
+  let metric0 = cf.Metric("total_listing_count", "sum");
+  let timestampMetric = cf.Metric("@timestamp", "max");
+
+  let timeFilter = cf.Filter("month_date_yyyymm")
+  .label("Month date yyyymm")
+  .operation("BETWEEN")
+  .value(window.timeFilter.getValue());
+
   cf.provider("local")
     .source("realtor_monthly_inventory_zip_all")
-    .metrics(metric0)
-    .filters(filterZipcode)
+    .groupby(timestampGroup)
+    .metrics(metric0, timestampMetric)
+    .filters(filterZipcode, timeFilter)
     .element("kpi-by-zipcode")
     .on("execute:stop", data => {
       if (_ && data) {
-
-        const value = _.get(data, 'data[0].current.metrics.active_listing_count.sum');
+        const value = _.get(data, 'data[0].current.metrics.total_listing_count.sum');
         const fixedValue = value ? value.toFixed(2) : "0";
         const formatedValue = value ? value.toLocaleString("en-US") : "0";
         const values = formatedValue.includes(".") ?
           formatedValue.split(".")[0] + "." + fixedValue.split(".")[1] :
           formatedValue;
 
-        const realtorHtmlLink = ` <a href="https://www.realtor.com/realestateandhomes-search/${zipcode}" target="_blank" class="footer-button"> <span class="button-top-text">REALTOR.COM</span> Go to listings in zip code: ${zipcode}</a>`;
+        const realtorHtmlLink = ` <a href="https://www.realtor.com/realestateandhomes-search/${zipcode}" target="_blank" class="footer-button"> <span class="button-top-text">REALTOR.COM</span> Go to listings in ${zipcode}</a>`;
 
+        let timestamp = data.data[0] ? data.data[0].current.metrics["@timestamp"].max : undefined;
+        let utcDate = timestamp ? new Date(timestamp).toUTCString() : new Date().toUTCString();
+        monthName = utcDate ? monthNames[new Date(utcDate).getUTCMonth()] : undefined;
+
+        $("#month-name").text(monthName);
         $('#cf-active-listings-zipcode').html(values);
         $('#counter-info-zipcode').text(zipcode);
         $('#realtor-link').html(realtorHtmlLink);
@@ -842,14 +858,16 @@ function kpiByZipcode(zipcode) {
 }
 
 function trendsByZipcode(zipcode){
-  // let filter168 = cf.Filter("month_date_yyyymm")
-  //     .label("Date")
-  //     .operation("BETWEEN")
-  //     .value(window.timeFilter.getValue());
 
   let filterZipcode = cf.Filter("postal_code")
+    .label("Postal code")
     .operation("IN")
-    .value([zipcode]);
+    .value([String(zipcode)]);
+
+    let timeFilter = cf.Filter("month_date_yyyymm")
+    .label("Month date yyyymm")
+    .operation("BETWEEN")
+    .value(window.timeFilter.getValue());
 
   let grid = cf.Grid()
       .top(35)
@@ -871,7 +889,7 @@ function trendsByZipcode(zipcode){
       .source("realtor_monthly_inventory_zip_all")
       .groupby(group1)
       .metrics(metric0)
-      .clientFilter(filterZipcode)
+      .clientFilters(filterZipcode, timeFilter)
       .graph("Trend")
       .set("grid", grid)
       .set("color", color)
@@ -894,7 +912,7 @@ function trendsByZipcode(zipcode){
     .source("realtor_monthly_inventory_zip_all")
     .groupby(group1)
     .metrics(metric1)
-    .clientFilter(filterZipcode)
+    .clientFilters(filterZipcode, timeFilter)
     .graph("Trend")
     .set("grid", grid2)
     .set("color", color)
@@ -906,40 +924,40 @@ function trendsByZipcode(zipcode){
       $("#median-price-zipcode").text(zipcode);
     });
 
-  let provider = cf.provider("local");
-  let source = provider.source("realtor_monthly_inventory_zip_all");
+  // let provider = cf.provider("local");
+  // let source = provider.source("realtor_monthly_inventory_zip_all");
 
-  let metricsMedianVsAvg = [
-    cf.Metric("median_listing_price", "avg").hideFunction(),
-    cf.Metric("average_listing_price", "avg").hideFunction()
-  ];
-  let groupMedianVsAvg = cf.Attribute("month_date_yyyymm")
-    .func("MONTH")
-    .limit(12)
-    .sort("desc", "month_date_yyyymm");
-  let dataMedianVsAvg = source.groupby(groupMedianVsAvg)
-    .metrics(...metricsMedianVsAvg);
-  let gridMedianVsAvg = cf.Grid()
-    .top(10)
-    .right(40)
-    .bottom(35)
-    .left(40);
-  let colorMedianVsAvg = cf.Color()
-    .palette(["#0095b7", "#a0b774", "#f4c658", "#fe8b3e", "#cf2f23", "#756c56", "#007896", "#47a694", "#f9a94b", "#ff6b30", "#e94d29", "#005b76"]);
-  dataMedianVsAvg.filter(filterZipcode);
-  let chartMedianVsAvg = dataMedianVsAvg.graph("Multimetric Bars").set("serieLabel", {
-    "show": true
-  })
-    .set("grid", gridMedianVsAvg)
-    .set("color", colorMedianVsAvg)
-    .set("orientation", "horizontal")
-    .set("xAxis", { "show": true, "lines": false })
-    .set("yAxis", { "show": true, "lines": true, "text": "in", "position": "right" })
-    .set("dataZoom", false)
-    .element("cf-medianvsavg-listing-by-zipcode")
-    .execute().then(() => {
-      $("#medvsavg-listings-zipcode").text(zipcode);
-    });
+  // let metricsMedianVsAvg = [
+  //   cf.Metric("median_listing_price", "avg").hideFunction(),
+  //   cf.Metric("average_listing_price", "avg").hideFunction()
+  // ];
+  // let groupMedianVsAvg = cf.Attribute("month_date_yyyymm")
+  //   .func("MONTH")
+  //   .limit(12)
+  //   .sort("desc", "month_date_yyyymm");
+  // let dataMedianVsAvg = source.groupby(groupMedianVsAvg)
+  //   .metrics(...metricsMedianVsAvg);
+  // let gridMedianVsAvg = cf.Grid()
+  //   .top(10)
+  //   .right(40)
+  //   .bottom(35)
+  //   .left(40);
+  // let colorMedianVsAvg = cf.Color()
+  //   .palette(["#0095b7", "#a0b774", "#f4c658", "#fe8b3e", "#cf2f23", "#756c56", "#007896", "#47a694", "#f9a94b", "#ff6b30", "#e94d29", "#005b76"]);
+  // dataMedianVsAvg.filter(filterZipcode);
+  // let chartMedianVsAvg = dataMedianVsAvg.graph("Multimetric Bars").set("serieLabel", {
+  //   "show": true
+  // })
+  //   .set("grid", gridMedianVsAvg)
+  //   .set("color", colorMedianVsAvg)
+  //   .set("orientation", "horizontal")
+  //   .set("xAxis", { "show": true, "lines": false })
+  //   .set("yAxis", { "show": true, "lines": true, "text": "in", "position": "right" })
+  //   .set("dataZoom", false)
+  //   .element("cf-medianvsavg-listing-by-zipcode")
+  //   .execute().then(() => {
+  //     $("#medvsavg-listings-zipcode").text(zipcode);
+  //   });
 }
 
 function trendsByZipcode2(zipcode) {

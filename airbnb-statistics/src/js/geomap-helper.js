@@ -246,7 +246,8 @@ function createListingCard(marker) {
     number_of_reviews,
     review_scores_value,
     minimum_nights,
-    name
+    name,
+    listing_url
   } = marker;
 
   let cleanPrice = price > 0 ? `$${price.toFixed(2)} per night.` : "Price not available";
@@ -254,7 +255,7 @@ function createListingCard(marker) {
   let avgNights = (Number(number_of_reviews) * Number(minimum_nights)).toFixed(0);
   let rawIncome = (avgNights * Number(price)).toFixed(2);
   let avgIncome = rawIncome > 0 ? rawIncome : "Not available";
-  let cleanIncome = rawIncome > 0 ? `$${avgIncome}` : "Not available";
+  let cleanIncome = rawIncome > 0 ? `${formatCurrency(Number(avgIncome), true) }` : "Not available";
   let cleanScore = review_scores_value !== "" ? review_scores_value : "not available";
 
   const scoreStars = createStars(cleanScore);
@@ -264,7 +265,7 @@ function createListingCard(marker) {
     <div class="listing-card">
       <img src="${picture_url}" alt="${host_name}'s Place" class="listing-image" />
       <div class="listing-details">
-        <h3 class="listing-title">${name}</h3>
+        <h3 class="listing-title"><a href="${listing_url}" target="_blank"> ${name}</a></h3>
         <div class="price-and-min-nights">
           <p class="listing-price">${cleanPrice}</p>
           <p class="listing-minimum-nights">Min. Nights: ${minimum_nights}</p>
