@@ -50,13 +50,6 @@ function loadInteractionManager() {
       [viz4]: { clientFilters: true },
       [viz5]: { clientFilters: true }
     };
-    /* Configuration code for the Interaction Manager*/
-    // Drill hierarchy and rule settings can be done like this:
-    // let viz1 = getId("widget_title_1")
-    // let viz2 = getId("widget_title_2")
-    // let drill = { [viz1]: { group1: []}}
-    // let rules = { [viz2]: { receive: false }}
-    // NOTE: Drill hierarchy will change your code!
     // Define options
     let aktive = cf.create();
     let myChart = aktive
@@ -279,6 +272,7 @@ function loadGeomap() {
           trendsByZipcode2(markerData.zipcode);
           trendsByZipcode3(markerData.zipcode);
           trendsByZipcode4(markerData.zipcode);
+          trendsByZipcode5(markerData.zipcode);
 
           let propertyTitle = `<a href="${markerData.host_url}" target="_blank">${markerData.host_name}'s</a> Place`;
           let propertyDetails = createListingCard(markerData);
@@ -970,8 +964,6 @@ async function trendsByZipcode(zipcode) {
 }
 
 async function trendsByZipcode2(zipcode) {
-  let provider = cf.provider("local");
-  let source = provider.source("realtor_monthly_inventory_zip_all");
   let filterZipcode = cf.Filter("postal_code")
     .label("Postal code")
     .operation("IN")
@@ -1085,8 +1077,6 @@ async function trendsByZipcode2(zipcode) {
 }
 
 async function trendsByZipcode3(zipcode) {
-  let provider = cf.provider("local");
-  let source = provider.source("realtor_monthly_inventory_zip_all");
   let filterZipcode = cf.Filter("postal_code")
     .label("Postal code")
     .operation("IN")
@@ -1207,8 +1197,6 @@ async function trendsByZipcode3(zipcode) {
 }
 
 async function trendsByZipcode4(zipcode) {
-  let provider = cf.provider("local");
-  let source = provider.source("realtor_monthly_inventory_zip_all");
   let filterZipcode = cf.Filter("postal_code")
     .label("Postal code")
     .operation("IN")
@@ -1286,6 +1274,74 @@ async function trendsByZipcode4(zipcode) {
     .set("xAxis", { "labelGap": 30 })
     .set("dataZoom", false)
     .element("cf-median-days-market-yy-by-zipcode")
+    .execute();
+
+}
+
+async function trendsByZipcode5(zipcode) {
+  let filterZipcode = cf.Filter("postal_code")
+    .label("Postal code")
+    .operation("IN")
+    .value([zipcode]);
+  const minmaxQuery = await cf.provider("local")
+    .source("realtor_monthly_inventory_zip_all")
+    .staticFilters(filterZipcode)
+    .timeField(cf.Attribute("month_date_yyyymm").func('DAY'))
+    .set('timeRangeVisual', true)
+    .element(`mimmaxquery-5`)
+    .execute();
+
+  const { min, max } = await minmaxQuery.data[0];
+  const { firstDay, lastDay } = window.getFirstLastDayMonth(max);
+  let timeFilter = cf.Filter("month_date_yyyymm")
+    .label("Month date yyyymm")
+    .operation("BETWEEN")
+    .value([`${firstDay} 00:00:00`, `${lastDay}- 23:59:59.999`]);
+
+  // ************ Median Days on Market MM by Zipcode ************ //
+let provider = cf.provider("local");
+let source = provider.source("realtor_monthly_inventory_zip_all");
+// Define metrics
+let metric0 = cf.Metric("active_listing_count_mm", "avg").hideFunction();
+// Define attributes to group by
+let group1 = cf.Attribute("month_date_yyyymm")
+    .func("MONTH")
+    .limit(1000)
+    .sort("asc", "month_date_yyyymm");
+// Add metrics and groups to data source
+let myData = source.groupby(group1)
+    .metrics(metric0);
+// --- Define chart options and static filters ---
+// Define Grid
+let grid = cf.Grid()
+    .top(10)
+    .right(25)
+    .bottom(35)
+    .left(45);
+// Define Color Palette
+let color = cf.Color()
+    .palette(["#0095b7", "#a0b774", "#f4c658", "#fe8b3e", "#cf2f23", "#756c56", "#007896", "#47a694", "#f9a94b", "#ff6b30", "#e94d29", "#005b76"]);
+myData.staticFilters(filterZipcode);
+myData.clientFilter(timeFilter);
+let myChart = myData.graph("Trend")
+    .set("grid", grid)
+    .set("color", color)
+    .set("xAxis", { "labelGap": 30 })
+    .set("dataZoom", false)
+    .element("cf-listings-mm-by-zipcode2")
+    .execute();
+
+let metric1 = cf.Metric("active_listing_count_yy", "avg").hideFunction();
+let myData2 = source.groupby(group1)
+    .metrics(metric1);
+    myData2.staticFilters(filterZipcode);
+    myData2.clientFilter(timeFilter);
+let myChart2 = myData2.graph("Trend")
+    .set("grid", grid)
+    .set("color", color)
+    .set("xAxis", { "labelGap": 30 })
+    .set("dataZoom", false)
+    .element("cf-listings-yy-by-zipcode2")
     .execute();
 
 }
