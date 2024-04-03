@@ -5,7 +5,8 @@ This is a web app developed using ChartFactor to create useful and interesting v
 ## Steps to setup dev env
 1. Install Elastik Search 7 (no 8+)
 2. Clean the data (used `listings.csv.gz` files)
-3. Start local web server
+3. Index Realtor data
+4. Start local web server
 
 ### 1. Install Elastik Search
 TODO:
@@ -43,3 +44,18 @@ To update `abnb_zipcode.parquet` you must be in `data_prep` folder and follow th
 2. Delete `abnb_zipcode.parquet` in `data` folder
 2. Run `python zip_optimizer.py`
 With this, the next time you run `data_prep.py` you will use an updated version of `abnb_zipcode.parquet` for your data clean, and should take less time to complete the process.
+
+### 3. Index Realtor data
+
+run `python realtor_data_prep`.
+
+#### Important: Realtor updates this data every month, approx 7th each month. If you want to get the latest data just re run `realtor_data_prep` script when you need.
+
+
+### 4. Start web server
+
+Go to project folder, from `data_clean` forder, you could use:
+`cd ..` and run `python3 -m http.server <port>` where `<port>` is the port number you want to use, for example:
+`python3 -m http.server 8313`.
+
+Then the web app will be available in `http://localhost:8113/src/`
