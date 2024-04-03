@@ -47,7 +47,7 @@ With this, the next time you run `data_prep.py` you will use an updated version 
 
 ### 3. Index Realtor data
 
-run `python realtor_data_prep`.
+run `python realtor_data_prep.py`.
 
 #### Important: Realtor updates this data every month, approx 7th each month. If you want to get the latest data just re run `realtor_data_prep` script when you need.
 
