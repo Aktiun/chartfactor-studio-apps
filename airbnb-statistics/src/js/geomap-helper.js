@@ -63,7 +63,7 @@ function getZeroCleanedData(){
   }
 }
 
-function animateValue(obj, end, formatFunction) {
+function animateValue(obj, end, formatFunction, renderPercentage = false, isStyle = false) {
   let startTimestamp = null;
   let duration = 800;
   let start = 0;
@@ -71,7 +71,12 @@ function animateValue(obj, end, formatFunction) {
     if (!startTimestamp) startTimestamp = timestamp;
     const progress = Math.min((timestamp - startTimestamp) / duration, 1);
     const value = progress * (end - start) + start;
-    obj.innerHTML = formatFunction(value, progress === 1);
+
+    if (isStyle) {
+      obj.style['width'] = `${value}%`;
+    } else {
+      obj.innerHTML = `${formatFunction(value, progress === 1)}${!renderPercentage ? " %" : ""}`;
+    }
     if (progress < 1) {
       window.requestAnimationFrame(step);
     }
@@ -91,9 +96,15 @@ function formatCurrency(value, isFinal) {
   return isFinal ? `$${Number(value.toFixed(2)).toLocaleString("us-US")}` : `$${Math.round(value).toLocaleString("us-US")}`;
 }
 
-function animateBothValues(countObj, countEnd, rateObj, rateEnd) {
-  animateValue(countObj, countEnd, formatCount);
-  animateValue(rateObj, rateEnd, formatRate);
+function animateBothValues(countObj, countEnd, rateObj, rateEnd, renderPercentage = true, usePercentage = false) {
+  if (renderPercentage) {
+    animateValue(countObj, countEnd, formatCount);
+    animateValue(rateObj, rateEnd, formatRate);
+  } else {
+    animateValue(countObj, rateEnd, formatCount);
+  }
+
+  animateValue(rateObj, rateEnd, formatRate, renderPercentage, usePercentage);
 }
 
 function buildHtmlStringRoomtype(element1, element2, element3, element4){

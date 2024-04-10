@@ -19,7 +19,7 @@ const getStars = (rating) => {
     return stars;
 }
 
-// box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+// box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 const getTooltipCardHtml = (data) => {
     let template = `
     <!DOCTYPE html>
@@ -32,13 +32,13 @@ const getTooltipCardHtml = (data) => {
         font-family: 'Arial', sans-serif;
         border-radius: 4px;
         background-color: #fff;
-        width: 250px;
+        width: 200px;
         max-height: 300px;
         overflow: hidden;
       }
       .tooltip-card img {
         width: 100%;
-        max-height: 150px;
+        max-height: 100px;
         display: block;
         border-bottom: 1px solid #eaeaea;
       }
@@ -47,16 +47,16 @@ const getTooltipCardHtml = (data) => {
       }
       .tooltip-card-title {
         font-weight: bold;
-        font-size: 14px;
+        font-size: 12px;
         margin-bottom: 4px;
       }
       .tooltip-card-price {
         color: #333;
-        font-size: 18px;
+        font-size: 10px;
         margin-bottom: 2px;
       }
       .tooltip-card-reviews {
-        font-size: 12px;
+        font-size: 10px;
         color: #666;
         margin-bottom: 4px;
       }

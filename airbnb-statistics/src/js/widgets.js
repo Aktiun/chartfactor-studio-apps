@@ -102,8 +102,7 @@ function loadGeomap() {
       // return `<img style="width: 200px" src=${data[6].value} alt="picture" />`;
     };
 
-    let myChart = cf
-      .create()
+    cf.create()
       .graph("Geo Map GL")
       .set("layers", [
         {
@@ -246,15 +245,8 @@ function loadGeomap() {
           type: e.type
         });
       })
-      .on("geo:layers-execution-start", e =>
-        window.toggleIndicator(e.element, true)
-      )
-      .on("geo:layers-execution-stop", e =>
-        window.toggleIndicator(e.element, false)
-      )
-      .on("execute:start", e => window.toggleIndicator(e.element, true))
+      // .on("execute:start", e => window.toggleIndicator(e.element, true))
       .on("execute:stop", e => {
-        window.toggleIndicator(e.element, false);
         let aktiveMap = cf.getVisualization("cf-main-geomap");
         let geoMap = aktiveMap.get("map");
         geoMap.on("zoomend", (e) => {
@@ -325,21 +317,22 @@ function loadPropertyType() {
     // --- Define chart options and static filters ---
     // Define Grid
     let grid = cf.Grid()
-      .top(0)
-      .right(5)
-      .bottom(0)
-      .left(0);
+      .top(-20)
+      .right(-20)
+      .bottom(-15)
+      .left(5);
     // Define Color Palette
     let color = cf.Color()
-      // .theme({ background:'rgb(255 255 255 / 80%)', font: 'black' })
-      .palette(["#ff0000", "#ff8000", "#6437db", "#478509", "#00ff00", "#00ff80", "#00ffff", "#0080ff", "#0000ff", "#8000ff", "#ff00ff", "#ff0080"]);
-    let myChart = myData.graph("Bars")
+      .theme({ background:'#66bb6a', font: 'white' })
+      .palette(["#fff"]);
+
+    myData.graph("Bars")
       .set("grid", grid)
       .set("color", color)
       .set("orientation", "horizontal")
       .set("axisLabels", false)
       .set("xAxis", { "show": true, "lines": false })
-      .set("yAxis", { "text": "out", "lines": false })
+      .set("yAxis", { "show": true, "text": "out", "lines": false })
       .set("dataZoom", false)
       .set("serieLabel", {
         "show": true,
@@ -397,32 +390,40 @@ function loadPropertyType() {
           }
         });
 
-        var htmlString = buildHtmlStringRoomtype(element1Clean, element2Clean, element3Clean, element4Clean);
-        document.getElementById("cf-roomType-statistics").innerHTML = htmlString;
-        animateValue(document.getElementById('element1Percentage'), element1Clean.rate, formatRate);
+        // var htmlString = buildHtmlStringRoomtype(element1Clean, element2Clean, element3Clean, element4Clean);
+        // document.getElementById("cf-roomType-statistics").innerHTML = htmlString;
+        // animateValue(document.getElementById('element1Percentage'), element1Clean.rate, formatRate);
         animateBothValues(
-          document.getElementById('element1Count'),
+          document.getElementById('entire-home-apt-val'),
           element1Clean.count,
-          document.getElementById('element1Rate'),
-          element1Clean.rate
+          document.getElementById('entire-home-apt-prct'),
+          element1Clean.rate,
+            false,
+            true
         );
         animateBothValues(
-          document.getElementById('element2Count'),
+          document.getElementById('private-room-val'),
           element2Clean.count,
-          document.getElementById('element2Rate'),
-          element2Clean.rate
+          document.getElementById('private-room-prct'),
+          element2Clean.rate,
+            false,
+            true
         );
         animateBothValues(
-          document.getElementById('element3Count'),
+          document.getElementById('shared-room-val'),
           element3Clean.count,
-          document.getElementById('element3Rate'),
-          element3Clean.rate
+          document.getElementById('shared-room-prct'),
+          element3Clean.rate,
+            false,
+            true
         );
         animateBothValues(
-          document.getElementById('element4Count'),
+          document.getElementById('hotel-room-val'),
           element4Clean.count,
-          document.getElementById('element4Rate'),
-          element4Clean.rate
+          document.getElementById('hotel-room-prct'),
+          element4Clean.rate,
+            false,
+            true
         );
       })
       .element(elementId)

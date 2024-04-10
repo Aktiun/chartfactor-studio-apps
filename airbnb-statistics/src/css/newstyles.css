@@ -1,0 +1,247 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.cf-page {
+    height: calc(100% - 40px);
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 60px auto 220px;
+    grid-template-areas:
+            "header header"
+            "table map"
+            "footer footer";
+    grid-gap: 20px;
+    padding: 20px;
+    background: #f8f9fa!important;
+}
+
+.cf-card {
+    --bs-card-border-width: 0;
+    --bs-card-border-color: rgba(0, 0, 0, .125);
+    --bs-card-border-radius: 1rem;
+    --bs-card-box-shadow: 0 20px 27px 0 rgba(0, 0, 0, .05);
+    --bs-card-bg: #fff;
+    box-shadow: var(--bs-card-box-shadow);
+    background-color: var(--bs-card-bg);
+    background-clip: border-box;
+    border: var(--bs-card-border-width) solid var(--bs-card-border-color);
+    border-radius: var(--bs-card-border-radius);
+}
+
+.top-container {
+    grid-area: header;
+    display: grid;
+    grid-template-columns: auto 250px;
+    grid-template-rows: 1fr;
+    grid-template-areas: "im logo";
+    gap: 20px;
+}
+
+.cfim-contaner {
+    grid-area: im;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#im > div {
+    width: 100%;
+}
+
+.cflogo-container {
+    grid-area: logo;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cflogo-container > img {
+    grid-area: logo;
+    width: calc(100% - 90px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.cflogo-container > span {
+    grid-area: tittle;
+    font-size: 15px;
+    font-weight: bold;
+    color: #0071BC;
+    display: block;
+    font-family: sans-serif;
+    text-align: center;
+    align-self: center;
+}
+
+.middle-section {
+    height: 100%;
+}
+
+.table-container {
+    grid-area: table;
+    height: calc(100vh - 360px) !important;
+}
+
+.table-container-header {
+    text-align: center;
+    font-family: sans-serif;
+    height: 35px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table-container-content {
+    padding: 10px;
+    overflow: auto;
+    height: calc(100% - 65px);
+}
+
+.table-hosts {
+    width: 30%;
+    font-size: 0.8em;
+    border-collapse: collapse;
+    margin: 0 auto;
+    color: #333;
+}
+
+.table-hosts th, .table-hosts td {
+    padding: 8px;
+    text-align: left;
+}
+
+.table-hosts th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.table-hosts tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.table-hosts, .table-hosts th, .table-hosts td {
+    border: none;
+}
+
+.table-hosts tr {
+    border-bottom: 1px solid #eaeaea;
+}
+
+.table-hosts td:not(:first-child) {
+    text-align: center;
+}
+
+.map-container {
+    grid-area: map;
+    padding: 5px;
+    height: calc(100% - 10px) !important;
+    width: calc(100% - 10px) !important;
+}
+
+.map-container > div {
+    border-radius: var(--bs-card-border-radius);
+}
+
+.footer-container {
+    grid-area: footer;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "first second third fourth";
+    gap: 10px;
+}
+
+.cf-descriptive-widget {
+    display: grid;
+    grid-template-rows: 7fr 4fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+            "chart"
+            "info";
+    height: calc(100% - 20px);
+}
+
+.cf-descriptive-widget > .chart-container {
+    grid-area: chart;
+    padding: 10px;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+}
+.chart-container > div {
+    width: 100%;
+    height: 100%;
+    top: -24px;
+    box-shadow: 0 4px 20px 0 rgba(0,0,0,.14);
+    border-radius: 10px;
+}
+
+.chart-container canvas {
+    border-radius: 10px;
+}
+
+.cf-descriptive-widget > .info-container {
+    grid-area: info;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: -24px;
+    gap: 5px;
+}
+
+.info-container > .info-items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 5px;
+    font-size: small;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    gap: 5px;
+}
+
+.info-item > span {
+    font-size: smaller;
+}
+
+.info-item > .value {
+    color: #66bb6a;
+    font-weight: bold;
+}
+
+.info-item > .percentage {
+    background: lightgray;
+    width: 100%;
+    height: 15px;
+    border-radius: 50px;
+}
+
+.info-item > .percentage > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-image: linear-gradient(60deg,#66bb6a,#43a047);
+    border-radius: 50px;
+    color: white;
+    font-size: smaller;
+}
