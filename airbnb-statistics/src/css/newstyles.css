@@ -196,6 +196,7 @@ body {
     top: -15px;
     padding: 10px;
     color: #546e7a;
+    text-align: justify;
 }
 
 .cf-descriptive-widget > .chart-container {
