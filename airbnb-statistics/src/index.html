@@ -18,69 +18,192 @@
                 <span class="cflogo-text">Airbnb for Investors</span>
             </div>
         </div>
-        <div class="map-container cf-card middle-section" id="cf-main-geomap"></div>
-        <div class="table-container cf-card middle-section" id="">
-            <div class="table-container-header">
-                <span id="top-hosts-title">Top Hosts</span>
-            </div>
-            <div class="table-container-content">
-                <div id="cf-top-hosts"></div>
-            </div>
-        </div>
-        <div class="footer-container">
-            <div class="cf-descriptive-widget cf-card" style="grid-area: first">
-                <div class="chart-container">
-                    <div id="cf-roomType"></div>
+        <div class="map-container cf-card" id="cf-main-geomap"></div>
+        <div class="charts-container">
+            <div class="widgets-container">
+                <div class="cf-descriptive-widget cf-card" style="grid-area: first">
+                    <div class="chart-container" >
+                        <div id="cf-roomType" style="background-image: linear-gradient(310deg,#2152ff,#21d4fd)"></div>
+                    </div>
+                    <div class="info-container">
+                        <span>Room Type</span>
+                        <div class="info-items cf-room-types">
+                            <div></div>
+                            <div class="info-item">
+                                <span>Entire home</span>
+                                <div class="value" style="color: #2152ff;" id="entire-home-apt-val">0</div>
+                                <div class="percentage">
+                                    <div style="width: 100%; background-image: linear-gradient(310deg,#2152ff,#21d4fd)" id="entire-home-apt-prct">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <span>Private room</span>
+                                <div class="value" style="color: #2152ff;" id="private-room-val">0</div>
+                                <div class="percentage">
+                                    <div style="width: 100%; background-image: linear-gradient(310deg,#2152ff,#21d4fd)" id="private-room-prct">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <span>Shared room</span>
+                                <div class="value" style="color: #2152ff;" id="shared-room-val">0</div>
+                                <div class="percentage" id="shared-room-prct">
+                                    <div style="width: 100%; background-image: linear-gradient(310deg,#2152ff,#21d4fd)">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <span>Hotel room</span>
+                                <div class="value" style="color: #2152ff;" id="hotel-room-val">0</div>
+                                <div class="percentage" id="hotel-room-prct">
+                                    <div style="width: 100%; background-image: linear-gradient(310deg,#2152ff,#21d4fd)">
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="description">
+                        Airbnb providers have the option to offer a range of accommodations including entire houses/apartments, private or shared spaces, and, more recently, hotel rooms. The nature and type of the listed space can vary; for instance, a residential Airbnb property might resemble a hotel in its operations, potentially causing disturbances to neighbors, reducing available housing, and in some cases, breaching legal regulations.
+                    </div>
                 </div>
-                <div class="info-container">
-                    <span>Room Type</span>
-                    <div class="info-items cf-room-types">
-                        <div></div>
-                        <div class="info-item">
-                            <span>Entire home</span>
-                            <div class="value" id="entire-home-apt-val">0</div>
-                            <div class="percentage">
-                                <div style="width: 100%" id="entire-home-apt-prct">
+                <div class="cf-descriptive-widget cf-card" style="grid-area: second">
+                    <div class="chart-container">
+                        <div id="cf-activity" style="background-image: linear-gradient(310deg,#ea0606,#ff667c)"></div>
+                    </div>
+                    <div class="info-container">
+                        <span>Activity</span>
+                        <div class="info-items cf-room-types">
+                            <div></div>
+                            <div class="info-item">
+                                <span>Average nights booked</span>
+                                <div class="value" style="color: #ec407a;" id="avg-nights-booked-val">0</div>
+                                <!--                            <div class="percentage">-->
+                                <!--                                <div style="width: 100%; background-image:linear-gradient(310deg,#ea0606,#ff667c)" id="avg-nights-booked-prct">-->
+                                <!--                                </div>-->
+                                <!--                            </div>-->
+                            </div>
+                            <div class="info-item">
+                                <span>Average income</span>
+                                <div class="value" style="color: #ec407a;" id="avg-income-val">0</div>
+                                <!--                            <div class="percentage">-->
+                                <!--                                <div style="width: 100%; background-image:linear-gradient(310deg,#ea0606,#ff667c)" id="avg-income-prct">-->
+                                <!--                                </div>-->
+                                <!--                            </div>-->
+                            </div>
+                            <div class="info-item">
+                                <span>Average price/night</span>
+                                <div class="value" style="color: #ec407a;" id="avg-price-val">0</div>
+                                <!--                            <div class="percentage" id="avg-price-prct">-->
+                                <!--                                <div style="width: 100%; background-image:linear-gradient(310deg,#ea0606,#ff667c)">-->
+                                <!--                                </div>-->
+                                <!--                            </div>-->
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="description">
+                        The number of nights reserved and the revenue for each listing on past year have been calculated using the minimum duration of stay, pricing, and the volume of reviews.
+                    </div>
+                </div>
+                <div class="cf-descriptive-widget cf-card" style="grid-area: third">
+                    <div class="chart-container">
+                        <div id="cf-licenses" style="background-image: linear-gradient(310deg,#f53939,#fbcf33)"></div>
+                    </div>
+                    <div class="info-container">
+                        <span>Licenses</span>
+                        <div class="info-items cf-room-types">
+                            <div></div>
+                            <div class="info-item">
+                                <span>Unlicensed</span>
+                                <div class="value" style="color: #f53939;" id="unlicensed-val">0</div>
+                                <div id="unlicensed-prct-val">0</div>
+                                <div class="percentage">
+                                    <div style="width: 100%; background-image:linear-gradient(310deg,#f53939,#fbcf33)" id="unlicensed-prct">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="info-item">
-                            <span>Private room</span>
-                            <div class="value" id="private-room-val">0</div>
-                            <div class="percentage">
-                                <div style="width: 100%" id="private-room-prct">
+                            <div class="info-item">
+                                <span>Exempt</span>
+                                <div class="value" style="color: #f53939;" id="exempt-val">0</div>
+                                <div id="exempt-prct-val">0</div>
+                                <div class="percentage">
+                                    <div style="width: 100%; background-image:linear-gradient(310deg,#f53939,#fbcf33)" id="exempt-prct">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="info-item">
-                            <span>Shared room</span>
-                            <div class="value" id="shared-room-val">0</div>
-                            <div class="percentage" id="shared-room-prct">
-                                <div style="width: 100%">
+                            <div class="info-item">
+                                <span>Licensed</span>
+                                <div class="value" style="color: #f53939;" id="licensed-val">0</div>
+                                <div id="licensed-prct-val">0</div>
+                                <div class="percentage" id="licensed-prct">
+                                    <div style="width: 100%; background-image:linear-gradient(310deg,#f53939,#fbcf33)">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="info-item">
-                            <span>Hotel room</span>
-                            <div class="value" id="hotel-room-val">0</div>
-                            <div class="percentage" id="hotel-room-prct">
-                                <div style="width: 100%">
+                            <div class="info-item">
+                                <span>Pending</span>
+                                <div class="value" style="color: #f53939;" id="pending-val">0</div>
+                                <div id="pending-prct-val">0</div>
+                                <div class="percentage" id="pending-prct">
+                                    <div style="width: 100%; background-image:linear-gradient(310deg,#f53939,#fbcf33)">
+                                    </div>
                                 </div>
                             </div>
+                            <div></div>
                         </div>
-                        <div></div>
+                    </div>
+                    <div class="description">
+                        Legislation mandates that certain short-term rental properties must have a permit. The chart simplifies the distribution of properties according to their licensing status, categorizing them as licensed, unlicensed, pending, or exempt.
+                    </div>
+                </div>
+                <div class="cf-descriptive-widget cf-card" style="grid-area: fourth">
+                    <div class="chart-container">
+                        <div id="cf-host-listings" style="background-image: linear-gradient(310deg,#7928ca,#ff0080)"></div>
+                    </div>
+                    <div class="info-container">
+                        <span>Listings per Host</span>
+                        <div class="info-items cf-room-types">
+                            <div></div>
+                            <div class="info-item">
+                                <span>multi-listings</span>
+                                <div class="value" style="color: #7928ca;" id="multi-listings-val">0</div>
+                                <div id="multi-listings-prct-val">0</div>
+                                <div class="percentage">
+                                    <div style="width: 100%; background-image:linear-gradient(310deg,#7928ca,#ff0080)" id="multi-listings-prct">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <span>single listings</span>
+                                <div class="value" style="color: #7928ca;" id="single-listings-val">0</div>
+                                <div id="single-listings-prct-val">0</div>
+                                <div class="percentage" id="single-listings-prct">
+                                    <div style="width: 100%; background-image:linear-gradient(310deg,#7928ca,#ff0080)">
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="description">
+                        Several Airbnb hosts manage more than one listing. A host might offer various rooms within a single apartment, or have several apartments or houses up for rent in their entirety. Hosts who have numerous listings tend to operate as businesses, are probably not residing in the properties themselves, and often breach regulations established for short-term rentals that aim to preserve residential housing.
                     </div>
                 </div>
             </div>
-            <div class="cf-descriptive-widget cf-card" style="grid-area: second">
-                //
+            <div class="table-container cf-card">
+                <div class="table-container-header">
+                    <span id="top-hosts-title">Top Hosts</span>
+                </div>
+                <div class="table-container-content">
+                    <div id="cf-top-hosts"></div>
+                </div>
             </div>
-            <div class="cf-descriptive-widget cf-card" style="grid-area: third">
-                //
-            </div>
-            <div class="cf-descriptive-widget cf-card" style="grid-area: fourth">
-                //
-            </div>
+        </div>
+        <div class="cf-page-info cf-card">
+            DATA AND INSPIRATION FROM <a target="_blank" href="http://insideairbnb.com/get-the-data/">INSIDEAIRBNB.COM</a> DATA FOR MARKET LISTINGS FROM <a
+                target="_blank" href="https://www.realtor.com/research/data/">REALTOR.COM</a>
         </div>
     </div>
 </body>

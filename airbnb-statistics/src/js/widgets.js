@@ -323,7 +323,7 @@ function loadPropertyType() {
       .left(5);
     // Define Color Palette
     let color = cf.Color()
-      .theme({ background:'#66bb6a', font: 'white' })
+      .theme({ background:'rgba(0,0,0,0)', font: 'white' })
       .palette(["#fff"]);
 
     myData.graph("Bars")
@@ -455,13 +455,22 @@ function loadActivity() {
     let myData = source
       .metrics(metric0)
       .limit(100);
+
+    let grid = cf.Grid()
+        .top(10)
+        .right(5)
+        .bottom(15)
+        .left(5);
+
     // Define Color Palette
     let color = cf.Color()
-      .palette(["#0095b7", "#a0b774", "#f4c658", "#fe8b3e", "#cf2f23", "#756c56", "#007896", "#47a694", "#f9a94b", "#ff6b30", "#e94d29", "#005b76"]);
+        .theme({ background:'rgba(0,0,0,0)', font: 'white' })
+      .palette(["#fff"]);
     myData.staticFilters(staticFilter1);
     // --- Define chart options and static filters ---
-    let myChart = myData.graph("Histogram")
+    myData.graph("Histogram")
       .set("color", color)
+      .set("grid", grid)
       .set("yAxis", { "type": "log", "lines": false })
       .on("execute:stop", () => {
         let chart = cf.getVisualization("cf-activity");
@@ -514,19 +523,11 @@ function loadAvgPrice() {
 
         let data = result.data.Query2;
         let avgPrice = data[0].current.metrics.price.avg;
-        let avgPriceHtmlString = buildHtmlStringAvgPrice(avgPrice);
-
-        let avgNightsHtmlString = buildHtmlStringAvgNights(avgNights);
-        document.getElementById("cf-avg-nights").innerHTML = avgNightsHtmlString;
-        animateValue(document.getElementById('avgNights'), avgNights, formatCount);
-
         let avgIncome = avgPrice * avgNights;
-        let avgIncomeHtmlString = buildHtmlStringAvgIncome(avgIncome);
 
-        document.getElementById("cf-avg-price").innerHTML = avgPriceHtmlString;
-        document.getElementById("cf-avg-income").innerHTML = avgIncomeHtmlString;
-        animateValue(document.getElementById('avgPrice'), avgPrice, formatCurrency);
-        animateValue(document.getElementById('avgIncome'), avgIncome, formatCurrency);
+        animateValue(document.getElementById('avg-nights-booked-val'), avgNights, formatCount, true);
+        animateValue(document.getElementById('avg-income-val'), avgPrice, formatCurrency, true);
+        animateValue(document.getElementById('avg-price-val'), avgIncome, formatCurrency, true);
       })
       .element(elementId)
       .execute()
@@ -565,7 +566,9 @@ function loadLicenses() {
       .left(0);
     // Define Color Palette
     let color = cf.Color()
-      .palette(["#0095b7", "#a0b774", "#f4c658", "#fe8b3e", "#cf2f23", "#756c56", "#007896", "#47a694", "#f9a94b", "#ff6b30", "#e94d29", "#005b76"]); let myChart = myData.graph("Donut")
+        .theme({ background:'rgba(0,0,0,0)', font: 'white' })
+        .palette(["#fff", '#82b1ff', '#a7ffeb', '#f4ff81']);
+    myData.graph("Donut")
         .set("legend", legend)
         .set("grid", grid)
         .set("color", color)
@@ -623,33 +626,21 @@ function loadLicenses() {
             }
           });
 
-          var htmlString = buildHtmlStringLicenses(element1Clean, element2Clean, element3Clean, element4Clean);
-          document.getElementById("cf-licenses-statistics").innerHTML = htmlString;
-          animateValue(document.getElementById('element1LicensePercentage'), element1Clean.rate, formatRate);
-          animateBothValues(
-            document.getElementById('element1LicenseCount'),
-            element1Clean.count,
-            document.getElementById('element1LicenseRate'),
-            element1Clean.rate
-          );
-          animateBothValues(
-            document.getElementById('element2LicenseCount'),
-            element2Clean.count,
-            document.getElementById('element2LicenseRate'),
-            element2Clean.rate
-          );
-          animateBothValues(
-            document.getElementById('element3LicenseCount'),
-            element3Clean.count,
-            document.getElementById('element3LicenseRate'),
-            element3Clean.rate
-          );
-          animateBothValues(
-            document.getElementById('element4LicenseCount'),
-            element4Clean.count,
-            document.getElementById('element4LicenseRate'),
-            element4Clean.rate
-          );
+          animateValue(document.getElementById('unlicensed-val'), element1Clean.count, formatCount, true);
+          animateValue(document.getElementById('unlicensed-prct-val'), element1Clean.rate, formatRate, true);
+          animateValue(document.getElementById('unlicensed-prct'), element1Clean.rate, formatRate, null, true);
+
+          animateValue(document.getElementById('exempt-val'), element2Clean.count, formatCount, true);
+          animateValue(document.getElementById('exempt-prct-val'), element2Clean.rate, formatRate, true);
+          animateValue(document.getElementById('exempt-prct'), element2Clean.rate, formatRate, null, true);
+
+          animateValue(document.getElementById('licensed-val'), element3Clean.count, formatCount, true);
+          animateValue(document.getElementById('licensed-prct-val'), element3Clean.rate, formatRate, true);
+          animateValue(document.getElementById('licensed-prct'), element3Clean.rate, formatRate, null, true);
+
+          animateValue(document.getElementById('pending-val'), element4Clean.count, formatCount, true);
+          animateValue(document.getElementById('pending-prct-val'), element4Clean.rate, formatRate, true);
+          animateValue(document.getElementById('pending-prct'), element4Clean.rate, formatRate, null, true);
         })
         .element(elementId)
         .execute();
@@ -673,11 +664,19 @@ function loadHostListings() {
     let myData = source
       .metrics(metric0)
       .limit(100);
+
+    let grid = cf.Grid()
+        .top(10)
+        .right(5)
+        .bottom(15)
+        .left(5);
     // Define Color Palette
     let color = cf.Color()
-      .palette(["#1d91c0", "#1d91c0"]);
+        .theme({ background:'rgba(0,0,0,0)', font: 'white' })
+      .palette(["#fff"]);
     // --- Define chart options and static filters ---
     let myChart = myData.graph("Histogram")
+      .set("grid", grid)
       .set("color", color)
       .set("xAxis", { "show": true, "lines": false })
       .set("yAxis", { "lines": false, "type": "log" })
@@ -734,21 +733,13 @@ function loadHostListingsStatistics() {
           description: listingsType.filter(type => type !== statisticsObj1.description)[0]
         }
 
-        var htmlString = buildHtmlStringHostListings(statisticsObj1, statisticsObj2);
-        document.getElementById("cf-host-listings-statistics").innerHTML = htmlString;
-        animateValue(document.getElementById('element1HostListingsPercentage'), statisticsObj1.rate, formatRate);
-        animateBothValues(
-          document.getElementById('element1HostListingsCount'),
-          statisticsObj1.count,
-          document.getElementById('element1HostListingsRate'),
-          statisticsObj1.rate
-        );
-        animateBothValues(
-          document.getElementById('element2HostListingsCount'),
-          statisticsObj2.count,
-          document.getElementById('element2HostListingsRate'),
-          statisticsObj2.rate
-        );
+        animateValue(document.getElementById('multi-listings-val'), statisticsObj1.count, formatCount, true);
+        animateValue(document.getElementById('multi-listings-prct-val'), statisticsObj1.rate, formatRate, true);
+        animateValue(document.getElementById('multi-listings-prct'), statisticsObj1.rate, formatRate, null, true);
+
+        animateValue(document.getElementById('single-listings-val'), statisticsObj2.count, formatCount, true);
+        animateValue(document.getElementById('single-listings-prct-val'), statisticsObj2.rate, formatRate, true);
+        animateValue(document.getElementById('single-listings-prct'), statisticsObj2.rate, formatRate, null, true);
       })
       .element(elementId)
       .execute()

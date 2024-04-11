@@ -10,11 +10,11 @@ body {
     height: calc(100% - 40px);
     display: grid;
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: 60px auto 220px;
+    grid-template-rows: 60px auto 100px;
     grid-template-areas:
             "header header"
-            "table map"
-            "footer footer";
+            "charts map"
+            "info map";
     grid-gap: 20px;
     padding: 20px;
     background: #f8f9fa!important;
@@ -81,13 +81,31 @@ body {
     align-self: center;
 }
 
-.middle-section {
-    height: 100%;
+.charts-container {
+    grid-area: charts;
+    background: rgba(0, 0, 0, 0);
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: -20px;
+    margin-right: -20px;
+    overflow-y: scroll;
+}
+
+.cf-page-info {
+    grid-area: info;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    color: #9e9e9e;
+}
+
+.cf-page-info a {
+    color: #039be5;
 }
 
 .table-container {
-    grid-area: table;
-    height: calc(100vh - 360px) !important;
+    height: 50vh;
 }
 
 .table-container-header {
@@ -151,23 +169,33 @@ body {
     border-radius: var(--bs-card-border-radius);
 }
 
-.footer-container {
-    grid-area: footer;
+.widgets-container {
     display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-areas: "first second third fourth";
+    grid-template-rows: 400px 400px 400px 400px;
+    grid-template-columns: 1fr;
+    grid-template-areas: "first" "second" "third" "fourth";
     gap: 10px;
+    margin-top: 20px;
 }
 
 .cf-descriptive-widget {
     display: grid;
-    grid-template-rows: 7fr 4fr;
+    grid-template-rows: 7fr 4fr 2fr;
     grid-template-columns: 1fr;
     grid-template-areas:
             "chart"
-            "info";
+            "info"
+            "description";
     height: calc(100% - 20px);
+}
+
+.cf-descriptive-widget > .description {
+    grid-area: description;
+    font-size: small;
+    position: relative;
+    top: -15px;
+    padding: 10px;
+    color: #546e7a;
 }
 
 .cf-descriptive-widget > .chart-container {
@@ -224,7 +252,6 @@ body {
 }
 
 .info-item > .value {
-    color: #66bb6a;
     font-weight: bold;
 }
 
@@ -240,7 +267,6 @@ body {
     align-items: center;
     justify-content: center;
     height: 100%;
-    background-image: linear-gradient(60deg,#66bb6a,#43a047);
     border-radius: 50px;
     color: white;
     font-size: smaller;
