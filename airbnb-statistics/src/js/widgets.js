@@ -271,7 +271,7 @@ function loadGeomap() {
           $("#investors-modal-title > .host-name").text(markerData.host_name);
           $("#investors-modal-title > .host-name").attr("href", markerData.host_url);
           $("#listing-profile-picture").attr("src", markerData.host_picture_url);
-          $("#listing-picture").css("background-image", `url(${markerData.picture_url})`);
+          $("#listing-picture").attr("src", markerData.picture_url);
 
           showInvestorModal();
 

@@ -489,9 +489,9 @@ body {
 
 .investors-modal-content > .info > .left-side > #listing-picture {
     width: 100%;
-    height: 100%;
-    background-size: cover;
     border-radius: 1rem;
+    max-height: 25vh;
+    object-fit: cover;
 }
 
 .investors-modal-content > .info > .picture {
