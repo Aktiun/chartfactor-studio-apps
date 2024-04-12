@@ -2,7 +2,7 @@ function loadProviders() {
     function getProviderMetadata() {
         let _META_ = {
             abnb_listings: {
-                count: { label: "Properties" },
+                count: { label: "Listings" },
                 fields: {
                     accommodates: {
                         label: "Accommodates"

@@ -7,6 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/ico" href="./img/favicon.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="./css/newstyles.css">
 </head>
 <body>
@@ -15,176 +16,160 @@
             <div class="cfim-contaner" id="im"></div>
             <div class="cflogo-container">
                 <img src="img/image.png" alt="Logo"/>
+            </div>
+            <div class="top-title">
                 <span class="cflogo-text">Airbnb for Investors</span>
             </div>
         </div>
         <div class="map-container cf-card" id="cf-main-geomap"></div>
         <div class="charts-container">
             <div class="widgets-container">
-                <div class="cf-descriptive-widget cf-card" style="grid-area: first">
+                <div class="cf-room-type" style="grid-area: first">
+                    <span class="title">Room Type</span>
                     <div class="chart-container" >
-                        <div id="cf-roomType" style="background-image: linear-gradient(310deg,#2152ff,#21d4fd)"></div>
+                        <div id="cf-roomType" style="height: 75%"></div>
                     </div>
                     <div class="info-container">
-                        <span>Room Type</span>
-                        <div class="info-items cf-room-types">
-                            <div></div>
-                            <div class="info-item">
-                                <span>Entire home</span>
-                                <div class="value" style="color: #2152ff;" id="entire-home-apt-val">0</div>
-                                <div class="percentage">
-                                    <div style="width: 100%; background-image: linear-gradient(310deg,#2152ff,#21d4fd)" id="entire-home-apt-prct">
-                                    </div>
+                        <div class="info-item">
+                            <span>Entire homes/apartments</span>
+                            <div>
+                                <div class="value" id="entire-home-apt-val">0</div>
+                                <div style="font-size: 2em; font-weight: bold">
+                                    (<span class="percentage" id="entire-home-apt-prct"></span>)
                                 </div>
                             </div>
-                            <div class="info-item">
-                                <span>Private room</span>
-                                <div class="value" style="color: #2152ff;" id="private-room-val">0</div>
-                                <div class="percentage">
-                                    <div style="width: 100%; background-image: linear-gradient(310deg,#2152ff,#21d4fd)" id="private-room-prct">
-                                    </div>
+                        </div>
+                        <div class="info-item">
+                            <span>Private rooms</span>
+                            <div>
+                                <div class="value" id="private-room-val">0</div>
+                                <div style="font-weight: bold">
+                                    (<span class="percentage" id="private-room-prct"></span>)
                                 </div>
                             </div>
-                            <div class="info-item">
-                                <span>Shared room</span>
-                                <div class="value" style="color: #2152ff;" id="shared-room-val">0</div>
-                                <div class="percentage" id="shared-room-prct">
-                                    <div style="width: 100%; background-image: linear-gradient(310deg,#2152ff,#21d4fd)">
-                                    </div>
+                        </div>
+                        <div class="info-item">
+                            <span>Shared rooms</span>
+                            <div>
+                                <div class="value" id="shared-room-val">0</div>
+                                <div style="font-weight: bold">
+                                    (<span class="percentage" style=" font-weight: bold" id="shared-room-prct"></span>)
                                 </div>
                             </div>
-                            <div class="info-item">
-                                <span>Hotel room</span>
-                                <div class="value" style="color: #2152ff;" id="hotel-room-val">0</div>
-                                <div class="percentage" id="hotel-room-prct">
-                                    <div style="width: 100%; background-image: linear-gradient(310deg,#2152ff,#21d4fd)">
-                                    </div>
+                        </div>
+                        <div class="info-item">
+                            <span>Hotel rooms</span>
+                            <div>
+                                <div class="value" id="hotel-room-val">0</div>
+                                <div style="font-weight: bold">
+                                    (<span class="percentage" style="font-weight: bold" id="hotel-room-prct"></span>)
                                 </div>
                             </div>
-                            <div></div>
                         </div>
                     </div>
                     <div class="description">
                         Airbnb providers have the option to offer a range of accommodations including entire houses/apartments, private or shared spaces, and, more recently, hotel rooms. The nature and type of the listed space can vary; for instance, a residential Airbnb property might resemble a hotel in its operations, potentially causing disturbances to neighbors, reducing available housing, and in some cases, breaching legal regulations.
                     </div>
                 </div>
-                <div class="cf-descriptive-widget cf-card" style="grid-area: second">
+                <div class="cf-activity" style="grid-area: second">
+                    <div class="title">Activity</div>
                     <div class="chart-container">
-                        <div id="cf-activity" style="background-image: linear-gradient(310deg,#ea0606,#ff667c)"></div>
+                        <div id="cf-activity"></div>
                     </div>
                     <div class="info-container">
-                        <span>Activity</span>
-                        <div class="info-items cf-room-types">
-                            <div></div>
-                            <div class="info-item">
-                                <span>Average nights booked</span>
-                                <div class="value" style="color: #ec407a;" id="avg-nights-booked-val">0</div>
-                                <!--                            <div class="percentage">-->
-                                <!--                                <div style="width: 100%; background-image:linear-gradient(310deg,#ea0606,#ff667c)" id="avg-nights-booked-prct">-->
-                                <!--                                </div>-->
-                                <!--                            </div>-->
+                        <div class="info-item">
+                            <span>Average nights booked</span>
+                            <div style="font-size: 2em; font-weight: bold">
+                                <div class="value" id="avg-nights-booked-val">0</div>
                             </div>
-                            <div class="info-item">
-                                <span>Average income</span>
-                                <div class="value" style="color: #ec407a;" id="avg-income-val">0</div>
-                                <!--                            <div class="percentage">-->
-                                <!--                                <div style="width: 100%; background-image:linear-gradient(310deg,#ea0606,#ff667c)" id="avg-income-prct">-->
-                                <!--                                </div>-->
-                                <!--                            </div>-->
+                        </div>
+                        <div class="info-item">
+                            <span>Average income</span>
+                            <div>
+                                <div class="value" id="avg-income-val">0</div>
                             </div>
-                            <div class="info-item">
-                                <span>Average price/night</span>
-                                <div class="value" style="color: #ec407a;" id="avg-price-val">0</div>
-                                <!--                            <div class="percentage" id="avg-price-prct">-->
-                                <!--                                <div style="width: 100%; background-image:linear-gradient(310deg,#ea0606,#ff667c)">-->
-                                <!--                                </div>-->
-                                <!--                            </div>-->
+                        </div>
+                        <div class="info-item">
+                            <span>Average price/night</span>
+                            <div>
+                                <div class="value" id="avg-price-val">0</div>
                             </div>
-                            <div></div>
                         </div>
                     </div>
                     <div class="description">
                         The number of nights reserved and the revenue for each listing on past year have been calculated using the minimum duration of stay, pricing, and the volume of reviews.
                     </div>
                 </div>
-                <div class="cf-descriptive-widget cf-card" style="grid-area: third">
+                <div class="cf-licenses" style="grid-area: third">
+                    <div class="title">Licenses</div>
                     <div class="chart-container">
-                        <div id="cf-licenses" style="background-image: linear-gradient(310deg,#f53939,#fbcf33)"></div>
+                        <div id="cf-licenses"></div>
                     </div>
                     <div class="info-container">
-                        <span>Licenses</span>
-                        <div class="info-items cf-room-types">
-                            <div></div>
-                            <div class="info-item">
-                                <span>Unlicensed</span>
-                                <div class="value" style="color: #f53939;" id="unlicensed-val">0</div>
-                                <div id="unlicensed-prct-val">0</div>
-                                <div class="percentage">
-                                    <div style="width: 100%; background-image:linear-gradient(310deg,#f53939,#fbcf33)" id="unlicensed-prct">
-                                    </div>
+                        <div class="info-item">
+                            <span>Unlicensed</span>
+                            <div>
+                                <div class="value" id="unlicensed-val">0</div>
+                                <div style="font-size: 2em; font-weight: bold">
+                                    (<span class="percentage" id="unlicensed-prct-val"></span>)
                                 </div>
                             </div>
-                            <div class="info-item">
-                                <span>Exempt</span>
-                                <div class="value" style="color: #f53939;" id="exempt-val">0</div>
-                                <div id="exempt-prct-val">0</div>
-                                <div class="percentage">
-                                    <div style="width: 100%; background-image:linear-gradient(310deg,#f53939,#fbcf33)" id="exempt-prct">
-                                    </div>
+                        </div>
+                        <div class="info-item">
+                            <span>Exempt</span>
+                            <div>
+                                <div class="value" id="exempt-val">0</div>
+                                <div style="font-weight: bold">
+                                    (<span class="percentage" id="exempt-prct-val"></span>)
                                 </div>
                             </div>
-                            <div class="info-item">
-                                <span>Licensed</span>
-                                <div class="value" style="color: #f53939;" id="licensed-val">0</div>
-                                <div id="licensed-prct-val">0</div>
-                                <div class="percentage" id="licensed-prct">
-                                    <div style="width: 100%; background-image:linear-gradient(310deg,#f53939,#fbcf33)">
-                                    </div>
+                        </div>
+                        <div class="info-item">
+                            <span>Licensed</span>
+                            <div>
+                                <div class="value" id="licensed-val">0</div>
+                                <div style="font-weight: bold">
+                                    (<span class="percentage" id="licensed-prct-val"></span>)
                                 </div>
                             </div>
-                            <div class="info-item">
-                                <span>Pending</span>
-                                <div class="value" style="color: #f53939;" id="pending-val">0</div>
-                                <div id="pending-prct-val">0</div>
-                                <div class="percentage" id="pending-prct">
-                                    <div style="width: 100%; background-image:linear-gradient(310deg,#f53939,#fbcf33)">
-                                    </div>
+                        </div>
+                        <div class="info-item">
+                            <span>Pending</span>
+                            <div>
+                                <div class="value" id="pending-val">0</div>
+                                <div style="font-weight: bold">
+                                    (<span class="percentage" id="pending-prct-val"></span>)
                                 </div>
                             </div>
-                            <div></div>
                         </div>
                     </div>
                     <div class="description">
                         Legislation mandates that certain short-term rental properties must have a permit. The chart simplifies the distribution of properties according to their licensing status, categorizing them as licensed, unlicensed, pending, or exempt.
                     </div>
                 </div>
-                <div class="cf-descriptive-widget cf-card" style="grid-area: fourth">
+                <div class="cf-listing-per-host" style="grid-area: fourth">
+                    <div class="title">Listings per Host</div>
                     <div class="chart-container">
-                        <div id="cf-host-listings" style="background-image: linear-gradient(310deg,#7928ca,#ff0080)"></div>
+                        <div id="cf-host-listings"></div>
                     </div>
                     <div class="info-container">
-                        <span>Listings per Host</span>
-                        <div class="info-items cf-room-types">
-                            <div></div>
-                            <div class="info-item">
-                                <span>multi-listings</span>
-                                <div class="value" style="color: #7928ca;" id="multi-listings-val">0</div>
-                                <div id="multi-listings-prct-val">0</div>
-                                <div class="percentage">
-                                    <div style="width: 100%; background-image:linear-gradient(310deg,#7928ca,#ff0080)" id="multi-listings-prct">
-                                    </div>
+                        <div class="info-item">
+                            <span>Multi-listings</span>
+                            <div>
+                                <div class="value" id="multi-listings-val">0</div>
+                                <div style="font-size: 2em; font-weight: bold">
+                                    (<span class="percentage" id="multi-listings-prct-val"></span>)
                                 </div>
                             </div>
-                            <div class="info-item">
-                                <span>single listings</span>
-                                <div class="value" style="color: #7928ca;" id="single-listings-val">0</div>
-                                <div id="single-listings-prct-val">0</div>
-                                <div class="percentage" id="single-listings-prct">
-                                    <div style="width: 100%; background-image:linear-gradient(310deg,#7928ca,#ff0080)">
-                                    </div>
+                        </div>
+                        <div class="info-item">
+                            <span>single listings</span>
+                            <div>
+                                <div class="value" id="single-listings-val">0</div>
+                                <div style="font-weight: bold">
+                                    (<span class="percentage" id="single-listings-prct-val"></span>)
                                 </div>
                             </div>
-                            <div></div>
                         </div>
                     </div>
                     <div class="description">
@@ -206,6 +191,35 @@
                 target="_blank" href="https://www.realtor.com/research/data/">REALTOR.COM</a>
         </div>
     </div>
+<div id="investors-modal" class="investors-modal">
+    <div class="investors-modal-container">
+        <div class="investors-modal-header">
+            <div class="modal-title" id="investors-modal-title">
+                <span class="listing-name"></span> by <a target="_blank" class="host-name"></a>
+            </div>
+            <span class="close-investors-modal">
+                <i id="modal-close" class="fas fa-times"></i>
+            </span>
+        </div>
+        <div class="investors-modal-content">
+            <div style="grid-area: spacer"></div>
+            <div class="info">
+                <div class="left-side">
+                    <div id="listing-picture"></div>
+                </div>
+                <div class="picture">
+                    <div class="picture-img">
+                        <img src="" alt="profile" id="listing-profile-picture">
+                    </div>
+                </div>
+                <div class="right-side">
+
+                </div>
+            </div>
+            <div class="modal-charts"></div>
+        </div>
+    </div>
+</div>
 </body>
 
 <script type="text/javascript" src="./js/libs/cftoolkit.min.js?version=4.1.41"></script>
@@ -225,5 +239,6 @@
 <script src="./js/widgets.js"></script>
 <script src="./js/event-listeners.js"></script>
 <script src="./js/tooltip-builder.js"></script>
+<script src="./js/time-filter.js"></script>
 <script src="./js/loadWidgets.js"></script>
 </html>

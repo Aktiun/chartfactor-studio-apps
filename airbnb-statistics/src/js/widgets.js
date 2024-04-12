@@ -132,7 +132,7 @@ function loadGeomap() {
             location: "location",
             visibilityZoomRange: [11, 24],
             precisionLevels: null,
-            fields: ["name", "host_name", "bedrooms", "beds", "price", "picture_url", "number_of_reviews", "review_scores_value", "minimum_nights", "zipcode", "is_usa", "host_name", "host_url", "listing_url"],
+            fields: ["name", "host_name", "bedrooms", "beds", "price", "picture_url", "number_of_reviews", "review_scores_value", "minimum_nights", "zipcode", "is_usa", "host_name", "host_url", "listing_url", "host_picture_url"],
             "customTooltip": myTooltip,
           }
         },
@@ -232,7 +232,7 @@ function loadGeomap() {
           }
         }
       ])
-      .set("zoom", 15)
+      .set("zoom", 4)
       .set("center", [-73.84875467114972, 40.77680058764247])
       .set("drawControl", true)
       .set("enableZoomInfo", true)
@@ -265,12 +265,23 @@ function loadGeomap() {
         geoMap.on("click", "hosts_image_layer", (e) => {
           let markerData = JSON.parse(e.features[0].properties.__cf_data__);
           if (markerData.is_usa === "false") return;
+
+          // set the modal name
+          $("#investors-modal-title > .listing-name").text(markerData.name);
+          $("#investors-modal-title > .host-name").text(markerData.host_name);
+          $("#investors-modal-title > .host-name").attr("href", markerData.host_url);
+          $("#listing-profile-picture").attr("src", markerData.host_picture_url);
+          $("#listing-picture").css("background-image", `url(${markerData.picture_url})`);
+
           showInvestorModal();
+
+          // set the profile img url
+
           kpiByZipcode(markerData.zipcode);
-          trendsByZipcode(markerData.zipcode);
-          trendsByZipcode2(markerData.zipcode);
-          trendsByZipcode3(markerData.zipcode);
-          trendsByZipcode4(markerData.zipcode);
+          // trendsByZipcode(markerData.zipcode);
+          // trendsByZipcode2(markerData.zipcode);
+          // trendsByZipcode3(markerData.zipcode);
+          // trendsByZipcode4(markerData.zipcode);
 
           let propertyTitle = `<a href="${markerData.host_url}" target="_blank">${markerData.host_name}'s</a> Place`;
           let propertyDetails = createListingCard(markerData);
@@ -319,23 +330,23 @@ function loadPropertyType() {
     let grid = cf.Grid()
       .top(-20)
       .right(-20)
-      .bottom(-15)
+      .bottom(0)
       .left(5);
     // Define Color Palette
     let color = cf.Color()
-      .theme({ background:'rgba(0,0,0,0)', font: 'white' })
-      .palette(["#fff"]);
+      .theme({ background:'rgba(0,0,0,0)', font: 'black'})
+      .palette(["#0095b7", "#a0b774", "#f4c658", "#fe8b3e", "#cf2f23", "#756c56", "#007896", "#47a694", "#f9a94b", "#ff6b30", "#e94d29", "#005b76"]);
 
     myData.graph("Bars")
       .set("grid", grid)
       .set("color", color)
       .set("orientation", "horizontal")
       .set("axisLabels", false)
-      .set("xAxis", { "show": true, "lines": false })
-      .set("yAxis", { "show": true, "text": "out", "lines": false })
+      .set("xAxis", { "show": false, "lines": false })
+      .set("yAxis", { "show": true, "text": "in", "lines": false })
       .set("dataZoom", false)
       .set("serieLabel", {
-        "show": true,
+        "show": false,
         "fontWeight": "bold"
       })
       .on("execute:stop", () => {
@@ -398,16 +409,12 @@ function loadPropertyType() {
           element1Clean.count,
           document.getElementById('entire-home-apt-prct'),
           element1Clean.rate,
-            false,
-            true
         );
         animateBothValues(
           document.getElementById('private-room-val'),
           element2Clean.count,
           document.getElementById('private-room-prct'),
           element2Clean.rate,
-            false,
-            true
         );
         animateBothValues(
           document.getElementById('shared-room-val'),
@@ -460,12 +467,12 @@ function loadActivity() {
         .top(10)
         .right(5)
         .bottom(15)
-        .left(5);
+        .left(45);
 
     // Define Color Palette
     let color = cf.Color()
-        .theme({ background:'rgba(0,0,0,0)', font: 'white' })
-      .palette(["#fff"]);
+        .theme({ background:'rgba(0,0,0,0)', font: 'black' })
+      .palette(["#0095b7"]);
     myData.staticFilters(staticFilter1);
     // --- Define chart options and static filters ---
     myData.graph("Histogram")
@@ -566,8 +573,9 @@ function loadLicenses() {
       .left(0);
     // Define Color Palette
     let color = cf.Color()
-        .theme({ background:'rgba(0,0,0,0)', font: 'white' })
-        .palette(["#fff", '#82b1ff', '#a7ffeb', '#f4ff81']);
+        .theme({ background:'rgba(0,0,0,0)', font: 'black'})
+        .palette(["#0095b7", "#a0b774", "#f4c658", "#fe8b3e", "#cf2f23", "#756c56", "#007896", "#47a694", "#f9a94b", "#ff6b30", "#e94d29", "#005b76"]);
+
     myData.graph("Donut")
         .set("legend", legend)
         .set("grid", grid)
@@ -628,19 +636,15 @@ function loadLicenses() {
 
           animateValue(document.getElementById('unlicensed-val'), element1Clean.count, formatCount, true);
           animateValue(document.getElementById('unlicensed-prct-val'), element1Clean.rate, formatRate, true);
-          animateValue(document.getElementById('unlicensed-prct'), element1Clean.rate, formatRate, null, true);
 
           animateValue(document.getElementById('exempt-val'), element2Clean.count, formatCount, true);
           animateValue(document.getElementById('exempt-prct-val'), element2Clean.rate, formatRate, true);
-          animateValue(document.getElementById('exempt-prct'), element2Clean.rate, formatRate, null, true);
 
           animateValue(document.getElementById('licensed-val'), element3Clean.count, formatCount, true);
           animateValue(document.getElementById('licensed-prct-val'), element3Clean.rate, formatRate, true);
-          animateValue(document.getElementById('licensed-prct'), element3Clean.rate, formatRate, null, true);
 
           animateValue(document.getElementById('pending-val'), element4Clean.count, formatCount, true);
           animateValue(document.getElementById('pending-prct-val'), element4Clean.rate, formatRate, true);
-          animateValue(document.getElementById('pending-prct'), element4Clean.rate, formatRate, null, true);
         })
         .element(elementId)
         .execute();
@@ -657,7 +661,7 @@ function loadHostListings() {
     let provider = cf.provider("local");
     let source = provider.source("abnb_listings");
     // Define metrics
-    let metric0 = cf.Metric("calculated_host_listings_count", "histogram").fixedBars(10)
+    let metric0 = cf.Metric("calculated_host_listings_count", "histogram").label('Listings per host').fixedBars(10)
       .offset(0)
       .showEmptyIntervals(false);
     // Add metrics and groups to data source
@@ -668,12 +672,12 @@ function loadHostListings() {
     let grid = cf.Grid()
         .top(10)
         .right(5)
-        .bottom(15)
-        .left(5);
+        .bottom(25)
+        .left(40);
     // Define Color Palette
     let color = cf.Color()
-        .theme({ background:'rgba(0,0,0,0)', font: 'white' })
-      .palette(["#fff"]);
+        .theme({ background:'rgba(0,0,0,0)', font: 'black'})
+      .palette(["#1d91c0", "#1d91c0"]);
     // --- Define chart options and static filters ---
     let myChart = myData.graph("Histogram")
       .set("grid", grid)
@@ -735,17 +739,56 @@ function loadHostListingsStatistics() {
 
         animateValue(document.getElementById('multi-listings-val'), statisticsObj1.count, formatCount, true);
         animateValue(document.getElementById('multi-listings-prct-val'), statisticsObj1.rate, formatRate, true);
-        animateValue(document.getElementById('multi-listings-prct'), statisticsObj1.rate, formatRate, null, true);
 
         animateValue(document.getElementById('single-listings-val'), statisticsObj2.count, formatCount, true);
         animateValue(document.getElementById('single-listings-prct-val'), statisticsObj2.rate, formatRate, true);
-        animateValue(document.getElementById('single-listings-prct'), statisticsObj2.rate, formatRate, null, true);
       })
       .element(elementId)
       .execute()
   } catch (ex) {
     console.error(ex);
     handleError(elementId, ex);
+  }
+}
+
+function makeTableSortable() {
+  // Get the table element
+  let table = document.getElementById('table-hosts');
+
+  // Convert the HTMLCollection to an array
+  let rows = Array.prototype.slice.call(table.rows, 1);
+
+  // Create a variable to store the current sorting order
+  let sortAscending = true;
+
+  // Attach a click event listener to all th elements
+  for (let i = 0; i < table.rows[0].cells.length; i++) {
+    table.rows[0].cells[i].onclick = function() {
+      // Sort the array of rows
+      let sortedRows = rows.sort((a, b) => {
+        if (a.cells[i].innerHTML === b.cells[i].innerHTML) {
+          return 0;
+        }
+        if (sortAscending) {
+          return a.cells[i].innerHTML > b.cells[i].innerHTML ? 1 : -1;
+        } else {
+          return a.cells[i].innerHTML < b.cells[i].innerHTML ? 1 : -1;
+        }
+      });
+
+      // Remove each row from the table
+      while (table.rows.length > 1) {
+        table.deleteRow(1);
+      }
+
+      // Add the sorted rows back to the table
+      for (let i = 0; i < sortedRows.length; i++) {
+        table.appendChild(sortedRows[i]);
+      }
+
+      // Flip the sorting order for the next click
+      sortAscending = !sortAscending;
+    }
   }
 }
 
@@ -788,6 +831,7 @@ function loadTopHosts() {
 
         const dataCells = document.querySelectorAll('.data-row td');
         dataCells.forEach(cell => cell.addEventListener('click', onCellClick));
+        makeTableSortable();
       })
       .execute();
   } catch (ex) {

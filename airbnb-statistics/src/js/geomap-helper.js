@@ -63,7 +63,7 @@ function getZeroCleanedData(){
   }
 }
 
-function animateValue(obj, end, formatFunction, renderPercentage = false, isStyle = false) {
+function animateValue(obj, end, formatFunction) {
   let startTimestamp = null;
   let duration = 800;
   let start = 0;
@@ -71,12 +71,7 @@ function animateValue(obj, end, formatFunction, renderPercentage = false, isStyl
     if (!startTimestamp) startTimestamp = timestamp;
     const progress = Math.min((timestamp - startTimestamp) / duration, 1);
     const value = progress * (end - start) + start;
-
-    if (isStyle) {
-      obj.style['width'] = `${value}%`;
-    } else {
-      obj.innerHTML = `${formatFunction(value, progress === 1)}${!renderPercentage ? " %" : ""}`;
-    }
+    obj.innerHTML = formatFunction(value, progress === 1);
     if (progress < 1) {
       window.requestAnimationFrame(step);
     }
@@ -96,15 +91,9 @@ function formatCurrency(value, isFinal) {
   return isFinal ? `$${Number(value.toFixed(2)).toLocaleString("us-US")}` : `$${Math.round(value).toLocaleString("us-US")}`;
 }
 
-function animateBothValues(countObj, countEnd, rateObj, rateEnd, renderPercentage = true, usePercentage = false) {
-  if (renderPercentage) {
-    animateValue(countObj, countEnd, formatCount);
-    animateValue(rateObj, rateEnd, formatRate);
-  } else {
-    animateValue(countObj, rateEnd, formatCount);
-  }
-
-  animateValue(rateObj, rateEnd, formatRate, renderPercentage, usePercentage);
+function animateBothValues(countObj, countEnd, rateObj, rateEnd) {
+  animateValue(countObj, countEnd, formatCount);
+  animateValue(rateObj, rateEnd, formatRate);
 }
 
 function buildHtmlStringRoomtype(element1, element2, element3, element4){
@@ -298,15 +287,15 @@ function createListingCard(marker) {
 
 
 function createHostsTable(dataArray) {
-  let tableHTML = `<table class="table-hosts">
+  let tableHTML = `<table class="table-hosts" id="table-hosts">
     <thead>
       <tr>
-        <th>Host Name</th>
-        <th>#Entire home/apts</th>
-        <th>#Private rooms</th>
-        <th>#Shared rooms</th>
-        <th>#Hotel Rooms</th>
-        <th>#Listings</th>
+        <th style="cursor: pointer">Host Name</th>
+        <th style="cursor: pointer">#Entire home/apts</th>
+        <th style="cursor: pointer">#Private rooms</th>
+        <th style="cursor: pointer">#Shared rooms</th>
+        <th style="cursor: pointer">#Hotel Rooms</th>
+        <th style="cursor: pointer">#Listings</th>
       </tr>
     </thead>
     <tbody>`;
