@@ -257,7 +257,7 @@ function loadGeomap() {
           }
         }
       ])
-      .set("zoom", 4)
+      .set("zoom", 14)
       .set("center", [-73.84875467114972, 40.77680058764247])
       .set("drawControl", true)
       .set("enableZoomInfo", true)
@@ -329,10 +329,10 @@ function loadGeomap() {
           // set the profile img url
 
           kpiByZipcode(markerData.zipcode);
-          // trendsByZipcode(markerData.zipcode);
-          // trendsByZipcode2(markerData.zipcode);
-          // trendsByZipcode3(markerData.zipcode);
-          // trendsByZipcode4(markerData.zipcode);
+          trendsByZipcode(markerData.zipcode);
+          trendsByZipcode2(markerData.zipcode);
+          trendsByZipcode3(markerData.zipcode);
+          trendsByZipcode4(markerData.zipcode);
 
           let propertyTitle = `<a href="${markerData.host_url}" target="_blank">${markerData.host_name}'s</a> Place`;
           let propertyDetails = createListingCard(markerData);

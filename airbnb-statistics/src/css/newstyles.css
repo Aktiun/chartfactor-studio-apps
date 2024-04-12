@@ -583,4 +583,39 @@ body {
 
 .investors-modal-content > .modal-charts {
     grid-area: modalcharts;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(11, 240px);
+    height: calc(50vh - 135px);
+    overflow-y: scroll;
+}
+
+.modal-charts > .modal-chart {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 30px auto;
+    grid-template-areas: "title chart"
+                         "description chart";
+    gap: 10px;
+}
+
+.modal-chart > .modal-chart-title {
+    grid-area: title;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: bold;
+    font-family: sans-serif;
+    border-bottom: 1px solid #5a5a5a;
+}
+
+.modal-chart > .modal-chart-description {
+    grid-area: description;
+    color: #5a5a5a;
+    font-size: .8em;
+    line-height: 1.3;
+}
+
+.modal-chart > .modal-chart-visual {
+    grid-area: chart;
 }
