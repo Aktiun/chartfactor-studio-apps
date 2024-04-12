@@ -438,7 +438,7 @@ body {
     justify-content: space-between;
 }
 
-.investors-modal-header > .modal-title > .host-name {
+.investors-modal-header > .modal-title > a {
     font-weight: bold;
     color: #039be5;
 }

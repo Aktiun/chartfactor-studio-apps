@@ -293,6 +293,7 @@ function loadGeomap() {
 
           // set the modal name
           $("#investors-modal-title > .listing-name").text(markerData.name);
+          $("#investors-modal-title > .listing-name").attr("href", markerData.listing_url);
           $("#investors-modal-title > .host-name").text(markerData.host_name);
           $("#investors-modal-title > .host-name").attr("href", markerData.host_url);
           $("#listing-profile-picture").attr("src", markerData.host_picture_url);
