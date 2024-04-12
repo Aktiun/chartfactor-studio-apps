@@ -289,7 +289,6 @@ function loadGeomap() {
         //let hostsLayer = cf.getVisualization("cf-main-geomap-hosts");
         geoMap.on("click", "hosts_image_layer", (e) => {
           let markerData = JSON.parse(e.features[0].properties.__cf_data__);
-          console.log(markerData)
           if (markerData.is_usa === "false") return;
 
           // set the modal name
