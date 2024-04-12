@@ -463,7 +463,7 @@ body {
     grid-area: content;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 0 1fr 2fr;
+    grid-template-rows: 0 1fr 1fr;
     grid-template-areas:
             "spacer"
             "info"
@@ -475,9 +475,17 @@ body {
     grid-area: info;
     display: grid;
     grid-template-columns: calc(50% - 15px) 30px calc(50% - 15px);
-    grid-template-rows: 30px auto;
+    grid-template-rows: 30px auto 30px;
     grid-template-areas: "left-side picture right-side"
-                         "left-side picture right-side";
+                         "left-side picture right-side"
+                         "reviews bottom bottom";
+}
+
+.investors-modal-content > .info > .reviews {
+    grid-area: reviews;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .investors-modal-content > .info > .left-side {
@@ -503,20 +511,74 @@ body {
 
 .investors-modal-content > .info > .picture > .picture-img {
     position: relative;
-    top: -40%;
+    top: -25%;
 }
 
 .investors-modal-content > .info > .picture > .picture-img > img {
     width: 100px;
     border-radius: 100px;
-    border: 5px solid #03a9f4;
+    border: 6px solid white;
 }
 
 .investors-modal-content > .info > .right-side {
     grid-area: right-side;
-    display: flex;
+    display: grid;
+    grid-template-columns: 50px auto auto;
+    grid-template-rows: 1fr 1fr 40px 20px;
     align-items: center;
-    justify-content: center;
+    grid-template-areas: "space first second"
+                         "space third fourth"
+                         "fifth fifth fifth"
+                         "bottom bottom bottom";
+}
+
+.modal-listing-info {
+    grid-area: fifth;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #546E74 !important;
+    font-weight: bold;
+}
+
+.icon-value {
+    text-align: center;
+    font-size: larger;
+    /*font-weight: bold;*/
+    /*display: grid;*/
+    /*grid-template-columns: 2em auto;*/
+    /*grid-template-rows: auto auto;*/
+    /*grid-template-areas: "icon label"*/
+    /*                     "icon value";*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    color: #546E74 !important;
+}
+
+.investors-modal-content > .info > .right-side > .listing-price {
+    grid-area: first;
+}
+.investors-modal-content > .info > .right-side > .min-nights {
+    grid-area: second;
+}
+.investors-modal-content > .info > .right-side > .listing-beds {
+    grid-area: third;
+}
+.investors-modal-content > .info > .right-side > .listing-bedrooms {
+    grid-area: fourth;
+}
+
+.icon-value > i {
+    grid-area: icon;
+}
+
+.icon-value > span {
+    grid-area: label;
+}
+
+.icon-value > div {
+    grid-area: value;
+    border-bottom: 1px solid #546E74;
 }
 
 .investors-modal-content > .modal-charts {

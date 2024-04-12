@@ -88,6 +88,31 @@ function loadInteractionManager() {
   }
 }
 
+function showRating(rating) {
+  let fullStars = Math.floor(rating);
+  let halfStar = (rating % 1) !== 0 ? 1 : 0;
+  let emptyStars = 5 - fullStars - halfStar;
+
+  let stars = '';
+
+  // Add the full stars
+  for (let i = 0; i < fullStars; i++) {
+    stars += '<i class="fas fa-star" style="color: #fbc02d"></i>';
+  }
+
+  // Add the half star, if there is one
+  if (halfStar) {
+    stars += '<i class="fas fa-star-half-alt" style="color: #fbc02d"></i>';
+  }
+
+  // Add the empty stars
+  for (let i = 0; i < emptyStars; i++) {
+    stars += '<i class="far fa-star" style="color: #B0B0B0"></i>'; // 'far fa-star' is the Font Awesome class for an empty star
+  }
+
+  document.getElementById('reviews-stars').innerHTML = stars;
+}
+
 function loadGeomap() {
   // const elementId = "vis08e89f59-a0f3-4a17-9a6e-92fdbc6d92ee";
   const elementId = "cf-main-geomap"
@@ -264,6 +289,7 @@ function loadGeomap() {
         //let hostsLayer = cf.getVisualization("cf-main-geomap-hosts");
         geoMap.on("click", "hosts_image_layer", (e) => {
           let markerData = JSON.parse(e.features[0].properties.__cf_data__);
+          console.log(markerData)
           if (markerData.is_usa === "false") return;
 
           // set the modal name
@@ -272,6 +298,31 @@ function loadGeomap() {
           $("#investors-modal-title > .host-name").attr("href", markerData.host_url);
           $("#listing-profile-picture").attr("src", markerData.host_picture_url);
           $("#listing-picture").attr("src", markerData.picture_url);
+          $("#number-of-reviews").text(markerData.number_of_reviews);
+
+          showRating(markerData.review_scores_value);
+
+          $("#listing-price").text(`$${markerData.price}`);
+          $("#min-nights").text(markerData.minimum_nights);
+          $("#listing-beds").text(markerData.beds || 'N/A');
+          $("#listing-bedrooms").text(markerData.bedrooms || 'N/A');
+
+          const {
+            price,
+            bedrooms,
+            number_of_reviews,
+            minimum_nights,
+          } = markerData;
+
+          let cleanPrice = price > 0 ? `$${price.toFixed(2)} per night.` : "Price not available";
+          let cleanBedrooms = bedrooms !== "" ? bedrooms : "Bedrooms not available";
+          let avgNights = (Number(number_of_reviews) * Number(minimum_nights)).toFixed(0);
+          let rawIncome = (avgNights * Number(price)).toFixed(2);
+          let avgIncome = rawIncome > 0 ? rawIncome : "Not available";
+          let cleanIncome = rawIncome > 0 ? `${formatCurrency(Number(avgIncome), true) }` : "Not available";
+
+          $("#avgNights").text(avgNights);
+          $("#avgIncome").text(cleanIncome);
 
           showInvestorModal();
 
