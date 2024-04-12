@@ -973,7 +973,7 @@ async function trendsByZipcode(zipcode) {
   // ************ Active Listings Trend by Zipcode ************ //
   let grid = cf.Grid()
     .top(35)
-    .right(15)
+    .right(45)
     .bottom(35)
     .left(40);
   let color = cf.Color()
@@ -1006,7 +1006,7 @@ async function trendsByZipcode(zipcode) {
   let metric1 = cf.Metric("median_listing_price", "avg").hideFunction();
   let grid2 = cf.Grid()
     .top(50)
-    .right(15)
+    .right(45)
     .bottom(35)
     .left(40);
 
@@ -1034,7 +1034,7 @@ async function trendsByZipcode(zipcode) {
 
   let gridMedianDaysOnMarket = cf.Grid()
     .top(10)
-    .right(15)
+    .right(45)
     .bottom(35)
     .left(40);
   let colorMedianDaysOnMarket = cf.Color()
@@ -1087,7 +1087,7 @@ async function trendsByZipcode2(zipcode) {
     .sort("asc", "month_date_yyyymm");
   let gridCountMM = cf.Grid()
     .top(10)
-    .right(15)
+    .right(45)
     .bottom(35)
     .left(40);
   let colorCountMM = cf.Color()
@@ -1118,7 +1118,7 @@ async function trendsByZipcode2(zipcode) {
   // Define Grid
   let gridCountYy = cf.Grid()
     .top(10)
-    .right(15)
+    .right(45)
     .bottom(35)
     .left(40);
   // Define Color Palette
@@ -1149,7 +1149,7 @@ async function trendsByZipcode2(zipcode) {
   // Define Grid
   let gridAvgPrice = cf.Grid()
     .top(10)
-    .right(15)
+    .right(45)
     .bottom(35)
     .left(40);
   // Define Color Palette
@@ -1204,7 +1204,7 @@ async function trendsByZipcode3(zipcode) {
   // Define Grid
   let gridAvgMm = cf.Grid()
     .top(10)
-    .right(15)
+    .right(45)
     .bottom(35)
     .left(40);
   // Define Color Palette
@@ -1237,7 +1237,7 @@ async function trendsByZipcode3(zipcode) {
   // Define Grid
   let gridAvgYy = cf.Grid()
     .top(10)
-    .right(15)
+    .right(45)
     .bottom(35)
     .left(40);
   // Define Color Palette
@@ -1270,7 +1270,7 @@ async function trendsByZipcode3(zipcode) {
   // Define Grid
   let gridMediansf = cf.Grid()
     .top(10)
-    .right(15)
+    .right(45)
     .bottom(35)
     .left(40);
   // Define Color Palette
@@ -1324,7 +1324,7 @@ async function trendsByZipcode4(zipcode) {
 
   let gridMedianDaysOnMarketMm = cf.Grid()
     .top(10)
-    .right(15)
+    .right(45)
     .bottom(35)
     .left(40);
   let colorMedianDaysOnMarketMm = cf.Color()
@@ -1354,7 +1354,7 @@ async function trendsByZipcode4(zipcode) {
 
   let gridMedianDaysOnMarketYy = cf.Grid()
     .top(10)
-    .right(15)
+    .right(45)
     .bottom(35)
     .left(40);
   let colorMedianDaysOnMarketYy = cf.Color()
