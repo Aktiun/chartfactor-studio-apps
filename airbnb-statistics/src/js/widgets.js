@@ -257,7 +257,7 @@ function loadGeomap() {
           }
         }
       ])
-      .set("zoom", 14)
+      .set("zoom", 4)
       .set("center", [-73.84875467114972, 40.77680058764247])
       .set("drawControl", true)
       .set("enableZoomInfo", true)
