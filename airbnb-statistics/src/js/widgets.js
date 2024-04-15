@@ -380,22 +380,21 @@ function loadPropertyType() {
     // Define Grid
     let grid = cf.Grid()
       .top(10)
-      .right(-20)
+      .right(10)
       .bottom(0)
       .left(5);
     // Define Color Palette
     let color = cf.Color()
       .theme({ background:'rgba(0,0,0,0)', font: 'black'})
-      .palette(["#0095b7", "#a0b774", "#f4c658", "#fe8b3e", "#cf2f23", "#756c56", "#007896", "#47a694", "#f9a94b", "#ff6b30", "#e94d29", "#005b76"]);
-
-    let legend = cf.Legend()
-        .position("bottom")
-        .width(150)
-        .height(30)
-        .sort("none");
+      .palette(["#0095b7", "#a0b774", "#f4c658", "#fe8b3e"])
+      .match({
+          "Entire home/apt": "#0095b7",
+          "Private room": "#a0b774",
+          "Shared room": "#f4c658",
+          "Hotel room": "#fe8b3e"
+      });
 
     myData.graph("Bars")
-      .set("legend", legend)
       .set("grid", grid)
       .set("color", color)
         .set("orientation", "vertical")
@@ -501,13 +500,6 @@ function loadPropertyType() {
 function loadActivity() {
   const elementId = "cf-activity";
   try {
-    let staticFilter1 = cf.Filter("income_ltm")
-      .label("income_ltm")
-      .operation("GE,LT")
-      .value([0, 46278]); // Interaction Manager uses filter(), filters(), clientFilter(),
-    // and clientFilters() to manage filters. To apply additional
-    // filters, use staticFilters() or your code could be overwritten.
-    //
     /* Configuration code for this widget */
     let provider = cf.provider("local");
     let source = provider.source("abnb_listings");
@@ -521,7 +513,7 @@ function loadActivity() {
       .limit(100);
 
     let grid = cf.Grid()
-        .top(10)
+        .top(35)
         .right(5)
         .bottom(15)
         .left(45);
@@ -530,7 +522,6 @@ function loadActivity() {
     let color = cf.Color()
         .theme({ background:'rgba(0,0,0,0)', font: 'black' })
       .palette(["#0095b7"]);
-    myData.staticFilters(staticFilter1);
     // --- Define chart options and static filters ---
     myData.graph("Histogram")
       .set("color", color)
@@ -539,10 +530,7 @@ function loadActivity() {
       .on("execute:stop", () => {
         let chart = cf.getVisualization("cf-activity");
         let data = chart.get("data");
-        let element1 = data[0];
-
         totalListings = data.reduce((acc, bar) => acc + bar.current.count, 0);
-
       })
       .element(elementId)
       .execute();
