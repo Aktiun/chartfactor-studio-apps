@@ -379,7 +379,7 @@ function loadPropertyType() {
     // --- Define chart options and static filters ---
     // Define Grid
     let grid = cf.Grid()
-      .top(-20)
+      .top(10)
       .right(-20)
       .bottom(0)
       .left(5);
@@ -388,18 +388,24 @@ function loadPropertyType() {
       .theme({ background:'rgba(0,0,0,0)', font: 'black'})
       .palette(["#0095b7", "#a0b774", "#f4c658", "#fe8b3e", "#cf2f23", "#756c56", "#007896", "#47a694", "#f9a94b", "#ff6b30", "#e94d29", "#005b76"]);
 
+    let legend = cf.Legend()
+        .position("bottom")
+        .width(150)
+        .height(30)
+        .sort("none");
+
     myData.graph("Bars")
+      .set("legend", legend)
       .set("grid", grid)
       .set("color", color)
-      .set("orientation", "horizontal")
-      .set("axisLabels", false)
-      .set("xAxis", { "show": false, "lines": false })
-      .set("yAxis", { "show": true, "text": "in", "lines": false })
-      .set("dataZoom", false)
-      .set("serieLabel", {
-        "show": false,
-        "fontWeight": "bold"
-      })
+        .set("orientation", "vertical")
+        .set("xAxis", { "show": true, "lines": false })
+        .set("yAxis", { "text": "out", "lines": false })
+        .set("dataZoom", false)
+        .set("serieLabel", {
+          "show": true,
+          "fontWeight": "bold"
+        })
       .on("execute:stop", () => {
 
         let chart = cf.getVisualization("cf-roomType");
