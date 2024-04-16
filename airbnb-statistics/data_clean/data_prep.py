@@ -16,24 +16,25 @@ else:
     print("Only USA listings indexation selected")
 
 logger = logging.getLogger('listings_ny')
-# # Scrape data
+# Scrape data
 logger.info("Scraping data...")
 scrapper.get_listings_files(is_whole_world)
 logger.info("Listing and calendar files downloaded successfully")
 
-# # Unzip files
+# Unzip files
 logger.info("Unzipping files...")
 unzipper.process_directory("../tmp_downloaded", "../tmp_unzipped")
 logger.info("Files unzipped successfully")
+
+# Join calendar files
+logger.info("Joining calendar files...")
+joiner.join_calendar_listings("../tmp_unzipped", "../tmp_joined/calendars.csv")
+logger.info("Calendar files joined successfully")
 
 # Join files
 logger.info("Joining listing files...")
 joiner.combine_csv_files("../tmp_unzipped", "../tmp_joined/joined.csv")
 logger.info("Listing files joined successfully")
-
-logger.info("Joining calendar files...")
-joiner.join_calendar_listings("../tmp_unzipped", "../tmp_joined/calendars.csv")
-logger.info("Calendar files joined successfully")
 
 # Preprocess data
 logger.info("Preprocessing data...")

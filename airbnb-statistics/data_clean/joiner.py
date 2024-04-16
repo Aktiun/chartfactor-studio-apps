@@ -102,6 +102,18 @@ def clean_data(df):
     return df
 
 
+def get_occupied_days(df, listing_id):
+    # print(f"Get occupied days for listing_id: {listing_id}")
+    # Filter rows where "listing_id" matches the provided listing_id
+    listing_df = df[df["listing_id"] == listing_id]
+
+    # If the listing_id exists in the DataFrame, return the occupied_days
+    if not listing_df.empty:
+        return listing_df.iloc[0]['occupied_days']
+    else:
+        return None
+
+
 def combine_csv_files(source_dir, output_file):
     """
     combine all CSV files in source directory into a single file.
@@ -116,6 +128,12 @@ def combine_csv_files(source_dir, output_file):
         print("No csv files found in the source directory.")
         return
     dfs = []
+
+    calendar_input_path = '../tmp_joined/calendars.csv'
+    # Read the calendar CSV file
+    print(f"Reading calendar file from {calendar_input_path}")
+    df_calendar = pd.read_csv(calendar_input_path, dtype={'listing_id': str})
+
     for file in csv_files:
         if not are_headers_correct(file):
             logger.error(f"Error: File {file} has different headers.")
@@ -130,6 +148,13 @@ def combine_csv_files(source_dir, output_file):
         df['id'] = df['id'].astype(str)
         df['is_usa'] = df['is_usa'].astype(bool)
         df['host_id'] = df['host_id'].astype(str)
+
+        # Calculate estimated occupied time and income in the last twelve months
+        if df_calendar is not None:
+            df['estimated_occupied_time'] = df['id'].apply(lambda x: get_occupied_days(df_calendar, x) or 0)
+        else:
+            df['estimated_occupied_time'] = df['id'].apply(lambda x: 0)
+
         df_cleaned = clean_data(df)
         df_cleaned = df_cleaned.loc[:, ~df_cleaned.columns.str.startswith('region')]
         df_cleaned = df_cleaned.loc[:, ~df_cleaned.columns.isin(['last_searched', 'requires_license'])]
