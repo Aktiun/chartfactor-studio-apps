@@ -230,6 +230,10 @@ def create_index(client, index_name):
 				    "price": {
 				        "type": "integer"
 				    },
+				    "minimum_nights_str": {
+				        "type": "keyword",
+				        "null_value": "null"
+				    },
 				    "minimum_nights": {
 				        "type": "integer"
 				    },
@@ -477,8 +481,9 @@ def get_value(csv_file):
 				"reviews_per_month": r[74],
 				"is_usa": r[75].lower(),
 				"estimated_occupied_time": r[76],
-				"income_ltm": r[77],
-				"zipcode": r[78] if r[78] != '' else None,
+				"minimum_nights_str": r[77],
+				"income_ltm": r[78],
+				"zipcode": r[79] if r[79] != '' else None,
                 "calculated_host_listings_count_hotel_rooms": get_hotel_room_count(r[33], r[71], r[72], r[73], r[70])
             }
             
