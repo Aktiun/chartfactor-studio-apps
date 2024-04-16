@@ -62,9 +62,7 @@ def clean_data(is_whole_world=False):
     df['price'] = df['price'].replace('[\$,]', '', regex=True).astype(float)
     df['number_of_reviews'] = pd.to_numeric(df['number_of_reviews'], errors='coerce').fillna(0).astype(int)
     df['minimum_nights'] = pd.to_numeric(df['minimum_nights'], errors='coerce').fillna(0).astype(int)
-    print("*******************************************************************************")
-    print(df['estimated_occupied_time'])
-    print("*******************************************************************************")
+    df['minimum_nights_str'] = df['minimum_nights'].apply(lambda x: str(x) if x <= 35 else '+35')
     df['income_ltm'] = df['estimated_occupied_time'] * df['price']
 
     logger.info(f"Total records: {len(df)}")
