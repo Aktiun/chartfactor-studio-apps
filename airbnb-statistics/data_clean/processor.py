@@ -31,9 +31,24 @@ def process_in_batches(df, function, input_columns, output_column, batch_size=10
         
     df[output_column] = results
 
+
+def get_occupied_days(df, listing_id):
+    # Filter rows where "available" column is "t"
+    available_t_df = df[df["available"] == "t"]
+
+    # Group by "listing_id" and count the records
+    count_by_listing_id = available_t_df.groupby("listing_id").size()
+
+    # Print the result
+    listingOccupancy = count_by_listing_id.loc[listing_id]
+
+    return listingOccupancy
+
+
 def clean_data(is_whole_world=False):
     # Paths to the input and output CSV files
     input_path = '../tmp_joined/joined.csv'
+    calenda_input_path = '../tmp_joined/calendars.csv'
     output_path = '../data/abnb_listings.csv'
 
     # zipcode file
@@ -52,6 +67,10 @@ def clean_data(is_whole_world=False):
     print(f"Reading joined file from {input_path}")
     df = pd.read_csv(input_path, dtype={'id': str})
 
+    # Read the calendar CSV file
+    print(f"Reading calendar file from {calenda_input_path}")
+    df_calendar = pd.read_csv(calenda_input_path, dtype={'listing_id': str})
+
     if is_zipcode_file:
         # read zipcode file
         print(f"Reading zipcodes from {zipcode_path}")
@@ -63,7 +82,14 @@ def clean_data(is_whole_world=False):
     df['minimum_nights'] = pd.to_numeric(df['minimum_nights'], errors='coerce').fillna(0).astype(int)
 
     # Calculate estimated occupied time and income in the last twelve months
-    df['estimated_occupied_time'] = df['number_of_reviews'] * df['minimum_nights']
+    if df_calendar is not None:
+        df['estimated_occupied_time'] = df['id'].apply(lambda x: get_occupied_days(df_calendar, x) or 0)
+    else:
+        df['estimated_occupied_time'] = df['number_of_reviews'] * df['minimum_nights']
+
+    print("*******************************************************************************")
+    print(df['estimated_occupied_time'])
+    print("*******************************************************************************")
     df['income_ltm'] = df['estimated_occupied_time'] * df['price']
 
     logger.info(f"Total records: {len(df)}")
@@ -108,6 +134,23 @@ def clean_data(is_whole_world=False):
 
     logger.info(f"File successfully saved to {output_path}")
     print(f"File successfully saved to {output_path}")
+
+
+def get_days_occupied(listing_id):
+    # Read the CSV file into a DataFrame
+    df = pd.read_csv("../tmp_joined/joined.csv")
+
+    # Filter rows where "available" column is "t"
+    available_t_df = df[df["available"] == "t"]
+
+    # Group by "listing_id" and count the records
+    count_by_listing_id = available_t_df.groupby("listing_id").size()
+
+    # Print the result
+    listingOccupancy = count_by_listing_id.loc[listing_id]
+
+    return listingOccupancy
+
 
 if __name__ == "__main__":
     clean_data()

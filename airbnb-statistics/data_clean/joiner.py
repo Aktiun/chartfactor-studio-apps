@@ -109,8 +109,9 @@ def combine_csv_files(source_dir, output_file):
     csv_files = [
         os.path.join(source_dir, f)
         for f in os.listdir(source_dir)
-        if f.endswith(".csv")
+        if f.endswith(".csv") and 'calendar' not in f
     ]
+
     if not csv_files:
         print("No csv files found in the source directory.")
         return
@@ -133,6 +134,33 @@ def combine_csv_files(source_dir, output_file):
         df_cleaned = df_cleaned.loc[:, ~df_cleaned.columns.str.startswith('region')]
         df_cleaned = df_cleaned.loc[:, ~df_cleaned.columns.isin(['last_searched', 'requires_license'])]
         dfs.append(df_cleaned)
+    combined_df = pd.concat(dfs, ignore_index=True)
+    combined_df.to_csv(output_file, index=False)
+    logger.info(f"Combined file: {output_file}")
+
+
+def join_calendar_listings(source_dir, output_file):
+    """
+    Join calendar CSV files into a single file.
+    """
+    csv_files = [
+        os.path.join(source_dir, f)
+        for f in os.listdir(source_dir)
+        if f.endswith(".csv") and 'calendar' in f
+    ]
+
+    if not csv_files:
+        print("No csv files found in the source directory.")
+        return
+    dfs = []
+    for file in csv_files:
+        if not are_headers_correct(file):
+            logger.error(f"Error: File {file} has different headers.")
+            continue
+        logger.info(f"Processing file: {file}")
+        # read id column as string when reading the file
+        df = pd.read_csv(file, dtype={"listing_id": str})
+        dfs.append(df)
     combined_df = pd.concat(dfs, ignore_index=True)
     combined_df.to_csv(output_file, index=False)
     logger.info(f"Combined file: {output_file}")
