@@ -513,7 +513,7 @@ function loadActivity() {
       .limit(100);
 
     let grid = cf.Grid()
-        .top(35)
+        .top(50)
         .right(5)
         .bottom(15)
         .left(45);
@@ -715,7 +715,7 @@ function loadHostListings() {
       .limit(100);
 
     let grid = cf.Grid()
-        .top(10)
+        .top(20)
         .right(5)
         .bottom(25)
         .left(40);
