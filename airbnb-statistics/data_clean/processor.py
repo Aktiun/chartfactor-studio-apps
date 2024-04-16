@@ -33,16 +33,15 @@ def process_in_batches(df, function, input_columns, output_column, batch_size=10
 
 
 def get_occupied_days(df, listing_id):
-    # Filter rows where "available" column is "t"
-    available_t_df = df[df["available"] == "t"]
+    # print(f"Get occupied days for listing_id: {listing_id}")
+    # Filter rows where "listing_id" matches the provided listing_id
+    listing_df = df[df["listing_id"] == listing_id]
 
-    # Group by "listing_id" and count the records
-    count_by_listing_id = available_t_df.groupby("listing_id").size()
-
-    # Print the result
-    listingOccupancy = count_by_listing_id.loc[listing_id]
-
-    return listingOccupancy
+    # If the listing_id exists in the DataFrame, return the occupied_days
+    if not listing_df.empty:
+        return listing_df.iloc[0]['occupied_days']
+    else:
+        return None
 
 
 def clean_data(is_whole_world=False):
@@ -67,10 +66,6 @@ def clean_data(is_whole_world=False):
     print(f"Reading joined file from {input_path}")
     df = pd.read_csv(input_path, dtype={'id': str})
 
-    # Read the calendar CSV file
-    print(f"Reading calendar file from {calenda_input_path}")
-    df_calendar = pd.read_csv(calenda_input_path, dtype={'listing_id': str})
-
     if is_zipcode_file:
         # read zipcode file
         print(f"Reading zipcodes from {zipcode_path}")
@@ -81,6 +76,11 @@ def clean_data(is_whole_world=False):
     df['number_of_reviews'] = pd.to_numeric(df['number_of_reviews'], errors='coerce').fillna(0).astype(int)
     df['minimum_nights'] = pd.to_numeric(df['minimum_nights'], errors='coerce').fillna(0).astype(int)
 
+    # Read the calendar CSV file
+    print(f"Reading calendar file from {calenda_input_path}")
+    df_calendar = pd.read_csv(calenda_input_path, dtype={'listing_id': str})
+
+    # print("staring process.....")
     # Calculate estimated occupied time and income in the last twelve months
     if df_calendar is not None:
         df['estimated_occupied_time'] = df['id'].apply(lambda x: get_occupied_days(df_calendar, x) or 0)

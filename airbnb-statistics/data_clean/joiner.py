@@ -148,22 +148,28 @@ def join_calendar_listings(source_dir, output_file):
         for f in os.listdir(source_dir)
         if f.endswith(".csv") and 'calendar' in f
     ]
+    final_df = pd.DataFrame(columns=["listing_id", "occupied_days"])
 
-    if not csv_files:
-        print("No csv files found in the source directory.")
-        return
-    dfs = []
+    # Iterate over all CSV files in the directory
     for file in csv_files:
-        if not are_headers_correct(file):
-            logger.error(f"Error: File {file} has different headers.")
-            continue
         logger.info(f"Processing file: {file}")
-        # read id column as string when reading the file
+        # Construct the full file path
+
+        # Read the CSV file into a DataFrame
         df = pd.read_csv(file, dtype={"listing_id": str})
-        dfs.append(df)
-    combined_df = pd.concat(dfs, ignore_index=True)
-    combined_df.to_csv(output_file, index=False)
-    logger.info(f"Combined file: {output_file}")
+
+        # Filter rows where "available" column is "t"
+        available_t_df = df[df["available"] == "t"]
+
+        # Group by "listing_id" and count the records
+        count_by_listing_id = available_t_df.groupby("listing_id").size().reset_index(name='occupied_days')
+
+        # Append the result to the final DataFrame
+        final_df = pd.concat([final_df, count_by_listing_id], ignore_index=True)
+
+    # Write the final DataFrame to a new CSV file
+    final_df.to_csv(output_file, index=False)
+
 
 
 def main():
