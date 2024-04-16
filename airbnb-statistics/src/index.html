@@ -25,7 +25,18 @@
         <div class="charts-container">
             <div class="widgets-container">
                 <div class="cf-room-type" style="grid-area: first">
-                    <span class="title">Room Type</span>
+                    <div class="title">
+                        <span>Room Type</span>
+                        <div style="display: flex; flex-direction: column; align-items: end;">
+                            <div id="total-rooms-val" style="font-size: 1.5em"></div>
+                            <div style="font-weight: 100 !important; font-size: large;">
+                                <span>out of</span>
+                                <span id="total-rooms-compare" style="font-weight: bold !important;"></span>
+                                <span id="total-rooms-prct"></span>
+                                <span>Listings</span>
+                            </div>
+                        </div>
+                    </div>
                     <div class="chart-container" >
                         <div id="cf-roomType"></div>
                     </div>
