@@ -236,7 +236,7 @@ function loadProviders() {
                         label: "Income (last 12 months)"
                     },
                     estimated_occupied_time: {
-                        label: "Estimated booked time (last 12 months)"
+                        label: "Occupancy (last 12 months)"
                     },
                 }
             },

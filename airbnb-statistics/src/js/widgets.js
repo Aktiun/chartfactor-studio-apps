@@ -508,7 +508,7 @@ function loadActivity() {
     let provider = cf.provider("local");
     let source = provider.source("abnb_listings");
     // Define metrics
-    let metric0 = cf.Metric("income_ltm", "histogram").fixedBars(6)
+    let metric0 = cf.Metric("estimated_occupied_time", "histogram").fixedBars(6)
         .offset(0)
         .showEmptyIntervals(false);
     // Add metrics and groups to data source
