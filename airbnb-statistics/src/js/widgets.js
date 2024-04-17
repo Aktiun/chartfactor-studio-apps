@@ -489,8 +489,6 @@ function loadPropertyType() {
           );
 
           animateValue(document.getElementById('total-rooms-val'), element1Clean.count + element2Clean.count + element3Clean.count + element4Clean.count, formatCount, true);
-          animateValue(document.getElementById('total-rooms-compare'), element1Clean.count + element2Clean.count + element3Clean.count + element4Clean.count, formatCount, true);
-          animateValue(document.getElementById('total-rooms-prct'), 100, formatRate, true);
         })
         .element(elementId)
         .execute();
