@@ -102,18 +102,6 @@ def clean_data(df):
     return df
 
 
-def get_occupied_days(df, listing_id):
-    # print(f"Get occupied days for listing_id: {listing_id}")
-    # Filter rows where "listing_id" matches the provided listing_id
-    listing_df = df[df["listing_id"] == listing_id]
-
-    # If the listing_id exists in the DataFrame, return the occupied_days
-    if not listing_df.empty:
-        return listing_df.iloc[0]['occupied_days']
-    else:
-        return None
-
-
 def combine_csv_files(source_dir, output_file):
     """
     combine all CSV files in source directory into a single file.
@@ -133,6 +121,11 @@ def combine_csv_files(source_dir, output_file):
     # Read the calendar CSV file
     print(f"Reading calendar file from {calendar_input_path}")
     df_calendar = pd.read_csv(calendar_input_path, dtype={'listing_id': str})
+    occupied_days_dict = None
+
+    if not df_calendar.empty:
+        # Step 1: Create a dictionary from the df_calendar DataFrame
+        occupied_days_dict = df_calendar.set_index('listing_id')['occupied_days'].to_dict()
 
     for file in csv_files:
         if not are_headers_correct(file):
@@ -150,8 +143,12 @@ def combine_csv_files(source_dir, output_file):
         df['host_id'] = df['host_id'].astype(str)
 
         # Calculate estimated occupied time and income in the last twelve months
-        if df_calendar is not None:
-            df['estimated_occupied_time'] = df['id'].apply(lambda x: get_occupied_days(df_calendar, x) or 0)
+        if occupied_days_dict is not None:
+            # Step 2: Use the map function to replace the id in the df DataFrame
+            df['estimated_occupied_time'] = df['id'].map(occupied_days_dict)
+
+            # Step 3: Fill any NaN values with 0
+            df['estimated_occupied_time'].fillna(0, inplace=True)
         else:
             df['estimated_occupied_time'] = df['id'].apply(lambda x: 0)
 
