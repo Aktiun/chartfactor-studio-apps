@@ -180,7 +180,7 @@ body {
 
 .widgets-container {
     display: grid;
-    grid-template-rows: 460px 400px 440px 440px;
+    grid-template-rows: 460px 400px 350px 440px;
     grid-template-columns: 1fr;
     grid-template-areas: "first" "second" "third" "fourth";
     gap: 10px;

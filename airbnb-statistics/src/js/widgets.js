@@ -598,7 +598,7 @@ function loadLicenses() {
     let source = provider.source("abnb_listings");
     // Define metrics
     let metric0 = cf.Metric("count");
-    let metric1 = cf.CompareMetric("count", "").rate().label("Rate");
+    let metric1 = cf.CompareMetric("count").rate().label("Rate");
     // Define attributes to group by
     let group1 = cf.Attribute("license")
         .limit(10)
@@ -607,31 +607,28 @@ function loadLicenses() {
     let myData = source.groupby(group1)
         .metrics(metric0, metric1);
     // --- Define chart options and static filters ---
-    let legend = cf.Legend()
-        .position("right")
-        .width(100)
-        .height(150)
-        .sort("none");
     // Define Grid
     let grid = cf.Grid()
-        .top(0)
-        .right(0)
-        .bottom(0)
-        .left(0);
+        .top(-15)
+        .right(-15)
+        .bottom(-15)
+        .left(-15);
     // Define Color Palette
     let color = cf.Color()
         .theme({ background:'rgba(0,0,0,0)', font: 'black'})
-        .palette(["#0095b7", "#a0b774", "#f4c658", "#fe8b3e", "#cf2f23", "#756c56", "#007896", "#47a694", "#f9a94b", "#ff6b30", "#e94d29", "#005b76"]);
+        .palette(["#0095b7", "#a0b774", "#f4c658", "#fe8b3e"])
+        .match({
+          "Unlicensed": "#0095b7",
+          "Licensed": "#a0b774",
+          "Exempt": "#f4c658",
+          "Pending": "#fe8b3e"
+        });
 
-    myData.graph("Donut")
-        .set("legend", legend)
+    myData.graph("Pie")
         .set("grid", grid)
         .set("color", color)
-        .set("orientation", "horizontal")
-        .set("xAxis", { "show": true, "lines": true })
-        .set("yAxis", { "text": "out" })
+        .set("metricValue", true)
         .set("labelPosition", "inside")
-        .set("metricValue", false)
         .on("execute:stop", () => {
           let chart = cf.getVisualization("cf-licenses");
           let data = chart.get("data");
