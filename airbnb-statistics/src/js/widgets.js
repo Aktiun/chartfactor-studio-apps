@@ -840,43 +840,25 @@ function loadTopHosts() {
   const elementId = "cf-top-hosts";
   try {
 
-    // Define metrics
-    let metric = new cf.Metric("calculated_host_listings_count_entire_homes", "sum");
-    let metric2 = new cf.Metric("calculated_host_listings_count_private_rooms", "sum");
-    let metric3 = new cf.Metric("calculated_host_listings_count_shared_rooms", "sum");
-    let metric4 = new cf.Metric("calculated_host_listings_count_hotel_rooms", "sum");
-    let metric5 = new cf.Metric("calculated_host_listings_count", "sum");
+    let provider = cf.provider("local");
+    let source = provider.source("abnb_listings");
 
-    let group = cf.Attribute("host_name").limit(50).sort("desc", metric5);
+    let metric0 = cf.Metric("calculated_host_listings_count", "avg").hideFunction();
+    let metric1 = cf.Metric("calculated_host_listings_count_entire_homes", "avg").hideFunction();
+    let metric2 = cf.Metric("calculated_host_listings_count_private_rooms", "avg").hideFunction();
+    let metric3 = cf.Metric("calculated_host_listings_count_shared_rooms", "avg").hideFunction();
+    let metric4 = cf.Metric("calculated_host_listings_count_hotel_rooms", "avg").hideFunction();
 
-    cf.provider("local")
-        .source("abnb_listings")
-        .groupby(group)
-        .metrics(metric, metric2, metric3, metric4, metric5)
-        .element("cf-top-hosts-dummy")
-        .on("execute:stop", (e) => {
-          let data = e.data;
-          let topHosts = data.map((host) => {
-            return {
-              host_name: host.group[0],
-              entire_homes: host.current.metrics.calculated_host_listings_count_entire_homes.sum,
-              private_rooms: host.current.metrics.calculated_host_listings_count_private_rooms.sum,
-              shared_rooms: host.current.metrics.calculated_host_listings_count_shared_rooms.sum,
-              hotel_rooms: host.current.metrics.calculated_host_listings_count_hotel_rooms.sum,
-              total_listings: host.current.metrics.calculated_host_listings_count.sum
-            }
-          });
-          let topHostsCount = topHosts.length;
+    let group1 = cf.Attribute("host_name")
+        .limit(10000)
+        .sort("desc", cf.Metric("calculated_host_listings_count", "avg"));
 
-          const tableTitle = `Top ${topHostsCount} Hosts in this area`;
-          const hostsTableHTML = createHostsTable(topHosts);
-          $("#top-hosts-title").text(tableTitle);
-          $(`#${elementId}`).html(hostsTableHTML);
+    let myData = source.groupby(group1)
+        .metrics(metric0, metric1, metric2, metric3, metric4);
 
-          const dataCells = document.querySelectorAll('.data-row td');
-          dataCells.forEach(cell => cell.addEventListener('click', onCellClick));
-          makeTableSortable();
-        })
+    myData.graph("Slicer")
+        .set("autoSizeColumns", true)
+        .element(elementId)
         .execute();
   } catch (ex) {
     console.error(ex);
