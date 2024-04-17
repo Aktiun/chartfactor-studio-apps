@@ -65,7 +65,7 @@ function getZeroCleanedData(){
 
 function animateValue(obj, end, formatFunction) {
   let startTimestamp = null;
-  let duration = 800;
+  let duration = 300;
   let start = 0;
   const step = (timestamp) => {
     if (!startTimestamp) startTimestamp = timestamp;

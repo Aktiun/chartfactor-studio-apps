@@ -10,7 +10,7 @@ body {
     height: calc(100% - 40px);
     display: grid;
     grid-template-columns: 500px auto;
-    grid-template-rows: 60px auto 100px;
+    grid-template-rows: 60px auto;
     grid-template-areas:
             "header header"
             "charts map"
@@ -103,7 +103,7 @@ body {
 }
 
 .cf-page-info {
-    grid-area: info;
+    margin-top: 20px;
     display: flex;
     align-items: center;
     flex-direction: column;
