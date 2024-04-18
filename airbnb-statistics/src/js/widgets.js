@@ -858,6 +858,7 @@ function loadTopHosts() {
 
     myData.graph("Slicer")
         .set("autoSizeColumns", true)
+        .set('showSearch', false)
         .element(elementId)
         .execute();
   } catch (ex) {
