@@ -185,9 +185,9 @@ body {
 
 .widgets-container {
     display: grid;
-    grid-template-rows: 460px 400px 350px 440px;
+    grid-template-rows: 30px 460px 400px 350px 440px;
     grid-template-columns: 1fr;
-    grid-template-areas: "first" "second" "third" "fourth";
+    grid-template-areas: "frequent-filter" "first" "second" "third" "fourth";
     gap: 10px;
     margin-top: 20px;
 }
@@ -636,4 +636,19 @@ body {
 
 .modal-chart > .modal-chart-visual {
     grid-area: chart;
+}
+
+.frequent-filter-container {
+    grid-area: frequent-filter;
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-bottom: 1px solid;
+}
+
+.frequent-filter-container > input {
+    cursor: pointer;
 }

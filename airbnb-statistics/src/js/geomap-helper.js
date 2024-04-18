@@ -21,7 +21,6 @@ const updateBnBBoundsFilter = () => {
     let se = bounds.getSouthEast();
     let ne = {"lng":se.lng, "lat":nw.lat};
     let sw = {"lng":nw.lng, "lat":se.lat};
-    let center = bounds.getCenter();
 
     let filterBoundaries = [[nw.lng, nw.lat], [ne.lng, ne.lat], [se.lng, se.lat], [sw.lng, sw.lat], [nw.lng, nw.lat]];
 
@@ -31,7 +30,9 @@ const updateBnBBoundsFilter = () => {
         let notAllowed = ["im", "cf-main-geomap", "kpi-dummy", "cf-active-listings-trend", "cf-median-listing-price-trend"];
         return !c._isAktiveLayer && !notAllowed.includes(c._elementId);
     }).forEach(c => {
-        c.staticFilters(boundaryFilter).execute();
+        const vStaticFilters = c.getCurrentAQL()._staticFilters.filter(f => f.path !== "location");
+
+        c.staticFilters([boundaryFilter, ...vStaticFilters]).execute();
     });
 
 }

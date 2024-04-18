@@ -95,3 +95,32 @@ window.addEventListener("keydown", function(event) {
         hideInvestorsModal();
     }
 });
+
+$("#frequent-filter").change(function(event) {
+    const applicableVisuals = cf.getAllVisualizations().filter(i => !["Interaction Manager", "Geo Map GL"].includes(i._chartType));
+
+    const moment = cf.getDependency("moment");
+    const currentDate = moment();
+    const startDate = currentDate.subtract(1, "year").format("YYYY-MM-DD");
+    const endDate = currentDate.format("YYYY-MM-DD");
+    const lastReviewFilter = cf.Filter("last_review")
+        .operation("BETWEEN")
+        .value([startDate, endDate]);
+    const occupancyFilter = cf.Filter("estimated_occupied_time")
+        .operation("GT")
+        .value([60]);
+
+    applicableVisuals.forEach(v => {
+        if (event.currentTarget.checked) {
+            v.staticFilters(lastReviewFilter, occupancyFilter);
+            v.execute();
+        } else {
+            const vStaticFilters = v.getCurrentAQL()._staticFilters;
+            const newStaticFilters = vStaticFilters.filter(f => !["last_review", "estimated_occupied_time"].includes(f.path));
+
+            v.staticFilters(newStaticFilters.map(f => cf.Filter().fromJSON(f)));
+            v.execute();
+        }
+    });
+
+});
