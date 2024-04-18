@@ -35,19 +35,24 @@ function loadProviders() {
                         label: "Beds"
                     },
                     calculated_host_listings_count: {
-                        label: "#Listings"
+                        label: "#Listings",
+                        "displayFormat": '0',
                     },
                     calculated_host_listings_count_entire_homes: {
-                        label: "#Entire homes/apt"
+                        label: "#Entire homes/apt",
+                        "displayFormat": '0',
                     },
                     calculated_host_listings_count_private_rooms: {
-                        label: "#Private rooms"
+                        label: "#Private rooms",
+                        "displayFormat": '0',
                     },
                     calculated_host_listings_count_shared_rooms: {
-                        label: "#Shared rooms"
+                        label: "#Shared rooms",
+                        "displayFormat": '0',
                     },
                     calculated_host_listings_count_hotel_rooms: {
-                        label: "#Hotel rooms"
+                        label: "#Hotel rooms",
+                        "displayFormat": '0',
                     },
                     calendar_last_scraped: {
                         label: "Calendar last scraped"
