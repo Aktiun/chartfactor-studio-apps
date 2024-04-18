@@ -130,7 +130,6 @@ body {
 }
 
 .table-container-content {
-    padding: 10px;
     overflow: auto;
     height: calc(100% - 65px);
 }
@@ -412,6 +411,10 @@ body {
 .info-item-title > .color {
     width: 10px;
     height: 10px;
+}
+
+.info-item-title > .circle {
+    border-radius: 100px;
 }
 
 .info-item > div {
