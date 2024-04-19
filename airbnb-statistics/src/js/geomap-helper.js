@@ -291,12 +291,42 @@ function createHostsTable(dataArray) {
   let tableHTML = `<table class="table-hosts" id="table-hosts">
     <thead>
       <tr>
-        <th style="cursor: pointer">Host Name</th>
-        <th style="cursor: pointer">#Entire home/apts</th>
-        <th style="cursor: pointer">#Private rooms</th>
-        <th style="cursor: pointer">#Shared rooms</th>
-        <th style="cursor: pointer">#Hotel Rooms</th>
-        <th style="cursor: pointer">#Listings</th>
+        <th style="cursor: pointer;">
+          <div class="header-flex">
+            <span class="header-title">Host Name</span>
+            <span class="sort-icon"></span>
+          </div>
+        </th>
+        <th style="cursor: pointer;">
+          <div class="header-flex">
+            <span class="header-title">#Entire home/apts</span>
+            <span class="sort-icon"></span>
+          </div>
+        </th>
+        <th style="cursor: pointer;">
+          <div class="header-flex">
+            <span class="header-title">#Private rooms</span>
+            <span class="sort-icon"></span>
+          </div>
+        </th>
+        <th style="cursor: pointer;">
+          <div class="header-flex">
+            <span class="header-title">#Shared rooms</span>
+            <span class="sort-icon"></span>
+          </div>
+        </th>
+        <th style="cursor: pointer; ">
+          <div class="header-flex">
+            <span class="header-title">#Hotel Rooms</span>
+            <span class="sort-icon"></span>
+          </div>
+        </th>
+        <th style="cursor: pointer">
+          <div class="header-flex">
+            <span class="header-title">#Listings</span>
+            <span class="sort-icon"></span>
+          </div>
+        </th>
       </tr>
     </thead>
     <tbody>`;

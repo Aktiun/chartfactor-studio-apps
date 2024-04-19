@@ -681,3 +681,16 @@ body {
 .ag-theme-balham .ag-header {
     height: 40px !important;
 }
+
+.header-flex {
+    display: flex;
+    align-items: center;
+}
+
+.header-title {
+    margin-right: 5px;
+}
+
+.sort-icon {
+    /* You can add additional styles for the icon here */
+}

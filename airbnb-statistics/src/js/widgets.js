@@ -808,6 +808,12 @@ function makeTableSortable() {
   // Attach a click event listener to all th elements
   for (let i = 0; i < table.rows[0].cells.length; i++) {
     table.rows[0].cells[i].onclick = function() {
+      // Remove the sorting icon from all headers
+      for (let j = 0; j < table.rows[0].cells.length; j++) {
+        let iconElement = table.rows[0].cells[j].querySelector('.sort-icon');
+        iconElement.innerHTML = '';
+      }
+
       // Sort the array of rows
       let sortedRows = rows.sort((a, b) => {
         if (i === 0) { // If first column, sort as string
@@ -839,6 +845,10 @@ function makeTableSortable() {
       for (let i = 0; i < sortedRows.length; i++) {
         table.appendChild(sortedRows[i]);
       }
+
+      // Add the sorting icon to the header
+      let iconElement = this.querySelector('.sort-icon');
+      iconElement.innerHTML = sortAscending ? '▲' : '▼';
 
       // Flip the sorting order for the next click
       sortAscending = !sortAscending;
