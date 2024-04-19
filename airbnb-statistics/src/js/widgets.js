@@ -810,13 +810,23 @@ function makeTableSortable() {
     table.rows[0].cells[i].onclick = function() {
       // Sort the array of rows
       let sortedRows = rows.sort((a, b) => {
-        if (a.cells[i].innerHTML === b.cells[i].innerHTML) {
-          return 0;
-        }
-        if (sortAscending) {
-          return a.cells[i].innerHTML > b.cells[i].innerHTML ? 1 : -1;
-        } else {
-          return a.cells[i].innerHTML < b.cells[i].innerHTML ? 1 : -1;
+        if (i === 0) { // If first column, sort as string
+          if (a.cells[i].innerHTML === b.cells[i].innerHTML) {
+            return 0;
+          }
+          if (sortAscending) {
+            return a.cells[i].innerHTML > b.cells[i].innerHTML ? 1 : -1;
+          } else {
+            return a.cells[i].innerHTML < b.cells[i].innerHTML ? 1 : -1;
+          }
+        } else { // For all other columns, sort as number
+          let numA = parseInt(a.cells[i].innerHTML, 10);
+          let numB = parseInt(b.cells[i].innerHTML, 10);
+          if (sortAscending) {
+            return numA - numB;
+          } else {
+            return numB - numA;
+          }
         }
       });
 
