@@ -1356,5 +1356,93 @@ async function trendsByZipcode4(zipcode) {
       .set("dataZoom", false)
       .element("cf-median-days-market-yy-by-zipcode")
       .execute();
+}
 
+function dataArrayToObject(data) {
+  let result = data.reduce((acc, item) => {
+    let element = item.definition.element;
+    acc[element] = item.data.reduce((subAcc, subItem) => {
+      subAcc[subItem.group[0]] = subItem.current.count;
+      return subAcc;
+    }, {});
+    return acc;
+  }, {});
+
+  return result;
+}
+
+function loadTopHostsTable() {
+  const elementId = "cf-top-hosts";
+  cf.provider('local')
+      .source('abnb_listings')
+      .groupby(cf.Attribute("host_name").limit(50).sort("desc", cf.Metric()))
+      .metrics(cf.Metric())
+      .on('execute:stop', async result => {
+        const tableData = result.data.map(d => ({host: d.group[0], listings: d.current.count}))
+        const hostsFilter = cf.Filter("host_name")
+            .operation("IN")
+            .value(tableData.map(td => td.host));
+
+        let entireHomeFilter = cf.Filter("property_type")
+            .operation("IN")
+            .value(["Entire bungalow", "Entire cabin", "Entire condo", "Entire chalet", "Entire cottage", "Entire guest suite", "Entire guesthouse", "Entire home", "Entire home/apt", "Entire loft", "Entire place", "Entire rental unit", "Entire serviced apartment", "Entire townhouse", "Entire vacation home", "Entire villa"]);
+        let privateRoomFilter = cf.Filter("property_type")
+            .operation("IN")
+            .value(["Private room", "Private room in barn", "Private room in bed and breakfast", "Private room in boat", "Private room in bungalow", "Private room in camper/rv", "Private room in casa particular", "Private room in castle", "Private room in chalet", "Private room in condo", "Private room in cottage", "Private room in dorm", "Private room in earthen home", "Private room in farm stay", "Private room in guest suite", "Private room in guesthouse", "Private room in hostel", "Private room in home", "Private room in in-law", "Private room in island", "Private room in kezhan", "Private room in lighthouse", "Private room in loft", "Private room in minsu", "Private room in ranch", "Private room in religious building", "Private room in rental unit", "Private room in resort", "Private room in serviced apartment", "Private room in tent", "Private room in tiny home", "Private room in townhouse", "Private room in train", "Private room in vacation home", "Private room in villa"]);
+        let sharedRoomFilter = cf.Filter("property_type")
+            .operation("IN")
+            .value(["Shared room", "Shared room in bed and breakfast", "Shared room in bungalow", "Shared room in casa particular", "Shared room in condo", "Shared room in floor", "Shared room in guest suite", "Shared room in guesthouse", "Shared room in home", "Shared room in hostel", "Shared room in hotel", "Shared room in loft", "Shared room in rental unit", "Shared room in serviced apartment", "Shared room in townhouse", "Shared room in vacation home"]);
+        let hoteRoomFilter = cf.Filter("property_type")
+            .operation("IN")
+            .value(["Room in aparthotel", "Room in boutique hotel", "Room in hotel"]);
+
+
+        const entireHomeQuery = cf.provider('local')
+            .source('abnb_listings')
+            .groupby(cf.Attribute("host_name").limit(50).sort("desc", cf.Metric()))
+            .staticFilters(hostsFilter, entireHomeFilter)
+            .metrics(cf.Metric())
+            .element('entireHomeQuery')
+            .execute();
+        const privateRoomQuery = cf.provider('local')
+            .source('abnb_listings')
+            .groupby(cf.Attribute("host_name").limit(50).sort("desc", cf.Metric()))
+            .staticFilters(hostsFilter, privateRoomFilter)
+            .metrics(cf.Metric())
+            .element('privateRoomQuery')
+            .execute();
+        const sharedRoomQuery = cf.provider('local')
+            .source('abnb_listings')
+            .groupby(cf.Attribute("host_name").limit(50).sort("desc", cf.Metric()))
+            .staticFilters(hostsFilter, sharedRoomFilter)
+            .metrics(cf.Metric())
+            .element('sharedRoomQuery')
+            .execute();
+        const hotelRoomQuery = cf.provider('local')
+            .source('abnb_listings')
+            .groupby(cf.Attribute("host_name").limit(50).sort("desc", cf.Metric()))
+            .staticFilters(hostsFilter, hoteRoomFilter)
+            .metrics(cf.Metric())
+            .element('hotelRoomQuery')
+            .execute();
+
+        const allData = await Promise.all([entireHomeQuery, privateRoomQuery, sharedRoomQuery, hotelRoomQuery]);
+        const objData = dataArrayToObject(allData);
+
+        tableData.forEach(td => {
+          td.entireHome = objData.entireHomeQuery[td.host] ? objData.entireHomeQuery[td.host] : 0;
+          td.privateRoom = objData.privateRoomQuery[td.host] ? objData.privateRoomQuery[td.host] : 0;
+          td.sharedRoom = objData.sharedRoomQuery[td.host] ? objData.sharedRoomQuery[td.host] : 0;
+          td.hotelRoom = objData.hotelRoomQuery[td.host] ? objData.hotelRoomQuery[td.host] : 0;
+        });
+
+        const hostsTableHTML = createHostsTable(tableData);
+        $(`#${elementId}`).html(hostsTableHTML);
+
+        const dataCells = document.querySelectorAll('.data-row td');
+        dataCells.forEach(cell => cell.addEventListener('click', onCellClick));
+        makeTableSortable();
+      })
+      .element('dummy')
+      .execute();
 }

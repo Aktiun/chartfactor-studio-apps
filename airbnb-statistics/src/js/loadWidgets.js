@@ -10,10 +10,11 @@ loadProviders();
 // Load charts
 loadInteractionManager();
 loadGeomap();
-loadTopHosts();
 loadPropertyType();
 loadActivity();
 loadAvgPrice();
 loadLicenses();
 loadHostListings();
 loadHostListingsStatistics();
+// loadTopHosts();
+loadTopHostsTable();

@@ -301,15 +301,15 @@ function createHostsTable(dataArray) {
     </thead>
     <tbody>`;
 
-  dataArray.forEach(host => {
+  dataArray.forEach(d => {
     tableHTML += `
       <tr class="data-row">
-        <td>${host.host_name}</td>
-        <td>${host.entire_homes}</td>
-        <td>${host.private_rooms}</td>
-        <td>${host.shared_rooms}</td>
-        <td>${host.hotel_rooms}</td>
-        <td>${host.total_listings}</td>
+        <td>${d.host}</td>
+        <td>${d.entireHome}</td>
+        <td>${d.privateRoom}</td>
+        <td>${d.sharedRoom}</td>
+        <td>${d.hotelRoom}</td>
+        <td>${d.listings}</td>
       </tr>`;
   });
 
