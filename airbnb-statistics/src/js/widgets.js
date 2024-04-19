@@ -858,6 +858,12 @@ function loadTopHosts() {
 
     myData.graph("Slicer")
         .set("autoSizeColumns", true)
+        .set("columnsWidth", [{"group":110},
+          {"calculated_host_listings_count":80},
+          {"calculated_host_listings_count_entire_homes":85},
+          {"calculated_host_listings_count_private_rooms":75},
+          {"calculated_host_listings_count_shared_rooms":75},
+          {"calculated_host_listings_count_hotel_rooms":65}])
         .set('showSearch', false)
         .element(elementId)
         .execute();

@@ -184,9 +184,9 @@ body {
 
 .widgets-container {
     display: grid;
-    grid-template-rows: 30px 460px 400px 350px 440px;
+    grid-template-rows: 460px 400px 350px 440px;
     grid-template-columns: 1fr;
-    grid-template-areas: "frequent-filter" "first" "second" "third" "fourth";
+    grid-template-areas: "first" "second" "third" "fourth";
     gap: 10px;
     margin-top: 20px;
 }
@@ -257,7 +257,7 @@ body {
     grid-area: title;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     font-size: 1.5em;
     font-weight: bold;
     font-family: sans-serif;
@@ -643,15 +643,41 @@ body {
 
 .frequent-filter-container {
     grid-area: frequent-filter;
-    font-size: 1.5em;
-    font-weight: bold;
     font-family: sans-serif;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    border-bottom: 1px solid;
+    font-weight: 100 !important;
+    font-size: large !important;
 }
 
 .frequent-filter-container > input {
     cursor: pointer;
+}
+
+
+.ag-header-cell-label .ag-header-cell-text {
+    white-space: pre-line !important;
+    text-align: center;
+}
+
+.ag-header-cell-label {
+    justify-content: center;
+}
+
+.ag-theme-balham .ag-header-cell, .ag-theme-balham .ag-header-group-cell {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.cell-wrap-text {
+    white-space: normal !important;
+}
+
+.ag-selection-checkbox {
+    display: none;
+}
+
+.ag-theme-balham .ag-header {
+    height: 40px !important;
 }

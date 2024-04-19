@@ -24,9 +24,6 @@
         <div class="map-container cf-card" id="cf-main-geomap"></div>
         <div class="charts-container">
             <div class="widgets-container">
-                <div class="frequent-filter-container">
-                    <span>Frequent properties</span> <input type="checkbox" id="frequent-filter">
-                </div>
                 <div class="cf-room-type" style="grid-area: first">
                     <div class="title">
                         <span>Room Type</span>
@@ -96,7 +93,12 @@
                     </div>
                 </div>
                 <div class="cf-activity" style="grid-area: second">
-                    <div class="title">Activity</div>
+                    <div class="title">
+                        <span>Activity</span>
+                        <div class="frequent-filter-container">
+                            <span>Frequent properties</span> <input type="checkbox" id="frequent-filter">
+                        </div>
+                    </div>
                     <div class="chart-container">
                         <div id="cf-activity"></div>
                     </div>
