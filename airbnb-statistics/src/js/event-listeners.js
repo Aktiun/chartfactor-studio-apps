@@ -108,7 +108,7 @@ $("#frequent-filter").change(function(event) {
         .value([startDate, endDate]);
     const occupancyFilter = cf.Filter("estimated_occupied_time")
         .operation("GT")
-        .value([25]);
+        .value([60]);
 
     applicableVisuals.forEach(v => {
         if (event.currentTarget.checked) {
