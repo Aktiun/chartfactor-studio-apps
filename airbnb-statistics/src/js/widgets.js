@@ -270,7 +270,6 @@ function loadGeomap() {
             type: e.type
           });
         })
-        .on("geo:layers-execution-stop", e => updateBnBBoundsFilter())
         .on("execute:stop", e => {
           let aktiveMap = cf.getVisualization("cf-main-geomap");
           let geoMap = aktiveMap.get("map");
