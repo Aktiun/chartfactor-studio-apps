@@ -35,6 +35,8 @@ const updateBnBBoundsFilter = () => {
         c.staticFilters([boundaryFilter, ...vStaticFilters]).execute();
     });
 
+    window.boundaryFilter = boundaryFilter;
+
 }
 
 const updateRealtorBoundsFilter = () => {
