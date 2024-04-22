@@ -736,7 +736,7 @@ function loadHostListings() {
         .palette(["#1d91c0", "#1d91c0"]);
     // --- Define chart options and static filters ---
     myData.staticFilters(window.boundaryFilter);
-    let myChart = myData.graph("Histogram")
+    myData.graph("Histogram")
         .set("grid", grid)
         .set("color", color)
         .set("xAxis", { "show": true, "lines": false })
@@ -752,31 +752,29 @@ function loadHostListings() {
 function loadHostListingsStatistics() {
   const elementId = "cf-host-single-listings";
   try {
-    cf.create('Query1')
-        .provider('local')
+
+    const hlQuery1 = cf.provider('local')
         .source('abnb_listings')
-        .staticFilters(window.boundaryFilter)
-        .filter(cf.Filter("host_total_listings_count")
+        .staticFilters(window.boundaryFilter, cf.Filter("host_total_listings_count")
             .label("host_total_listings_count")
-            .operation("NOT IN")
-            .value([0, 1]))
-        .metrics(cf.Metric("host_id", "unique"))
-        .create('Query2')
-        .provider('local')
-        .source('abnb_listings')
-        .staticFilters(window.boundaryFilter)
-        .filter(cf.Filter("host_total_listings_count")
-            .label("host_total_listings_count")
-            .operation("IN")
+            .operation("GT")
             .value([1]))
         .metrics(cf.Metric("host_id", "unique"))
-        .processWith(dataHandler)
-        .on("execute:stop", (result) => {
+        .on("execute:stop", async (hlQuery1) => {
+          const hlQuery2 = await cf.provider('local')
+              .source('abnb_listings')
+              .staticFilters(window.boundaryFilter, cf.Filter("host_total_listings_count")
+                  .label("host_total_listings_count")
+                  .operation("LT")
+                  .value([2]))
+              .metrics(cf.Metric("host_id", "unique"))
+              .element('hlQuery2')
+              .execute();
 
-          let data = result.data.Query2;
+          let data = hlQuery2.data;
           let hostsWithOneListing = data[0].current.metrics.host_id.unique;
 
-          let dataMulti = result.data.Query1;
+          let dataMulti = hlQuery1.data;
           let hostsMultiListings = dataMulti[0].current.metrics.host_id.unique;
 
 
@@ -801,6 +799,31 @@ function loadHostListingsStatistics() {
 
           animateValue(document.getElementById('single-listings-val'), statisticsObj2.count, formatCount, true);
           animateValue(document.getElementById('single-listings-prct-val'), statisticsObj2.rate, formatRate, true);
+          cf.remove('hlQuery2');
+        })
+        .element('hlQuery1')
+        .execute();
+
+
+    cf.create('hlQuery1')
+        .provider('local')
+        .source('abnb_listings')
+        .staticFilters(window.boundaryFilter, cf.Filter("host_total_listings_count")
+            .label("host_total_listings_count")
+            .operation("GT")
+            .value([1]))
+        .metrics(cf.Metric("host_id", "unique"))
+        .create('hlQuery2')
+        .provider('local')
+        .source('abnb_listings')
+        .staticFilters(window.boundaryFilter, cf.Filter("host_total_listings_count")
+            .label("host_total_listings_count")
+            .operation("IN")
+            .value([1]))
+        .metrics(cf.Metric("host_id", "unique"))
+        .processWith(dataHandler)
+        .on("execute:stop", (result) => {
+
         })
         .element(elementId)
         .execute()

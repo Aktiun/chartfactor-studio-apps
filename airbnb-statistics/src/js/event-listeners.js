@@ -112,7 +112,11 @@ $("#frequent-filter").change(function(event) {
 
     applicableVisuals.forEach(v => {
         if (event.currentTarget.checked) {
-            v.staticFilters(lastReviewFilter, occupancyFilter);
+            if (!v._isAktiveLayer) {
+                v.staticFilters(window.boundaryFilter, lastReviewFilter, occupancyFilter);
+            } else {
+                v.staticFilters(lastReviewFilter, occupancyFilter);
+            }
             v.execute();
         } else {
             const vStaticFilters = v.getCurrentAQL()._staticFilters;
