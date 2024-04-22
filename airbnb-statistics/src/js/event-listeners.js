@@ -100,15 +100,15 @@ $("#frequent-filter").change(function(event) {
     const applicableVisuals = cf.getAllVisualizations().filter(i => !["Interaction Manager", "Geo Map GL"].includes(i._chartType));
 
     const moment = cf.getDependency("moment");
-    const currentDate = moment();
-    const startDate = currentDate.subtract(1, "year").format("YYYY-MM-DD");
+    const currentDate = moment(new Date());
     const endDate = currentDate.format("YYYY-MM-DD");
+    const startDate = currentDate.subtract(1, "year").format("YYYY-MM-DD");
     const lastReviewFilter = cf.Filter("last_review")
         .operation("BETWEEN")
         .value([startDate, endDate]);
     const occupancyFilter = cf.Filter("estimated_occupied_time")
         .operation("GT")
-        .value([60]);
+        .value([25]);
 
     applicableVisuals.forEach(v => {
         if (event.currentTarget.checked) {
