@@ -694,3 +694,11 @@ body {
 .sort-icon {
     /* You can add additional styles for the icon here */
 }
+
+.data-row {
+    cursor: pointer;
+}
+
+.data-row:hover {
+    background-color: #f2f2f2;
+}
