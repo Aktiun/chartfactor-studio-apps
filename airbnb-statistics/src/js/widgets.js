@@ -759,7 +759,7 @@ function loadHostListingsStatistics() {
             .label("host_total_listings_count")
             .operation("GT")
             .value([1]))
-        .metrics(cf.Metric("host_id", "unique"))
+        .metrics(cf.Metric())
         .on("execute:stop", async (hlQuery1) => {
           const hlQuery2 = await cf.provider('local')
               .source('abnb_listings')
@@ -767,15 +767,15 @@ function loadHostListingsStatistics() {
                   .label("host_total_listings_count")
                   .operation("LT")
                   .value([2]))
-              .metrics(cf.Metric("host_id", "unique"))
+              .metrics(cf.Metric())
               .element('hlQuery2')
               .execute();
 
           let data = hlQuery2.data;
-          let hostsWithOneListing = data[0].current.metrics.host_id.unique;
+          let hostsWithOneListing = data[0].current.count;
 
           let dataMulti = hlQuery1.data;
-          let hostsMultiListings = dataMulti[0].current.metrics.host_id.unique;
+          let hostsMultiListings = dataMulti[0].current.count;
 
 
           let element1 = hostsWithOneListing >= hostsMultiListings ? hostsWithOneListing : hostsMultiListings;
@@ -803,30 +803,6 @@ function loadHostListingsStatistics() {
         })
         .element('hlQuery1')
         .execute();
-
-
-    cf.create('hlQuery1')
-        .provider('local')
-        .source('abnb_listings')
-        .staticFilters(window.boundaryFilter, cf.Filter("host_total_listings_count")
-            .label("host_total_listings_count")
-            .operation("GT")
-            .value([1]))
-        .metrics(cf.Metric("host_id", "unique"))
-        .create('hlQuery2')
-        .provider('local')
-        .source('abnb_listings')
-        .staticFilters(window.boundaryFilter, cf.Filter("host_total_listings_count")
-            .label("host_total_listings_count")
-            .operation("IN")
-            .value([1]))
-        .metrics(cf.Metric("host_id", "unique"))
-        .processWith(dataHandler)
-        .on("execute:stop", (result) => {
-
-        })
-        .element(elementId)
-        .execute()
   } catch (ex) {
     console.error(ex);
     handleError(elementId, ex);
