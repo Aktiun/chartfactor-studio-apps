@@ -756,15 +756,15 @@ function loadHostListingsStatistics() {
     const hlQuery1 = cf.provider('local')
         .source('abnb_listings')
         .staticFilters(window.boundaryFilter, cf.Filter("host_total_listings_count")
-            .label("host_total_listings_count")
             .operation("GT")
             .value([1]))
         .metrics(cf.Metric())
         .on("execute:stop", async (hlQuery1) => {
+          const imFilters = cf.getIManager().get('api').getFilters();
           const hlQuery2 = await cf.provider('local')
               .source('abnb_listings')
+              .filters(imFilters)
               .staticFilters(window.boundaryFilter, cf.Filter("host_total_listings_count")
-                  .label("host_total_listings_count")
                   .operation("LT")
                   .value([2]))
               .metrics(cf.Metric())
