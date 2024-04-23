@@ -44,3 +44,5 @@ loadHostListings();
 loadHostListingsStatistics();
 // loadTopHosts();
 loadTopHostsTable();
+loadShortTermRentals();
+loadShortTermRentalsStatistics();

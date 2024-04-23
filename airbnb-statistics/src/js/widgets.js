@@ -1486,3 +1486,95 @@ function loadTopHostsTable() {
       .element('to-host-queries')
       .execute();
 }
+
+function loadShortTermRentals() {
+  const elementId = "cf-short-term-rentals";
+  try {
+    const elementId = 'cf-short-term-rentals';
+    let provider = cf.provider("local");
+    let source = provider.source("abnb_listings");
+
+    let metric0 = cf.Metric("count");
+
+    let group1 = cf.Attribute("minimum_nights_d")
+        .limit(1000)
+        .sort("asc", "minimum_nights_d");
+
+    let myData = source.groupby(group1)
+        .metrics(metric0);
+
+    let grid = cf.Grid()
+        .top(10)
+        .right(15)
+        .bottom(35)
+        .left(65);
+
+    let color = cf.Color()
+        .theme({
+          background: "rgba(0,0,0,0)",
+          font: "black"
+        })
+        .palette(["#0095b7", "#a0b774", "#f4c658", "#fe8b3e", "#cf2f23", "#756c56", "#007896", "#47a694", "#f9a94b", "#ff6b30", "#e94d29", "#005b76"]);
+    myData.staticFilters(window.boundaryFilter);
+    myData.graph("Bars")
+        .set("grid", grid)
+        .set("xAxis", { "show": true, "lines": false })
+        .set("yAxis", { "text": "out", "lines": false })
+        .set("color", color)
+        .set("dataZoom", "dragFilter")
+        .element(elementId)
+        .execute();
+  } catch (ex) {
+    console.error(ex);
+    handleError(elementId, ex);
+  }
+}
+
+function loadShortTermRentalsStatistics() {
+  try {
+    cf.provider('local')
+        .source('abnb_listings')
+        .staticFilters(window.boundaryFilter, cf.Filter("minimum_nights")
+            .operation("LT")
+            .value([30]))
+        .metrics(cf.Metric())
+        .on("execute:stop", async (strQ) => {
+          const imFilters = cf.getIManager().get('api').getFilters();
+          const ltrQ = await cf.provider('local')
+              .source('abnb_listings')
+              .filters(imFilters)
+              .staticFilters(window.boundaryFilter, cf.Filter("minimum_nights")
+                  .operation("GT")
+                  .value([29]))
+              .metrics(cf.Metric())
+              .element('long-term-rentals-statistics')
+              .execute();
+
+          let data = ltrQ.data;
+          let longTermRentals = data[0].current.count;
+          let dataShort = strQ.data;
+          let shortTermRentals = dataShort[0].current.count;
+
+          let statisticsObj1 = {
+            count: shortTermRentals,
+            rate: shortTermRentals / (shortTermRentals + longTermRentals) * 100,
+          }
+          let statisticsObj2 = {
+            count: longTermRentals,
+            rate: longTermRentals / (shortTermRentals + longTermRentals) * 100,
+          }
+
+          animateValue(document.getElementById('short-term-val'), statisticsObj1.count, formatCount, true);
+          animateValue(document.getElementById('short-term-prct-val'), statisticsObj1.rate, formatRate, true);
+
+          animateValue(document.getElementById('longer-term-val'), statisticsObj2.count, formatCount, true);
+          animateValue(document.getElementById('longer-term-prct-val'), statisticsObj2.rate, formatRate, true);
+          cf.remove('long-term-rentals-statistics');
+        })
+        .element('short-term-rentals-statistics')
+        .execute();
+  } catch (ex) {
+    console.error(ex);
+    handleError(elementId, ex);
+  }
+}

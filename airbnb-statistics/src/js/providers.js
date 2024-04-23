@@ -1,5 +1,21 @@
 function loadProviders() {
     function getProviderMetadata() {
+        let minNightsD = {
+            "name": "minimum_nights_d",
+            "label": "Minimum nights - ordered",
+            "type": "ATTRIBUTE",
+            "dependencies": ["minimum_nights_str"],
+            "reverse": (parameter) => {
+                return parameter;
+            },
+            "function": (minNightsStr) => {
+                return {
+                    value: minNightsStr,
+                    order: minNightsStr === "+35" ? 99 : parseInt(minNightsStr)
+                };
+            }
+        };
+
         let _META_ = {
             abnb_listings: {
                 count: { label: "Listings" },
@@ -243,6 +259,7 @@ function loadProviders() {
                     estimated_occupied_time: {
                         label: "Occupancy (last 12 months)"
                     },
+                    "minimum_nights_d": minNightsD
                 }
             },
             "realtor_monthly_inventory_zip_all": {

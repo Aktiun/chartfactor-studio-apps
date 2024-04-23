@@ -184,9 +184,9 @@ body {
 
 .widgets-container {
     display: grid;
-    grid-template-rows: 460px 400px 350px 440px;
+    grid-template-rows: 460px 400px 350px 440px 440px;
     grid-template-columns: 1fr;
-    grid-template-areas: "first" "second" "third" "fourth";
+    grid-template-areas: "first" "second" "third" "fourth" "fifth";
     gap: 10px;
     margin-top: 20px;
 }
