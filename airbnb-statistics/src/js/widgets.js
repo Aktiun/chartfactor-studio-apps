@@ -1519,7 +1519,7 @@ function loadShortTermRentals() {
 
     let lines = cf.MarkLine()
         .data([
-          { "name": "Value", "xAxis": 27, "label": {formatter: () => "STR Threshold"}, "lineStyle": {type: 'dashed'} }
+          { "name": "Value", "xAxis": 28, "label": {formatter: () => "STR Threshold"}, "lineStyle": {type: 'dashed'} }
         ]);
 
     myData.graph("Bars")
@@ -1527,6 +1527,7 @@ function loadShortTermRentals() {
         .set("markline", lines)
         .set("xAxis", { "show": true, "lines": false })
         .set("yAxis", { "text": "out", "lines": false })
+        .set('staticValues', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '+35'])
         .set("color", color)
         .set("dataZoom", "dragFilter")
         .element(elementId)
