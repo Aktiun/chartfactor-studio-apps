@@ -36,6 +36,7 @@ loadProviders();
 // Load charts
 loadInteractionManager();
 loadGeomap();
+loadTotalListingsCount();
 loadPropertyType();
 loadActivity();
 loadAvgPrice();

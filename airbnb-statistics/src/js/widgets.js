@@ -494,8 +494,6 @@ function loadPropertyType() {
               false,
               true
           );
-
-          animateValue(document.getElementById('total-rooms-val'), element1Clean.count + element2Clean.count + element3Clean.count + element4Clean.count, formatCount, true);
         })
         .element(elementId)
         .execute();
@@ -1585,4 +1583,18 @@ function loadShortTermRentalsStatistics() {
     console.error(ex);
     handleError(elementId, ex);
   }
+}
+
+function loadTotalListingsCount() {
+  cf.provider('local')
+      .source('abnb_listings')
+      .staticFilters(window.boundaryFilter)
+      .metrics(cf.Metric())
+      .element('total-listings-count')
+      .on('execute:stop', data => {
+        const count = data.data[0].current.count;
+
+        animateValue(document.getElementById('total-rooms-val'), count, formatCount, true);
+      })
+      .execute();
 }

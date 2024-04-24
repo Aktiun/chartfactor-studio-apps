@@ -10,14 +10,22 @@ body {
     height: calc(100% - 40px);
     display: grid;
     grid-template-columns: 500px auto;
-    grid-template-rows: 60px auto;
+    grid-template-rows: 60px 25px auto;
     grid-template-areas:
             "header header"
-            "charts map"
-            "info map";
+            "total-listings map"
+            "charts map";
     grid-gap: 20px;
     padding: 20px;
     background: #f8f9fa!important;
+}
+
+.total-listings-sticky {
+    grid-area: total-listings;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #5a5a5a;
 }
 
 .cf-card {
