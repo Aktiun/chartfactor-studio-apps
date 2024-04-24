@@ -414,10 +414,8 @@ function loadPropertyType() {
         })
         .on("execute:stop", () => {
           let chart = cf.getVisualization("cf-roomType");
+          const clientFilter = chart.getCurrentAQL()._clientFilters[0];
           let data = chart.get("data");
-
-          let roomTypes = ["Entire home/apt", "Private room", "Shared room", "Hotel room"];
-
           let element1 = data[0];
           let element2 = data.length > 1 ? data[1] : undefined;
           let element3 = data.length > 2 ? data[2] : undefined;
@@ -426,17 +424,20 @@ function loadPropertyType() {
           let element1Clean = element1 ? {
             count: element1.current.count,
             rate: element1.current.metrics.rate.count,
-            description: element1.group[0]
+            description: element1.group[0],
+            id: 'entire-home-apt-val'
           } : getZeroCleanedData();
           let element2Clean = element2 ? {
             count: element2.current.count,
             rate: element2.current.metrics.rate.count,
-            description: element2.group[0]
+            description: element2.group[0],
+            id: 'private-room-val'
           } : getZeroCleanedData();
           let element3Clean = element3 ? {
             count: element3.current.count,
             rate: element3.current.metrics.rate.count,
-            description: element3.group[0]
+            description: element3.group[0],
+            id: 'shared-room-val'
           } : getZeroCleanedData();
           let element4Clean = element4 ? {
             count: element4.current.count,
@@ -444,28 +445,34 @@ function loadPropertyType() {
             description: element4.group[0]
           } : getZeroCleanedData();
 
-          let notFirstElementClean = [element2Clean, element3Clean, element4Clean];
-          let descriptionsAssigned = new Set();
-          notFirstElementClean.map((element, index) => {
-            if (element.description === "") {
-              let availableDescriptions = roomTypes.filter(type =>
-                  !descriptionsAssigned.has(type) &&
-                  type !== element1Clean.description &&
-                  type !== element2Clean.description &&
-                  type !== element3Clean.description &&
-                  type !== element4Clean.description
-              );
+          document.getElementById('entire-home-apt-val').parentElement.style.fontWeight = 'normal';
+          document.getElementById('entire-home-apt-val').parentElement.style.fontSize = '1em';
 
-              if (availableDescriptions.length > 0) {
-                element.description = availableDescriptions[0];
-                descriptionsAssigned.add(availableDescriptions[0]);
-              }
-            }
-          });
+          document.getElementById('private-room-val').parentElement.style.fontWeight = 'normal';
+          document.getElementById('private-room-val').parentElement.style.fontSize = '1em';
 
-          // var htmlString = buildHtmlStringRoomtype(element1Clean, element2Clean, element3Clean, element4Clean);
-          // document.getElementById("cf-roomType-statistics").innerHTML = htmlString;
-          // animateValue(document.getElementById('element1Percentage'), element1Clean.rate, formatRate);
+          document.getElementById('shared-room-val').parentElement.style.fontWeight = 'normal';
+          document.getElementById('shared-room-val').parentElement.style.fontSize = '1em';
+
+          document.getElementById('hotel-room-val').parentElement.style.fontWeight = 'normal';
+          document.getElementById('hotel-room-val').parentElement.style.fontSize = '1em';
+
+          let fontChange = null;
+          if (clientFilter && clientFilter.value.some(v => v === element1Clean.description)) {
+            fontChange = element1Clean.id;
+          } else if (clientFilter && clientFilter.value.some(v => v === element2Clean.description)) {
+            fontChange = element2Clean.id;
+          } else if (clientFilter && clientFilter.value.some(v => v === element3Clean.description)) {
+            fontChange = element3Clean.id;
+          } else if (clientFilter && clientFilter.value.some(v => v === element4Clean.description)) {
+            fontChange = element4Clean.id;
+          }
+
+          if (fontChange) {
+            document.getElementById(fontChange).parentElement.style.fontWeight = 'bold';
+            document.getElementById(fontChange).parentElement.style.fontSize = '1.5em';
+          }
+
           animateBothValues(
               document.getElementById('entire-home-apt-val'),
               element1Clean.count,
