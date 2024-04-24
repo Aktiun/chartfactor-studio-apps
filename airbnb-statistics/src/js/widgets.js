@@ -1514,10 +1514,17 @@ function loadShortTermRentals() {
           background: "rgba(0,0,0,0)",
           font: "black"
         })
-        .palette(["#0095b7", "#a0b774", "#f4c658", "#fe8b3e", "#cf2f23", "#756c56", "#007896", "#47a694", "#f9a94b", "#ff6b30", "#e94d29", "#005b76"]);
+        .palette(["#0095b7"]);
     myData.staticFilters(window.boundaryFilter);
+
+    let lines = cf.MarkLine()
+        .data([
+          { "name": "Value", "xAxis": 27, "label": {formatter: () => "STR Threshold"}, "lineStyle": {type: 'dashed'} }
+        ]);
+
     myData.graph("Bars")
         .set("grid", grid)
+        .set("markline", lines)
         .set("xAxis", { "show": true, "lines": false })
         .set("yAxis", { "text": "out", "lines": false })
         .set("color", color)
