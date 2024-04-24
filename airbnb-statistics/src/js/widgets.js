@@ -131,131 +131,40 @@ function loadGeomap() {
         .graph("Geo Map GL")
         .set("layers", [
           {
-            name: "hosts",
-            priority: 3,
-            type: "marker",
-            provider: "local",
-            source: "abnb_listings",
-            properties: {
-              limit: 10000,
-              color: cf
-                  .Color()
-                  .palette([
-                    "#253494",
-                    "#2c7fb8",
-                    "#41b6c4",
-                    "#7fcdbb",
-                    "#c7e9b4",
-                    "#ffffcc"
-                  ])
-                  .metric(cf.Metric()),
-              ignoreCoords: [0, 0],
+            "name": "hosts",
+            "priority": 2,
+            "type": "heatmap",
+            "provider": "local",
+            "source": "abnb_listings",
+            "properties": {
               showLocation: false,
               disableMarkerEvents: false,
-              maxSpiderifyMarkers: 100,
               allowClickInRawMarker: false,
-              location: "location",
-              visibilityZoomRange: [11, 24],
-              precisionLevels: null,
-              fields: ["name", "host_name", "bedrooms", "beds", "price", "picture_url", "number_of_reviews", "review_scores_value", "minimum_nights", "zipcode", "is_usa", "host_name", "host_url", "listing_url", "host_picture_url"],
               "customTooltip": myTooltip,
-            }
+              "limit": 20000,
+              "location": "location",
+              "visibilityZoomRange": [0, 24],
+              "options": {
+                "heatmap-weight": ["interpolate", ["linear"], ["get", "__cf_cluster_count_percent__"], 1, 0.2, 80, 85],
+                "heatmap-radius": ["interpolate", ["linear"], ["get", "__cf_cluster_count_percent__"], 1, 3, 20, 5, 80, 10],
+                "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 5, 1, 18, 6],
+                "heatmap-color": ["interpolate", ["linear"], ["heatmap-density"], 0, "rgba(0, 0, 255, 0)", 0.1, "royalblue", 0.3, "cyan", 0.5, "lime", 0.7, "yellow", 1, "red"],
+                "switchToMarkersAtRaw": true,
+              },
+              "precisionLevels": { "raw": { "zoom": 13, fields: ["name", "host_name", "bedrooms", "beds", "price", "picture_url", "number_of_reviews", "review_scores_value", "minimum_nights", "zipcode", "is_usa", "host_name", "host_url", "listing_url", "host_picture_url"], }, "levels": [{ "zoom": 2, "precision": 3 }, { "zoom": 4, "precision": 5 }, { "zoom": 6, "precision": 6 }, { "zoom": 9, "precision": 7 }, { "zoom": 12, "precision": 8 }] },
+              "color": cf.Color()
+                  .palette(["#08519c", "#3182bd", "#6baed6", "#bdd7e7", "#eff3ff"])
+                  .metric(cf.Metric()),
+            },
           },
           {
-            name: "heatmap",
-            priority: 2,
-            type: "heatmap",
-            provider: "local",
-            source: "abnb_listings",
-            properties: {
-              limit: 10000,
-              location: "location",
-              visibilityZoomRange: [0, 11],
-              options: {
-                "heatmap-weight": [
-                  "interpolate",
-                  ["linear"],
-                  ["get", "__cf_cluster_count_percent__"],
-                  1,
-                  0.2,
-                  80,
-                  85
-                ],
-                "heatmap-radius": [
-                  "interpolate",
-                  ["linear"],
-                  ["get", "__cf_cluster_count_percent__"],
-                  1,
-                  3,
-                  20,
-                  5,
-                  80,
-                  10
-                ],
-                "heatmap-intensity": [
-                  "interpolate",
-                  ["linear"],
-                  ["zoom"],
-                  5,
-                  1,
-                  18,
-                  6
-                ],
-                "heatmap-color": [
-                  "interpolate",
-                  ["linear"],
-                  ["heatmap-density"],
-                  0,
-                  "rgba(0, 0, 255, 0)",
-                  0.1,
-                  "royalblue",
-                  0.3,
-                  "cyan",
-                  0.5,
-                  "lime",
-                  0.7,
-                  "yellow",
-                  1,
-                  "red"
-                ],
-                switchToMarkersAtRaw: true
-              },
-              precisionLevels: {
-                raw: { zoom: 18, fields: [] },
-                levels: [
-                  { zoom: 2, precision: 3 },
-                  { zoom: 4, precision: 5 },
-                  { zoom: 6, precision: 6 },
-                  { zoom: 10, precision: 7 },
-                  { zoom: 14, precision: 8 },
-                  { zoom: 17, precision: 9 }
-                ]
-              },
-              color: cf
-                  .Color()
-                  .palette([
-                    "#a50026",
-                    "#d73027",
-                    "#f46d43",
-                    "#fdae61",
-                    "#fee090"
-                  ])
-                  .metric(cf.Metric())
-            }
+            "type": "tile",
+            "name": "Tile",
+            "priority": 1,
+            "properties": {
+              "source": { "tiles": ["https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"], "scheme": "xyz", "attribution": "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>" },
+            },
           },
-          {
-            type: "tile",
-            name: "Tile",
-            priority: 1,
-            properties: {
-              source: {
-                tiles: ["https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"],
-                scheme: "xyz",
-                attribution:
-                    'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
-              }
-            }
-          }
         ])
         .set("zoom", 4)
         .set("center", [-73.84875467114972, 40.77680058764247])
@@ -292,7 +201,7 @@ function loadGeomap() {
             updateBnBBoundsFilter();
           });
           //let hostsLayer = cf.getVisualization("cf-main-geomap-hosts");
-          geoMap.on("click", "hosts_image_layer", (e) => {
+          geoMap.on("click", "hosts_heatmap_layer", (e) => {
             let markerData = JSON.parse(e.features[0].properties.__cf_data__);
             if (markerData.is_usa === "false") return;
 
