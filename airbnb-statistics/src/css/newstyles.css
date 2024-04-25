@@ -487,26 +487,38 @@ body {
     grid-area: content;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 0 1fr 1fr;
+    grid-template-rows: 0 1fr 30px 2fr;
     grid-template-areas:
             "spacer"
             "info"
+            "charts-title"
             "modalcharts";
     gap: 10px;
+}
+
+.modal-charts-title {
+    grid-area: charts-title;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    justify-content: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: sans-serif;
+    color: #546e7a;
+    line-height: 0;
 }
 
 .investors-modal-content > .info {
     grid-area: info;
     display: grid;
     grid-template-columns: calc(50% - 15px) 30px calc(50% - 15px);
-    grid-template-rows: 30px auto 30px;
+    grid-template-rows: 30px auto;
     grid-template-areas: "left-side picture right-side"
-                         "left-side picture right-side"
-                         "reviews bottom bottom";
+                         "left-side picture right-side";
 }
 
-.investors-modal-content > .info > .reviews {
-    grid-area: reviews;
+.modal-listing-info > .reviews {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -562,7 +574,6 @@ body {
     flex-direction: column;
     align-items: center;
     color: #546E74 !important;
-    font-weight: bold;
 }
 
 .icon-value {
@@ -610,7 +621,7 @@ body {
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: repeat(11, 240px);
-    height: calc(50vh - 135px);
+    height: calc(50vh - 90px);
     overflow-y: scroll;
 }
 
