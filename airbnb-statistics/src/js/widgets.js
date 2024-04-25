@@ -351,7 +351,8 @@ function loadPropertyType() {
           let element4Clean = element4 ? {
             count: element4.current.count,
             rate: element4.current.metrics.rate.count,
-            description: element4.group[0]
+            description: element4.group[0],
+            id: 'hotel-room-val'
           } : getZeroCleanedData();
 
           document.getElementById('entire-home-apt-val').parentElement.style.fontWeight = 'normal';
