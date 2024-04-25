@@ -494,6 +494,7 @@ body {
             "charts-title"
             "modalcharts";
     gap: 10px;
+    height: calc(100vh - 105px);
 }
 
 .modal-charts-title {
@@ -514,14 +515,16 @@ body {
     display: grid;
     grid-template-columns: calc(50% - 15px) 30px calc(50% - 15px);
     grid-template-rows: 30px auto;
-    grid-template-areas: "left-side picture right-side"
+    grid-template-areas: "header picture headers"
                          "left-side picture right-side";
 }
 
-.modal-listing-info > .reviews {
+.reviews {
+    grid-area: bottom;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #546E74 !important;
 }
 
 .investors-modal-content > .info > .left-side {
@@ -556,10 +559,18 @@ body {
     border: 6px solid white;
 }
 
-.investors-modal-content > .info > .right-side {
+.right-side-container {
     grid-area: right-side;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.right-side {
+    gap: 10px;
     display: grid;
-    grid-template-columns: 50px auto auto;
+    grid-template-columns: 0px auto auto;
     grid-template-rows: 1fr 1fr 40px 20px;
     align-items: center;
     grid-template-areas: "space first second"
@@ -590,16 +601,16 @@ body {
     color: #546E74 !important;
 }
 
-.investors-modal-content > .info > .right-side > .listing-price {
+.right-side > .listing-price {
     grid-area: first;
 }
-.investors-modal-content > .info > .right-side > .min-nights {
+.right-side > .min-nights {
     grid-area: second;
 }
-.investors-modal-content > .info > .right-side > .listing-beds {
+.right-side > .listing-beds {
     grid-area: third;
 }
-.investors-modal-content > .info > .right-side > .listing-bedrooms {
+.right-side > .listing-bedrooms {
     grid-area: fourth;
 }
 
@@ -621,7 +632,7 @@ body {
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: repeat(11, auto);
-    height: calc(55vh - 20px);
+    height: 100%;
     overflow-y: scroll;
     gap: 5px;
 }
@@ -718,4 +729,53 @@ body {
 
 .data-row:hover {
     background-color: #f2f2f2;
+}
+
+@media (max-width: 950px) {
+    .icon-value {
+        font-size: medium;
+    }
+
+    .right-side {
+        font-size: medium;
+        grid-template-rows: 40px 40px 40px 20px;
+    }
+
+    .investors-modal-content > .info > .left-side > #listing-picture {
+        max-height: 20vh;
+    }
+}
+
+@media (max-width: 818px) {
+    .icon-value {
+        font-size: small;
+    }
+
+    .right-side {
+        font-size: small;
+    }
+}
+
+@media (max-width: 720px) {
+    .icon-value {
+        font-size: large;
+    }
+
+    .right-side {
+        font-size: large;
+    }
+    .investors-modal-content > .info {
+        grid-area: info;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 20vh 50px auto;
+        grid-template-areas:
+        "left-side"
+        "picture"
+        "right-side";
+    }
+
+    .investors-modal-content > .modal-charts {
+        grid-template-columns: 100%;
+    }
 }
