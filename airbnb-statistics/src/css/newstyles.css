@@ -111,10 +111,6 @@ body {
 
 .cf-page-info {
     margin-top: 20px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
     color: #9e9e9e;
 }
 
