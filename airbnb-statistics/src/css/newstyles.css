@@ -453,6 +453,7 @@ body {
     grid-template-areas:
             "header"
             "content";
+    max-width: 1150px;
 }
 
 .investors-modal-header {
@@ -537,7 +538,7 @@ body {
 .investors-modal-content > .info > .left-side > #listing-picture {
     width: 100%;
     border-radius: 1rem;
-    max-height: 25vh;
+    max-height: 35vh;
     object-fit: cover;
 }
 
@@ -740,10 +741,6 @@ body {
         font-size: medium;
         grid-template-rows: 40px 40px 40px 20px;
     }
-
-    .investors-modal-content > .info > .left-side > #listing-picture {
-        max-height: 20vh;
-    }
 }
 
 @media (max-width: 818px) {
@@ -777,5 +774,9 @@ body {
 
     .investors-modal-content > .modal-charts {
         grid-template-columns: 100%;
+    }
+
+    .investors-modal-content > .info > .left-side > #listing-picture {
+        max-height: 20vh;
     }
 }
