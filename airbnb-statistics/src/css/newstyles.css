@@ -635,7 +635,7 @@ body {
     grid-template-rows: repeat(11, auto);
     height: 100%;
     overflow-y: scroll;
-    gap: 5px;
+    gap: 15px;
 }
 
 .modal-charts > .modal-chart {
