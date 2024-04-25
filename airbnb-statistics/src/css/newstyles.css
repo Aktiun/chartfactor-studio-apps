@@ -619,18 +619,21 @@ body {
 .investors-modal-content > .modal-charts {
     grid-area: modalcharts;
     display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: repeat(11, 240px);
+    grid-template-columns: 50% 50%;
+    grid-template-rows: repeat(11, auto);
     height: calc(50vh - 90px);
     overflow-y: scroll;
+    gap: 5px;
 }
 
 .modal-charts > .modal-chart {
     display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 30px auto;
-    grid-template-areas: "title chart"
-                         "description chart";
+    grid-template-columns: auto;
+    grid-template-rows: 30px auto 200px;
+    grid-template-areas:
+        "title"
+        "description"
+        "chart";
     gap: 10px;
 }
 
