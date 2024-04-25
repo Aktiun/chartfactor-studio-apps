@@ -445,8 +445,8 @@ body {
     background-color: white;
     padding: 20px;
     border-radius: 1rem;
-    width: 75%;
-    height: 75%;
+    width: 90%;
+    height: 90%;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 30px auto;
@@ -621,7 +621,7 @@ body {
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: repeat(11, auto);
-    height: calc(50vh - 90px);
+    height: calc(55vh - 20px);
     overflow-y: scroll;
     gap: 5px;
 }
