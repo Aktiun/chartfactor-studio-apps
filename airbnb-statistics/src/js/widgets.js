@@ -1504,7 +1504,7 @@ function loadTopHostsTable() {
         dataCells.forEach(cell => cell.addEventListener('click', onCellClick));
         makeTableSortable();
       })
-      .element('to-host-queries')
+      .element('top-host-queries')
       .execute();
 }
 

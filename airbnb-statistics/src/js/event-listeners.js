@@ -16,7 +16,11 @@
 
 window.addEventListener("resize", function(event) {
   cf.getAllVisualizations().forEach(c => {
-      c.resize();
+      const notAllowed = ["im", "cf-main-geomap"];
+
+      if (!notAllowed.includes(c._elementId)) {
+            c.resize();
+      }
   });
 });
 

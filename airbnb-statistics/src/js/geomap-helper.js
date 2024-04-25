@@ -27,8 +27,29 @@ const updateBnBBoundsFilter = () => {
     let boundaryFilter = cf.Filter("location").label("zoomFilter").type("POLYGON").operation("IN").value(filterBoundaries);
 
     cf.getAllVisualizations().filter(c => {
-        let notAllowed = ["im", "cf-main-geomap", "kpi-dummy", "cf-active-listings-trend", "cf-median-listing-price-trend"];
-        return !c._isAktiveLayer && !notAllowed.includes(c._elementId);
+        let notAllowed = [
+            "im", "cf-main-geomap", "kpi-dummy", "cf-active-listings-trend", "cf-median-listing-price-trend",
+            "cf-active-listings-trend-by-zipcode", "cf-median-listing-price-trend-by-zipcode", "cf-median-days-market-by-zipcode",
+            "cf-listings-mm-by-zipcode", "cf-listings-yy-by-zipcode", "cf-avg-price-by-zipcode",
+            "cf-avg-price-mm-by-zipcode", "cf-avg-price-yy-by-zipcode", "cf-median-square-feet-by-zipcode",
+            "cf-median-days-market-mm-by-zipcode", "cf-median-days-market-yy-by-zipcode", "kpi-by-zipcode",
+          "cf-active-listings-trend-by-zipcode",
+          "cf-median-listing-price-trend-by-zipcode",
+          "cf-median-days-market-by-zipcode",
+          "cf-listings-yy-by-zipcode",
+          "cf-listings-mm-by-zipcode",
+          "mimmaxquery-1",
+          "mimmaxquery-2",
+          "mimmaxquery-3",
+          "mimmaxquery-4",
+          "cf-avg-price-by-zipcode",
+          "cf-avg-price-mm-by-zipcode",
+          "cf-avg-price-yy-by-zipcode",
+          "cf-median-square-feet-by-zipcode",
+          "cf-median-days-market-mm-by-zipcode",
+          "cf-median-days-market-yy-by-zipcode"
+        ];
+        return !c._isAktiveLayer && !notAllowed.includes(c._elementId) && !!c._elementId;
     }).forEach(c => {
         const vStaticFilters = c.getCurrentAQL()._staticFilters.filter(f => f.path !== "location");
 
