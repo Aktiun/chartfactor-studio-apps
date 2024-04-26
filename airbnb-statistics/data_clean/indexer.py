@@ -111,7 +111,8 @@ def create_index(client, index_name):
                         "null_value": "null"
 				    },
 				    "host_id": {
-				        "type": "integer"
+				        "type": "keyword",
+                        "null_value": "null"
 				    },
 				    "host_url": {
 				        "type": "keyword",
@@ -409,7 +410,7 @@ def get_value(csv_file):
 				"description": r[6] if r[6] != '' else None,
 				"neighborhood_overview": r[7],
 				"picture_url": r[8] if r[8] != '' else None,
-				"host_id": r[9],
+				"host_id": str(r[9]).split('.')[0],
 				"host_url": r[10] if r[10] != '' else None,
 				"host_name": r[11] if r[11] != '' else None,
 				"host_since": r[12] if r[12] != '' else None,

@@ -57,6 +57,9 @@ def clean_data(is_whole_world=False):
         # read zipcode file
         print(f"Reading zipcodes from {zipcode_path}")
         df_zipcode = pd.read_parquet(zipcode_path)
+        if 'zipcode' in df_zipcode.columns:
+            # If it exists, convert it to string type
+            df_zipcode['zipcode'] = df_zipcode['zipcode'].astype(str)
         print(f"Total records in zipcode file: {len(df_zipcode)}")
 
     df['price'] = df['price'].replace('[\$,]', '', regex=True).astype(float)
