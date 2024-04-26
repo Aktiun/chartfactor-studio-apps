@@ -114,6 +114,7 @@ function showRating(rating) {
 }
 
 function processGeompClick(e) {
+  console.log('openmodal.....')
   let markerData = JSON.parse(e.features[0].properties.__cf_data__);
   if (markerData.is_usa === "false") return;
 
@@ -251,7 +252,7 @@ function loadGeomap() {
           geoMap.on("zoomend", (e) => {
             // console.log("zoomend **********");
             updateBnBBoundsFilter();
-            geoMap.on("off", "hosts_image_layer", processGeompClick);
+            geoMap.off("click", "hosts_image_layer", processGeompClick);
             geoMap.on("click", "hosts_image_layer", processGeompClick);
           });
           geoMap.on("moveend", () => {
