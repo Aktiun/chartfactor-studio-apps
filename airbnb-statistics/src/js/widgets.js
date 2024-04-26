@@ -254,6 +254,9 @@ function loadGeomap() {
             updateBnBBoundsFilter();
             geoMap.off("click", "hosts_image_layer", processGeompClick);
             geoMap.on("click", "hosts_image_layer", processGeompClick);
+
+            geoMap.off("touchstart", "hosts_image_layer", processGeompClick);
+            geoMap.on("touchstart", "hosts_image_layer", processGeompClick);
           });
           geoMap.on("moveend", () => {
             // console.log("moveend **********");
