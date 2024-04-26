@@ -113,6 +113,62 @@ function showRating(rating) {
   document.getElementById('reviews-stars').innerHTML = stars;
 }
 
+function processGeompClick(e) {
+  let markerData = JSON.parse(e.features[0].properties.__cf_data__);
+  if (markerData.is_usa === "false") return;
+
+  // set the modal name
+  $("#investors-modal-title > .listing-name").text(markerData.name);
+  $("#investors-modal-title > .listing-name").attr("href", markerData.listing_url);
+  $("#investors-modal-title > .host-name").text(markerData.host_name);
+  $("#investors-modal-title > .host-name").attr("href", markerData.host_url);
+  $("#listing-profile-picture").attr("src", markerData.host_picture_url);
+  $("#listing-picture").attr("src", markerData.picture_url);
+  $("#number-of-reviews").text(markerData.number_of_reviews);
+  $("#modal-zipcode").text(markerData.zipcode);
+
+  showRating(markerData.review_scores_value);
+
+  $("#listing-price").text(`$${markerData.price}`);
+  $("#min-nights").text(markerData.minimum_nights);
+  $("#listing-beds").text(markerData.beds || 'N/A');
+  $("#listing-bedrooms").text(markerData.bedrooms || 'N/A');
+
+  const {
+    price,
+    bedrooms,
+    number_of_reviews,
+    minimum_nights,
+  } = markerData;
+
+  let cleanPrice = price > 0 ? `$${price.toFixed(2)} per night.` : "Price not available";
+  let cleanBedrooms = bedrooms !== "" ? bedrooms : "Bedrooms not available";
+  let avgNights = (Number(number_of_reviews) * Number(minimum_nights)).toFixed(0);
+  let rawIncome = (avgNights * Number(price)).toFixed(2);
+  let avgIncome = rawIncome > 0 ? rawIncome : "Not available";
+  let cleanIncome = rawIncome > 0 ? `${formatCurrency(Number(avgIncome), true) }` : "Not available";
+
+  $("#avgNights").text(avgNights);
+  $("#avgIncome").text(cleanIncome);
+
+  showInvestorModal();
+
+  // set the profile img url
+
+  kpiByZipcode(markerData.zipcode);
+  trendsByZipcode(markerData.zipcode);
+  trendsByZipcode2(markerData.zipcode);
+  trendsByZipcode3(markerData.zipcode);
+  trendsByZipcode4(markerData.zipcode);
+
+  let propertyTitle = `<a href="${markerData.host_url}" target="_blank">${markerData.host_name}'s</a> Place`;
+  let propertyDetails = createListingCard(markerData);
+  $("#property-name").html(propertyTitle);
+  $("#cf-property-details-features").html(propertyDetails);
+  $("#trends-zipcode").text(markerData.zipcode);
+
+}
+
 function loadGeomap() {
   // const elementId = "vis08e89f59-a0f3-4a17-9a6e-92fdbc6d92ee";
   const elementId = "cf-main-geomap"
@@ -131,130 +187,32 @@ function loadGeomap() {
         .graph("Geo Map GL")
         .set("layers", [
           {
-            name: "hosts",
-            priority: 3,
-            type: "marker",
-            provider: "local",
-            source: "abnb_listings",
-            properties: {
-              limit: 10000,
-              color: cf
-                  .Color()
-                  .palette([
-                    "#253494",
-                    "#2c7fb8",
-                    "#41b6c4",
-                    "#7fcdbb",
-                    "#c7e9b4",
-                    "#ffffcc"
-                  ])
-                  .metric(cf.Metric()),
-              ignoreCoords: [0, 0],
-              showLocation: false,
-              disableMarkerEvents: false,
-              maxSpiderifyMarkers: 100,
-              allowClickInRawMarker: false,
-              location: "location",
-              visibilityZoomRange: [12, 24],
-              "precisionLevels": {
-                "raw": {
-                  "zoom": 12,
-                  fields: ["name", "host_name", "bedrooms", "beds", "price", "picture_url", "number_of_reviews", "review_scores_value", "minimum_nights", "zipcode", "is_usa", "host_name", "host_url", "listing_url", "host_picture_url"]
-                },
-                "levels": [
-                  { "zoom": 2, "precision": 3 },
-                  { "zoom": 4, "precision": 5 },
-                  { "zoom": 6, "precision": 6 },
-                  { "zoom": 9, "precision": 7 },
-                  { "zoom": 12, "precision": 8 }
-                ]
-              },
+            "name": "hosts",
+            "priority": 2,
+            "type": "heatmap",
+            "provider": "local",
+            "source": "abnb_listings",
+            "properties": {
               "customTooltip": myTooltip,
-            }
-          },
-          {
-            name: "heatmap",
-            priority: 2,
-            type: "heatmap",
-            provider: "local",
-            source: "abnb_listings",
-            properties: {
-              limit: 10000,
-              location: "location",
-              visibilityZoomRange: [0, 12],
-              options: {
-                "heatmap-weight": [
-                  "interpolate",
-                  ["linear"],
-                  ["get", "__cf_cluster_count_percent__"],
-                  1,
-                  0.2,
-                  80,
-                  85
-                ],
-                "heatmap-radius": [
-                  "interpolate",
-                  ["linear"],
-                  ["get", "__cf_cluster_count_percent__"],
-                  1,
-                  3,
-                  20,
-                  5,
-                  80,
-                  10
-                ],
-                "heatmap-intensity": [
-                  "interpolate",
-                  ["linear"],
-                  ["zoom"],
-                  5,
-                  1,
-                  18,
-                  6
-                ],
-                "heatmap-color": [
-                  "interpolate",
-                  ["linear"],
-                  ["heatmap-density"],
-                  0,
-                  "rgba(0, 0, 255, 0)",
-                  0.1,
-                  "royalblue",
-                  0.3,
-                  "cyan",
-                  0.5,
-                  "lime",
-                  0.7,
-                  "yellow",
-                  1,
-                  "red"
-                ],
-                switchToMarkersAtRaw: true
+              "filters": [
+                cf.Filter("is_usa").label("Is usa").operation("IN").value(["true"])
+              ],
+              "limit": 20000,
+              "location": "location",
+              "visibilityZoomRange": [0, 24],
+              "options": {
+                "heatmap-weight": ["interpolate", ["linear"], ["get", "__cf_cluster_count_percent__"], 1, 0.2, 80, 85],
+                "heatmap-radius": ["interpolate", ["linear"], ["get", "__cf_cluster_count_percent__"], 1, 3, 20, 5, 80, 10],
+                "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 5, 1, 18, 6],
+                "heatmap-color": ["interpolate", ["linear"], ["heatmap-density"], 0, "rgba(0, 0, 255, 0)", 0.1, "royalblue", 0.3, "cyan", 0.5, "lime", 0.7, "yellow", 1, "red"],
+                "switchToMarkersAtRaw": true,
               },
-              precisionLevels: {
-                raw: { zoom: 18, fields: [] },
-                levels: [
-                  { zoom: 2, precision: 3 },
-                  { zoom: 4, precision: 5 },
-                  { zoom: 6, precision: 6 },
-                  { zoom: 10, precision: 7 },
-                  { zoom: 14, precision: 8 },
-                  { zoom: 17, precision: 9 }
-                ]
-              },
-              color: cf
-                  .Color()
-                  .palette([
-                    "#a50026",
-                    "#d73027",
-                    "#f46d43",
-                    "#fdae61",
-                    "#fee090"
-                  ])
-                  .metric(cf.Metric())
-            }
-          },
-          {
+              "precisionLevels": { "raw": { "zoom": 13, fields: ["name", "host_name", "bedrooms", "beds", "price", "picture_url", "number_of_reviews", "review_scores_value", "minimum_nights", "zipcode", "is_usa", "host_name", "host_url", "listing_url", "host_picture_url"]}, "levels": [{ "zoom": 2, "precision": 3 }, { "zoom": 4, "precision": 5 }, { "zoom": 6, "precision": 6 }, { "zoom": 9, "precision": 7 }, { "zoom": 12, "precision": 8 }] },
+              "color": cf.Color()
+                  .palette(["#08519c", "#3182bd", "#6baed6", "#bdd7e7", "#eff3ff"])
+                  .metric(cf.Metric()),
+            },
+          }, {
             type: "tile",
             name: "Tile",
             priority: 1,
@@ -268,11 +226,8 @@ function loadGeomap() {
             }
           }
         ])
-        .set("zoom", 16.653013723569998)
-        .set("center", [
-          -73.9501334265953,
-          40.71284391141117
-        ])
+        .set("zoom", 4)
+        .set("center", [-73.84875467114972, 40.77680058764247])
         .set("drawControl", true)
         .set("enableZoomInfo", true)
         .set("layersControl", false)
@@ -296,6 +251,8 @@ function loadGeomap() {
           geoMap.on("zoomend", (e) => {
             // console.log("zoomend **********");
             updateBnBBoundsFilter();
+            geoMap.on("off", "hosts_image_layer", processGeompClick);
+            geoMap.on("click", "hosts_image_layer", processGeompClick);
           });
           geoMap.on("moveend", () => {
             // console.log("moveend **********");
@@ -306,61 +263,6 @@ function loadGeomap() {
             updateBnBBoundsFilter();
           });
           //let hostsLayer = cf.getVisualization("cf-main-geomap-hosts");
-          geoMap.on("click", "hosts_image_layer", (e) => {
-            let markerData = JSON.parse(e.features[0].properties.__cf_data__);
-            if (markerData.is_usa === "false") return;
-
-            // set the modal name
-            $("#investors-modal-title > .listing-name").text(markerData.name);
-            $("#investors-modal-title > .listing-name").attr("href", markerData.listing_url);
-            $("#investors-modal-title > .host-name").text(markerData.host_name);
-            $("#investors-modal-title > .host-name").attr("href", markerData.host_url);
-            $("#listing-profile-picture").attr("src", markerData.host_picture_url);
-            $("#listing-picture").attr("src", markerData.picture_url);
-            $("#number-of-reviews").text(markerData.number_of_reviews);
-            $("#modal-zipcode").text(markerData.zipcode);
-
-            showRating(markerData.review_scores_value);
-
-            $("#listing-price").text(`$${markerData.price}`);
-            $("#min-nights").text(markerData.minimum_nights);
-            $("#listing-beds").text(markerData.beds || 'N/A');
-            $("#listing-bedrooms").text(markerData.bedrooms || 'N/A');
-
-            const {
-              price,
-              bedrooms,
-              number_of_reviews,
-              minimum_nights,
-            } = markerData;
-
-            let cleanPrice = price > 0 ? `$${price.toFixed(2)} per night.` : "Price not available";
-            let cleanBedrooms = bedrooms !== "" ? bedrooms : "Bedrooms not available";
-            let avgNights = (Number(number_of_reviews) * Number(minimum_nights)).toFixed(0);
-            let rawIncome = (avgNights * Number(price)).toFixed(2);
-            let avgIncome = rawIncome > 0 ? rawIncome : "Not available";
-            let cleanIncome = rawIncome > 0 ? `${formatCurrency(Number(avgIncome), true) }` : "Not available";
-
-            $("#avgNights").text(avgNights);
-            $("#avgIncome").text(cleanIncome);
-
-            showInvestorModal();
-
-            // set the profile img url
-
-            kpiByZipcode(markerData.zipcode);
-            trendsByZipcode(markerData.zipcode);
-            trendsByZipcode2(markerData.zipcode);
-            trendsByZipcode3(markerData.zipcode);
-            trendsByZipcode4(markerData.zipcode);
-
-            let propertyTitle = `<a href="${markerData.host_url}" target="_blank">${markerData.host_name}'s</a> Place`;
-            let propertyDetails = createListingCard(markerData);
-            $("#property-name").html(propertyTitle);
-            $("#cf-property-details-features").html(propertyDetails);
-            $("#trends-zipcode").text(markerData.zipcode);
-
-          });
         })
         .on("error", e => handleError(e.element, e.error))
         .execute()
