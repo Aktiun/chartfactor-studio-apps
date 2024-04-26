@@ -39,7 +39,7 @@ When the process finishes, you can delete all the files in `tmp_compressed`, `tm
 In order to decrease the time needed to run `data_prep` clean scripts, we created a python script that reads a parquet file with listing ids and zipcodes. This allows us to minimize the time needed to get the zipcode of the listings because we only geocode the missing ones.
 
 #### Update parquet file
-To update `abnb_zipcode.parquet` you must be in `data_prep` folder and follow the next scripts in order:
+To update `abnb_zipcode.parquet` you must be in `data_clean` folder and follow the next scripts in order:
 1. Run `python data_prep.py`
 2. Delete `abnb_zipcode.parquet` in `data` folder
 2. Run `python zip_optimizer.py`
