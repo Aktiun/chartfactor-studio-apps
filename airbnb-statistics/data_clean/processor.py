@@ -98,6 +98,7 @@ def clean_data(is_whole_world=False):
 
     if is_whole_world:
         df['zipcode'] = df['zipcode'].replace('', np.nan)
+        df = df[~((df['zipcode'].isnull()) & (df['is_usa'] == True))]
     else:
         # Remove records with no zipcode fro usa indexing
         df = df[df['zipcode'].notnull()]
