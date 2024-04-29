@@ -580,23 +580,58 @@ function loadLicenses() {
           let element1Clean = element1 ? {
             count: element1.current.count,
             rate: element1.current.metrics.rate.count,
-            description: element1.group[0]
+            description: element1.group[0],
+            id: 'unlicensed-val'
           } : getZeroCleanedData();
           let element2Clean = element2 ? {
             count: element2.current.count,
             rate: element2.current.metrics.rate.count,
-            description: element2.group[0]
+            description: element2.group[0],
+            id: 'licensed-val'
           } : getZeroCleanedData();
           let element3Clean = element3 ? {
             count: element3.current.count,
             rate: element3.current.metrics.rate.count,
-            description: element3.group[0]
+            description: element3.group[0],
+            id: 'exempt-val'
           } : getZeroCleanedData();
           let element4Clean = element4 ? {
             count: element4.current.count,
             rate: element4.current.metrics.rate.count,
-            description: element4.group[0]
+            description: element4.group[0],
+            id: 'pending-val'
           } : getZeroCleanedData();
+
+          document.getElementById('unlicensed-val').parentElement.style.fontWeight = 'normal';
+          document.getElementById('unlicensed-val').parentElement.style.fontSize = '1em';
+
+          document.getElementById('exempt-val').parentElement.style.fontWeight = 'normal';
+          document.getElementById('exempt-val').parentElement.style.fontSize = '1em';
+
+          document.getElementById('licensed-val').parentElement.style.fontWeight = 'normal';
+          document.getElementById('licensed-val').parentElement.style.fontSize = '1em';
+
+          document.getElementById('pending-val').parentElement.style.fontWeight = 'normal';
+          document.getElementById('pending-val').parentElement.style.fontSize = '1em';
+
+          const clientFilter = chart.getCurrentAQL()._clientFilters[0];
+
+          let fontChange = null;
+          if (clientFilter && clientFilter.value.some(v => v === element1Clean.description)) {
+            fontChange = element1Clean.id;
+          } else if (clientFilter && clientFilter.value.some(v => v === element2Clean.description)) {
+            fontChange = element2Clean.id;
+          } else if (clientFilter && clientFilter.value.some(v => v === element3Clean.description)) {
+            fontChange = element3Clean.id;
+          } else if (clientFilter && clientFilter.value.some(v => v === element4Clean.description)) {
+            fontChange = element4Clean.id;
+          }
+
+          if (fontChange) {
+            document.getElementById(fontChange).parentElement.style.fontWeight = 'bold';
+            document.getElementById(fontChange).parentElement.style.fontSize = '1.5em';
+          }
+
 
           let licenseTypes = ["Unlicensed", "Licensed", "Exempt", "Pending"];
 
