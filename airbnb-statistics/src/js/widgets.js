@@ -47,7 +47,6 @@ function loadInteractionManager() {
     let rules1 = {
       [viz3]: { clientFilters: true },
       [viz2]: { clientFilters: true },
-      [viz4]: { clientFilters: true },
       [viz5]: { clientFilters: true }
     };
     /* Configuration code for the Interaction Manager*/
