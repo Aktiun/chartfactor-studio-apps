@@ -725,12 +725,18 @@ function loadHostListingsStatistics() {
         .metrics(cf.Metric())
         .on("execute:stop", async (hlQuery1) => {
           const imFilters = cf.getIManager().get('api').getFilters();
+
+          const mainAql = cf.getVisualization(hlQuery1.element).getCurrentAQL();
+          const mainStaticFilters = mainAql._staticFilters
+              .filter(sf => ['last_review', 'estimated_occupied_time'].includes(sf.path))
+              .map(sf => cf.Filter().fromJSON(sf));
+
           const hlQuery2 = await cf.provider('local')
               .source('abnb_listings')
               .filters(imFilters)
-              .staticFilters(window.boundaryFilter, cf.Filter("host_total_listings_count")
+              .staticFilters(...[window.boundaryFilter, ...mainStaticFilters, cf.Filter("host_total_listings_count")
                   .operation("LT")
-                  .value([2]))
+                  .value([2])])
               .metrics(cf.Metric())
               .element('hlQuery2')
               .execute();

@@ -117,7 +117,11 @@ $("#frequent-filter").change(function(event) {
     applicableVisuals.forEach(v => {
         if (event.currentTarget.checked) {
             if (!v._isAktiveLayer) {
-                v.staticFilters(window.boundaryFilter, lastReviewFilter, occupancyFilter);
+                const vStaticFilters = v.getCurrentAQL()._staticFilters
+                    .filter(f => !['location', 'last_review', 'estimated_occupied_time'].includes(f.path))
+                    .map(sf => cf.Filter().fromJSON(sf));
+
+                v.staticFilters([window.boundaryFilter, lastReviewFilter, occupancyFilter, ...vStaticFilters]);
             } else {
                 v.staticFilters(lastReviewFilter, occupancyFilter);
             }
