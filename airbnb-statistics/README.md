@@ -40,9 +40,9 @@ In order to decrease the time needed to run `data_prep` clean scripts, we create
 
 #### Update parquet file
 To update `abnb_zipcode.parquet` you must be in `data_clean` folder and follow the next scripts in order:
-1. Run `python data_prep.py`
-2. Delete `abnb_zipcode.parquet` in `data` folder
-2. Run `python zip_optimizer.py`
+1. Delete `abnb_zipcode.parquet` in `data` folder
+2. Run `python data_prep.py`
+3. Run `python zip_optimizer.py`
 With this, the next time you run `data_prep.py` you will use an updated version of `abnb_zipcode.parquet` for your data clean, and should take less time to complete the process.
 
 ### 3. Index Realtor data
