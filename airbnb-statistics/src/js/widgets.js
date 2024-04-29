@@ -240,23 +240,25 @@ function loadGeomap() {
             type: e.type
           });
         })
-        // .on("geo:layers-execution-stop", e => {
-        //   if (!window.mapLoaded) {
-        //     window.mapLoaded = true;
-        //     updateBnBBoundsFilter()
-        //   }
-        // })
+        .on("geo:layers-execution-stop", e => {
+          let aktiveMap = cf.getVisualization("cf-main-geomap");
+          let geoMap = aktiveMap.get("map");
+          geoMap.off("click", "hosts_image_layer", processGeompClick);
+          geoMap.on("click", "hosts_image_layer", processGeompClick);
+
+          geoMap.off("touchstart", "hosts_image_layer", processGeompClick);
+          geoMap.on("touchstart", "hosts_image_layer", processGeompClick);
+          // if (!window.mapLoaded) {
+          //   window.mapLoaded = true;
+          //   updateBnBBoundsFilter()
+          // }
+        })
         .on("execute:stop", e => {
           let aktiveMap = cf.getVisualization("cf-main-geomap");
           let geoMap = aktiveMap.get("map");
           geoMap.on("zoomend", (e) => {
             // console.log("zoomend **********");
             updateBnBBoundsFilter();
-            geoMap.off("click", "hosts_image_layer", processGeompClick);
-            geoMap.on("click", "hosts_image_layer", processGeompClick);
-
-            geoMap.off("touchstart", "hosts_image_layer", processGeompClick);
-            geoMap.on("touchstart", "hosts_image_layer", processGeompClick);
           });
           geoMap.on("moveend", () => {
             // console.log("moveend **********");
