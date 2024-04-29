@@ -759,7 +759,7 @@ body {
     }
 
     .right-side {
-        font-size: large;
+        font-size: medium;
     }
     .investors-modal-content > .info {
         grid-area: info;
@@ -778,5 +778,51 @@ body {
 
     .investors-modal-content > .info > .left-side > #listing-picture {
         max-height: 20vh;
+    }
+}
+
+@media (max-width: 1000px) {
+    .cf-page {
+        grid-template-columns: auto;
+        grid-template-rows: 60px 25px 420px auto;
+        grid-gap: 10px;
+        grid-template-areas:
+        "header"
+        "total-listings"
+        "charts"
+        "map";
+    }
+    .top-title {
+        font-size: small;
+        text-align: center;
+    }
+    .cflogo-container {
+        display: none;
+    }
+    .top-container {
+        grid-area: header;
+        display: grid;
+        grid-template-columns: 80px auto;
+        grid-template-areas: "title im";
+    }
+    .cf-room-type > .description {
+        font-size: .8em;
+        line-height: 1;
+    }
+    .widgets-container {
+        margin-top: 0px;
+    }
+    .cf-listing-per-host {
+        grid-template-rows: 32px 1fr 1fr;
+    }
+    .cf-activity {
+        grid-template-rows: 32px 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .widgets-container {
+        grid-template-rows: 470px 430px 350px 490px 490px;
+        margin-top: 0px;
     }
 }
