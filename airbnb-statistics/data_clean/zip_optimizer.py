@@ -2,7 +2,7 @@ import pandas as pd
 
 def split_zipcode_data():
     # Read csv using pandas
-    df = pd.read_csv('../data/abnb_listings.csv', dtype={'id': str})
+    df = pd.read_csv('../data/abnb_listings.csv', dtype={'id': str, 'zipcode': str})
 
     # ptint count of records
     print(df.shape)
