@@ -76,7 +76,10 @@ function removeInvestorsModalVisualizations(){
 $("#modal-close").click(function() {
     removeInvestorsModalVisualizations();
     hideInvestorsModal();
-    // set the modal name
+    modalReset();
+});
+
+function modalReset() {
     $("#investors-modal-title > .listing-name").text('');
     $("#investors-modal-title > .listing-name").attr("href", '');
     $("#investors-modal-title > .host-name").text('');
@@ -94,7 +97,7 @@ $("#modal-close").click(function() {
     $("#avgNights").text('');
     $("#avgIncome").text('');
     $('.modal-charts').scrollTop(0);
-});
+}
 
 function onCellClick(event) {
     if (event.target.tagName.toLowerCase() === 'td') {
@@ -115,6 +118,7 @@ window.addEventListener("keydown", function(event) {
     if (event.key === "Escape") {
         removeInvestorsModalVisualizations();
         hideInvestorsModal();
+        modalReset();
     }
 });
 
