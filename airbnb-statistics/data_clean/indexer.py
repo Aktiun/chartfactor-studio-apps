@@ -7,9 +7,12 @@ import csv
 import re
 import logging
 from logging.handlers import RotatingFileHandler #debug
+from dotenv import load_dotenv
 from elasticsearch.helpers import bulk, streaming_bulk
 from elasticsearch import Elasticsearch, RequestsHttpConnection
 import datetime
+# 
+load_dotenv()
 
 logger = logging.getLogger('listings_abnb')
 logger.setLevel(logging.INFO)
@@ -525,12 +528,20 @@ def index(es, index_name, csv_file):
             logger.exception('Error occured', e, True)
             return False
 
+def obtainESClient():
+    host = os.getenv("ES_HOST") or 'localhost'
+    port = os.getenv("ES_PORT") or 9200
+    user = os.getenv("ES_USER") or 'any'
+    pwd = os.getenv("ES_PWD") or 'any'
+    es = Elasticsearch([{'host': host, 'port': port}], http_auth=(user, pwd))
+    return es
+
 def main():
-    es = Elasticsearch()
+    es = obtainESClient()
     index(es, 'abnb_listings', '../data/abnb_listings.csv')
 
 def index_data(csv_file_path):
-	es = Elasticsearch()
+	es = obtainESClient()
 	index(es, 'abnb_listings', csv_file_path)
 
 if __name__ == "__main__":

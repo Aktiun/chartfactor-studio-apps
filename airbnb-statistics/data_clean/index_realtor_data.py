@@ -345,9 +345,16 @@ def index(es, index_name, csv_file):
             print(f'Error occured.  Error: \n {e}')
             return False
 
+def obtainESClient():
+    host = os.getenv("ES_HOST") or 'localhost'
+    port = os.getenv("ES_PORT") or 9200
+    user = os.getenv("ES_USER") or 'any'
+    pwd = os.getenv("ES_PWD") or 'any'
+    es = Elasticsearch([{'host': host, 'port': port}], http_auth=(user, pwd))
+    return es
 
 def main():
-    es = Elasticsearch()
+    es = obtainESClient()
     index(es, 'realtor_monthly_inventory_zip_all', '../data/realtors_zip_data.csv')
 
 if __name__ == "__main__":

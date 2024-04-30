@@ -1,3 +1,4 @@
 # Mac
 .DS_Store
 *.idea
+airbnb-statistics/data_clean/.env*
