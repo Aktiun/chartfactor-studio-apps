@@ -113,7 +113,6 @@ function showRating(rating) {
 }
 
 function processGeompClick(e) {
-  console.log('openmodal.....')
   let markerData = JSON.parse(e.features[0].properties.__cf_data__);
   if (markerData.is_usa === "false") return;
 
@@ -150,7 +149,7 @@ function processGeompClick(e) {
   let avgIncome = rawIncome > 0 ? rawIncome : "Not available";
   let cleanIncome = rawIncome > 0 ? `${formatCurrency(Number(avgIncome), true) }` : "Not available";
 
-  $("#avgNights").text(avgNights);
+  $("#avgNights").text(`${Number(markerData.estimated_occupied_time).toFixed(0)} ${markerData.estimated_occupied_time > 1 ? 'nights' : 'night'}`);
   $("#avgIncome").text(cleanIncome);
 
   showInvestorModal();
@@ -202,7 +201,7 @@ function loadGeomap() {
                 "heatmap-color": ["interpolate", ["linear"], ["heatmap-density"], 0, "rgba(0, 0, 255, 0)", 0.1, "royalblue", 0.3, "cyan", 0.5, "lime", 0.7, "yellow", 1, "red"],
                 "switchToMarkersAtRaw": true,
               },
-              "precisionLevels": { "raw": { "zoom": 13, fields: ["name", "host_name", "bedrooms", "beds", "price", "picture_url", "number_of_reviews", "review_scores_value", "minimum_nights", "zipcode", "is_usa", "host_name", "host_url", "listing_url", "host_picture_url"]}, "levels": [{ "zoom": 2, "precision": 3 }, { "zoom": 4, "precision": 5 }, { "zoom": 6, "precision": 6 }, { "zoom": 9, "precision": 7 }, { "zoom": 12, "precision": 8 }] },
+              "precisionLevels": { "raw": { "zoom": 13, fields: ["name", "estimated_occupied_time", "host_name", "bedrooms", "beds", "price", "picture_url", "number_of_reviews", "review_scores_value", "minimum_nights", "zipcode", "is_usa", "host_name", "host_url", "listing_url", "host_picture_url"]}, "levels": [{ "zoom": 2, "precision": 3 }, { "zoom": 4, "precision": 5 }, { "zoom": 6, "precision": 6 }, { "zoom": 9, "precision": 7 }, { "zoom": 12, "precision": 8 }] },
               "color": cf.Color()
                   .palette(["#08519c", "#3182bd", "#6baed6", "#bdd7e7", "#eff3ff"])
                   .metric(cf.Metric()),
