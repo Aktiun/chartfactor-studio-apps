@@ -742,6 +742,10 @@ body {
     background-color: #f2f2f2;
 }
 
+.no-usa {
+    height: 45%;
+}
+
 @media (max-width: 950px) {
     .icon-value {
         font-size: medium;
@@ -764,6 +768,9 @@ body {
 }
 
 @media (max-width: 720px) {
+    .no-usa {
+        height: 62%;
+    }
     .neighborhood_overview {
         display: none;
     }

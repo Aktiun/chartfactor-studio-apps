@@ -114,11 +114,7 @@ function showRating(rating) {
 
 function processGeomapClick(e) {
   let markerData = JSON.parse(e.features[0].properties.__cf_data__);
-  if (markerData.is_usa === "false") return;
 
-  console.log(markerData);
-
-  // set the modal name
   $("#investors-modal-title > .listing-name").text(markerData.name);
   $("#investors-modal-title > .listing-name").attr("href", markerData.listing_url);
   $("#investors-modal-title > .host-name").text(markerData.host_name);
@@ -155,16 +151,23 @@ function processGeomapClick(e) {
 
   $("#avgNights").text(`${Number(markerData.estimated_occupied_time).toFixed(0)} ${markerData.estimated_occupied_time > 1 ? 'nights' : 'night'}`);
   $("#avgIncome").text(cleanIncome);
-
   showInvestorModal();
 
-  // set the profile img url
+  if (markerData.is_usa === "false") {
+    $("#modal-charts-area").css("display", "none");
+    $("#modal-zipcode-container").css("display", "none");
+    $(".investors-modal-container").addClass('no-usa');
+  } else {
+    $("#modal-charts-area").css("display", "grid");
+    $("#modal-zipcode-container").css("display", "flex");
+    $(".investors-modal-container").removeClass('no-usa');
 
-  kpiByZipcode(markerData.zipcode);
-  trendsByZipcode(markerData.zipcode);
-  trendsByZipcode2(markerData.zipcode);
-  trendsByZipcode3(markerData.zipcode);
-  trendsByZipcode4(markerData.zipcode);
+    kpiByZipcode(markerData.zipcode);
+    trendsByZipcode(markerData.zipcode);
+    trendsByZipcode2(markerData.zipcode);
+    trendsByZipcode3(markerData.zipcode);
+    trendsByZipcode4(markerData.zipcode);
+  }
 }
 
 function loadGeomap() {
