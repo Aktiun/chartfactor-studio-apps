@@ -125,7 +125,7 @@ function processGeomapClick(e) {
   $("#modal-zipcode").text(markerData.zipcode);
   $("#realtor-zipcode").text(markerData.zipcode);
   $("#listing-neighbourhood").text(markerData.neighbourhood || 'N/A');
-  $("#listing-neighborhood_overview").html(markerData.neighborhood_overview || 'N/A');
+  $("#listing-neighborhood_overview").html(markerData.neighborhood_overview || '');
   $("#realtor-link").attr("href", `https://www.realtor.com/realestateandhomes-search/${markerData.zipcode}`);
 
   showRating(markerData.review_scores_value);
