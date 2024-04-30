@@ -116,6 +116,8 @@ function processGeompClick(e) {
   let markerData = JSON.parse(e.features[0].properties.__cf_data__);
   if (markerData.is_usa === "false") return;
 
+  console.log(markerData);
+
   // set the modal name
   $("#investors-modal-title > .listing-name").text(markerData.name);
   $("#investors-modal-title > .listing-name").attr("href", markerData.listing_url);
@@ -188,9 +190,6 @@ function loadGeomap() {
             "source": "abnb_listings",
             "properties": {
               "customTooltip": myTooltip,
-              "filters": [
-                cf.Filter("is_usa").label("Is usa").operation("IN").value(["true"])
-              ],
               "limit": 20000,
               "location": "location",
               "visibilityZoomRange": [0, 24],
