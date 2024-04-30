@@ -964,7 +964,7 @@ async function trendsByZipcode(zipcode) {
 
   // ************ Active Listings Trend by Zipcode ************ //
   let grid = cf.Grid()
-      .top(35)
+      .top(45)
       .right(45)
       .bottom(35)
       .left(40);
@@ -997,7 +997,7 @@ async function trendsByZipcode(zipcode) {
   // ************ Median Listing Price Trend by Zipcode ************ //
   let metric1 = cf.Metric("median_listing_price", "avg").hideFunction();
   let grid2 = cf.Grid()
-      .top(50)
+      .top(55)
       .right(45)
       .bottom(35)
       .left(40);
@@ -1025,7 +1025,7 @@ async function trendsByZipcode(zipcode) {
       .sort("asc", "month_date_yyyymm");
 
   let gridMedianDaysOnMarket = cf.Grid()
-      .top(10)
+      .top(50)
       .right(45)
       .bottom(35)
       .left(40);
@@ -1078,7 +1078,7 @@ async function trendsByZipcode2(zipcode) {
       .limit(1000)
       .sort("asc", "month_date_yyyymm");
   let gridCountMM = cf.Grid()
-      .top(10)
+      .top(50)
       .right(45)
       .bottom(35)
       .left(40);
@@ -1140,7 +1140,7 @@ async function trendsByZipcode2(zipcode) {
       .sort("asc", "month_date_yyyymm");
   // Define Grid
   let gridAvgPrice = cf.Grid()
-      .top(10)
+      .top(50)
       .right(45)
       .bottom(35)
       .left(40);
@@ -1195,7 +1195,7 @@ async function trendsByZipcode3(zipcode) {
 
   // Define Grid
   let gridAvgMm = cf.Grid()
-      .top(10)
+      .top(50)
       .right(45)
       .bottom(35)
       .left(40);
@@ -1228,7 +1228,7 @@ async function trendsByZipcode3(zipcode) {
 
   // Define Grid
   let gridAvgYy = cf.Grid()
-      .top(10)
+      .top(50)
       .right(45)
       .bottom(35)
       .left(40);
@@ -1261,7 +1261,7 @@ async function trendsByZipcode3(zipcode) {
 
   // Define Grid
   let gridMediansf = cf.Grid()
-      .top(10)
+      .top(50)
       .right(45)
       .bottom(35)
       .left(40);
@@ -1315,7 +1315,7 @@ async function trendsByZipcode4(zipcode) {
       .sort("asc", "month_date_yyyymm");
 
   let gridMedianDaysOnMarketMm = cf.Grid()
-      .top(10)
+      .top(50)
       .right(45)
       .bottom(35)
       .left(40);
@@ -1345,7 +1345,7 @@ async function trendsByZipcode4(zipcode) {
       .sort("asc", "month_date_yyyymm");
 
   let gridMedianDaysOnMarketYy = cf.Grid()
-      .top(10)
+      .top(50)
       .right(45)
       .bottom(35)
       .left(40);
