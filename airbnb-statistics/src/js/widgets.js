@@ -162,13 +162,6 @@ function processGeompClick(e) {
   trendsByZipcode2(markerData.zipcode);
   trendsByZipcode3(markerData.zipcode);
   trendsByZipcode4(markerData.zipcode);
-
-  let propertyTitle = `<a href="${markerData.host_url}" target="_blank">${markerData.host_name}'s</a> Place`;
-  let propertyDetails = createListingCard(markerData);
-  $("#property-name").html(propertyTitle);
-  $("#cf-property-details-features").html(propertyDetails);
-  $("#trends-zipcode").text(markerData.zipcode);
-
 }
 
 function loadGeomap() {

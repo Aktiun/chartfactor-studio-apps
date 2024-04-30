@@ -76,6 +76,23 @@ function removeInvestorsModalVisualizations(){
 $("#modal-close").click(function() {
     removeInvestorsModalVisualizations();
     hideInvestorsModal();
+    // set the modal name
+    $("#investors-modal-title > .listing-name").text('');
+    $("#investors-modal-title > .listing-name").attr("href", '');
+    $("#investors-modal-title > .host-name").text('');
+    $("#investors-modal-title > .host-name").attr("href", '');
+    $("#listing-profile-picture").attr("src", '');
+    $("#listing-picture").attr("src", '');
+    $("#number-of-reviews").text('');
+    $("#modal-zipcode").text('');
+    $("#realtor-zipcode").text('');
+    $("#realtor-link").attr("href", '');
+    $("#listing-price").text('');
+    $("#min-nights").text('');
+    $("#listing-beds").text('N/A');
+    $("#listing-bedrooms").text('N/A');
+    $("#avgNights").text('');
+    $("#avgIncome").text('');
 });
 
 function onCellClick(event) {
