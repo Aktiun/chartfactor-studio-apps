@@ -677,6 +677,11 @@ body {
     cursor: pointer;
 }
 
+.neighborhood-overview-container {
+    max-height: 100px;
+    overflow: scroll;
+}
+
 .realtor-btn {
     display: flex;
     flex-direction: column;
