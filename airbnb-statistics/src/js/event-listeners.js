@@ -93,6 +93,7 @@ $("#modal-close").click(function() {
     $("#listing-bedrooms").text('N/A');
     $("#avgNights").text('');
     $("#avgIncome").text('');
+    $('.modal-charts').scrollTop(0);
 });
 
 function onCellClick(event) {
