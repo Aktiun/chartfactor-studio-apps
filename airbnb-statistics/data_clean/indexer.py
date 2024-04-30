@@ -533,7 +533,13 @@ def obtainESClient():
     port = os.getenv("ES_PORT") or 9200
     user = os.getenv("ES_USER") or 'any'
     pwd = os.getenv("ES_PWD") or 'any'
-    es = Elasticsearch([{'host': host, 'port': port}], http_auth=(user, pwd))
+    es = Elasticsearch(
+        [{'host': host, 'port': port}], 
+        http_auth=(user, pwd),
+        timeout=60,  # Timeout for each API call (in seconds)
+        max_retries=10,  # Maximum number of retries before an exception is propagated
+        retry_on_timeout=True  # Retry on timeout?
+    )
     return es
 
 def main():
