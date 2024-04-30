@@ -112,7 +112,7 @@ function showRating(rating) {
   document.getElementById('reviews-stars').innerHTML = stars;
 }
 
-function processGeompClick(e) {
+function processGeomapClick(e) {
   let markerData = JSON.parse(e.features[0].properties.__cf_data__);
   if (markerData.is_usa === "false") return;
 
@@ -128,6 +128,8 @@ function processGeompClick(e) {
   $("#number-of-reviews").text(markerData.number_of_reviews);
   $("#modal-zipcode").text(markerData.zipcode);
   $("#realtor-zipcode").text(markerData.zipcode);
+  $("#listing-neighbourhood").text(markerData.neighbourhood || 'N/A');
+  $("#listing-neighborhood_overview").html(markerData.neighborhood_overview || 'N/A');
   $("#realtor-link").attr("href", `https://www.realtor.com/realestateandhomes-search/${markerData.zipcode}`);
 
   showRating(markerData.review_scores_value);
@@ -200,7 +202,18 @@ function loadGeomap() {
                 "heatmap-color": ["interpolate", ["linear"], ["heatmap-density"], 0, "rgba(0, 0, 255, 0)", 0.1, "royalblue", 0.3, "cyan", 0.5, "lime", 0.7, "yellow", 1, "red"],
                 "switchToMarkersAtRaw": true,
               },
-              "precisionLevels": { "raw": { "zoom": 13, fields: ["name", "estimated_occupied_time", "host_name", "bedrooms", "beds", "price", "picture_url", "number_of_reviews", "review_scores_value", "minimum_nights", "zipcode", "is_usa", "host_name", "host_url", "listing_url", "host_picture_url"]}, "levels": [{ "zoom": 2, "precision": 3 }, { "zoom": 4, "precision": 5 }, { "zoom": 6, "precision": 6 }, { "zoom": 9, "precision": 7 }, { "zoom": 12, "precision": 8 }] },
+              "precisionLevels": {
+                "raw": {
+                  "zoom": 13,
+                  fields: [
+                      "name", "estimated_occupied_time", "host_name", "bedrooms", "beds", "price",
+                    "picture_url","number_of_reviews", "review_scores_value", "minimum_nights", "zipcode",
+                    "is_usa", "host_name", "host_url", "listing_url", "host_picture_url", "neighbourhood",
+                    "neighborhood_overview"
+                  ]
+                },
+                "levels": [{ "zoom": 2, "precision": 3 }, { "zoom": 4, "precision": 5 }, { "zoom": 6, "precision": 6 }, { "zoom": 9, "precision": 7 }, { "zoom": 12, "precision": 8 }]
+              },
               "color": cf.Color()
                   .palette(["#08519c", "#3182bd", "#6baed6", "#bdd7e7", "#eff3ff"])
                   .metric(cf.Metric()),
@@ -235,11 +248,11 @@ function loadGeomap() {
         .on("geo:layers-execution-stop", e => {
           let aktiveMap = cf.getVisualization("cf-main-geomap");
           let geoMap = aktiveMap.get("map");
-          geoMap.off("click", "hosts_image_layer", processGeompClick);
-          geoMap.on("click", "hosts_image_layer", processGeompClick);
+          geoMap.off("click", "hosts_image_layer", processGeomapClick);
+          geoMap.on("click", "hosts_image_layer", processGeomapClick);
 
-          geoMap.off("touchstart", "hosts_image_layer", processGeompClick);
-          geoMap.on("touchstart", "hosts_image_layer", processGeompClick);
+          geoMap.off("touchstart", "hosts_image_layer", processGeomapClick);
+          geoMap.on("touchstart", "hosts_image_layer", processGeomapClick);
           // if (!window.mapLoaded) {
           //   window.mapLoaded = true;
           //   updateBnBBoundsFilter()

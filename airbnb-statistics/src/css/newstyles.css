@@ -514,7 +514,7 @@ body {
 .investors-modal-content > .info {
     grid-area: info;
     display: grid;
-    grid-template-columns: calc(50% - 15px) 30px calc(50% - 15px);
+    grid-template-columns: calc(50% - 25px) 50px calc(50% - 25px);
     grid-template-rows: 30px auto;
     grid-template-areas: "header picture headers"
                          "left-side picture right-side";
@@ -562,8 +562,8 @@ body {
 .right-side-container {
     grid-area: right-side;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    /*align-items: center;*/
+    /*justify-content: center;*/
     width: calc(100% - 37px);
     margin-left: 37px;
 }
@@ -759,6 +759,9 @@ body {
 }
 
 @media (max-width: 720px) {
+    .neighborhood_overview {
+        display: none;
+    }
     .investors-modal-container {
         grid-template-rows: 73px auto;
     }
