@@ -508,7 +508,7 @@ body {
     font-weight: bold;
     font-family: sans-serif;
     color: #546e7a;
-    line-height: 0;
+    gap: 10px;
 }
 
 .investors-modal-content > .info {
@@ -524,7 +524,6 @@ body {
     grid-area: bottom;
     display: flex;
     align-items: center;
-    justify-content: center;
     color: #546E74 !important;
 }
 
@@ -565,32 +564,26 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: calc(100% - 37px);
+    margin-left: 37px;
 }
 
 .right-side {
     gap: 10px;
-    display: grid;
-    grid-template-columns: 0px auto auto;
-    grid-template-rows: 1fr 1fr 40px 20px;
-    align-items: center;
-    grid-template-areas: "space first second"
-                         "space third fourth"
-                         "fifth fifth fifth"
-                         "bottom bottom bottom";
+    display: flex;
+    flex-direction: column;
 }
 
 .modal-listing-info {
     grid-area: fifth;
     display: flex;
     flex-direction: column;
-    align-items: center;
     color: #546E74 !important;
 }
 
 .icon-value {
-    text-align: center;
-    font-size: larger;
+    /*text-align: center;*/
+    /*font-size: larger;*/
     /*font-weight: bold;*/
     /*display: grid;*/
     /*grid-template-columns: 2em auto;*/
@@ -631,7 +624,7 @@ body {
 .investors-modal-content > .modal-charts {
     grid-area: modalcharts;
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: calc(50% - 10px) calc(50% - 10px);
     grid-template-rows: repeat(11, auto);
     height: 100%;
     overflow-y: scroll;
@@ -684,6 +677,18 @@ body {
     cursor: pointer;
 }
 
+.realtor-btn {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    cursor: pointer;
+    background-color: rgb(217, 34, 40) !important;
+    border-radius: 35px;
+    color: white !important;
+    font-size: x-small;
+    padding: 5px 10px;
+    text-decoration: none;
+}
 
 .ag-header-cell-label .ag-header-cell-text {
     white-space: pre-line !important;
@@ -743,7 +748,7 @@ body {
     }
 }
 
-@media (max-width: 818px) {
+@media (max-width: 924px) {
     .icon-value {
         font-size: small;
     }
@@ -754,6 +759,12 @@ body {
 }
 
 @media (max-width: 720px) {
+    .investors-modal-container {
+        grid-template-rows: 73px auto;
+    }
+    .modal-charts-title{
+        margin-top: 0px;
+    }
     .icon-value {
         font-size: large;
     }
@@ -761,11 +772,15 @@ body {
     .right-side {
         font-size: medium;
     }
+    .investors-modal-content{
+        rid-template-rows: 0 1fr 30px 2fr;
+        height: calc(100vh - 170px);
+    }
     .investors-modal-content > .info {
         grid-area: info;
         display: grid;
         grid-template-columns: 100%;
-        grid-template-rows: 20vh 50px auto;
+        grid-template-rows: 20vh 67px auto;
         grid-template-areas:
         "left-side"
         "picture"

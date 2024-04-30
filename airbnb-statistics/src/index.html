@@ -286,23 +286,23 @@
                     <div class="right-side">
                         <div class="listing-price icon-value">
                             <i class="fa-solid fa-money-bill"></i>
-                            <span>Per night</span>
-                            <div id="listing-price"></div>
+                            <span>Per night: </span>
+                            <span id="listing-price"></span>
                         </div>
                         <div class="min-nights icon-value">
                             <i class="fa-solid fa-moon"></i>
-                            <span>Min Nights</span>
-                            <div id="min-nights"></div>
+                            <span>Min Nights: </span>
+                            <span id="min-nights"></span>
                         </div>
                         <div class="listing-beds icon-value">
                             <i class="fa-solid fa-bed"></i>
-                            <span>Number of beds</span>
-                            <div id="listing-beds"></div>
+                            <span>Number of beds: </span>
+                            <span id="listing-beds"></span>
                         </div>
                         <div class="listing-bedrooms icon-value">
                             <i class="fa-brands fa-buromobelexperte"></i>
-                            <span>Number of bedrooms</span>
-                            <div id="listing-bedrooms"></div>
+                            <span>Number of bedrooms: S</span>
+                            <span id="listing-bedrooms"></span>
                         </div>
                         <div class="modal-listing-info">
                             <div class="avg-nights">Approx. Nights occupied last twelve months: <span id="avgNights">${avgNights}</span></div>
@@ -314,8 +314,14 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-charts-title">
-                Market Trends - ZIP Code &nbsp;<span id="modal-zipcode"></span>
+            <div class="modal-charts-title" id="modal-zipcode-container">
+                <div style="text-align: center">
+                    Market Trends&nbsp;- ZIP Code &nbsp;<span id="modal-zipcode"></span>
+                </div>
+                <a target="_blank" class="realtor-btn" id="realtor-link">
+                    <span style="font-weight: normal;">REALTOR.COM</span>
+                    <span style="font-size: small;">Go to listings in <span id="realtor-zipcode"></span></span>
+                </a>
             </div>
             <div class="modal-charts">
                 <div class="modal-chart">

@@ -126,6 +126,8 @@ function processGeompClick(e) {
   $("#listing-picture").attr("src", markerData.picture_url);
   $("#number-of-reviews").text(markerData.number_of_reviews);
   $("#modal-zipcode").text(markerData.zipcode);
+  $("#realtor-zipcode").text(markerData.zipcode);
+  $("#realtor-link").attr("href", `https://www.realtor.com/realestateandhomes-search/${markerData.zipcode}`);
 
   showRating(markerData.review_scores_value);
 
@@ -226,8 +228,11 @@ function loadGeomap() {
             }
           }
         ])
-        .set("zoom", 4)
-        .set("center", [-73.84875467114972, 40.77680058764247])
+        .set("zoom", 16.653013723569998)
+        .set("center", [
+          -73.9501334265953,
+          40.71284391141117
+        ])
         .set("drawControl", true)
         .set("enableZoomInfo", true)
         .set("layersControl", false)
@@ -919,7 +924,6 @@ function kpiByZipcode(zipcode) {
               formatedValue.split(".")[0] + "." + fixedValue.split(".")[1] :
               formatedValue;
 
-          const realtorHtmlLink = ` <a href="https://www.realtor.com/realestateandhomes-search/${zipcode}" target="_blank" class="footer-button"> <span class="button-top-text">REALTOR.COM</span> Go to listings in ${zipcode}</a>`;
 
           let timestamp = data.data[0] ? data.data[0].current.metrics["@timestamp"].max : undefined;
           let utcDate = timestamp ? new Date(timestamp).toUTCString() : undefined;
@@ -928,7 +932,6 @@ function kpiByZipcode(zipcode) {
           $("#month-name").text(monthName);
           $('#cf-active-listings-zipcode').html(values);
           $('#counter-info-zipcode').text(zipcode);
-          $('#realtor-link').html(realtorHtmlLink);
         }
       })
       .execute();
