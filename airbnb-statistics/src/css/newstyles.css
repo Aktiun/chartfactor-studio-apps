@@ -661,6 +661,8 @@ body {
 
 .modal-chart > .modal-chart-visual {
     grid-area: chart;
+    width: 100%;
+    overflow: hidden;
 }
 
 .frequent-filter-container {
