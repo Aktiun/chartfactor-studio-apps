@@ -1,0 +1,860 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.cf-page {
+    height: calc(100% - 40px);
+    display: grid;
+    grid-template-columns: 500px auto;
+    grid-template-rows: 60px 25px auto;
+    grid-template-areas:
+            "header header"
+            "total-listings map"
+            "charts map";
+    grid-gap: 20px;
+    padding: 20px;
+    background: #f8f9fa!important;
+}
+
+.total-listings-sticky {
+    grid-area: total-listings;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cf-card {
+    --bs-card-border-width: 0;
+    --bs-card-border-color: rgba(0, 0, 0, .125);
+    --bs-card-border-radius: 1rem;
+    --bs-card-box-shadow: 0 20px 27px 0 rgba(0, 0, 0, .05);
+    --bs-card-bg: #fff;
+    box-shadow: var(--bs-card-box-shadow);
+    background-color: var(--bs-card-bg);
+    background-clip: border-box;
+    border: var(--bs-card-border-width) solid var(--bs-card-border-color);
+    border-radius: var(--bs-card-border-radius);
+}
+
+.top-container {
+    grid-area: header;
+    display: grid;
+    grid-template-columns: 250px auto 250px;
+    grid-template-rows: 1fr;
+    grid-template-areas: "title im logo";
+    gap: 20px;
+}
+
+.top-title {
+    grid-area: title;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #0071BC;
+    font-family: sans-serif;
+}
+
+.cfim-contaner {
+    grid-area: im;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#im > div {
+    width: 100%;
+}
+
+.cflogo-container {
+    grid-area: logo;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.cflogo-container > img {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.cflogo-container > span {
+    grid-area: tittle;
+    font-size: 15px;
+    font-weight: bold;
+    color: #0071BC;
+    display: block;
+    font-family: sans-serif;
+    text-align: center;
+    align-self: center;
+}
+
+.charts-container {
+    grid-area: charts;
+    background: rgba(0, 0, 0, 0);
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: -20px;
+    margin-right: -20px;
+    overflow-y: scroll;
+}
+
+.cf-page-info {
+    margin-top: 20px;
+    color: #9e9e9e;
+}
+
+.cf-page-info a {
+    color: #039be5;
+}
+
+.table-container {
+    height: 50vh;
+}
+
+.table-container-header {
+    text-align: center;
+    font-family: sans-serif;
+    height: 35px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table-container-content {
+    overflow: auto;
+    height: calc(100% - 65px);
+}
+
+.table-container-content > div {
+    width: 100%;
+    height: 100%;
+}
+
+.table-hosts {
+    font-size: 0.8em;
+    border-collapse: collapse;
+    color: #333;
+}
+
+.table-hosts th, .table-hosts td {
+    padding: 8px;
+    text-align: left;
+}
+
+.table-hosts th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.table-hosts tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.table-hosts, .table-hosts th, .table-hosts td {
+    border: none;
+}
+
+.table-hosts tr {
+    border-bottom: 1px solid #eaeaea;
+}
+
+.table-hosts td:not(:first-child) {
+    text-align: center;
+}
+
+.map-container {
+    grid-area: map;
+    padding: 5px;
+    height: calc(100% - 10px) !important;
+    width: calc(100% - 10px) !important;
+}
+
+.map-container > div {
+    border-radius: var(--bs-card-border-radius);
+}
+
+.widgets-container {
+    display: grid;
+    grid-template-rows: 460px 400px 350px 440px 440px;
+    grid-template-columns: 1fr;
+    grid-template-areas: "first" "second" "third" "fourth" "fifth";
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.cf-room-type {
+    display: grid;
+    grid-template-rows: 35px 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+            "title title "
+            "description statistics"
+            "chart chart";
+    height: calc(100% - 20px);
+    gap: 10px;
+}
+
+.cf-room-type > .title {
+    grid-area: title;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: sans-serif;
+    border-bottom: 1px solid #5a5a5a;
+}
+
+.cf-room-type > .description {
+    grid-area: description;
+    position: relative;
+    color: #5a5a5a;
+    font-size: .8em;
+    line-height: 1.3;
+    margin-top: 10px;
+}
+
+.cf-room-type > .chart-container {
+    grid-area: chart;
+}
+.chart-container > div {
+    width: 100%;
+    height: 100%;
+}
+
+.cf-room-type > .info-container {
+    grid-area: statistics;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+/* Activity */
+
+.cf-activity {
+    display: grid;
+    grid-template-rows: 32px 100px auto;
+    grid-template-columns: 2fr 2fr 3fr;
+    grid-template-areas:
+            "title title title"
+            "description description statistics"
+            "chart chart chart";
+    gap: 10px;
+}
+
+.cf-activity > .title {
+    grid-area: title;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: sans-serif;
+    border-bottom: 1px solid #5a5a5a;
+}
+
+.cf-activity > .description {
+    grid-area: description;
+    position: relative;
+    color: #5a5a5a;
+    font-size: .8em;
+    line-height: 1.3;
+}
+
+.cf-activity > .chart-container {
+    grid-area: chart;
+}
+
+.cf-activity > .info-container {
+    grid-area: statistics;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Licenses */
+
+.cf-licenses {
+    display: grid;
+    grid-template-rows: 32px 2fr 1fr 2fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+            "title title"
+            "description statistics"
+            "chart statistics"
+            "chart statistics";
+    gap: 10px;
+}
+
+.cf-licenses > .title {
+    grid-area: title;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: sans-serif;
+    border-bottom: 1px solid #5a5a5a;
+}
+
+.cf-licenses > .description {
+    grid-area: description;
+    position: relative;
+    color: #5a5a5a;
+    font-size: .8em;
+    line-height: 1.3;
+}
+
+.cf-licenses > .chart-container {
+    grid-area: chart;
+}
+
+.cf-licenses > .info-container {
+    grid-area: statistics;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Listings per Host */
+
+.cf-listing-per-host {
+    display: grid;
+    grid-template-rows: 32px 150px auto;
+    grid-template-columns: 2fr 2fr 3fr;
+    grid-template-areas:
+            "title title title"
+            "description description statistics"
+            "chart chart chart";
+    gap: 10px;
+}
+
+.cf-listing-per-host > .title {
+    grid-area: title;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: sans-serif;
+    border-bottom: 1px solid #5a5a5a;
+}
+
+.cf-listing-per-host > .description {
+    grid-area: description;
+    position: relative;
+    color: #5a5a5a;
+    font-size: .8em;
+    line-height: 1.3;
+}
+
+.cf-listing-per-host > .chart-container {
+    grid-area: chart;
+}
+
+.cf-listing-per-host > .info-container {
+    grid-area: statistics;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.chart-container canvas {
+    border-radius: 10px;
+}
+
+.info-container > .info-items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 5px;
+    font-size: small;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    gap: 5px;
+}
+
+.info-item-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.info-item-title > span {
+    font-size: smaller;
+}
+
+.info-item-title > .color {
+    width: 10px;
+    height: 10px;
+}
+
+.info-item-title > .circle {
+    border-radius: 100px;
+}
+
+.info-item > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.investors-modal {
+    z-index: 1000;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color:rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+}
+
+.investors-modal-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 1rem;
+    width: 90%;
+    height: 90%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 30px auto;
+    grid-template-areas:
+            "header"
+            "content";
+    max-width: 1150px;
+}
+
+.investors-modal-header {
+    grid-area: header;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.investors-modal-header > .modal-title > a {
+    font-weight: bold;
+    color: #039be5;
+}
+.investors-modal-header > .modal-title > .listing-name {
+    color: #546e7a;
+}
+
+.investors-modal-header > .modal-title {
+    font-size: 1.5em;
+    color: #546e7a;
+}
+
+.close-investors-modal {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.5em;
+    height: 100%;
+    color: #f44336;
+}
+
+.investors-modal-content {
+    grid-area: content;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0 1fr 50px 2fr;
+    grid-template-areas:
+            "spacer"
+            "info"
+            "charts-title"
+            "modalcharts";
+    gap: 10px;
+    height: calc(100vh - 105px);
+}
+
+.modal-charts-title {
+    grid-area: charts-title;
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    justify-content: center;
+    font-size: larger;
+    font-weight: bold;
+    font-family: sans-serif;
+    color: #546e7a;
+    gap: 10px;
+}
+
+.investors-modal-content > .info {
+    grid-area: info;
+    display: grid;
+    grid-template-columns: calc(50% - 25px) 50px calc(50% - 25px);
+    grid-template-rows: 30px auto;
+    grid-template-areas: "header picture headers"
+                         "left-side picture right-side";
+}
+
+.reviews {
+    grid-area: bottom;
+    display: flex;
+    align-items: center;
+    color: #546E74 !important;
+}
+
+.investors-modal-content > .info > .left-side {
+    grid-area: left-side;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.investors-modal-content > .info > .left-side > #listing-picture {
+    width: 100%;
+    border-radius: 1rem;
+    max-height: 35vh;
+    object-fit: cover;
+}
+
+.investors-modal-content > .info > .picture {
+    grid-area: picture;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.investors-modal-content > .info > .picture > .picture-img {
+    position: relative;
+    top: -25%;
+}
+
+.investors-modal-content > .info > .picture > .picture-img > img {
+    width: 100px;
+    border-radius: 100px;
+    border: 6px solid white;
+}
+
+.right-side-container {
+    grid-area: right-side;
+    display: flex;
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    width: calc(100% - 37px);
+    margin-left: 37px;
+}
+
+.right-side {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-listing-info {
+    grid-area: fifth;
+    display: flex;
+    flex-direction: column;
+    color: #546E74 !important;
+}
+
+.icon-value {
+    /*text-align: center;*/
+    /*font-size: larger;*/
+    /*font-weight: bold;*/
+    /*display: grid;*/
+    /*grid-template-columns: 2em auto;*/
+    /*grid-template-rows: auto auto;*/
+    /*grid-template-areas: "icon label"*/
+    /*                     "icon value";*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    color: #546E74 !important;
+}
+
+.right-side > .listing-price {
+    grid-area: first;
+}
+.right-side > .min-nights {
+    grid-area: second;
+}
+.right-side > .listing-beds {
+    grid-area: third;
+}
+.right-side > .listing-bedrooms {
+    grid-area: fourth;
+}
+
+.icon-value > i {
+    grid-area: icon;
+}
+
+.icon-value > span {
+    grid-area: label;
+}
+
+.icon-value > div {
+    grid-area: value;
+    border-bottom: 1px solid #546E74;
+}
+
+.investors-modal-content > .modal-charts {
+    grid-area: modalcharts;
+    display: grid;
+    grid-template-columns: calc(50% - 10px) calc(50% - 10px);
+    grid-template-rows: repeat(11, auto);
+    height: 100%;
+    overflow-y: scroll;
+    gap: 15px;
+}
+
+.modal-charts > .modal-chart {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 30px auto 200px;
+    grid-template-areas:
+        "title"
+        "description"
+        "chart";
+    gap: 10px;
+}
+
+.modal-chart > .modal-chart-title {
+    grid-area: title;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: bold;
+    font-family: sans-serif;
+    border-bottom: 1px solid #5a5a5a;
+}
+
+.modal-chart > .modal-chart-description {
+    grid-area: description;
+    color: #5a5a5a;
+    font-size: .8em;
+    line-height: 1.3;
+}
+
+.modal-chart > .modal-chart-visual {
+    grid-area: chart;
+    width: 100%;
+    overflow: hidden;
+}
+
+.frequent-filter-container {
+    grid-area: frequent-filter;
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-weight: 100 !important;
+    font-size: large !important;
+}
+
+.frequent-filter-container > input {
+    cursor: pointer;
+}
+
+.neighborhood-overview-container {
+    max-height: 100px;
+    overflow: scroll;
+}
+
+.realtor-btn {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    cursor: pointer;
+    background-color: rgb(217, 34, 40) !important;
+    border-radius: 35px;
+    color: white !important;
+    font-size: x-small;
+    padding: 5px 10px;
+    text-decoration: none;
+}
+
+.ag-header-cell-label .ag-header-cell-text {
+    white-space: pre-line !important;
+    text-align: center;
+}
+
+.ag-header-cell-label {
+    justify-content: center;
+}
+
+.ag-theme-balham .ag-header-cell, .ag-theme-balham .ag-header-group-cell {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.cell-wrap-text {
+    white-space: normal !important;
+}
+
+.ag-selection-checkbox {
+    display: none;
+}
+
+.ag-theme-balham .ag-header {
+    height: 40px !important;
+}
+
+.header-flex {
+    display: flex;
+    align-items: center;
+}
+
+.header-title {
+    margin-right: 5px;
+}
+
+.sort-icon {
+    /* You can add additional styles for the icon here */
+}
+
+.data-row {
+    cursor: pointer;
+}
+
+.data-row:hover {
+    background-color: #f2f2f2;
+}
+
+.no-usa {
+    height: 45%;
+}
+
+@media (max-width: 950px) {
+    .icon-value {
+        font-size: medium;
+    }
+
+    .right-side {
+        font-size: medium;
+        grid-template-rows: 40px 40px 40px 20px;
+    }
+}
+
+@media (max-width: 924px) {
+    .icon-value {
+        font-size: small;
+    }
+
+    .right-side {
+        font-size: small;
+    }
+}
+
+@media (max-width: 720px) {
+    .no-usa {
+        height: 62%;
+    }
+    .neighborhood_overview {
+        display: none;
+    }
+    .investors-modal-container {
+        grid-template-rows: 73px auto;
+    }
+    .modal-charts-title{
+        margin-top: 0px;
+    }
+    .icon-value {
+        font-size: medium;
+    }
+
+    .right-side {
+        font-size: medium;
+    }
+    .investors-modal-content{
+        rid-template-rows: 0 1fr 30px 2fr;
+        height: calc(100vh - 170px);
+    }
+    .investors-modal-content > .info {
+        grid-area: info;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 20vh 67px auto;
+        grid-template-areas:
+        "left-side"
+        "picture"
+        "right-side";
+    }
+
+    .investors-modal-content > .modal-charts {
+        grid-template-columns: 100%;
+    }
+
+    .investors-modal-content > .info > .left-side > #listing-picture {
+        max-height: 20vh;
+    }
+}
+
+@media (max-width: 1000px) {
+    .cf-page {
+        grid-template-columns: auto;
+        grid-template-rows: 60px 25px 420px auto;
+        grid-gap: 10px;
+        grid-template-areas:
+        "header"
+        "total-listings"
+        "charts"
+        "map";
+    }
+    .top-title {
+        font-size: small;
+        text-align: center;
+    }
+    .cflogo-container {
+        display: none;
+    }
+    .top-container {
+        grid-area: header;
+        display: grid;
+        grid-template-columns: 80px auto;
+        grid-template-areas: "title im";
+    }
+    .cf-room-type > .description {
+        font-size: .8em;
+        line-height: 1;
+    }
+    .widgets-container {
+        margin-top: 0px;
+    }
+    .cf-listing-per-host {
+        grid-template-rows: 32px 1fr 1fr;
+    }
+    .cf-activity {
+        grid-template-rows: 32px 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .widgets-container {
+        grid-template-rows: 470px 430px 350px 490px 490px;
+        margin-top: 0px;
+    }
+}

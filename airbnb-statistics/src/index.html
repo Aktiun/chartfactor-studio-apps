@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ABNB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/ico" href="./img/favicon.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="./css/newstyles.css">
+</head>
+<body>
+    <div class="cf-page">
+        <div class="top-container cf-card">
+            <div class="cfim-contaner" id="im"></div>
+            <div class="cflogo-container">
+                <img src="img/image.png" alt="Logo"/>
+            </div>
+            <div class="top-title">
+                <span class="cflogo-text">Airbnb for Investors</span>
+            </div>
+        </div>
+        <div class="map-container cf-card" id="cf-main-geomap"></div>
+        <div class="total-listings-sticky">
+            <div id="total-rooms-val" style="font-size: 1.5em; font-weight: bold"></div>
+            <div style="font-weight: 100 !important; font-size: large;">
+                <span>&nbsp;&nbsp;Total listings</span>
+            </div>
+        </div>
+        <div class="charts-container">
+            <div class="widgets-container">
+                <div class="cf-room-type" style="grid-area: first">
+                    <div class="title">
+                        <span>Room Type</span>
+                    </div>
+                    <div class="chart-container" >
+                        <div id="cf-roomType"></div>
+                    </div>
+                    <div class="info-container">
+                        <div class="info-item">
+                            <div class="info-item-title">
+                                <span>Entire homes/apartments </span>
+                                <div class="color" style="background-color: #0095b7"></div>
+                            </div>
+                            <div>
+                                <div class="value" id="entire-home-apt-val">0</div>
+                                <div>
+                                    (<span class="percentage" id="entire-home-apt-prct"></span>)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-item-title">
+                                <span>Private rooms</span>
+                                <div class="color" style="background-color: #a0b774"></div>
+                            </div>
+                            <div>
+                                <div class="value" id="private-room-val">0</div>
+                                <div>
+                                    (<span class="percentage" id="private-room-prct"></span>)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-item-title">
+                                <span>Shared rooms</span>
+                                <div class="color" style="background-color: #f4c658"></div>
+                            </div>
+                            <div>
+                                <div class="value" id="shared-room-val">0</div>
+                                <div>
+                                    (<span class="percentage" id="shared-room-prct"></span>)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-item-title">
+                                <span>Hotel rooms</span>
+                                <div class="color" style="background-color: #fe8b3e"></div>
+                            </div>
+                            <div>
+                                <div class="value" id="hotel-room-val">0</div>
+                                <div>
+                                    (<span class="percentage" id="hotel-room-prct"></span>)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="description">
+                        Airbnb providers have the option to offer a range of accommodations including entire houses/apartments, private or shared spaces, and, more recently, hotel rooms.<br><br>
+                        The nature and type of the listed space can vary; for instance, a residential Airbnb property might resemble a hotel in its operations, potentially causing disturbances to neighbors, reducing available housing, and in some cases, breaching legal regulations.
+                    </div>
+                </div>
+                <div class="cf-activity" style="grid-area: second">
+                    <div class="title">
+                        <span>Activity</span>
+                        <div class="frequent-filter-container">
+                            <span>Frequent properties</span> <input type="checkbox" id="frequent-filter">
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <div id="cf-activity"></div>
+                    </div>
+                    <div class="info-container">
+                        <div class="info-item">
+                            <span>Average nights booked</span>
+                            <div style="font-size: 2em; font-weight: bold">
+                                <div class="value" id="avg-nights-booked-val">0</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span>Average price/night</span>
+                            <div>
+                                <div class="value" id="avg-income-val">0</div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span>Average income</span>
+                            <div>
+                                <div class="value" id="avg-price-val">0</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="description">
+                        Is the home, apartment or room rented frequently and displacing units of housing and residents? Does the income from Airbnb incentivise short-term rentals vs long-term housing?. <br><br>
+                        The revenue for each listing on past year has been calculated using the  duration of stay and the pricing of the property.
+                    </div>
+                </div>
+                <div class="cf-licenses" style="grid-area: third">
+                    <div class="title">Licenses</div>
+                    <div class="chart-container">
+                        <div id="cf-licenses"></div>
+                    </div>
+                    <div class="info-container">
+                        <div class="info-item">
+                            <div class="info-item-title">
+                                <span>Unlicensed </span>
+                                <div class="color circle" style="background-color: #0095b7"></div>
+                            </div>
+                            <div>
+                                <div class="value" id="unlicensed-val">0</div>
+                                <div>
+                                    (<span class="percentage" id="unlicensed-prct-val"></span>)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-item-title">
+                                <span>Exempt </span>
+                                <div class="color circle" style="background-color: #f4c658"></div>
+                            </div>
+                            <div>
+                                <div class="value" id="exempt-val">0</div>
+                                <div>
+                                    (<span class="percentage" id="exempt-prct-val"></span>)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-item-title">
+                                <span>Licensed</span>
+                                <div class="color circle" style="background-color: #a0b774"></div>
+                            </div>
+                            <div>
+                                <div class="value" id="licensed-val">0</div>
+                                <div>
+                                    (<span class="percentage" id="licensed-prct-val"></span>)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-item-title">
+                                <span>Pending</span>
+                                <div class="color circle" style="background-color: #fe8b3e"></div>
+                            </div>
+                            <div>
+                                <div class="value" id="pending-val">0</div>
+                                <div>
+                                    (<span class="percentage" id="pending-prct-val"></span>)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="description">
+                        Legislation mandates that certain short-term rental properties must have a permit. The chart simplifies the distribution of properties according to their licensing status, categorizing them as licensed, unlicensed, pending, or exempt.
+                    </div>
+                </div>
+                <div class="cf-listing-per-host" style="grid-area: fourth">
+                    <div class="title">Listings per Host</div>
+                    <div class="chart-container">
+                        <div id="cf-host-listings"></div>
+                    </div>
+                    <div class="info-container">
+                        <div class="info-item">
+                            <span>Multi-listings</span>
+                            <div>
+                                <div class="value" id="multi-listings-val">0</div>
+                                <div style="font-size: 2em; font-weight: bold">
+                                    (<span class="percentage" id="multi-listings-prct-val"></span>)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span>single listings</span>
+                            <div>
+                                <div class="value" id="single-listings-val">0</div>
+                                <div style="font-weight: bold">
+                                    (<span class="percentage" id="single-listings-prct-val"></span>)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="description">
+                        Several Airbnb hosts manage more than one listing. A host might offer various rooms within a single apartment, or have several apartments or houses up for rent in their entirety.<br><br>
+                        Hosts who have numerous listings tend to operate as businesses, are probably not residing in the properties themselves, and often breach regulations established for short-term rentals that aim to preserve residential housing.
+                    </div>
+                </div>
+                <div class="cf-listing-per-host" style="grid-area: fifth">
+                    <div class="title">Short-Term Rentals</div>
+                    <div class="chart-container">
+                        <div id="cf-short-term-rentals"></div>
+                    </div>
+                    <div class="info-container">
+                        <div class="info-item">
+                            <span>Short-term rentals</span>
+                            <div>
+                                <div class="value" id="short-term-val">0</div>
+                                <div style="font-size: 2em; font-weight: bold">
+                                    (<span class="percentage" id="short-term-prct-val"></span>)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span>Longer-term rentals</span>
+                            <div>
+                                <div class="value" id="longer-term-val">0</div>
+                                <div style="font-weight: bold">
+                                    (<span class="percentage" id="longer-term-prct-val"></span>)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="description">
+                        City regulations can make it tough to rent out your property for short periods, aiming to keep housing available for locals. In New York, for example, rentals under 30 days face restrictions.<br><br>
+                        By checking the minimum stay requirements on listings, we can see if the market has moved towards longer stays.  Is this a response to stricter regulations or a shift in how people travel?
+                    </div>
+                </div>
+            </div>
+            <div class="table-container cf-card">
+                <div class="table-container-header">
+                    <span id="top-hosts-title">Top 50 Hosts</span>
+                </div>
+                <div class="table-container-content">
+                    <div id="cf-top-hosts"></div>
+                </div>
+            </div>
+            <div class="cf-page-info">
+                Airbnb data and inspiration from <a target="_blank" href="http://insideairbnb.com/get-the-data/">insideairbnb.com</a>.  Market listings data from <a
+                    target="_blank" href="https://www.realtor.com/research/data/">realtor.com</a>.
+            </div>
+        </div>
+    </div>
+<div id="investors-modal" class="investors-modal">
+    <div class="investors-modal-container">
+        <div class="investors-modal-header">
+            <div class="modal-title" id="investors-modal-title">
+                <a target="_blank" class="listing-name"></a> by <a target="_blank" class="host-name"></a>
+            </div>
+            <span class="close-investors-modal">
+                <i id="modal-close" class="fas fa-times"></i>
+            </span>
+        </div>
+        <div class="investors-modal-content">
+            <div style="grid-area: spacer"></div>
+            <div class="info">
+                <div class="left-side">
+                    <img id="listing-picture" src="" alt="listing" />
+                </div>
+                <div class="picture">
+                    <div class="picture-img">
+                        <img src="" alt="profile" id="listing-profile-picture">
+                    </div>
+                </div>
+                <div class="right-side-container">
+                    <div class="right-side">
+                        <div class="listing-price icon-value">
+                            <span>Per night: </span>
+                            <span id="listing-price"></span>
+                        </div>
+                        <div class="min-nights icon-value">
+                            <span>Min Nights: </span>
+                            <span id="min-nights"></span>
+                        </div>
+                        <div class="listing-beds icon-value">
+                            <span>Number of beds: </span>
+                            <span id="listing-beds"></span>
+                        </div>
+                        <div class="listing-bedrooms icon-value">
+                            <span>Number of bedrooms: </span>
+                            <span id="listing-bedrooms"></span>
+                        </div>
+                        <div class="icon-value">
+                            Occupancy:&nbsp;<span id="avgNights">${avgNights}</span> last twelve months
+                        </div>
+                        <div class="icon-value">
+                            Approx. income:&nbsp;<span id="avgIncome">${cleanIncome}</span>
+                        </div>
+                        <div class="reviews">
+                            <span id="number-of-reviews"></span>&nbsp;Reviews&nbsp;<span id="reviews-stars"></span>
+                        </div>
+                        <div class="icon-value">
+                            <span>Neighbourhood: </span>
+                            <span id="listing-neighbourhood"></span>
+                        </div>
+                        <div class="icon-value neighborhood_overview neighborhood-overview-container">
+                            <span id="listing-neighborhood_overview"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-charts-title" id="modal-zipcode-container">
+                <div style="text-align: center">
+                    Market Trends&nbsp;- ZIP Code &nbsp;<span id="modal-zipcode"></span>
+                </div>
+                <a target="_blank" class="realtor-btn" id="realtor-link">
+                    <span style="font-weight: normal;">REALTOR.COM</span>
+                    <span style="font-size: small;">Go to listings in <span id="realtor-zipcode"></span></span>
+                </a>
+            </div>
+            <div class="modal-charts" id="modal-charts-area">
+                <div class="modal-chart">
+                    <div class="modal-chart-title">Active listings</div>
+                    <div class="modal-chart-description">
+                        The active listing count tracks the number of for sale properties on the market, excluding pending listings where a pending status is available.
+                    </div>
+                    <div class="modal-chart-visual" id="cf-active-listings-trend-by-zipcode"></div>
+                </div>
+                <div class="modal-chart">
+                    <div class="modal-chart-title">Median listing price</div>
+                    <div class="modal-chart-description">
+                        The median listing price within the specified geography during the specified month.
+                    </div>
+                    <div class="modal-chart-visual" id="cf-median-listing-price-trend-by-zipcode"></div>
+                </div>
+                <div class="modal-chart">
+                    <div class="modal-chart-title">Median days on market</div>
+                    <div class="modal-chart-description">
+                        The median number of days property listings spend on the market. Time spent on the market is defined as the time between the initial listing of a property and either its closing date or the date it is taken off the market.
+                    </div>
+                    <div class="modal-chart-visual" id="cf-median-days-market-by-zipcode"></div>
+                </div>
+                <div class="modal-chart">
+                    <div class="modal-chart-title">Active listings count M/M</div>
+                    <div class="modal-chart-description">
+                        The percentage change in the active listing count from the previous month.
+                    </div>
+                    <div class="modal-chart-visual" id="cf-listings-mm-by-zipcode"></div>
+                </div>
+                <div class="modal-chart">
+                    <div class="modal-chart-title">Active listings count Y/Y</div>
+                    <div class="modal-chart-description">
+                        The percentage change in the active listing count from the same month in the previous year.
+                    </div>
+                    <div class="modal-chart-visual" id="cf-listings-yy-by-zipcode"></div>
+                </div>
+                <div class="modal-chart">
+                    <div class="modal-chart-title">Avg listing Price</div>
+                    <div class="modal-chart-description">
+                        The average listing price within the specified geography during the specified month.
+                    </div>
+                    <div class="modal-chart-visual" id="cf-avg-price-by-zipcode"></div>
+                </div>
+                <div class="modal-chart">
+                    <div class="modal-chart-title">Avg listing Price M/M</div>
+                    <div class="modal-chart-description">
+                        The percentage change in the average listing price from the previous month.
+                    </div>
+                    <div class="modal-chart-visual" id="cf-avg-price-mm-by-zipcode"></div>
+                </div>
+                <div class="modal-chart">
+                    <div class="modal-chart-title">Avg listing Price Y/Y</div>
+                    <div class="modal-chart-description">
+                        The percentage change in the average listing price from the same month in the previous year.
+                    </div>
+                    <div class="modal-chart-visual" id="cf-avg-price-yy-by-zipcode"></div>
+                </div>
+                <div class="modal-chart">
+                    <div class="modal-chart-title">Median square Feet</div>
+                    <div class="modal-chart-description">
+                        The median listing square feet within the specified geography during the specified month.
+                    </div>
+                    <div class="modal-chart-visual" id="cf-median-square-feet-by-zipcode"></div>
+                </div>
+                <div class="modal-chart">
+                    <div class="modal-chart-title">Median days on market M/M</div>
+                    <div class="modal-chart-description">
+                        The change in days in the median days on market from the previous month.
+                    </div>
+                    <div class="modal-chart-visual" id="cf-median-days-market-mm-by-zipcode"></div>
+                </div>
+                <div class="modal-chart">
+                    <div class="modal-chart-title">Median days on market Y/Y</div>
+                    <div class="modal-chart-description">
+                        The change in days in the median days on market from the same month in the previous year.
+                    </div>
+                    <div class="modal-chart-visual" id="cf-median-days-market-yy-by-zipcode"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript" src="./js/libs/cftoolkit.min.js?version=4.1.41"></script>
+<script type="text/javascript" src="./js/libs/cft-elasticsearch-provider.min.js?version=4.1.41"></script>
+<script type="text/javascript" src="./js/libs/cft-geogl-charts.min.js?version=4.1.41"></script>
+<script type="text/javascript" src="./js/libs/cft-interactive-charts.min.js?version=4.1.41"></script>
+<script type="text/javascript" src="./js/libs/cft-standard-charts.min.js?version=4.1.41"></script>
+<script type="text/javascript" src="./js/libs/cft-tables-charts.min.js?version=4.1.41"></script>
+
+<script>
+    window.jQuery = $ = cf.getDependency('jquery');
+    window._ = cf.getDependency('lodash');
+</script>
+
+<script src="./js/providers.js"></script>
+<script src="./js/geomap-helper.js"></script>
+<script src="./js/widgets.js"></script>
+<script src="./js/event-listeners.js"></script>
+<script src="./js/tooltip-builder.js"></script>
+<script src="./js/time-filter.js"></script>
+<script src="./js/loadWidgets.js"></script>
+</html>
