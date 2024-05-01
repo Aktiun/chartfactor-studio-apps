@@ -503,7 +503,7 @@ def load_records(client, index_name, csv_file):
         client,
         get_value(csv_file),
         index=index_name,
-        chunk_size=5000  # batch size
+        chunk_size=500  # batch size
     ):
         action, result = result.popitem()
         doc_id = '/%s/commits/%s' % (index_name, result['_id'])
