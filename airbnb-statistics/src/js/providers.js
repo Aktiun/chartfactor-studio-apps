@@ -399,7 +399,7 @@ function loadProviders() {
     const providers = [
         {
             name: "local",
-            url: "http://localhost:9200/",
+            url: "https://chartfactor.com/elastic/",
             active: true,
             provider: "elasticsearch",
             isLocal: true,
