@@ -240,7 +240,7 @@ function loadGeomap() {
         .set("drawControl", true)
         .set("enableZoomInfo", true)
         .set("layersControl", false)
-        .set('minZoom', 2.5)
+        .set('minZoom', 1.2)
         .element(elementId)
         .on("notification", e => {
           window.toast({

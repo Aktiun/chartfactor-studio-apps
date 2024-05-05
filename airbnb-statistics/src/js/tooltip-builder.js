@@ -87,7 +87,7 @@ const getTooltipCardHtml = (data) => {
     </html>
     `;
     template = template.replace("{{imageUrl}}", data[7].value);
-    template = template.replace("{{name}}", `${data[1].value} by ${data[12].value}`);
+    template = template.replace("{{name}}", `${data[1].value} by ${data[13].value}`);
     template = template.replace("{{price}}", getPrice(data[5].value, data[9].value));
     template = template.replace("{{reviews}}", data[7].value);
     template = template.replace("{{stars}}", getStars(data[8].value));
