@@ -230,8 +230,8 @@ async function loadGeomap() {
               }
             }
           ])
-          .set("zoom", 2.4)
-          .set("center", [-56.83331908733828, 42.164016576305954])
+          .set("zoom", 13.071552694900104)
+          .set("center", [-73.9871492303306, 40.72614254159123])
           .set("drawControl", true)
           .set("enableZoomInfo", true)
           .set("layersControl", false)
@@ -590,13 +590,13 @@ function loadLicenses() {
             count: element2.current.count,
             rate: element2.current.metrics.rate.count,
             description: element2.group[0],
-            id: 'licensed-val'
+            id: 'exempt-val'
           } : getZeroCleanedData();
           let element3Clean = element3 ? {
             count: element3.current.count,
             rate: element3.current.metrics.rate.count,
             description: element3.group[0],
-            id: 'exempt-val'
+            id: 'licensed-val'
           } : getZeroCleanedData();
           let element4Clean = element4 ? {
             count: element4.current.count,
@@ -604,6 +604,18 @@ function loadLicenses() {
             description: element4.group[0],
             id: 'pending-val'
           } : getZeroCleanedData();
+
+          animateValue(document.getElementById('unlicensed-val'), element1Clean.count, formatCount, true);
+          animateValue(document.getElementById('unlicensed-prct-val'), element1Clean.rate, formatRate, true);
+
+          animateValue(document.getElementById('exempt-val'), element2Clean.count, formatCount, true);
+          animateValue(document.getElementById('exempt-prct-val'), element2Clean.rate, formatRate, true);
+
+          animateValue(document.getElementById('licensed-val'), element3Clean.count, formatCount, true);
+          animateValue(document.getElementById('licensed-prct-val'), element3Clean.rate, formatRate, true);
+
+          animateValue(document.getElementById('pending-val'), element4Clean.count, formatCount, true);
+          animateValue(document.getElementById('pending-prct-val'), element4Clean.rate, formatRate, true);
 
           document.getElementById('unlicensed-val').parentElement.style.fontWeight = 'normal';
           document.getElementById('unlicensed-val').parentElement.style.fontSize = '1em';
