@@ -35,15 +35,15 @@ function handleError(elementId, error) {
 loadProviders();
 // Load charts
 loadInteractionManager();
-loadGeomap();
-loadTotalListingsCount();
-loadPropertyType();
-loadActivity();
-loadAvgPrice();
-loadLicenses();
-loadHostListings();
-loadHostListingsStatistics();
-// loadTopHosts();
-loadTopHostsTable();
-loadShortTermRentals();
-loadShortTermRentalsStatistics();
+loadGeomap().then(() => {
+    loadTotalListingsCount();
+    loadPropertyType();
+    loadActivity();
+    loadAvgPrice();
+    loadLicenses();
+    loadHostListings();
+    loadHostListingsStatistics();
+    loadTopHostsTable();
+    loadShortTermRentals();
+    loadShortTermRentalsStatistics();
+});
