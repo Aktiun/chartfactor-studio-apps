@@ -170,131 +170,126 @@ function processGeomapClick(e) {
   }
 }
 
-function loadGeomap() {
-  // const elementId = "vis08e89f59-a0f3-4a17-9a6e-92fdbc6d92ee";
-  const elementId = "cf-main-geomap"
-  try {
-    // Interaction Manager uses filter(), filters(), clientFilter(),
-    // and clientFilters() to manage filters. To apply additional
-    // filters, use staticFilters() or your code could be overwritten.
-    //
-    /* Configuration code for this widget */
-    const myTooltip = data => {
-      return getTooltipCardHtml(data);
-      // return `<img style="width: 200px" src=${data[6].value} alt="picture" />`;
-    };
+async function loadGeomap() {
 
-    cf.create()
-        .graph("Geo Map GL")
-        .set("layers", [
-          {
-            "name": "hosts",
-            "priority": 2,
-            "type": "heatmap",
-            "provider": "local",
-            "source": "abnb_listings",
-            "properties": {
-              "customTooltip": myTooltip,
-              "limit": 20000,
-              "location": "location",
-              "visibilityZoomRange": [0, 24],
-              "options": {
-                "heatmap-weight": ["interpolate", ["linear"], ["get", "__cf_cluster_count_percent__"], 1, 0.2, 80, 85],
-                "heatmap-radius": ["interpolate", ["linear"], ["get", "__cf_cluster_count_percent__"], 1, 3, 20, 5, 80, 10],
-                "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 5, 1, 18, 6],
-                "heatmap-color": ["interpolate", ["linear"], ["heatmap-density"], 0, "rgba(0, 0, 255, 0)", 0.1, "royalblue", 0.3, "cyan", 0.5, "lime", 0.7, "yellow", 1, "red"],
-                "switchToMarkersAtRaw": true,
-              },
-              "precisionLevels": {
-                "raw": {
-                  "zoom": 13,
-                  fields: [
-                      "name", "estimated_occupied_time", "host_name", "bedrooms", "beds", "price",
-                    "picture_url","number_of_reviews", "review_scores_value", "minimum_nights", "zipcode",
-                    "is_usa", "host_name", "host_url", "listing_url", "host_picture_url", "neighbourhood",
-                    "neighborhood_overview"
-                  ]
+  return new Promise((resolve, reject) => {
+    const elementId = "cf-main-geomap"
+    try {
+      const myTooltip = data => {
+        return getTooltipCardHtml(data);
+      };
+
+      cf.create()
+          .graph("Geo Map GL")
+          .set("layers", [
+            {
+              "name": "hosts",
+              "priority": 2,
+              "type": "heatmap",
+              "provider": "local",
+              "source": "abnb_listings",
+              "properties": {
+                "customTooltip": myTooltip,
+                "limit": 20000,
+                "location": "location",
+                "visibilityZoomRange": [0, 24],
+                "options": {
+                  "heatmap-weight": ["interpolate", ["linear"], ["get", "__cf_cluster_count_percent__"], 1, 0.2, 80, 85],
+                  "heatmap-radius": ["interpolate", ["linear"], ["get", "__cf_cluster_count_percent__"], 1, 3, 20, 5, 80, 10],
+                  "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 5, 1, 18, 6],
+                  "heatmap-color": ["interpolate", ["linear"], ["heatmap-density"], 0, "rgba(0, 0, 255, 0)", 0.1, "royalblue", 0.3, "cyan", 0.5, "lime", 0.7, "yellow", 1, "red"],
+                  "switchToMarkersAtRaw": true,
                 },
-                "levels": [{ "zoom": 2, "precision": 4 }, { "zoom": 4, "precision": 5 }, { "zoom": 6, "precision": 6 }, { "zoom": 8, "precision": 7 }, { "zoom": 11, "precision": 8 }]
+                "precisionLevels": {
+                  "raw": {
+                    "zoom": 13,
+                    fields: [
+                      "name", "estimated_occupied_time", "host_name", "bedrooms", "beds", "price",
+                      "picture_url","number_of_reviews", "review_scores_value", "minimum_nights", "zipcode",
+                      "is_usa", "host_name", "host_url", "listing_url", "host_picture_url", "neighbourhood",
+                      "neighborhood_overview"
+                    ]
+                  },
+                  "levels": [{ "zoom": 2, "precision": 4 }, { "zoom": 4, "precision": 5 }, { "zoom": 6, "precision": 6 }, { "zoom": 8, "precision": 7 }, { "zoom": 11, "precision": 8 }]
+                },
+                "color": cf.Color()
+                    .palette(["#08519c", "#3182bd", "#6baed6", "#bdd7e7", "#eff3ff"])
+                    .metric(cf.Metric()),
               },
-              "color": cf.Color()
-                  .palette(["#08519c", "#3182bd", "#6baed6", "#bdd7e7", "#eff3ff"])
-                  .metric(cf.Metric()),
-            },
-          }, {
-            type: "tile",
-            name: "Tile",
-            priority: 1,
-            properties: {
-              source: {
-                tiles: ["https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"],
-                scheme: "xyz",
-                attribution:
-                    'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+            }, {
+              type: "tile",
+              name: "Tile",
+              priority: 1,
+              properties: {
+                source: {
+                  tiles: ["https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"],
+                  scheme: "xyz",
+                  attribution:
+                      'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+                }
               }
             }
-          }
-        ])
-        .set("zoom", 2.4)
-        .set("center", [-56.83331908733828, 42.164016576305954])
-        .set("drawControl", true)
-        .set("enableZoomInfo", true)
-        .set("layersControl", false)
-        .set('minZoom', 2.4)
-        .element(elementId)
-        .on("notification", e => {
-          window.toast({
-            message: e.message,
-            type: e.type
-          });
-        })
-        .on("geo:layers-execution-stop", e => {
-          let aktiveMap = cf.getVisualization("cf-main-geomap");
-          let geoMap = aktiveMap.get("map");
-          geoMap.off("click", "hosts_image_layer", processGeomapClick);
-          geoMap.on("click", "hosts_image_layer", processGeomapClick);
+          ])
+          .set("zoom", 2.4)
+          .set("center", [-56.83331908733828, 42.164016576305954])
+          .set("drawControl", true)
+          .set("enableZoomInfo", true)
+          .set("layersControl", false)
+          .set('minZoom', 2.4)
+          .element(elementId)
+          .on("notification", e => {
+            window.toast({
+              message: e.message,
+              type: e.type
+            });
+          })
+          .once("geo:layers-execution-stop", () => {
+            window.mapLoaded = true;
+            updateBnBBoundsFilter();
+            resolve();
+          })
+          .on("geo:layers-execution-stop", e => {
+            let aktiveMap = cf.getVisualization("cf-main-geomap");
+            let geoMap = aktiveMap.get("map");
+            geoMap.off("click", "hosts_image_layer", processGeomapClick);
+            geoMap.on("click", "hosts_image_layer", processGeomapClick);
 
-          geoMap.off("touchstart", "hosts_image_layer", processGeomapClick);
-          geoMap.on("touchstart", "hosts_image_layer", processGeomapClick);
-          // if (!window.mapLoaded) {
-          //   window.mapLoaded = true;
-          //   updateBnBBoundsFilter()
-          // }
-        })
-        .on("execute:stop", e => {
-          let aktiveMap = cf.getVisualization("cf-main-geomap");
-          let geoMap = aktiveMap.get("map");
-          geoMap.on("zoomend", (e) => {
-            // console.log("zoomend **********");
-            updateBnBBoundsFilter();
-          });
-          geoMap.on("moveend", () => {
-            // console.log("moveend **********");
-            updateBnBBoundsFilter();
-          });
-          geoMap.on("dragend", () => {
-            // console.log("dragend **********");
-            updateBnBBoundsFilter();
-          });
-          //let hostsLayer = cf.getVisualization("cf-main-geomap-hosts");
-        })
-        .on("error", e => handleError(e.element, e.error))
-        .execute()
-        .catch(ex => {
-          if (typeof provider !== "undefined") {
-            const currentProvider = provider.getProvider();
-            const providerName = currentProvider
-                ? currentProvider.get("provider")
-                : null;
+            geoMap.off("touchstart", "hosts_image_layer", processGeomapClick);
+            geoMap.on("touchstart", "hosts_image_layer", processGeomapClick);
+          })
+          .on("execute:stop", e => {
+            let aktiveMap = cf.getVisualization("cf-main-geomap");
+            let geoMap = aktiveMap.get("map");
+            geoMap.on("zoomend", (e) => {
+              updateBnBBoundsFilter();
+            });
+            geoMap.on("moveend", () => {
+              updateBnBBoundsFilter();
+            });
+            geoMap.on("dragend", () => {
+              updateBnBBoundsFilter();
+            });
+          })
+          .on("error", e => handleError(e.element, e.error))
+          .execute()
+          .catch(ex => {
+            if (typeof provider !== "undefined") {
+              const currentProvider = provider.getProvider();
+              const providerName = currentProvider
+                  ? currentProvider.get("provider")
+                  : null;
 
-            handleForbiddenError(ex, providerName);
-          }
-          handleError(elementId, ex);
-        });
-  } catch (ex) {
-    console.error(ex);
-    handleError(elementId, ex);
-  }
+              handleForbiddenError(ex, providerName);
+            }
+            handleError(elementId, ex);
+            reject(ex);
+          });
+    } catch (ex) {
+      console.error(ex);
+      handleError(elementId, ex);
+      reject(ex);
+    }
+  });
 }
 
 function loadPropertyType() {
