@@ -202,7 +202,7 @@ async function loadGeomap() {
                 },
                 "precisionLevels": {
                   "raw": {
-                    "zoom": 13,
+                    "zoom": 13.5,
                     fields: [
                       "name", "estimated_occupied_time", "host_name", "bedrooms", "beds", "price",
                       "picture_url","number_of_reviews", "review_scores_value", "minimum_nights", "zipcode",
@@ -210,7 +210,7 @@ async function loadGeomap() {
                       "neighborhood_overview"
                     ]
                   },
-                  "levels": [{ "zoom": 2, "precision": 4 }, { "zoom": 4, "precision": 5 }, { "zoom": 6, "precision": 6 }, { "zoom": 8, "precision": 7 }, { "zoom": 11, "precision": 8 }]
+                  "levels": [{ "zoom": 2, "precision": 4 }, { "zoom": 4, "precision": 5 }, { "zoom": 6, "precision": 6 }, { "zoom": 8, "precision": 7 }, { "zoom": 12.5, "precision": 8 }]
                 },
                 "color": cf.Color()
                     .palette(["#08519c", "#3182bd", "#6baed6", "#bdd7e7", "#eff3ff"])
