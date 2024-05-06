@@ -215,7 +215,7 @@ function loadGeomap() {
                     "neighborhood_overview"
                   ]
                 },
-                "levels": [{ "zoom": 2, "precision": 3 }, { "zoom": 4, "precision": 5 }, { "zoom": 6, "precision": 6 }, { "zoom": 9, "precision": 7 }, { "zoom": 12, "precision": 8 }]
+                "levels": [{ "zoom": 2, "precision": 4 }, { "zoom": 4, "precision": 5 }, { "zoom": 6, "precision": 6 }, { "zoom": 8, "precision": 7 }, { "zoom": 11, "precision": 8 }]
               },
               "color": cf.Color()
                   .palette(["#08519c", "#3182bd", "#6baed6", "#bdd7e7", "#eff3ff"])
@@ -235,12 +235,12 @@ function loadGeomap() {
             }
           }
         ])
-        .set("zoom", 4)
-        .set("center", [-73.84875467114972, 40.77680058764247])
+        .set("zoom", 2.4)
+        .set("center", [-56.83331908733828, 42.164016576305954])
         .set("drawControl", true)
         .set("enableZoomInfo", true)
         .set("layersControl", false)
-        .set('minZoom', 1.2)
+        .set('minZoom', 2.4)
         .element(elementId)
         .on("notification", e => {
           window.toast({
