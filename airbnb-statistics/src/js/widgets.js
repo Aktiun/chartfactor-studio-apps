@@ -576,10 +576,10 @@ function loadLicenses() {
         .on("execute:stop", () => {
           let chart = cf.getVisualization("cf-licenses");
           let data = chart.get("data");
-          let element1 = data[0];
-          let element2 = data.length > 1 ? data[1] : undefined;
-          let element3 = data.length > 2 ? data[2] : undefined;
-          let element4 = data.length > 3 ? data[3] : undefined;
+          let element1 = data.find(d => d.group[0] === "Unlicensed");
+          let element2 = data.find(d => d.group[0] === "Exempt");
+          let element3 = data.find(d => d.group[0] === "Licensed");
+          let element4 = data.find(d => d.group[0] === "Pending");
           let element1Clean = element1 ? {
             count: element1.current.count,
             rate: element1.current.metrics.rate.count,
