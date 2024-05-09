@@ -1,6 +1,6 @@
 # ChartFactor Studio Applications
 
-This is the public collection of ChartFactor Studio applications in the form of CFS files, ready to be imported into ChartFactor Studio.
+This is the public collection of ChartFactor Studio applications in the form of CFS (ChartFactor Studio) files, ready to be imported into ChartFactor Studio, or their actual source code.
 
 ## Instructions to load CFS files in ChartFactor Studio
 
@@ -103,3 +103,11 @@ You can access this app live at https://chartfactor.com/medicare-ip-svc-prov-202
 Data provided by the [Centers for Medicare & Medicaid Services](https://data.cms.gov/search?keywords=Medicare%20Inpatient%20Hospitals%20-%20by%20Provider&sort=Relevancy).
 
 Data engine is OpenSearch, base map tiles provided by OpenStreetMap.
+
+# Airbnb listings and US market stats
+
+This ChartFactor application helps you easily visualize Airbnb listings in a completely interactive way, data made available by [InsideAirbnb](http://insideairbnb.com/get-the-data/). You can explore entire home/apartments vs private rooms, lower vs higher activity listings, average prices and income, licensed vs. unlicensed listings, short-term vs long-term rentals, and top hosts.
+
+Plus, when selecting a property in the US, we provide detailed real estate market trends, courtesy of [Realtor.com](https://realtor.com). You can visualize median listing prices, active listings, median days on the market, month over month and year over year percent changes, between other metrics.
+
+Source code is available at https://github.com/Aktiun/chartfactor-studio-apps/tree/main/airbnb-statistics

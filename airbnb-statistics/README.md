@@ -1,6 +1,6 @@
-# AirB&B Statistics
+# Airbnb listings and US market stats
 
-This is a web app developed using ChartFactor to create useful and interesting visualizations of free Air B&B data available [here](http://insideairbnb.com/get-the-data/).
+This is a web app developed using ChartFactor to create useful and interesting visualizations of free Airbnb data made available by [InsideAirbnb](http://insideairbnb.com/get-the-data/) as well as US market statistics with data provided by [Realtor.com](https://realtor.com).
 
 ## Steps to setup dev env
 1. Install Elastik Search 7 (no 8+)
