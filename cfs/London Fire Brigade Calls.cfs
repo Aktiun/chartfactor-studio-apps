@@ -1,12 +1,11 @@
 {
-    "id": "1635467a-056a-4c5c-88e8-78b93d9581f0",
+    "id": "be3c7a68-3781-4cbc-92f6-7f73d2301ac5",
     "name": "London Fire Brigade Calls",
     "description": "This application consists of 32K calls to the London Fire Brigade from January 01 to April 30 2017. This illustrates how you can embed visual analytics into your data applications with ChartFactor using basic Html, Css and Javascript.",
     "state": "home",
     "readOnly": false,
     "hasBorder": true,
-    "isSampleApp": true,
-    "thumbnailPath": "data/london_fire_brigade.jpg",
+    "thumbnailPath": "data/london_fire_brigade.png",
     "widgetList": [
         {
             "id": "vis9474ce9b-061d-410c-96b9-a5c76dc98580",
@@ -70,10 +69,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "visb1b8baf1-bc9c-4b9f-b9bb-c5ace2c922e5",
@@ -132,10 +135,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis60c6edf7-8afe-4f10-a93b-8a8c6317a792",
@@ -191,10 +198,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis01e57239-b314-408f-bf02-2108dd33532c",
@@ -251,10 +262,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis52c9c3c2-60bd-4c62-84c8-628f4e4239bc",
@@ -314,10 +329,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "visc1b80ca7-5f80-4f9d-8948-a5de1afdfac1",
@@ -365,10 +384,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis123f9e5c-eccd-499a-a717-671de3d1df4d",
@@ -422,10 +445,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis16c6abb3-2555-49ea-8bcc-c653ba766b0b",
@@ -464,10 +491,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis1ed186e9-6d7d-4054-9f8d-dbc608cdeeed",
@@ -521,10 +552,14 @@
             ],
             "showUI": false,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis94f658d5-2208-46cc-861c-9a21122a4d84",
@@ -555,10 +590,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis09c6c285-cca6-49a0-aa9c-bb1016e68ced",
@@ -589,10 +628,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis6fd2b98d-a318-4a99-80da-123ba9ed1519",
@@ -623,10 +666,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis1c8512dc-10e3-4450-836d-c4314581dfcd",
@@ -639,7 +686,7 @@
                 "moved": false,
                 "static": false
             },
-            "title": "#### Distribution of First Response Time by Borough and Ward",
+            "title": "#### Minutes Distribution of First Response by Borough and Ward",
             "visualization": "Box Plot",
             "source": {
                 "name": "london_fire_brigade",
@@ -665,7 +712,7 @@
                 "// Define attributes to group by",
                 "let group1 = cf.Attribute(\"proper_case\")",
                 "    .limit(100)",
-                "    .sort(\"desc\", cf.Metric(\"first_response_mins_perc\"));",
+                "    .sort(\"desc\", cf.Metric(\"first_pump_arriving_attendance_time\", \"avg\"));",
                 "// Add metrics and groups to data source",
                 "let myData = source.groupby(group1)",
                 "    .metrics(metric0, metric1);",
@@ -681,10 +728,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis16871325-1233-4d19-9131-04417825c9bb",
@@ -716,7 +767,7 @@
                 "// Define attributes to group by",
                 "let group1 = cf.Attribute(\"proper_case\")",
                 "    .limit(100)",
-                "    .sort(\"desc\", cf.Metric(\"first_response_mins_avg\"));",
+                "    .sort(\"desc\", cf.Metric(\"first_pump_arriving_attendance_time\", \"avg\"));",
                 "// Add metrics and groups to data source",
                 "let myData = source.groupby(group1)",
                 "    .metrics(metric0);",
@@ -748,10 +799,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis4f109de4-d882-43a6-b31d-fabb64faaf8b",
@@ -815,10 +870,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis0c2b240d-283a-4790-82e5-d61145545593",
@@ -882,10 +941,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis59e921bf-08db-45d1-b1d1-7e4edc6712fc",
@@ -935,10 +998,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis574abc1f-38de-44a1-bb10-0602e382ce3b",
@@ -961,6 +1028,10 @@
                 }
             },
             "code": [
+                "// Interaction Manager uses filter(), filters(), clientFilter(),",
+                "// and clientFilters() to manage filters. To apply additional",
+                "// filters, use staticFilters() or your code could be overwritten.",
+                "//",
                 "/* Configuration code for this widget */",
                 "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"london_fire_brigade\");",
@@ -1003,13 +1074,14 @@
                 "let color = cf.Color();",
                 "color.theme({",
                 "    \"headerStyle\": \"background: #607d8b; color: #fff; font-size: 16px;\",",
+                "    \"numericHeaderStyle\": \"background: #607d8b; color: #ffffff; font-size: 16px;\",",
                 "    \"headerIconStyle\": \"color: #fff; font-size: 16px;\",",
                 "    \"rowOddStyle\": \"background: #fff; color: #000;\",",
                 "    \"rowEvenStyle\": \"background: #eceff1; color: #000;\",",
                 "    \"headerResizeLineStyle\": \"border-right-color: #fff; border-right-width: 1px;\",",
-                "    \"headerHorizontalLineStyle\": \"border-bottom-color: #fff; border-bottom-width: 1px;\",",
                 "    \"tpButtonActive\": \"color: #fff; background: #607d8b;\",",
                 "    \"cellMoving\": \"color: black; background: #b0bec5;\",",
+                "    \"name\": \"light\",",
                 "});",
                 "// --- Define chart options and static filters ---",
                 "let myChart = myData.graph(\"Raw Data Table\")",
@@ -1050,6 +1122,7 @@
                 "])",
                 "    .set(\"showRowNumber\", true)",
                 "    .set(\"autoSizeColumns\", true)",
+                "    .set(\"copyOnSelection\", { \"enabled\": false, \"colSeparator\": \"\\t\", \"rowSeparator\": \"\\n\" })",
                 "    .limit(100)",
                 "    .set(\"columnsWidth\", [",
                 "    { \"rn\": 60 },",
@@ -1086,16 +1159,21 @@
                 "    { \"ward_name\": 157 },",
                 "    { \"ward_name_new\": 100 }",
                 "])",
-                "    .set(\"sort\", [])",
+                "    .set(\"sort\", [{ \"address_qualifier\": \"asc\" }])",
                 "    .execute();",
                 ""
             ],
             "showUI": true,
+            "syncedFields": [],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis01440f40-b9dc-4521-91e3-473fa42d2eba",
@@ -1141,10 +1219,14 @@
             ],
             "showUI": true,
             "showTitle": false,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "viscf0f2e5b-b9ac-42e9-837c-4c08f6113555",
@@ -1196,10 +1278,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "visf6306f3c-1d74-4d84-89a9-cd20113734c3",
@@ -1241,10 +1327,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         }
     ],
     "filters": [],
@@ -1259,12 +1349,13 @@
         "visualization": "Interaction Manager",
         "source": {},
         "code": [
+            "let viz1 = getId(\"### Call Events\");",
             "/* Configuration code for the Interaction Manager*/",
             "// Drill hierarchy settings can be done like this:",
             "let vizId = getId(\"#### Calls by Incident Group / Type\");",
             "let vizId2 = getId(\"#### Average First Response Time by Borough and Ward\");",
             "let vizId3 = getId(\"#### Number of Calls by Borough and Ward\");",
-            "let vizId4 = getId(\"Distribution of First Response Time by Borough and Ward\");",
+            "let vizId4 = getId(\"#### Minutes Distribution of First Response by Borough and Ward\");",
             "let vizId5 = getId(\"### Call Trend by Hour of the Day\");",
             "let vizId6 = getId(\"#### Average First Response Time by Hour of Call\");",
             "let vizId7 = getId(\"#### Average Second Response Time by Hour of Call\");",
@@ -1304,10 +1395,14 @@
         "showUI": false,
         "syncedFields": [],
         "showTitle": true,
+        "layerProviders": [],
         "enableClientFilters": false,
         "enableAutoDrill": false,
         "staticFilters": 0,
-        "description": null
+        "description": null,
+        "switchToMultiMetric": true,
+        "isCustom": false,
+        "savedVars": {}
     },
     "hideIM": false,
     "metadata": {
@@ -1415,6 +1510,6 @@
         "url": "https://chartfactor.com/elastic",
         "active": true,
         "provider": "elasticsearch",
-        "id": "07b3d2ad-c8f0-486c-b276-c604c5a2cfd9"
+        "id": "0519b899-4213-4e17-876f-07aa266a3390"
     }
 ]

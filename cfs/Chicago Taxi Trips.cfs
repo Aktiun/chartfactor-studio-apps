@@ -1,11 +1,10 @@
 {
-    "id": "8ceee3aa-0ad2-4020-af3c-bb9a7c0a9850",
+    "id": "c2239ece-7799-4137-9836-703ac6ee83be",
     "name": "Chicago Taxi Trips",
     "description": "This dashboard visualizes 10,000 taxi trips taken from the full dataset, publicly available from the City of Chicago's website.",
     "state": "home",
     "readOnly": false,
     "hasBorder": true,
-    "isSampleApp": true,
     "thumbnailPath": "data/chicago_taxi_trips.jpg",
     "widgetList": [
         {
@@ -85,10 +84,14 @@
             ],
             "showUI": false,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis1f4bb8ae-a594-4203-8a55-09b917f3e057",
@@ -143,10 +146,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "visc877bb16-1362-404a-82b3-a2f8ab0dabe9",
@@ -201,10 +208,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis057be44c-cb89-4a1c-934a-161663410b03",
@@ -259,10 +270,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "viscdb0da72-4d30-4d40-8ee6-a35815988666",
@@ -317,10 +332,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis139d66b6-e4f8-4ea7-baa7-fc0c2e2fdb5f",
@@ -375,10 +394,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis13483a1e-b675-4608-af02-b5922951e03e",
@@ -433,10 +456,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "visc19981c7-1336-43c5-b8c6-7ca18cce024c",
@@ -480,10 +507,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis795d4668-d2cb-42ca-a502-9380caf967a6",
@@ -522,10 +553,14 @@
             ],
             "showUI": false,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis3ad08ee8-cd85-48e7-9fa6-8d00a8e717f4",
@@ -574,10 +609,14 @@
             ],
             "showUI": false,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "visf0892ae6-8f8f-4772-a903-fd511309ef2e",
@@ -624,10 +663,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis384c15b1-a9fb-4e7f-9211-548c92d940f9",
@@ -696,10 +739,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis6ddce408-23be-40c3-90d7-bcbd6eb354ca",
@@ -753,10 +800,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis04e800cc-905d-41f0-b975-3d4f68a1f634",
@@ -825,10 +876,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis6fa64965-e6ff-45c7-846d-73aadf5f29bc",
@@ -887,10 +942,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis07f4059f-1186-4fe6-8c07-62967036b827",
@@ -949,19 +1008,21 @@
                 "let color = cf.Color();",
                 "color.theme({",
                 "    \"headerStyle\": \"background: #b3cce6; color: #0d1a26; font-size: 16px;\",",
+                "    \"numericHeaderStyle\": \"background: #b3cce6; color: #000000; font-size: 16px;\",",
                 "    \"headerIconStyle\": \"color: #0d1a26; font-size: 16px;\",",
                 "    \"rowOddStyle\": \"background: #ffffff; color: #000;\",",
                 "    \"rowEvenStyle\": \"background: #f0f0f5; color: #000;\",",
                 "    \"headerResizeLineStyle\": \"border-right-color: #fff; border-right-width: 1px;\",",
-                "    \"headerHorizontalLineStyle\": \"border-bottom-color: #fff; border-bottom-width: 1px;\",",
                 "    \"tpButtonActive\": \"color: #fff; background: #2196f3;\",",
                 "    \"cellMoving\": \"color: black; background: #90caf9;\",",
+                "    \"name\": \"light\",",
                 "});",
                 "// --- Define chart options and static filters ---",
                 "let myChart = myData.graph(\"Raw Data Table\")",
                 "    .set(\"color\", color)",
                 "    .set(\"showRowNumber\", true)",
                 "    .set(\"autoSizeColumns\", true)",
+                "    .set(\"copyOnSelection\", { \"enabled\": false, \"colSeparator\": \"\\t\", \"rowSeparator\": \"\\n\" })",
                 "    .limit(100)",
                 "    .set(\"columnsWidth\", [",
                 "    { \"rn\": 60 },",
@@ -996,10 +1057,14 @@
             "showUI": true,
             "syncedFields": [],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "visf70ee515-7bf3-4f91-8d64-4f412f1a6534",
@@ -1042,10 +1107,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis7ee165e2-62d7-49b5-b036-7b4be45c5dce",
@@ -1087,10 +1156,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "visf238221d-d806-4fb0-a9ef-49090a4b68e0",
@@ -1150,10 +1223,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "visf07cc9c7-8b2e-454c-b235-6fb697f01c98",
@@ -1227,10 +1304,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis1827b3bb-3509-42c4-803e-08b64708ed96",
@@ -1268,8 +1349,9 @@
                 "    .limit(10)",
                 "    .sort(\"desc\", cf.Metric());",
                 "let group2 = cf.Attribute(\"trip_start_timestamp\")",
-                "    .limit(10).func(\"MONTH\")",
-                "    .sort(\"desc\", \"trip_start_timestamp\");",
+                "    .func(\"MONTH\")",
+                "    .limit(60)",
+                "    .sort(\"asc\", \"trip_start_timestamp\");",
                 "// Add metrics and groups to data source",
                 "let myData = source.groupby(group1).colgroupby(group2)",
                 "    .metrics(metric0);",
@@ -1291,15 +1373,20 @@
                 "    .set(\"xAxisPosition\", \"top\")",
                 "    .set(\"grid\", grid)",
                 "    .set(\"color\", color)",
+                "    .set(\"dataZoom\", \"dragFilter\")",
                 "    .execute();",
                 ""
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis286ab703-48ba-4fef-ab7d-4a3ef1033c75",
@@ -1341,7 +1428,7 @@
                 "            \"color\": cf.Color()",
                 "                .palette([\"#a50026\", \"#d73027\", \"#f46d43\", \"#fdae61\", \"#fee090\"])",
                 "                .metric(cf.Metric()),",
-                "            \"fields\": [],",
+                "            \"fields\": [\"company\", \"dropoff_community_area_desc\", \"payment_type\", \"pickup_community_area_desc\", \"trip_end_timestamp\", \"trip_miles\", \"trip_total\"],",
                 "            \"ignoreCoords\": [0, 0],",
                 "            \"showLocation\": true,",
                 "            \"disableMarkerEvents\": false,",
@@ -1360,8 +1447,8 @@
                 "        },",
                 "    },",
                 "])",
-                "    .set(\"zoom\", 9.950496807532021)",
-                "    .set(\"center\", [-87.71651259559746, 41.86237370860874])",
+                "    .set(\"zoom\", 9.78814418423248)",
+                "    .set(\"center\", [-87.71843243143024, 41.87556943545877])",
                 "    .set(\"layersControl\", {",
                 "    \"collapsed\": true,",
                 "    \"position\": \"bottom-left\"",
@@ -1372,10 +1459,19 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [
+                "Elasticsearch"
+            ],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
             "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {},
+            "layersProviders": [
+                "Elasticsearch"
+            ],
             "layerSources": [
                 {
                     "name": "Drop-off locations",
@@ -1484,6 +1580,8 @@
         "visualization": "Interaction Manager",
         "source": {},
         "code": [
+            "let viz4 = getId(\"#### Taxi Trip Records\");",
+            "let viz3 = getId(\"#### Trip Timestamp and Taxi Cab Company Heat Map\");",
             "let viz2 = getId(\"#### Fare, Tips, Extras, and Tolls Trend\");",
             "let viz1 = getId(\"#### Aggregate Fare by Drop-off Community Area\");",
             "/* Configuration code for the Filter Control*/",
@@ -1510,7 +1608,7 @@
             "        ]",
             "    }",
             "};",
-            "let rules1 = { [vizId]: { clientFilters: false }, [viz1]: { clientFilters: false } };",
+            "let rules1 = { [viz3]: { clientFilters: false }, [vizId]: { clientFilters: false }, [viz1]: { clientFilters: false } };",
             "// Define options",
             "let aktive = cf.create();",
             "let myChart = aktive.graph(\"Interaction Manager\")",
@@ -1522,10 +1620,14 @@
         "showUI": false,
         "syncedFields": [],
         "showTitle": true,
+        "layerProviders": [],
         "enableClientFilters": false,
         "enableAutoDrill": false,
         "staticFilters": 0,
-        "description": null
+        "description": null,
+        "switchToMultiMetric": true,
+        "isCustom": false,
+        "savedVars": {}
     },
     "hideIM": false,
     "metadata": {

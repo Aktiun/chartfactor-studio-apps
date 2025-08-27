@@ -1,11 +1,10 @@
 {
-    "id": "71ca60e9-82f6-41a9-9325-009f2429ae55",
+    "id": "07f84d2a-ed1e-4142-b277-e8f24f82d02e",
     "name": "China - Daily Pollution 2015",
     "description": "This dashboard visualizes air polution variations and main pollutants across different cities during 2105. It was created using ChartFactor Studio and generated into a web application using ChartFactor Studio CLI.",
     "state": "home",
     "readOnly": false,
     "hasBorder": true,
-    "isSampleApp": true,
     "thumbnailPath": "data/china_pollution.jpg",
     "widgetList": [
         {
@@ -84,10 +83,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis3d398cf1-0ea5-46ec-b185-2897fc05de49",
@@ -161,10 +164,14 @@
             ],
             "showUI": false,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis1f5b8029-680d-43a8-9a6f-c447220571ba",
@@ -214,10 +221,14 @@
             ],
             "showUI": false,
             "showTitle": false,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "visd1832997-e02f-4d9f-a623-49594ed10616",
@@ -267,10 +278,14 @@
             ],
             "showUI": false,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis1bbd2a55-ca56-4209-81d8-5ac663054d19",
@@ -302,10 +317,14 @@
             ],
             "showUI": false,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "viscbd4d922-ee3c-4845-876a-daa522b51f89",
@@ -328,10 +347,13 @@
                 }
             },
             "code": [
+                "// Interaction Manager uses filter(), filters(), clientFilter(),",
+                "// and clientFilters() to manage filters. To apply additional",
+                "// filters, use staticFilters() or your code could be overwritten.",
+                "//",
                 "/* Configuration code for this widget */",
                 "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"china-pollution\");",
-                "//<end filter212>",
                 "// Declare your fields (do not remove this comment line)",
                 "const fields = [",
                 "    cf.Field(\"AQI\", \"AQI\"),",
@@ -345,15 +367,16 @@
                 "let color = cf.Color();",
                 "color.theme({",
                 "    \"headerStyle\": \"background: #607d8b; color: #fff; font-size: 16px;\",",
+                "    \"numericHeaderStyle\": \"background: #607d8b; color: #f5f1f1; font-size: 16px;\",",
                 "    \"headerIconStyle\": \"color: #fff; font-size: 16px;\",",
                 "    \"rowOddStyle\": \"background: #fff; color: #000;\",",
                 "    \"rowEvenStyle\": \"background: #eceff1; color: #000;\",",
                 "    \"headerResizeLineStyle\": \"border-right-color: #fff; border-right-width: 1px;\",",
-                "    \"headerHorizontalLineStyle\": \"border-bottom-color: #fff; border-bottom-width: 1px;\",",
                 "    \"tpButtonActive\": \"color: #fff; background: #607d8b;\",",
                 "    \"cellMoving\": \"color: black; background: #b0bec5;\",",
+                "    \"name\": \"light\",",
                 "});",
-                "//<end exec filter212>",
+                "// --- Define chart options and static filters ---",
                 "let myChart = myData.graph(\"Raw Data Table\")",
                 "    .set(\"color\", color)",
                 "    .set(\"columnFilters\", [",
@@ -365,6 +388,7 @@
                 "    { field: \"Status\", component: \"slicer\" },",
                 "])",
                 "    .set(\"sizeColumnsToFit\", true)",
+                "    .set(\"copyOnSelection\", { \"enabled\": false, \"colSeparator\": \"\\t\", \"rowSeparator\": \"\\n\" })",
                 "    .limit(100)",
                 "    .set(\"columnsWidth\", [",
                 "    { \"AQI\": 153 },",
@@ -378,11 +402,16 @@
                 ""
             ],
             "showUI": true,
+            "syncedFields": [],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "visa56a2218-9f2a-4ec6-bd74-7aee565fd254",
@@ -401,23 +430,26 @@
             "source": {},
             "code": [
                 "/* Configuration code for the Markup Widget*/",
-                "",
                 "// Define options",
                 "let aktive = cf.create();",
                 "let myChart = aktive.graph(\"Markup\")",
-                "\t.set(\"content\", {\"ops\":[{\"attributes\":{\"alt\":\"PM2.5 AQI Chart\"},\"insert\":{\"image\":\"http://www.sparetheair.com/assets/aqi/PM2017.png\"}},{\"insert\":\"\\n\"}]})",
-                "\t.set(\"enable\", false)",
-                "\t.set(\"background\", \"white\")",
-                "\t.set(\"lock\", false)",
-                "\t.execute();",
+                "    .set(\"content\", {\"ops\":[{\"attributes\":{\"alt\":\"PM2.5 AQI Chart\"},\"insert\":{\"image\":\"https://chartfactor.com/resources/AirQualityIndex.png\"}},{\"insert\":\"\\n\"}]})",
+                "    .set(\"enable\", false)",
+                "    .set(\"background\", \"white\")",
+                "    .set(\"lock\", false)",
+                "    .execute();",
                 ""
             ],
             "showUI": false,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "visa0eca3d1-7922-42fc-94ff-ef0e6a13a683",
@@ -449,10 +481,14 @@
             ],
             "showUI": false,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "visc4f47a43-37d6-48c5-92c8-514ca2812904",
@@ -511,10 +547,14 @@
             ],
             "showUI": false,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis718574cf-3d07-4002-a62a-17466b81f97c",
@@ -613,10 +653,14 @@
             ],
             "showUI": true,
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": true,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         }
     ],
     "filters": [],
@@ -828,10 +872,14 @@
         "showUI": false,
         "syncedFields": [],
         "showTitle": true,
+        "layerProviders": [],
         "enableClientFilters": false,
         "enableAutoDrill": false,
         "staticFilters": 0,
-        "description": null
+        "description": null,
+        "switchToMultiMetric": true,
+        "isCustom": false,
+        "savedVars": {}
     },
     "hideIM": false,
     "metadata": {},
@@ -842,6 +890,6 @@
         "url": "https://chartfactor.com/elastic",
         "active": true,
         "provider": "elasticsearch",
-        "id": "07b3d2ad-c8f0-486c-b276-c604c5a2cfd9"
+        "id": "0519b899-4213-4e17-876f-07aa266a3390"
     }
 ]

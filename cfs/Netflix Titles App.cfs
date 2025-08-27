@@ -1,11 +1,10 @@
 {
-    "id": "dd1af423-8580-4d29-9bd4-185cd471f01a",
+    "id": "de68f7d9-004d-41ab-8c55-b7838a4e9982",
     "name": "Netflix Titles App",
     "description": "This application visualizes the Netflix Movies and TV Shows dataset provided by Shivam Bansal in Kaggle. You can filer by any table column value and by any visualization shape. This app was created using ChartFactor Studio and generated into a web application using Studio's Generate Web App feature.",
     "state": "home",
     "readOnly": false,
     "hasBorder": true,
-    "isSampleApp": true,
     "thumbnailPath": "data/netflix_titles_app.png",
     "widgetList": [
         {
@@ -56,13 +55,14 @@
                 "let color = cf.Color();",
                 "color.theme({",
                 "    \"headerStyle\": \"background: #1191ce; color: #fff; font-size: 16px;\",",
+                "    \"numericHeaderStyle\": \"font-size: 16px; background: #1191ce; color: #ffffff;\",",
                 "    \"headerIconStyle\": \"color: #fff; font-size: 16px;\",",
                 "    \"rowOddStyle\": \"background: #fff; color: #000;\",",
                 "    \"rowEvenStyle\": \"background: #eceff1; color: #000;\",",
                 "    \"headerResizeLineStyle\": \"border-right-color: #fff; border-right-width: 1px;\",",
-                "    \"headerHorizontalLineStyle\": \"border-bottom-color: #fff; border-bottom-width: 1px;\",",
                 "    \"tpButtonActive\": \"color: #fff; background: #607d8b;\",",
                 "    \"cellMoving\": \"color: black; background: #b0bec5;\",",
+                "    \"name\": \"light\",",
                 "});",
                 "let histogramColor = cf.Color();",
                 "histogramColor.theme({ background: \"#eceff1\" });",
@@ -85,8 +85,12 @@
                 "    { field: \"title_words.keyword\", component: \"slicer\" },",
                 "])",
                 "    .set(\"autoSizeColumns\", true)",
+                "    .set(\"copyOnSelection\", { \"enabled\": false, \"colSeparator\": \"\\t\", \"rowSeparator\": \"\\n\" })",
                 "    .limit(100)",
-                "    .set(\"columnStats\", { enabled: true, height: 70, widgetProps: [",
+                "    .set(\"columnStats\", {",
+                "    enabled: true,",
+                "    height: 70,",
+                "    widgetProps: [",
                 "        { field: \"type\", props: { color: histogramColor } },",
                 "        { field: \"title\", props: { color: histogramColor } },",
                 "        { field: \"release_year\", props: { color: histogramColor } },",
@@ -100,7 +104,23 @@
                 "        { field: \"duration\", props: { color: histogramColor } },",
                 "        { field: \"show_id\", props: { color: histogramColor } },",
                 "        { field: \"title_words.keyword\", props: { color: histogramColor } }",
-                "    ] })",
+                "    ]",
+                "})",
+                "    .set(\"columnsWidth\", [",
+                "    { \"type\": 112 },",
+                "    { \"title\": 312 },",
+                "    { \"release_year\": 200 },",
+                "    { \"rating\": 144 },",
+                "    { \"listed_in\": 433 },",
+                "    { \"country\": 390 },",
+                "    { \"cast\": 2383 },",
+                "    { \"date_added\": 134 },",
+                "    { \"description\": 129 },",
+                "    { \"director\": 103 },",
+                "    { \"duration\": 106 },",
+                "    { \"show_id\": 105 },",
+                "    { \"title_words\": 128 }",
+                "])",
                 "    .execute();",
                 ""
             ],
@@ -114,10 +134,14 @@
                 "country"
             ],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis4ef4742b-16f9-4908-9cbc-4f6a8ff9e90e",
@@ -199,10 +223,14 @@
                 "country"
             ],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis4b037b87-4c1f-4ced-ae7c-3aca77c659a0",
@@ -284,10 +312,14 @@
                 "country"
             ],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis9c418dec-740e-4b36-adc3-307ba77e38cf",
@@ -361,10 +393,14 @@
                 "country"
             ],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "visbd7d8234-5457-4abc-bb34-964b3724a7f7",
@@ -431,10 +467,14 @@
                 "country"
             ],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "visd7706deb-02a7-45bc-b310-dd238c7ece6a",
@@ -502,10 +542,14 @@
                 "country"
             ],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "visa146a09c-6b85-4e40-a6ca-dba6147f644e",
@@ -543,10 +587,14 @@
                 "country"
             ],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         }
     ],
     "filters": [],
@@ -583,41 +631,45 @@
         "showUI": false,
         "syncedFields": [],
         "showTitle": true,
+        "layerProviders": [],
         "enableClientFilters": false,
         "enableAutoDrill": false,
         "staticFilters": 0,
-        "description": null
+        "description": null,
+        "switchToMultiMetric": true,
+        "isCustom": false,
+        "savedVars": {}
     },
     "hideIM": false,
     "metadata": {
         "Elasticsearch": [
-            "let _META_ = {\r",
-            "    \"netflix_titles\": {\r",
-            "        \"count\": {\r",
-            "            \"label\": \"Titles\"\r",
-            "        },\r",
-            "        \"fields\": {\r",
-            "            \"type\": {\r",
-            "                \"label\": \"Type\"\r",
-            "            },\r",
-            "            \"title\": {\r",
-            "                \"label\": \"Title\"\r",
-            "            },\r",
-            "            \"release_year\": {\r",
-            "                \"label\": \"Release year\"\r",
-            "            },\r",
-            "            \"rating\": {\r",
-            "                \"label\": \"Rating\"\r",
-            "            },\r",
-            "            \"listed_in\": {\r",
-            "                \"label\": \"Genre\"\r",
-            "            },\r",
-            "            \"country\": {\r",
-            "                \"label\": \"Country\"\r",
-            "            }\r",
-            "        }\r",
-            "    }\r",
-            "};\r",
+            "let _META_ = {",
+            "    \"netflix_titles\": {",
+            "        \"count\": {",
+            "            \"label\": \"Titles\"",
+            "        },",
+            "        \"fields\": {",
+            "            \"type\": {",
+            "                \"label\": \"Type\"",
+            "            },",
+            "            \"title\": {",
+            "                \"label\": \"Title\"",
+            "            },",
+            "            \"release_year\": {",
+            "                \"label\": \"Release year\"",
+            "            },",
+            "            \"rating\": {",
+            "                \"label\": \"Rating\"",
+            "            },",
+            "            \"listed_in\": {",
+            "                \"label\": \"Genre\"",
+            "            },",
+            "            \"country\": {",
+            "                \"label\": \"Country\"",
+            "            }",
+            "        }",
+            "    }",
+            "};",
             ""
         ]
     },
