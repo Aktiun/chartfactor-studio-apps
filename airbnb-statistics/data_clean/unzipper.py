@@ -18,6 +18,7 @@ def process_directory(source_dir, dest_dir):
     """
     Loop over all files in source directory to unzip each one.
     """
+    os.makedirs(dest_dir, exist_ok=True)
     for filename in os.listdir(source_dir):
         if filename.endswith('.gz'):
             source_path = os.path.join(source_dir, filename)

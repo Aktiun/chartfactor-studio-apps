@@ -67,11 +67,10 @@ def download_file(url: str, local_filename: str, path_to_save: str) -> bool:
         return False
 
 
-def get_listings_files(is_whole_world: bool = False) -> bool:
+def get_listings_files(is_whole_world: bool = False, download_directory: str = "../tmp_downloaded/") -> bool:
     listings_links = get_listings_links(is_whole_world)
     calendar_links = get_calendar_links(is_whole_world)
 
-    download_directory = "../tmp_downloaded/"
     os.makedirs(download_directory, exist_ok=True)
     downloads_info = {}
     for id, url in listings_links.items():

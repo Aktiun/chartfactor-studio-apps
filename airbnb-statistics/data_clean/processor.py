@@ -32,13 +32,7 @@ def process_in_batches(df, function, input_columns, output_column, batch_size=10
     df[output_column] = results
 
 
-def clean_data(is_whole_world=False):
-    # Paths to the input and output CSV files
-    input_path = '../tmp_joined/joined.csv'
-    output_path = '../data/abnb_listings.csv'
-
-    # zipcode file
-    zipcode_path = '../data/abnb_zipcode.parquet'
+def clean_data(is_whole_world=False, input_path='../tmp_joined/joined.csv', output_path='../data/abnb_listings.csv', zipcode_path='../data/abnb_zipcode.parquet'):
 
     is_zipcode_file = False
     # Check if zipcode file exists
