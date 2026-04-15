@@ -107,21 +107,5 @@ def clean_data(is_whole_world=False, input_path='../tmp_joined/joined.csv', outp
     print(f"File successfully saved to {output_path}")
 
 
-def get_days_occupied(listing_id):
-    # Read the CSV file into a DataFrame
-    df = pd.read_csv("../tmp_joined/joined.csv")
-
-    # Filter rows where "available" column is "t"
-    available_t_df = df[df["available"] == "t"]
-
-    # Group by "listing_id" and count the records
-    count_by_listing_id = available_t_df.groupby("listing_id").size()
-
-    # Print the result
-    listingOccupancy = count_by_listing_id.loc[listing_id]
-
-    return listingOccupancy
-
-
 if __name__ == "__main__":
     clean_data()

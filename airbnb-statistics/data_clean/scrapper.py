@@ -92,3 +92,5 @@ def get_listings_files(is_whole_world: bool = False, download_directory: str = "
         local_filename = f"{id}_{normalize_filename(name)}_calendar.csv.gz"
         path_to_save = os.path.join(download_directory, local_filename)
         download_file(normalized_url, local_filename, path_to_save)
+    
+    return True
