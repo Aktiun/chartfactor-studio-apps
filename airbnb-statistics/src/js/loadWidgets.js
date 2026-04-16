@@ -36,14 +36,16 @@ loadProviders();
 // Load charts
 loadInteractionManager();
 loadGeomap().then(() => {
-    loadTotalListingsCount();
-    loadPropertyType();
-    loadActivity();
-    loadAvgPrice();
-    loadLicenses();
-    loadHostListings();
-    loadHostListingsStatistics();
-    loadTopHostsTable();
-    loadShortTermRentals();
-    loadShortTermRentalsStatistics();
+    const bbox = cf.getVisualization('cf-main-geomap')._visualization.getBBox();
+
+    loadTotalListingsCount(bbox);
+    loadPropertyType(bbox);
+    loadActivity(bbox);
+    loadAvgPrice(bbox);
+    loadLicenses(bbox);
+    loadHostListings(bbox);
+    loadHostListingsStatistics(bbox);
+    loadTopHostsTable(bbox);
+    loadShortTermRentals(bbox);
+    loadShortTermRentalsStatistics(bbox);
 });

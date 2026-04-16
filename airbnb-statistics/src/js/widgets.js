@@ -292,7 +292,7 @@ async function loadGeomap() {
   });
 }
 
-function loadPropertyType() {
+function loadPropertyType(bbox) {
   const elementId = "cf-roomType";
   try {
     let provider = cf.provider("local");
@@ -330,6 +330,7 @@ function loadPropertyType() {
         .set("grid", grid)
         .set("color", color)
         .location('location')
+        .bbox(bbox)
         .set("orientation", "vertical")
         .set("xAxis", { "show": true, "lines": false })
         .set("yAxis", { "text": "out", "lines": false })
@@ -438,7 +439,7 @@ function loadPropertyType() {
   }
 }
 
-function loadActivity() {
+function loadActivity(bbox) {
   const elementId = "cf-activity";
   try {
     /* Configuration code for this widget */
@@ -468,6 +469,7 @@ function loadActivity() {
     myData.graph("Histogram")
         .set("color", color)
         .location('location')
+        .bbox(bbox)
         .set("grid", grid)
         .set("yAxis", { "type": "log", "lines": false })
         .on("execute:stop", () => {
@@ -488,7 +490,7 @@ let dataHandler = (result) => {
   return result;
 }
 
-function loadAvgPrice() {
+function loadAvgPrice(bbox) {
   const elementId = "cf-avg-price-inv";
   try {
 
@@ -496,6 +498,7 @@ function loadAvgPrice() {
         .provider('local')
         .source('abnb_listings')
         .location('location')
+        .bbox(bbox)
         .filter(cf.Filter("host_total_listings_count")
             .label("host_total_listings_count")
             .operation("NOT IN")
@@ -505,6 +508,7 @@ function loadAvgPrice() {
         .provider('local')
         .source('abnb_listings')
         .location('location')
+        .bbox(bbox)
         .filter(cf.Filter("host_total_listings_count")
             .label("host_total_listings_count")
             .operation("NOT IN")
@@ -534,7 +538,7 @@ function loadAvgPrice() {
   }
 }
 
-function loadLicenses() {
+function loadLicenses(bbox) {
   const elementId = "cf-licenses";
   try {
     let provider = cf.provider("local");
@@ -571,6 +575,7 @@ function loadLicenses() {
         .set("grid", grid)
         .set("color", color)
         .location('location')
+        .bbox(bbox)
         .set("metricValue", true)
         .set("labelPosition", "inside")
         .on("execute:stop", () => {
@@ -689,7 +694,7 @@ function loadLicenses() {
   }
 }
 
-function loadHostListings() {
+function loadHostListings(bbox) {
   const elementId = "cf-host-listings";
 
   try {
@@ -717,6 +722,7 @@ function loadHostListings() {
     myData.graph("Histogram")
         .set("grid", grid)
         .location('location')
+        .bbox(bbox)
         .set("color", color)
         .set("xAxis", { "show": true, "lines": false })
         .set("yAxis", { "lines": false, "type": "log" })
@@ -728,7 +734,7 @@ function loadHostListings() {
   }
 }
 
-function loadHostListingsStatistics() {
+function loadHostListingsStatistics(bbox) {
   const elementId = "cf-host-single-listings";
   try {
 
@@ -739,6 +745,7 @@ function loadHostListingsStatistics() {
             .value([1]))
         .metrics(cf.Metric())
         .location('location')
+        .bbox(bbox)
         .on("execute:stop", async (hlQuery1) => {
           const imFilters = cf.getIManager().get('api').getFilters();
 
@@ -755,6 +762,7 @@ function loadHostListingsStatistics() {
                   .value([2])])
               .metrics(cf.Metric())
               .location('location')
+              .bbox(bbox)
               .element('hlQuery2')
               .execute();
 
@@ -1392,13 +1400,14 @@ function dataArrayToObject(data) {
   return result;
 }
 
-function loadTopHostsTable() {
+function loadTopHostsTable(bbox) {
   const elementId = "cf-top-hosts";
   cf.provider('local')
       .source('abnb_listings')
       .groupby(cf.Attribute("host_name").limit(50).sort("desc", cf.Metric()))
       .metrics(cf.Metric())
       .location('location')
+      .bbox(bbox)
       .on('execute:stop', async result => {
         const tableData = result.data.map(d => ({host: d.group[0], listings: d.current.count}))
         const hostsFilter = cf.Filter("host_name")
@@ -1425,6 +1434,7 @@ function loadTopHostsTable() {
             .staticFilters(hostsFilter, entireHomeFilter)
             .metrics(cf.Metric())
             .location('location')
+            .bbox(bbox)
             .element('entireHomeQuery')
             .execute();
         const privateRoomQuery = cf.provider('local')
@@ -1433,6 +1443,7 @@ function loadTopHostsTable() {
             .staticFilters(hostsFilter, privateRoomFilter)
             .metrics(cf.Metric())
             .location('location')
+            .bbox(bbox)
             .element('privateRoomQuery')
             .execute();
         const sharedRoomQuery = cf.provider('local')
@@ -1441,6 +1452,7 @@ function loadTopHostsTable() {
             .staticFilters(hostsFilter, sharedRoomFilter)
             .metrics(cf.Metric())
             .location('location')
+            .bbox(bbox)
             .element('sharedRoomQuery')
             .execute();
         const hotelRoomQuery = cf.provider('local')
@@ -1449,6 +1461,7 @@ function loadTopHostsTable() {
             .staticFilters(hostsFilter, hoteRoomFilter)
             .metrics(cf.Metric())
             .location('location')
+            .bbox(bbox)
             .element('hotelRoomQuery')
             .execute();
 
@@ -1478,7 +1491,7 @@ function loadTopHostsTable() {
       .execute();
 }
 
-function loadShortTermRentals() {
+function loadShortTermRentals(bbox) {
   const elementId = "cf-short-term-rentals";
   try {
     const elementId = 'cf-short-term-rentals';
@@ -1515,6 +1528,7 @@ function loadShortTermRentals() {
     myData.graph("Bars")
         .set("grid", grid)
         .location('location')
+        .bbox(bbox)
         .set("markline", lines)
         .set("xAxis", { "show": true, "lines": false })
         .set("yAxis", { "text": "out", "lines": false })
@@ -1529,7 +1543,7 @@ function loadShortTermRentals() {
   }
 }
 
-function loadShortTermRentalsStatistics() {
+function loadShortTermRentalsStatistics(bbox) {
   try {
     cf.provider('local')
         .source('abnb_listings')
@@ -1538,6 +1552,7 @@ function loadShortTermRentalsStatistics() {
             .value([30]))
         .metrics(cf.Metric())
         .location('location')
+        .bbox(bbox)
         .on("execute:stop", async (strQ) => {
           const imFilters = cf.getIManager().get('api').getFilters();
           const ltrQ = await cf.provider('local')
@@ -1548,6 +1563,7 @@ function loadShortTermRentalsStatistics() {
                   .value([29]))
               .metrics(cf.Metric())
               .location('location')
+              .bbox(bbox)
               .element('long-term-rentals-statistics')
               .execute();
 
@@ -1580,10 +1596,11 @@ function loadShortTermRentalsStatistics() {
   }
 }
 
-function loadTotalListingsCount() {
+function loadTotalListingsCount(bbox) {
   cf.provider('local')
       .source('abnb_listings')
       .location('location')
+      .bbox(bbox)
       .metrics(cf.Metric())
       .element('total-listings-count')
       .on('execute:stop', data => {
