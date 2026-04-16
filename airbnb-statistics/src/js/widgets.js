@@ -325,11 +325,11 @@ function loadPropertyType() {
           "Hotel room": "#fe8b3e"
         });
 
-    myData.staticFilters(window.boundaryFilter);
 
     myData.graph("Bars")
         .set("grid", grid)
         .set("color", color)
+        .location('location')
         .set("orientation", "vertical")
         .set("xAxis", { "show": true, "lines": false })
         .set("yAxis", { "text": "out", "lines": false })
@@ -465,9 +465,9 @@ function loadActivity() {
         .palette(["#0095b7"]);
     // --- Define chart options and static filters ---
 
-    myData.staticFilters(window.boundaryFilter);
     myData.graph("Histogram")
         .set("color", color)
+        .location('location')
         .set("grid", grid)
         .set("yAxis", { "type": "log", "lines": false })
         .on("execute:stop", () => {
@@ -495,7 +495,7 @@ function loadAvgPrice() {
     cf.create('Query1')
         .provider('local')
         .source('abnb_listings')
-        .staticFilters(window.boundaryFilter)
+        .location('location')
         .filter(cf.Filter("host_total_listings_count")
             .label("host_total_listings_count")
             .operation("NOT IN")
@@ -504,7 +504,7 @@ function loadAvgPrice() {
         .create('Query2')
         .provider('local')
         .source('abnb_listings')
-        .staticFilters(window.boundaryFilter)
+        .location('location')
         .filter(cf.Filter("host_total_listings_count")
             .label("host_total_listings_count")
             .operation("NOT IN")
@@ -567,10 +567,10 @@ function loadLicenses() {
           "Pending": "#fe8b3e"
         });
 
-    myData.staticFilters(window.boundaryFilter);
     myData.graph("Pie")
         .set("grid", grid)
         .set("color", color)
+        .location('location')
         .set("metricValue", true)
         .set("labelPosition", "inside")
         .on("execute:stop", () => {
@@ -714,9 +714,9 @@ function loadHostListings() {
         .theme({ background:'rgba(0,0,0,0)', font: 'black'})
         .palette(["#1d91c0", "#1d91c0"]);
     // --- Define chart options and static filters ---
-    myData.staticFilters(window.boundaryFilter);
     myData.graph("Histogram")
         .set("grid", grid)
+        .location('location')
         .set("color", color)
         .set("xAxis", { "show": true, "lines": false })
         .set("yAxis", { "lines": false, "type": "log" })
@@ -734,10 +734,11 @@ function loadHostListingsStatistics() {
 
     const hlQuery1 = cf.provider('local')
         .source('abnb_listings')
-        .staticFilters(window.boundaryFilter, cf.Filter("host_total_listings_count")
+        .staticFilters(cf.Filter("host_total_listings_count")
             .operation("GT")
             .value([1]))
         .metrics(cf.Metric())
+        .location('location')
         .on("execute:stop", async (hlQuery1) => {
           const imFilters = cf.getIManager().get('api').getFilters();
 
@@ -749,10 +750,11 @@ function loadHostListingsStatistics() {
           const hlQuery2 = await cf.provider('local')
               .source('abnb_listings')
               .filters(imFilters)
-              .staticFilters(...[window.boundaryFilter, ...mainStaticFilters, cf.Filter("host_total_listings_count")
+              .staticFilters(...[...mainStaticFilters, cf.Filter("host_total_listings_count")
                   .operation("LT")
                   .value([2])])
               .metrics(cf.Metric())
+              .location('location')
               .element('hlQuery2')
               .execute();
 
@@ -1396,7 +1398,7 @@ function loadTopHostsTable() {
       .source('abnb_listings')
       .groupby(cf.Attribute("host_name").limit(50).sort("desc", cf.Metric()))
       .metrics(cf.Metric())
-      .staticFilters(window.boundaryFilter)
+      .location('location')
       .on('execute:stop', async result => {
         const tableData = result.data.map(d => ({host: d.group[0], listings: d.current.count}))
         const hostsFilter = cf.Filter("host_name")
@@ -1420,29 +1422,33 @@ function loadTopHostsTable() {
         const entireHomeQuery = cf.provider('local')
             .source('abnb_listings')
             .groupby(cf.Attribute("host_name").limit(50).sort("desc", cf.Metric()))
-            .staticFilters(window.boundaryFilter, hostsFilter, entireHomeFilter)
+            .staticFilters(hostsFilter, entireHomeFilter)
             .metrics(cf.Metric())
+            .location('location')
             .element('entireHomeQuery')
             .execute();
         const privateRoomQuery = cf.provider('local')
             .source('abnb_listings')
             .groupby(cf.Attribute("host_name").limit(50).sort("desc", cf.Metric()))
-            .staticFilters(window.boundaryFilter, hostsFilter, privateRoomFilter)
+            .staticFilters(hostsFilter, privateRoomFilter)
             .metrics(cf.Metric())
+            .location('location')
             .element('privateRoomQuery')
             .execute();
         const sharedRoomQuery = cf.provider('local')
             .source('abnb_listings')
             .groupby(cf.Attribute("host_name").limit(50).sort("desc", cf.Metric()))
-            .staticFilters(window.boundaryFilter, hostsFilter, sharedRoomFilter)
+            .staticFilters(hostsFilter, sharedRoomFilter)
             .metrics(cf.Metric())
+            .location('location')
             .element('sharedRoomQuery')
             .execute();
         const hotelRoomQuery = cf.provider('local')
             .source('abnb_listings')
             .groupby(cf.Attribute("host_name").limit(50).sort("desc", cf.Metric()))
-            .staticFilters(window.boundaryFilter, hostsFilter, hoteRoomFilter)
+            .staticFilters(hostsFilter, hoteRoomFilter)
             .metrics(cf.Metric())
+            .location('location')
             .element('hotelRoomQuery')
             .execute();
 
@@ -1500,7 +1506,6 @@ function loadShortTermRentals() {
           font: "black"
         })
         .palette(["#0095b7"]);
-    myData.staticFilters(window.boundaryFilter);
 
     let lines = cf.MarkLine()
         .data([
@@ -1509,6 +1514,7 @@ function loadShortTermRentals() {
 
     myData.graph("Bars")
         .set("grid", grid)
+        .location('location')
         .set("markline", lines)
         .set("xAxis", { "show": true, "lines": false })
         .set("yAxis", { "text": "out", "lines": false })
@@ -1527,19 +1533,21 @@ function loadShortTermRentalsStatistics() {
   try {
     cf.provider('local')
         .source('abnb_listings')
-        .staticFilters(window.boundaryFilter, cf.Filter("minimum_nights")
+        .staticFilters(cf.Filter("minimum_nights")
             .operation("LT")
             .value([30]))
         .metrics(cf.Metric())
+        .location('location')
         .on("execute:stop", async (strQ) => {
           const imFilters = cf.getIManager().get('api').getFilters();
           const ltrQ = await cf.provider('local')
               .source('abnb_listings')
               .filters(imFilters)
-              .staticFilters(window.boundaryFilter, cf.Filter("minimum_nights")
+              .staticFilters(cf.Filter("minimum_nights")
                   .operation("GT")
                   .value([29]))
               .metrics(cf.Metric())
+              .location('location')
               .element('long-term-rentals-statistics')
               .execute();
 
@@ -1575,7 +1583,7 @@ function loadShortTermRentalsStatistics() {
 function loadTotalListingsCount() {
   cf.provider('local')
       .source('abnb_listings')
-      .staticFilters(window.boundaryFilter)
+      .location('location')
       .metrics(cf.Metric())
       .element('total-listings-count')
       .on('execute:stop', data => {

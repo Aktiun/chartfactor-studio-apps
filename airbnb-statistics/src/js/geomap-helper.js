@@ -14,13 +14,15 @@ const getVisibleBounds = () => {
   return map.getBounds();
 }
 
-
 const updateBnBBoundsFilter = () => {
     let bounds = getVisibleBounds();
     let nw = bounds.getNorthWest();
     let se = bounds.getSouthEast();
     let ne = {"lng":se.lng, "lat":nw.lat};
     let sw = {"lng":nw.lng, "lat":se.lat};
+
+    const bbox = cf.getVisualization('cf-main-geomap')._visualization.getBBox()
+
 
     let filterBoundaries = [[nw.lng, nw.lat], [ne.lng, ne.lat], [se.lng, se.lat], [sw.lng, sw.lat], [nw.lng, nw.lat]];
 
@@ -53,10 +55,11 @@ const updateBnBBoundsFilter = () => {
     }).forEach(c => {
         const vStaticFilters = c.getCurrentAQL()._staticFilters.filter(f => f.path !== "location");
 
-        c.staticFilters([boundaryFilter, ...vStaticFilters]).execute();
+        c.bbox(bbox);
+        c.staticFilters([...vStaticFilters]).execute();
     });
 
-    window.boundaryFilter = boundaryFilter;
+    window.bbox = bbox;
 
 }
 

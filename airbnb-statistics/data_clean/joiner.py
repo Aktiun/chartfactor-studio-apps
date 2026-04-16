@@ -102,7 +102,7 @@ def clean_data(df):
     return df
 
 
-def combine_csv_files(source_dir, output_file):
+def combine_csv_files(source_dir, output_file, calendar_input_path='../tmp_joined/calendars.csv'):
     """
     combine all CSV files in source directory into a single file.
     """
@@ -117,7 +117,6 @@ def combine_csv_files(source_dir, output_file):
         return
     dfs = []
 
-    calendar_input_path = '../tmp_joined/calendars.csv'
     # Read the calendar CSV file
     print(f"Reading calendar file from {calendar_input_path}")
     df_calendar = pd.read_csv(calendar_input_path, dtype={'listing_id': str})

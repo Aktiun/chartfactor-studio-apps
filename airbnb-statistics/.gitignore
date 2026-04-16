@@ -9,6 +9,10 @@ __pycache__/
 # venv
 venv/
 
+# env files
+.env
+!.env.example
+
 # csv in data folder
 data/*.csv
 

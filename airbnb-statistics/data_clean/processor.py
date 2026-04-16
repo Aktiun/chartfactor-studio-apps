@@ -32,13 +32,7 @@ def process_in_batches(df, function, input_columns, output_column, batch_size=10
     df[output_column] = results
 
 
-def clean_data(is_whole_world=False):
-    # Paths to the input and output CSV files
-    input_path = '../tmp_joined/joined.csv'
-    output_path = '../data/abnb_listings.csv'
-
-    # zipcode file
-    zipcode_path = '../data/abnb_zipcode.parquet'
+def clean_data(is_whole_world=False, input_path='../tmp_joined/joined.csv', output_path='../data/abnb_listings.csv', zipcode_path='../data/abnb_zipcode.parquet'):
 
     is_zipcode_file = False
     # Check if zipcode file exists
@@ -111,22 +105,6 @@ def clean_data(is_whole_world=False):
 
     logger.info(f"File successfully saved to {output_path}")
     print(f"File successfully saved to {output_path}")
-
-
-def get_days_occupied(listing_id):
-    # Read the CSV file into a DataFrame
-    df = pd.read_csv("../tmp_joined/joined.csv")
-
-    # Filter rows where "available" column is "t"
-    available_t_df = df[df["available"] == "t"]
-
-    # Group by "listing_id" and count the records
-    count_by_listing_id = available_t_df.groupby("listing_id").size()
-
-    # Print the result
-    listingOccupancy = count_by_listing_id.loc[listing_id]
-
-    return listingOccupancy
 
 
 if __name__ == "__main__":

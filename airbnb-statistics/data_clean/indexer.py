@@ -373,126 +373,134 @@ def get_value(csv_file):
     with open(csv_file) as f:
         logger.info("*****")
         reader = csv.reader(f)
-        next(reader)  # skip header
+        header = next(reader)
+        col = {name: idx for idx, name in enumerate(header)}
+        logger.info(f"CSV columns ({len(header)}): {header}")
         for r in reader:
             logger.debug(r)
-            # if not r[77]:
-            #     logger.error(f"Row with empty zipcode: {r}")
-            #     continue
-            if not r[0].isdigit():
+            if not r[col['id']].isdigit():
                logger.error(f"Row with incorrect id: {r}")
                continue
-            if not r[30] or not r[31]:
+            if not r[col['latitude']] or not r[col['longitude']]:
                 logger.error(f"Row with empty location: {r}")
                 continue
-            if r[14] and  len(r[14].encode("utf-8")) >= 32765:
-                r[14] = r[14][:-100]
+            if r[col['host_about']] and len(r[col['host_about']].encode("utf-8")) >= 32765:
+                r[col['host_about']] = r[col['host_about']][:-100]
             try:
-                scrape_date = datetime.datetime.strptime(r[2], "%Y-%m-%d").date()
+                datetime.datetime.strptime(r[col['scrape_id']], "%Y-%m-%d").date()
             except ValueError:
-                r[2] = None
+                r[col['scrape_id']] = None
             try:
-                last_scrape_date = datetime.datetime.strptime(r[3], "%Y-%m-%d").date()
+                datetime.datetime.strptime(r[col['last_scraped']], "%Y-%m-%d").date()
             except ValueError:
-                r[3] = None
+                r[col['last_scraped']] = None
             try:
-                last_scrape_date = datetime.datetime.strptime(r[12], "%Y-%m-%d").date()
+                datetime.datetime.strptime(r[col['host_since']], "%Y-%m-%d").date()
             except ValueError:
-                r[12] = None
-            if len(r) < 79:  # Expected columns length for listings files IMPORTANT
-                logger.error(f"Row with incorrect columns number: {r}")
-                continue
-			
+                r[col['host_since']] = None
+
+            def g(name):
+                """Get column value, return None if empty or column missing."""
+                if name not in col:
+                    return None
+                v = r[col[name]]
+                return v if v != '' else None
+
             doc = {
-                "id": r[0],
-				"listing_url": r[1] if r[1] != '' else None,
-				"scrape_id": r[2] if r[2] != '' else None,
-				"last_scraped": r[3],
-				"source": r[4] if r[4] != '' else None,
-				"name": r[5] if r[5] != '' else None,
-				"description": r[6] if r[6] != '' else None,
-				"neighborhood_overview": r[7],
-				"picture_url": r[8] if r[8] != '' else None,
-				"host_id": str(r[9]).split('.')[0],
-				"host_url": r[10] if r[10] != '' else None,
-				"host_name": r[11] if r[11] != '' else None,
-				"host_since": r[12] if r[12] != '' else None,
-				"host_location": r[13] if r[13] != '' else None,
-				"host_about": r[14],
-				"host_response_time": r[15] if r[15] != '' else None,
-				"host_response_rate": r[16] if r[16] != '' else None,
-				"host_acceptance_rate": r[17],
-				"host_is_superhost": r[18] == "t",
-				"host_thumbnail_url": r[19] if r[19] != '' else None,
-				"host_picture_url": r[20] if r[20] != '' else None,
-				"host_neighbourhood": r[21] if r[21] != '' else None,
-				"host_listings_count": r[22],
-				"host_total_listings_count": r[23],
-				"host_verifications": r[24] if r[24] != '' else None,
-				"host_has_profile_pic": r[25] if r[25] != '' else None,
-				"host_identity_verified": r[26] if r[26] != '' else None,
-				"neighbourhood": r[27] if r[27] != '' else None,
-				"neighbourhood_cleansed": r[28] if r[28] != '' else None,
-				"neighbourhood_group_cleansed": r[29] if r[29] != '' else None,
-				"latitude": r[30],
-				"longitude": r[31],
+                "id": g('id'),
+                "listing_url": g('listing_url'),
+                "scrape_id": g('scrape_id'),
+                "last_scraped": g('last_scraped'),
+                "source": g('source'),
+                "name": g('name'),
+                "description": g('description'),
+                "neighborhood_overview": r[col['neighborhood_overview']],
+                "picture_url": g('picture_url'),
+                "host_id": str(r[col['host_id']]).split('.')[0],
+                "host_url": g('host_url'),
+                "host_name": g('host_name'),
+                "host_since": g('host_since'),
+                "host_location": g('host_location'),
+                "host_about": r[col['host_about']],
+                "host_response_time": g('host_response_time'),
+                "host_response_rate": g('host_response_rate'),
+                "host_acceptance_rate": r[col['host_acceptance_rate']],
+                "host_is_superhost": r[col['host_is_superhost']] == "t",
+                "host_thumbnail_url": g('host_thumbnail_url'),
+                "host_picture_url": g('host_picture_url'),
+                "host_neighbourhood": g('host_neighbourhood'),
+                "host_listings_count": r[col['host_listings_count']],
+                "host_total_listings_count": r[col['host_total_listings_count']],
+                "host_verifications": g('host_verifications'),
+                "host_has_profile_pic": g('host_has_profile_pic'),
+                "host_identity_verified": g('host_identity_verified'),
+                "neighbourhood": g('neighbourhood'),
+                "neighbourhood_cleansed": g('neighbourhood_cleansed'),
+                "neighbourhood_group_cleansed": g('neighbourhood_group_cleansed'),
+                "latitude": r[col['latitude']],
+                "longitude": r[col['longitude']],
                 "location": {
-                    "lat": r[30],
-                    "lon": r[31]
-				},
-				"property_type": r[32] if r[32] != '' else None,
-				"room_type": r[33] if r[33] != '' else None,
-				"accommodates": r[34],
-				"bathrooms": r[35] if r[35] != '' else None,
-				"bathrooms_text": r[36] if r[36] != '' else None,
-				"bedrooms": r[37] if r[37] != '' else None,
-				"beds": r[38],
-				"amenities": r[39] if r[39] != '' else None,
-				"price": float(r[40].replace("$", "").replace(",","")) if r[40] != '' else 0.0,
-				"minimum_nights": r[41],
-				"maximum_nights": r[42],
-				"minimum_minimum_nights": r[43],
-				"maximum_minimum_nights": r[44],
-				"minimum_maximum_nights": r[45],
-				"maximum_maximum_nights": r[46],
-				"minimum_nights_avg_ntm": r[47],
-				"maximum_nights_avg_ntm": r[48],
-				"calendar_updated": r[49] if r[49] != '' else None,
-				"has_availability": r[50] == "t",
-				"availability_30": r[51],
-				"availability_60": r[52],
-				"availability_90": r[53],
-				"availability_365": r[54],
-				"calendar_last_scraped": r[55] if r[55] != '' else None,
-				"number_of_reviews": r[56],
-				"number_of_reviews_ltm": r[57],
-				"number_of_reviews_l30d": r[58],
-				"first_review": r[59] if r[59] != '' else None,
-				"last_review": r[60] if r[60] != '' else None,
-				"review_scores_rating": r[61],
-				"review_scores_accuracy": r[62],
-				"review_scores_cleanliness": r[63],
-				"review_scores_checkin": r[64],
-				"review_scores_communication": r[65],
-				"review_scores_location": r[66],
-				"review_scores_value": r[67],
-				"license": get_license_type(r[68]),
-				"instant_bookable": r[69] if r[69] != '' else None,
-				"calculated_host_listings_count": r[70],
-				"calculated_host_listings_count_entire_homes": r[71],
-				"calculated_host_listings_count_private_rooms": r[72],
-				"calculated_host_listings_count_shared_rooms": r[73],
-				"reviews_per_month": r[74],
-				"is_usa": r[75].lower(),
-				"estimated_occupied_time": r[76],
-				"minimum_nights_str": r[77],
-				"income_ltm": r[78],
-				"zipcode": r[79] if r[79] != '' else None,
-                "calculated_host_listings_count_hotel_rooms": get_hotel_room_count(r[33], r[71], r[72], r[73], r[70])
+                    "lat": r[col['latitude']],
+                    "lon": r[col['longitude']]
+                },
+                "property_type": g('property_type'),
+                "room_type": g('room_type'),
+                "accommodates": r[col['accommodates']],
+                "bathrooms": g('bathrooms'),
+                "bathrooms_text": g('bathrooms_text'),
+                "bedrooms": g('bedrooms'),
+                "beds": r[col['beds']],
+                "amenities": g('amenities'),
+                "price": float(r[col['price']].replace("$", "").replace(",","")) if r[col['price']] != '' else 0.0,
+                "minimum_nights": r[col['minimum_nights']],
+                "maximum_nights": r[col['maximum_nights']],
+                "minimum_minimum_nights": r[col['minimum_minimum_nights']],
+                "maximum_minimum_nights": r[col['maximum_minimum_nights']],
+                "minimum_maximum_nights": r[col['minimum_maximum_nights']],
+                "maximum_maximum_nights": r[col['maximum_maximum_nights']],
+                "minimum_nights_avg_ntm": r[col['minimum_nights_avg_ntm']],
+                "maximum_nights_avg_ntm": r[col['maximum_nights_avg_ntm']],
+                "calendar_updated": g('calendar_updated'),
+                "has_availability": r[col['has_availability']] == "t",
+                "availability_30": r[col['availability_30']],
+                "availability_60": r[col['availability_60']],
+                "availability_90": r[col['availability_90']],
+                "availability_365": r[col['availability_365']],
+                "calendar_last_scraped": g('calendar_last_scraped'),
+                "number_of_reviews": r[col['number_of_reviews']],
+                "number_of_reviews_ltm": r[col['number_of_reviews_ltm']],
+                "number_of_reviews_l30d": r[col['number_of_reviews_l30d']],
+                "first_review": g('first_review'),
+                "last_review": g('last_review'),
+                "review_scores_rating": r[col['review_scores_rating']],
+                "review_scores_accuracy": r[col['review_scores_accuracy']],
+                "review_scores_cleanliness": r[col['review_scores_cleanliness']],
+                "review_scores_checkin": r[col['review_scores_checkin']],
+                "review_scores_communication": r[col['review_scores_communication']],
+                "review_scores_location": r[col['review_scores_location']],
+                "review_scores_value": r[col['review_scores_value']],
+                "license": get_license_type(r[col['license']]),
+                "instant_bookable": g('instant_bookable'),
+                "calculated_host_listings_count": r[col['calculated_host_listings_count']],
+                "calculated_host_listings_count_entire_homes": r[col['calculated_host_listings_count_entire_homes']],
+                "calculated_host_listings_count_private_rooms": r[col['calculated_host_listings_count_private_rooms']],
+                "calculated_host_listings_count_shared_rooms": r[col['calculated_host_listings_count_shared_rooms']],
+                "reviews_per_month": r[col['reviews_per_month']],
+                "is_usa": r[col['is_usa']].lower(),
+                "estimated_occupied_time": r[col['estimated_occupied_time']],
+                "minimum_nights_str": r[col['minimum_nights_str']],
+                "income_ltm": r[col['income_ltm']],
+                "zipcode": g('zipcode'),
+                "calculated_host_listings_count_hotel_rooms": get_hotel_room_count(
+                    r[col['room_type']],
+                    r[col['calculated_host_listings_count_entire_homes']],
+                    r[col['calculated_host_listings_count_private_rooms']],
+                    r[col['calculated_host_listings_count_shared_rooms']],
+                    r[col['calculated_host_listings_count']])
             }
-            
-			# Categorize amenities
-            amenities = r[39].split(",")
+
+            # Categorize amenities
+            amenities = r[col['amenities']].split(",")
             doc["amenities_categorized"] = list(set(map(lambda x: categorize_amenity(x, categories_map), amenities)))
 
             yield doc

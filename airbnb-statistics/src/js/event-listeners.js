@@ -143,7 +143,8 @@ $("#frequent-filter").change(function(event) {
                     .filter(f => !['location', 'last_review', 'estimated_occupied_time'].includes(f.path))
                     .map(sf => cf.Filter().fromJSON(sf));
 
-                v.staticFilters([window.boundaryFilter, lastReviewFilter, occupancyFilter, ...vStaticFilters]);
+                v.staticFilters([lastReviewFilter, occupancyFilter, ...vStaticFilters]);
+                v.bbox(window.bbox);
             } else {
                 v.staticFilters(lastReviewFilter, occupancyFilter);
             }

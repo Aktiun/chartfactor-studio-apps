@@ -67,11 +67,10 @@ def download_file(url: str, local_filename: str, path_to_save: str) -> bool:
         return False
 
 
-def get_listings_files(is_whole_world: bool = False) -> bool:
+def get_listings_files(is_whole_world: bool = False, download_directory: str = "../tmp_downloaded/") -> bool:
     listings_links = get_listings_links(is_whole_world)
     calendar_links = get_calendar_links(is_whole_world)
 
-    download_directory = "../tmp_downloaded/"
     os.makedirs(download_directory, exist_ok=True)
     downloads_info = {}
     for id, url in listings_links.items():
@@ -93,3 +92,5 @@ def get_listings_files(is_whole_world: bool = False) -> bool:
         local_filename = f"{id}_{normalize_filename(name)}_calendar.csv.gz"
         path_to_save = os.path.join(download_directory, local_filename)
         download_file(normalized_url, local_filename, path_to_save)
+    
+    return True
