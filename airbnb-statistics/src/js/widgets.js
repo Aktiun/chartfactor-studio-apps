@@ -60,8 +60,6 @@ function loadInteractionManager() {
     let aktive = cf.create();
     let myChart = aktive
         .graph("Interaction Manager")
-        //.set("rules", rules)
-        //.set("drill", drill)
         .set("rules", rules1)
         .set("skin", {
           type: "modern",
@@ -190,6 +188,7 @@ async function loadGeomap() {
               "source": "abnb_listings",
               "properties": {
                 "customTooltip": myTooltip,
+                "disableMarkerEvents": true,
                 "limit": 20000,
                 "location": "location",
                 "visibilityZoomRange": [0, 24],
