@@ -44,12 +44,10 @@ function loadInteractionManager() {
     let viz2 = getId("licenses");
     let viz4 = getId("hostListings");
     let viz5 = getId("realtor_new_listings");
-    let viz6 = getId("cf-main-geomap-hosts");
     let rules1 = {
       [viz3]: { clientFilters: true },
       [viz2]: { clientFilters: true },
-      [viz5]: { clientFilters: true },
-      [viz6]: { trigger: false}
+      [viz5]: { clientFilters: true }
     };
     /* Configuration code for the Interaction Manager*/
     // Drill hierarchy and rule settings can be done like this:
@@ -62,8 +60,6 @@ function loadInteractionManager() {
     let aktive = cf.create();
     let myChart = aktive
         .graph("Interaction Manager")
-        //.set("rules", rules)
-        //.set("drill", drill)
         .set("rules", rules1)
         .set("skin", {
           type: "modern",
