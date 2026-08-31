@@ -44,10 +44,12 @@ function loadInteractionManager() {
     let viz2 = getId("licenses");
     let viz4 = getId("hostListings");
     let viz5 = getId("realtor_new_listings");
+    let viz6 = getId("cf-main-geomap-hosts");
     let rules1 = {
       [viz3]: { clientFilters: true },
       [viz2]: { clientFilters: true },
-      [viz5]: { clientFilters: true }
+      [viz5]: { clientFilters: true },
+      [viz6]: { trigger: false}
     };
     /* Configuration code for the Interaction Manager*/
     // Drill hierarchy and rule settings can be done like this:
@@ -188,7 +190,6 @@ async function loadGeomap() {
               "source": "abnb_listings",
               "properties": {
                 "customTooltip": myTooltip,
-                "disableMarkerEvents": true,
                 "limit": 20000,
                 "location": "location",
                 "visibilityZoomRange": [0, 24],
