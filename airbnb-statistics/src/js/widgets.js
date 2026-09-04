@@ -189,6 +189,7 @@ async function loadGeomap() {
               "provider": "local",
               "source": "abnb_listings",
               "properties": {
+                "allowClickInRawMarker": false,
                 "customTooltip": myTooltip,
                 "limit": 20000,
                 "location": "location",
