@@ -1,11 +1,10 @@
 {
-    "id": "6adb387e-26df-4e8f-8ae8-a5ce233ed308",
+    "id": "dcd7c39e-13b9-4296-8394-3f1793dd762f",
     "name": "Airbnb",
     "description": "",
     "state": "home",
     "readOnly": false,
     "hasBorder": true,
-    "isSampleApp": false,
     "thumbnailPath": "img/mix.png",
     "widgetList": [
         {
@@ -24,7 +23,7 @@
             "source": {
                 "name": "abnb_listings",
                 "provider": {
-                    "name": "local",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -34,7 +33,7 @@
                 "    .operation(\"NOT IN\")",
                 "    .value([\"null\"]);",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"local\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"abnb_listings\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
@@ -59,23 +58,27 @@
             "showUI": false,
             "syncedFields": [],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
             "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {},
             "layerSources": [
                 {
                     "name": "hosts",
                     "layerType": "marker",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 },
                 {
                     "name": "heatmap",
                     "layerType": "heatmap",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             ]
@@ -96,7 +99,7 @@
             "source": {
                 "name": "abnb_listings",
                 "provider": {
-                    "name": "local",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -106,7 +109,7 @@
                 "    .operation(\"GT\")",
                 "    .value([0]);",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"local\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"abnb_listings\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"price\", \"histogram\").fixedBars(100)",
@@ -142,23 +145,27 @@
             "showUI": false,
             "syncedFields": [],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
             "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {},
             "layerSources": [
                 {
                     "name": "hosts",
                     "layerType": "marker",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 },
                 {
                     "name": "heatmap",
                     "layerType": "heatmap",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             ]
@@ -179,7 +186,7 @@
             "source": {
                 "name": "abnb_listings",
                 "provider": {
-                    "name": "local",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -189,7 +196,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"local\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"abnb_listings\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
@@ -212,23 +219,27 @@
             "showUI": true,
             "syncedFields": [],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": true,
             "enableAutoDrill": false,
             "staticFilters": 0,
             "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {},
             "layerSources": [
                 {
                     "name": "hosts",
                     "layerType": "marker",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 },
                 {
                     "name": "heatmap",
                     "layerType": "heatmap",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             ]
@@ -249,7 +260,7 @@
             "source": {
                 "name": "abnb_listings",
                 "provider": {
-                    "name": "local",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -258,7 +269,7 @@
                 "    .label(\"beds\")",
                 "    .operation(\"GT\")",
                 "    .value([0]);",
-                "let provider = cf.provider(\"local\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"abnb_listings\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
@@ -292,23 +303,27 @@
             "showUI": false,
             "syncedFields": [],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
             "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {},
             "layerSources": [
                 {
                     "name": "hosts",
                     "layerType": "marker",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 },
                 {
                     "name": "heatmap",
                     "layerType": "heatmap",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             ]
@@ -324,82 +339,88 @@
                 "moved": false,
                 "static": false
             },
-            "title": "abnb_listings (1)",
+            "title": "Map",
             "visualization": "Geo Map GL",
             "source": {
                 "name": "abnb_listings",
                 "provider": {
-                    "name": "local",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
             "code": [
-                "// Interaction Manager uses filter(), filters(), clientFilter(),\r",
-                "// and clientFilters() to manage filters. To apply additional\r",
-                "// filters, use staticFilters() or your code could be overwritten.\r",
-                "//\r",
-                "/* Configuration code for this widget */\r",
-                "let myChart = cf.create().graph(\"Geo Map GL\")\r",
-                "    .set(\"layers\", [\r",
-                "        {\r",
-                "            \"name\": \"heatmap\",\r",
-                "            \"priority\": 2,\r",
-                "            \"type\": \"heatmap\",\r",
-                "            \"provider\": \"local\",\r",
-                "            \"source\": \"abnb_listings\",\r",
-                "            \"properties\": {\r",
-                "                \"limit\": 20000,\r",
-                "                \"location\": \"location\",\r",
-                "                \"visibilityZoomRange\": [0, 24],\r",
-                "                \"options\": {\r",
-                "                    \"heatmap-weight\": [\"interpolate\", [\"linear\"], [\"get\", \"__cf_cluster_count_percent__\"], 1, 0.2, 80, 85],\r",
-                "                    \"heatmap-radius\": [\"interpolate\", [\"linear\"], [\"get\", \"__cf_cluster_count_percent__\"], 1, 3, 20, 5, 80, 10],\r",
-                "                    \"heatmap-intensity\": [\"interpolate\", [\"linear\"], [\"zoom\"], 5, 1, 18, 6],\r",
-                "                    \"heatmap-color\": [\"interpolate\", [\"linear\"], [\"heatmap-density\"], 0, \"rgba(0, 0, 255, 0)\", 0.1, \"royalblue\", 0.3, \"cyan\", 0.5, \"lime\", 0.7, \"yellow\", 1, \"red\"],\r",
-                "                    \"switchToMarkersAtRaw\": true,\r",
-                "                },\r",
-                "                \"precisionLevels\": { \"raw\": { \"zoom\": 13, \"fields\": [\"location\"] }, \"levels\": [{ \"zoom\": 2, \"precision\": 3 }, { \"zoom\": 4, \"precision\": 5 }, { \"zoom\": 6, \"precision\": 6 }, { \"zoom\": 9, \"precision\": 7 }, { \"zoom\": 12, \"precision\": 8 }] },\r",
-                "                \"color\": cf.Color()\r",
-                "                    .palette([\"#08519c\", \"#3182bd\", \"#6baed6\", \"#bdd7e7\", \"#eff3ff\"])\r",
-                "                    .metric(cf.Metric()),\r",
-                "            },\r",
-                "        },\r",
-                "        {\r",
-                "            \"type\": \"tile\",\r",
-                "            \"name\": \"Tile\",\r",
-                "            \"priority\": 1,\r",
-                "            \"properties\": {\r",
-                "                \"source\": { \"tiles\": [\"https://a.tile.openstreetmap.org/{z}/{x}/{y}.png\"], \"scheme\": \"xyz\", \"attribution\": \"Map data &copy; <a href=\\\"https://www.openstreetmap.org/\\\">OpenStreetMap</a> contributors, <a href=\\\"https://creativecommons.org/licenses/by-sa/2.0/\\\">CC-BY-SA</a>\" },\r",
-                "            },\r",
-                "        },\r",
-                "    ])\r",
-                "    .set(\"zoom\", 11.03971939722416)\r",
-                "    .set(\"center\", [-74.05242077848425, 40.73314079101007])\r",
-                "    .set(\"layersControl\", {\r",
-                "        \"collapsed\": true,\r",
-                "        \"position\": \"bottom-left\"\r",
-                "    })\r",
-                "    .set(\"drawControl\", true)\r",
-                "    .set(\"enableZoomInfo\", true)\r",
-                "    .execute();\r",
+                "// Interaction Manager uses filter(), filters(), clientFilter(),",
+                "// and clientFilters() to manage filters. To apply additional",
+                "// filters, use staticFilters() or your code could be overwritten.",
+                "//",
+                "/* Configuration code for this widget */",
+                "let myChart = cf.create().graph(\"Geo Map GL\")",
+                "    .set(\"layers\", [",
+                "        {",
+                "            \"name\": \"heatmap\",",
+                "            \"priority\": 2,",
+                "            \"type\": \"heatmap\",",
+                "            \"provider\": \"Elasticsearch\",",
+                "            \"source\": \"abnb_listings\",",
+                "            \"properties\": {",
+                "                \"limit\": 20000,",
+                "                \"location\": \"location\",",
+                "                \"visibilityZoomRange\": [0, 24],",
+                "                \"options\": {",
+                "                    \"heatmap-weight\": [\"interpolate\", [\"linear\"], [\"get\", \"__cf_cluster_count_percent__\"], 1, 0.2, 80, 85],",
+                "                    \"heatmap-radius\": [\"interpolate\", [\"linear\"], [\"get\", \"__cf_cluster_count_percent__\"], 1, 3, 20, 5, 80, 10],",
+                "                    \"heatmap-intensity\": [\"interpolate\", [\"linear\"], [\"zoom\"], 5, 1, 18, 6],",
+                "                    \"heatmap-color\": [\"interpolate\", [\"linear\"], [\"heatmap-density\"], 0, \"rgba(0, 0, 255, 0)\", 0.1, \"royalblue\", 0.3, \"cyan\", 0.5, \"lime\", 0.7, \"yellow\", 1, \"red\"],",
+                "                    \"switchToMarkersAtRaw\": true,",
+                "                },",
+                "                \"precisionLevels\": { \"raw\": { \"zoom\": 13, \"fields\": [\"location\"] }, \"levels\": [{ \"zoom\": 2, \"precision\": 3 }, { \"zoom\": 4, \"precision\": 5 }, { \"zoom\": 6, \"precision\": 6 }, { \"zoom\": 9, \"precision\": 7 }, { \"zoom\": 12, \"precision\": 8 }] },",
+                "                \"color\": cf.Color()",
+                "                    .palette([\"#08519c\", \"#3182bd\", \"#6baed6\", \"#bdd7e7\", \"#eff3ff\"])",
+                "                    .metric(cf.Metric()),",
+                "            },",
+                "        },",
+                "        {",
+                "            \"type\": \"tile\",",
+                "            \"name\": \"Tile\",",
+                "            \"priority\": 1,",
+                "            \"properties\": {",
+                "                \"source\": { \"tiles\": [\"https://a.tile.openstreetmap.org/{z}/{x}/{y}.png\"], \"scheme\": \"xyz\", \"attribution\": \"Map data &copy; <a href=\\\"https://www.openstreetmap.org/\\\">OpenStreetMap</a> contributors, <a href=\\\"https://creativecommons.org/licenses/by-sa/2.0/\\\">CC-BY-SA</a>\" },",
+                "            },",
+                "        },",
+                "    ])",
+                "    .set(\"zoom\", 14.918230760143745)",
+                "    .set(\"center\", [-73.99254299013643, 40.75204265206017])",
+                "    .set(\"layersControl\", {",
+                "        \"collapsed\": true,",
+                "        \"position\": \"bottom-left\"",
+                "    })",
+                "    .set(\"drawControl\", true)",
+                "    .set(\"enableZoomInfo\", true)",
+                "    .execute();",
                 ""
             ],
             "showUI": true,
             "syncedFields": [],
             "showTitle": true,
+            "layerProviders": [
+                "Elasticsearch"
+            ],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
             "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {},
             "layersProviders": [
-                "local"
+                "Elasticsearch"
             ],
             "layerSources": [
                 {
                     "name": "heatmap",
                     "layerType": "heatmap",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             ]
@@ -420,7 +441,7 @@
             "source": {
                 "name": "abnb_listings",
                 "provider": {
-                    "name": "local",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -430,7 +451,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"local\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"abnb_listings\");",
                 "// Declare your fields (do not remove this comment line)",
                 "const fields = [",
@@ -818,10 +839,14 @@
                 "is_usa"
             ],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "visf473229c-5a6a-4b24-bc59-62a7b7d27eca",
@@ -839,7 +864,7 @@
             "source": {
                 "name": "abnb_listings",
                 "provider": {
-                    "name": "local",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -849,7 +874,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"local\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"abnb_listings\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\", \"sum\");",
@@ -899,10 +924,14 @@
             "showUI": true,
             "syncedFields": [],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis417e4d6d-2afa-4285-a778-2f9465c528aa",
@@ -920,7 +949,7 @@
             "source": {
                 "name": "abnb_listings",
                 "provider": {
-                    "name": "local",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -930,7 +959,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"local\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"abnb_listings\");",
                 "let metric0 = cf.Metric(\"count\");",
                 "// Define Color config",
@@ -957,10 +986,14 @@
             "showUI": true,
             "syncedFields": [],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
-            "description": null
+            "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {}
         },
         {
             "id": "vis79728b36-d545-4083-8f35-b4a6eaa9f7e5",
@@ -978,7 +1011,7 @@
             "source": {
                 "name": "abnb_listings",
                 "provider": {
-                    "name": "local",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -988,7 +1021,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"local\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"abnb_listings\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"calculated_host_listings_count\", \"avg\").hideFunction();",
@@ -1021,23 +1054,27 @@
             "showUI": true,
             "syncedFields": [],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
             "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {},
             "layerSources": [
                 {
                     "name": "hosts",
                     "layerType": "marker",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 },
                 {
                     "name": "heatmap",
                     "layerType": "heatmap",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             ]
@@ -1058,7 +1095,7 @@
             "source": {
                 "name": "abnb_listings",
                 "provider": {
-                    "name": "local",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -1068,7 +1105,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"local\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"abnb_listings\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
@@ -1099,23 +1136,27 @@
             "showUI": true,
             "syncedFields": [],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
             "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {},
             "layerSources": [
                 {
                     "name": "hosts",
                     "layerType": "marker",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 },
                 {
                     "name": "heatmap",
                     "layerType": "heatmap",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             ]
@@ -1136,7 +1177,7 @@
             "source": {
                 "name": "abnb_listings",
                 "provider": {
-                    "name": "local",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -1146,7 +1187,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"local\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"abnb_listings\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"accommodates\", \"sum\");",
@@ -1178,23 +1219,27 @@
             "showUI": true,
             "syncedFields": [],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
             "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {},
             "layerSources": [
                 {
                     "name": "hosts",
                     "layerType": "marker",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 },
                 {
                     "name": "heatmap",
                     "layerType": "heatmap",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             ]
@@ -1215,7 +1260,7 @@
             "source": {
                 "name": "abnb_listings",
                 "provider": {
-                    "name": "local",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -1225,7 +1270,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"local\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"abnb_listings\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
@@ -1256,23 +1301,27 @@
             "showUI": true,
             "syncedFields": [],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
             "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {},
             "layerSources": [
                 {
                     "name": "hosts",
                     "layerType": "marker",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 },
                 {
                     "name": "heatmap",
                     "layerType": "heatmap",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             ]
@@ -1293,7 +1342,7 @@
             "source": {
                 "name": "abnb_listings",
                 "provider": {
-                    "name": "local",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -1301,12 +1350,13 @@
                 "let staticFilter1 = cf.Filter(\"property_type\")",
                 "    .label(\"Property type\")",
                 "    .operation(\"IN\")",
-                "    .value([\"Entire bungalow\", \"Entire cabin\", \"Entire condo\", \"Entire chalet\", \"Entire cottage\", \"Entire guest suite\", \"Entire guesthouse\", \"Entire home\", \"Entire home/apt\", \"Entire loft\", \"Entire place\", \"Entire rental unit\", \"Entire serviced apartment\", \"Entire townhouse\", \"Entire vacation home\", \"Entire villa\"]); // Interaction Manager uses filter(), filters(), clientFilter(),",
+                "    .value([\"Entire bungalow\", \"Entire cabin\", \"Entire condo\", \"Entire chalet\", \"Entire cottage\", \"Entire guest suite\", \"Entire guesthouse\", \"Entire home\", \"Entire home/apt\", \"Entire loft\", \"Entire place\", \"Entire rental unit\", \"Entire serviced apartment\", \"Entire townhouse\", \"Entire vacation home\", \"Entire villa\"]);",
+                "// Interaction Manager uses filter(), filters(), clientFilter(),",
                 "// and clientFilters() to manage filters. To apply additional",
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"local\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"abnb_listings\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
@@ -1339,23 +1389,27 @@
             "showUI": true,
             "syncedFields": [],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 1,
             "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {},
             "layerSources": [
                 {
                     "name": "hosts",
                     "layerType": "marker",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 },
                 {
                     "name": "heatmap",
                     "layerType": "heatmap",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             ]
@@ -1376,7 +1430,7 @@
             "source": {
                 "name": "abnb_listings",
                 "provider": {
-                    "name": "local",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -1384,12 +1438,13 @@
                 "let staticFilter1 = cf.Filter(\"property_type\")",
                 "    .label(\"Property type\")",
                 "    .operation(\"IN\")",
-                "    .value([\"Private room\", \"Private room in barn\", \"Private room in bed and breakfast\", \"Private room in boat\", \"Private room in bungalow\", \"Private room in camper/rv\", \"Private room in casa particular\", \"Private room in castle\", \"Private room in chalet\", \"Private room in condo\", \"Private room in cottage\", \"Private room in dorm\", \"Private room in earthen home\", \"Private room in farm stay\", \"Private room in guest suite\", \"Private room in guesthouse\", \"Private room in hostel\", \"Private room in home\", \"Private room in in-law\", \"Private room in island\", \"Private room in kezhan\", \"Private room in lighthouse\", \"Private room in loft\", \"Private room in minsu\", \"Private room in ranch\", \"Private room in religious building\", \"Private room in rental unit\", \"Private room in resort\", \"Private room in serviced apartment\", \"Private room in tent\", \"Private room in tiny home\", \"Private room in townhouse\", \"Private room in train\", \"Private room in vacation home\", \"Private room in villa\"]); // Interaction Manager uses filter(), filters(), clientFilter(),",
+                "    .value([\"Private room\", \"Private room in barn\", \"Private room in bed and breakfast\", \"Private room in boat\", \"Private room in bungalow\", \"Private room in camper/rv\", \"Private room in casa particular\", \"Private room in castle\", \"Private room in chalet\", \"Private room in condo\", \"Private room in cottage\", \"Private room in dorm\", \"Private room in earthen home\", \"Private room in farm stay\", \"Private room in guest suite\", \"Private room in guesthouse\", \"Private room in hostel\", \"Private room in home\", \"Private room in in-law\", \"Private room in island\", \"Private room in kezhan\", \"Private room in lighthouse\", \"Private room in loft\", \"Private room in minsu\", \"Private room in ranch\", \"Private room in religious building\", \"Private room in rental unit\", \"Private room in resort\", \"Private room in serviced apartment\", \"Private room in tent\", \"Private room in tiny home\", \"Private room in townhouse\", \"Private room in train\", \"Private room in vacation home\", \"Private room in villa\"]);",
+                "// Interaction Manager uses filter(), filters(), clientFilter(),",
                 "// and clientFilters() to manage filters. To apply additional",
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"local\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"abnb_listings\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
@@ -1422,23 +1477,27 @@
             "showUI": true,
             "syncedFields": [],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 1,
             "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {},
             "layerSources": [
                 {
                     "name": "hosts",
                     "layerType": "marker",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 },
                 {
                     "name": "heatmap",
                     "layerType": "heatmap",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             ]
@@ -1459,7 +1518,7 @@
             "source": {
                 "name": "abnb_listings",
                 "provider": {
-                    "name": "local",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -1467,19 +1526,20 @@
                 "let staticFilter1 = cf.Filter(\"property_type\")",
                 "    .label(\"Property type\")",
                 "    .operation(\"IN\")",
-                "    .value([\"Shared room\", \"Shared room in bed and breakfast\", \"Shared room in bungalow\", \"Shared room in casa particular\", \"Shared room in condo\", \"Shared room in floor\", \"Shared room in guest suite\", \"Shared room in guesthouse\", \"Shared room in home\", \"Shared room in hostel\", \"Shared room in hotel\", \"Shared room in loft\", \"Shared room in rental unit\", \"Shared room in serviced apartment\", \"Shared room in townhouse\", \"Shared room in vacation home\"]); // Interaction Manager uses filter(), filters(), clientFilter(),",
+                "    .value([\"Shared room\", \"Shared room in bed and breakfast\", \"Shared room in bungalow\", \"Shared room in casa particular\", \"Shared room in condo\", \"Shared room in floor\", \"Shared room in guest suite\", \"Shared room in guesthouse\", \"Shared room in home\", \"Shared room in hostel\", \"Shared room in hotel\", \"Shared room in loft\", \"Shared room in rental unit\", \"Shared room in serviced apartment\", \"Shared room in townhouse\", \"Shared room in vacation home\"]);",
+                "// Interaction Manager uses filter(), filters(), clientFilter(),",
                 "// and clientFilters() to manage filters. To apply additional",
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"local\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"abnb_listings\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
                 "// Define attributes to group by",
                 "let group1 = cf.Attribute(\"host_name\")",
                 "    .limit(50)",
-                "    .sort(\"desc\", \"count\");",
+                "    .sort(\"desc\", cf.Metric());",
                 "// Add metrics and groups to data source",
                 "let myData = source.groupby(group1)",
                 "    .metrics(metric0);",
@@ -1505,23 +1565,27 @@
             "showUI": true,
             "syncedFields": [],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 1,
             "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {},
             "layerSources": [
                 {
                     "name": "hosts",
                     "layerType": "marker",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 },
                 {
                     "name": "heatmap",
                     "layerType": "heatmap",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             ]
@@ -1542,7 +1606,7 @@
             "source": {
                 "name": "abnb_listings",
                 "provider": {
-                    "name": "local",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -1550,19 +1614,20 @@
                 "let staticFilter1 = cf.Filter(\"property_type\")",
                 "    .label(\"Property type\")",
                 "    .operation(\"IN\")",
-                "    .value([\"Room in aparthotel\", \"Room in boutique hotel\", \"Room in hotel\"]); // Interaction Manager uses filter(), filters(), clientFilter(),",
+                "    .value([\"Room in aparthotel\", \"Room in boutique hotel\", \"Room in hotel\"]);",
+                "// Interaction Manager uses filter(), filters(), clientFilter(),",
                 "// and clientFilters() to manage filters. To apply additional",
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"local\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"abnb_listings\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
                 "// Define attributes to group by",
                 "let group1 = cf.Attribute(\"host_name\")",
                 "    .limit(50)",
-                "    .sort(\"desc\", \"count\");",
+                "    .sort(\"desc\", cf.Metric());",
                 "// Add metrics and groups to data source",
                 "let myData = source.groupby(group1)",
                 "    .metrics(metric0);",
@@ -1588,23 +1653,27 @@
             "showUI": true,
             "syncedFields": [],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 1,
             "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {},
             "layerSources": [
                 {
                     "name": "hosts",
                     "layerType": "marker",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 },
                 {
                     "name": "heatmap",
                     "layerType": "heatmap",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             ]
@@ -1625,7 +1694,7 @@
             "source": {
                 "name": "abnb_listings",
                 "provider": {
-                    "name": "local",
+                    "name": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             },
@@ -1635,7 +1704,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"local\");",
+                "let provider = cf.provider(\"Elasticsearch\");",
                 "let source = provider.source(\"abnb_listings\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"count\");",
@@ -1654,23 +1723,27 @@
             "showUI": true,
             "syncedFields": [],
             "showTitle": true,
+            "layerProviders": [],
             "enableClientFilters": false,
             "enableAutoDrill": false,
             "staticFilters": 0,
             "description": null,
+            "switchToMultiMetric": true,
+            "isCustom": false,
+            "savedVars": {},
             "layerSources": [
                 {
                     "name": "hosts",
                     "layerType": "marker",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 },
                 {
                     "name": "heatmap",
                     "layerType": "heatmap",
                     "source": "abnb_listings",
-                    "provider": "local",
+                    "provider": "Elasticsearch",
                     "type": "elasticsearch"
                 }
             ]
@@ -1787,14 +1860,18 @@
         "showUI": false,
         "syncedFields": [],
         "showTitle": true,
+        "layerProviders": [],
         "enableClientFilters": false,
         "enableAutoDrill": false,
         "staticFilters": 0,
-        "description": null
+        "description": null,
+        "switchToMultiMetric": true,
+        "isCustom": false,
+        "savedVars": {}
     },
     "hideIM": false,
     "metadata": {
-        "local": [
+        "Elasticsearch": [
             "let minNightsD = {\r",
             "    \"name\": \"minimum_nights_d\",\r",
             "    \"label\": \"Minimum nights - ordered\",\r",
@@ -2071,11 +2148,10 @@
     "customQueries": {}
 }||||[
     {
-        "name": "local",
-        "url": "http://localhost:9200/",
+        "name": "Elasticsearch",
+        "url": "https://chartfactor.com/elastic",
         "active": true,
         "provider": "elasticsearch",
-        "isLocal": true,
-        "id": "2597f78e-815b-47bf-82f3-c042691dae62"
+        "id": "cae26dab-7696-4bb5-8f1d-15954aec7cce"
     }
 ]
